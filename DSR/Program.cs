@@ -16,6 +16,20 @@ class Program
 
     public static void Main(string[] args)
     {
+        var data = File.ReadAllBytes(@"C:\Users\Tim\Documents\NBGI\DarkSouls\DRAKS0005.sl2");
+        Console.WriteLine(BitConverter.ToUInt32(data.Skip(64 + 16).Take(4).ToArray()));
+        var slot = data.Skip(704).Take(0x60014).ToArray();
+        Console.WriteLine(BitConverter.ToString(slot.Take(16).ToArray()));
+        Console.WriteLine(BitConverter.ToString(MD5.Create().ComputeHash(slot.Skip(16).ToArray())));
+        Console.WriteLine(BitConverter.ToString(MD5.Create().ComputeHash(slot.Skip(20).ToArray())));
+        Console.WriteLine();
+        slot = data.Skip(704).Take(0x60030).ToArray();
+        Console.WriteLine(BitConverter.ToString(slot.Take(16).ToArray()));
+        Console.WriteLine(BitConverter.ToString(MD5.Create().ComputeHash(slot.Skip(16).ToArray())));
+        Console.WriteLine(BitConverter.ToString(MD5.Create().ComputeHash(slot.Skip(20).ToArray())));
+        Console.WriteLine();
+        
+        //if (true) return;
         var j = 0;
 
         /*foreach (var b in File.ReadAllBytes(path))
@@ -30,39 +44,52 @@ class Program
         Console.WriteLine(0x4204D0);
 
         //var testpath = @"C:\Users\Tim\Documents\NBGI\DARK SOULS REMASTERED\296043893\USER_DATA1.soul";
-        var testpath = @"C:\Users\Tim\Documents\NBGI\DARK SOULS REMASTERED\296043893\USER_DATA1.soul2";
-        var testpath1 = @"C:\Users\Tim\Documents\NBGI\DARK SOULS REMASTERED\296043893\USER_DATA1.soul";
-        var bb = File.ReadAllBytes(testpath);
-        var bc = File.ReadAllBytes(testpath1);
+        //var testpath = @"C:\Users\Tim\Documents\NBGI\DARK SOULS REMASTERED\296043893\USER_DATA1.soul2";
+        //var testpath1 = @"C:\Users\Tim\Documents\NBGI\DARK SOULS REMASTERED\296043893\USER_DATA1.soul";
+        var testpath = @"G:\Dokumente\RiderProjects\DSRSaveEditor\DSR\bin\Debug\net6.0\USERDATA000";
+        var testpath1 = @"G:\Dokumente\RiderProjects\DSRSaveEditor\DSR\bin\Debug\net6.0\USERDATA000_0";
+        var testpath2 = @"G:\Dokumente\RiderProjects\DSRSaveEditor\DSR\bin\Debug\net6.0\USERDATA001";
+        var testpath3 = @"G:\Dokumente\RiderProjects\DSRSaveEditor\DSR\bin\Debug\net6.0\USERDATA001_0";
+        var testpath4 = @"G:\Dokumente\RiderProjects\DSRSaveEditor\DSR\bin\Debug\net6.0\USERDATA0010";
+        var testpath5 = @"G:\Dokumente\RiderProjects\DSRSaveEditor\DSR\bin\Debug\net6.0\USERDATA0010_0";
+        var b0 = File.ReadAllBytes(testpath);
+        var b1 = File.ReadAllBytes(testpath1);
+        var b2 = File.ReadAllBytes(testpath2);
+        var b3 = File.ReadAllBytes(testpath3);
+        var b4 = File.ReadAllBytes(testpath4);
+        var b5 = File.ReadAllBytes(testpath5);
 
-        Console.WriteLine("Compare");
-        for (var i = 0; i < bb.Length; i++)
+        Console.WriteLine("Compare1");
+        for (var i = 0; i < b0.Length; i++)
         {
-            //if (bb[i] != bc[i]) Console.Write($"[{i}]: {bb[i]} -> {bc[i]}\t");
+            //if (b0[i] != b1[i]) Console.Write($"[{i}]: {b0[i]} -> {b1[i]}\t");
+        }
+        Console.WriteLine("Compare2");
+        for (var i = 0; i < b0.Length; i++)
+        {
+            //if (b2[i] != b3[i]) Console.Write($"[{i}]: {b2[i]} -> {b3[i]}\t");
+        }
+        Console.WriteLine("Compare3");
+        for (var i = 0; i < b0.Length; i++)
+        {
+            //if (b4[i] != b5[i]) Console.Write($"[{i}]: {b4[i]} -> {b5[i]}\t");
         }
         
         Console.WriteLine("Compare Again");
-        for (var i = 0; i < bb.Length; i += 4)
+        for (var i = 0; i < b0.Length; i += 4)
         {
-            //var first = BitConverter.ToUInt32(bb.Skip(i).Take(4).ToArray());
-            //var second = BitConverter.ToUInt32(bc.Skip(i).Take(4).ToArray());
+            //var first = BitConverter.ToUInt32(b0.Skip(i).Take(4).ToArray());
+            //var second = BitConverter.ToUInt32(b1.Skip(i).Take(4).ToArray());
             //if (first != second) Console.Write($"[{i}]: {first} -> {second}\t");
-        }
-        
-        
-        var bbb = File.ReadAllBytes(@"C:\Users\Tim\Downloads\USER_DATA001");
-        foreach (var b in bbb)
-        {
-            //Console.Write($"{(b > 32 && b < 126 ? (char)b : b)} ");
         }
 
         Console.WriteLine("Souls");
-        for (var i = 0; i < bb.Length; i += 4)
+        for (var i = 0; i < b0.Length; i += 4)
         {
-            var a = BitConverter.ToUInt32(bb.Skip(i).Take(4).ToArray());
-            var b = BitConverter.ToUInt32(bb.Skip(i).Take(4).Reverse().ToArray());
-            var c = BitConverter.ToInt32(bb.Skip(i).Take(4).ToArray());
-            var d = BitConverter.ToInt32(bb.Skip(i).Take(4).Reverse().ToArray());
+            var a = BitConverter.ToUInt32(b0.Skip(i).Take(4).ToArray());
+            var b = BitConverter.ToUInt32(b0.Skip(i).Take(4).Reverse().ToArray());
+            var c = BitConverter.ToInt32(b0.Skip(i).Take(4).ToArray());
+            var d = BitConverter.ToInt32(b0.Skip(i).Take(4).Reverse().ToArray());
             if (a == 5228274) Console.WriteLine("a: " + i);
             if (b == 5228274) Console.WriteLine("b: " + i);
             if (c == 5228274) Console.WriteLine("c: " + i);
@@ -87,6 +114,7 @@ class Program
         var bytes = File.ReadAllBytes(path);
 
         var saveFile = new SaveFile(bytes);
+        saveFile.WriteToFile();
 
         for (var i = 0;
              i < USER_DATA_FILE_COUNT;

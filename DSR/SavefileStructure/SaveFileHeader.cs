@@ -62,5 +62,27 @@ public class SaveFileHeader
         }
     }
 
+    public byte[] ToBytes()
+    {
+        var bytes = new byte[64];
+
+        Array.Copy(BitConverter.GetBytes(_bnd4)          , 0, bytes,  0,  4);
+        Array.Copy(BitConverter.GetBytes(_magic1)        , 0, bytes,  4,  4);
+        Array.Copy(BitConverter.GetBytes(_magic2)        , 0, bytes,  8,  4);
+        Array.Copy(BitConverter.GetBytes(_slotCount)     , 0, bytes, 12,  4);
+        Array.Copy(BitConverter.GetBytes(_const0)        , 0, bytes, 16,  4);
+        Array.Copy(BitConverter.GetBytes(_const1)        , 0, bytes, 20,  4);
+        Array.Copy(BitConverter.GetBytes(_const2)        , 0, bytes, 24,  4);
+        Array.Copy(BitConverter.GetBytes(_const3)        , 0, bytes, 28,  4);
+        Array.Copy(BitConverter.GetBytes(_slotHeaderSize), 0, bytes, 32,  4);
+        Array.Copy(BitConverter.GetBytes(_const4)        , 0, bytes, 36,  4);
+        Array.Copy(BitConverter.GetBytes(_size)          , 0, bytes, 40,  4);
+        Array.Copy(BitConverter.GetBytes(_const5)        , 0, bytes, 44,  4);
+        Array.Copy(BitConverter.GetBytes(_const6)        , 0, bytes, 48,  4);
+        Array.Copy(new byte[]{0,0,0,0,0,0,0,0,0,0,0,0}   , 0, bytes, 52, 12);
+
+        return bytes;
+    }
+
     public int Length => 64;
 }

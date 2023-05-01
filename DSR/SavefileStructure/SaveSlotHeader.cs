@@ -24,13 +24,30 @@ public class SaveSlotHeader
         _const2 = BitConverter.ToUInt32(new[] { data[12], data[13], data[14], data[15] });
         if (_const2 != 0) throw new Exception("Invalid Const2");
         
-        _offset = BitConverter.ToUInt32(new[] { data[12], data[13], data[14], data[15] });
-        _titleOffset = BitConverter.ToUInt32(new[] { data[16], data[17], data[18], data[19] });
+        _offset = BitConverter.ToUInt32(new[] { data[16], data[17], data[18], data[19] });
+        _titleOffset = BitConverter.ToUInt32(new[] { data[20], data[21], data[22], data[23] });
         
-        _paddingSize = BitConverter.ToUInt32(new[] { data[20], data[21], data[22], data[23] });
-        //if (_paddingSize != 0) throw new Exception("Invalid Padding Size");
-        _const3 = BitConverter.ToUInt32(new[] { data[24], data[25], data[26], data[27] });
+        _paddingSize = BitConverter.ToUInt32(new[] { data[24], data[25], data[26], data[27] });
+        if (_paddingSize != 0) throw new Exception("Invalid Padding Size");
+        
+        _const3 = BitConverter.ToUInt32(new[] { data[28], data[29], data[30], data[31] });
         if (_const3 != 0) throw new Exception("Invalid Const3");
+    }
+    
+    public byte[] ToBytes()
+    {
+        var bytes = new byte[32];
+
+        Array.Copy(BitConverter.GetBytes(_const0)     , 0, bytes,  0,  4);
+        Array.Copy(BitConverter.GetBytes(_const1)     , 0, bytes,  4,  4);
+        Array.Copy(BitConverter.GetBytes(_slotSize)   , 0, bytes,  8,  4);
+        Array.Copy(BitConverter.GetBytes(_const2)     , 0, bytes, 12,  4);
+        Array.Copy(BitConverter.GetBytes(_offset)     , 0, bytes, 16,  4);
+        Array.Copy(BitConverter.GetBytes(_titleOffset), 0, bytes, 20,  4);
+        Array.Copy(BitConverter.GetBytes(_paddingSize), 0, bytes, 24,  4);
+        Array.Copy(BitConverter.GetBytes(_const3)     , 0, bytes, 28,  4);
+
+        return bytes;
     }
 
     public uint Size => _slotSize;
