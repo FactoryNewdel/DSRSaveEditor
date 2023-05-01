@@ -9,9 +9,6 @@ public class SaveSlot
     private static readonly byte[] Key = { 0x1, 0x23, 0x45, 0x67, 0x89, 0xAB, 0xCD, 0xEF, 0xFE, 0xDC, 0xBA, 0x98, 0x76, 0x54, 0x32, 0x10 };
     private Aes _aes;
 
-    private byte[] _encrypted;
-    private byte[] _decrypted;
-    
     private byte[] _iv;
     private byte[] _checksum;
     private UInt32 _remainingSize; // 0x60030 - IV - Checksum - Footer
@@ -40,7 +37,6 @@ public class SaveSlot
 
     public SaveSlot(byte[] data)
     {
-        _encrypted = data;
         _iv = data.Take(16).ToArray();
 
         _aes = Aes.Create();
@@ -50,7 +46,6 @@ public class SaveSlot
         Console.WriteLine(data.Length);
         Console.WriteLine(0x60030);
         var decrypted = _aes.DecryptCbc(data.Skip(16).ToArray(), _iv, PaddingMode.None);
-        _decrypted = decrypted;
         Console.WriteLine(decrypted.Length);
         Console.WriteLine(16 + 4 + 0x5FFFC + 16);
         
