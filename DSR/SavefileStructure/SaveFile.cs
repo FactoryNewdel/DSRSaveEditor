@@ -1,4 +1,5 @@
 ﻿using System.Security.Cryptography;
+using System.Text;
 
 namespace DSR.SavefileStructure;
 
@@ -36,6 +37,23 @@ public class SaveFile
             Console.WriteLine("Skipping " + (0x2C0 + i * 0x60030));
             _saveSlots[i] = new SaveSlot(data.Skip(0x2C0 + i * 0x60030).Take(0x60030).ToArray());
         }
+        
+        
+
+        var alpaka = _saveSlots[1];
+        Console.WriteLine("Souls");
+        for (var i = 0; i < alpaka.Details.Length; i += 4)
+        {
+            var a = BitConverter.ToUInt32(alpaka.Details.Skip(i).Take(4).ToArray());
+            if (a == 5228274) Console.WriteLine("a: " + i);
+            if (a == 0x69187187) Console.WriteLine("b: " + i);
+            if (a == 264409) Console.WriteLine("c: " + i);
+            if (a == 0xEEEEEEEE) Console.WriteLine("d: " + i);
+        } 
+        
+        Console.WriteLine("Name");
+        var str = Encoding.Default.GetString(alpaka.Details);
+        Console.WriteLine("Pls = " + str.Contains("Dalai-Alpaka", StringComparison.InvariantCultureIgnoreCase));
     }
 
     public void WriteToFile()
@@ -50,10 +68,19 @@ public class SaveFile
         {
             bytes.AddRange(saveSlotTitle.ToBytes());
         }
+        bytes.Add(0);
+        bytes.Add(0);
         foreach (var saveSlot in _saveSlots)
         {
             bytes.AddRange(saveSlot.ToBytes());
         }
+
+        var compare = File.ReadAllBytes(@"C:\Users\Tim\Documents\NBGI\DARK SOULS REMASTERED\296043893\DRAKS0005.sl2");
+        for (var i = 0; i < bytes.Count; i++)
+        {
+            //if (bytes[i] != compare[i]) Console.WriteLine(i);
+        }
+        
         File.WriteAllBytes("DRAKS0005.sl2", bytes.ToArray());
     }
 }
