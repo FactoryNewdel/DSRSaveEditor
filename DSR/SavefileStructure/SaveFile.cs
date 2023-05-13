@@ -18,11 +18,6 @@ public class SaveFile
         for (var i = 0; i < _saveSlotHeaders.Length; i++)
         {
             _saveSlotHeaders[i] = new SaveSlotHeader(data.Skip(_fileHeader.Length + i * 32).Take(32).ToArray());
-            using var md5 = MD5.Create();
-            Console.WriteLine($"SlotHeader Hash = {BitConverter.ToString(md5.ComputeHash(data.Skip(_fileHeader.Length + i * 32).Take(32).ToArray()))}");
-            Console.WriteLine("Offset      = " + _saveSlotHeaders[i].Offset);
-            Console.WriteLine("TitleOffset = " + _saveSlotHeaders[i].TitleOffset);
-            Console.WriteLine("PaddingSize = " + _saveSlotHeaders[i].PaddingSize);
         }
         
         _saveSlotTitles = new SaveSlotTitle[11];
@@ -37,23 +32,6 @@ public class SaveFile
             Console.WriteLine("Skipping " + (0x2C0 + i * 0x60030));
             _saveSlots[i] = new SaveSlot(data.Skip(0x2C0 + i * 0x60030).Take(0x60030).ToArray());
         }
-        
-        
-
-        var alpaka = _saveSlots[1];
-        Console.WriteLine("Souls");
-        for (var i = 0; i < alpaka.Details.Length; i += 4)
-        {
-            var a = BitConverter.ToUInt32(alpaka.Details.Skip(i).Take(4).ToArray());
-            if (a == 5228274) Console.WriteLine("a: " + i);
-            if (a == 0x69187187) Console.WriteLine("b: " + i);
-            if (a == 264409) Console.WriteLine("c: " + i);
-            if (a == 0xEEEEEEEE) Console.WriteLine("d: " + i);
-        } 
-        
-        Console.WriteLine("Name");
-        var str = Encoding.Default.GetString(alpaka.Details);
-        Console.WriteLine("Pls = " + str.Contains("Dalai-Alpaka", StringComparison.InvariantCultureIgnoreCase));
     }
 
     public void WriteToFile()
@@ -75,12 +53,14 @@ public class SaveFile
             bytes.AddRange(saveSlot.ToBytes());
         }
 
-        var compare = File.ReadAllBytes(@"C:\Users\Tim\Documents\NBGI\DARK SOULS REMASTERED\296043893\DRAKS0005.sl2");
-        for (var i = 0; i < bytes.Count; i++)
-        {
-            //if (bytes[i] != compare[i]) Console.WriteLine(i);
-        }
-        
         File.WriteAllBytes("DRAKS0005.sl2", bytes.ToArray());
     }
+
+    public SaveFileHeader FileHeader => _fileHeader;
+
+    public SaveSlotHeader[] SaveSlotHeaders => _saveSlotHeaders;
+
+    public SaveSlotTitle[] SaveSlotTitles => _saveSlotTitles;
+
+    public SaveSlot[] SaveSlots => _saveSlots;
 }

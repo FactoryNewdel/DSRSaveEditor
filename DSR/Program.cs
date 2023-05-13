@@ -1,40 +1,32 @@
-﻿// See https://aka.ms/new-console-template for more information
-
-using System.Security.Cryptography;
+﻿using System.Text;
 using DSR.SavefileStructure;
 
 class Program
 {
-    static string dir = @"C:\Users\Tim\Documents\NBGI\DARK SOULS REMASTERED\296043893";
-    static string path = Path.Join(dir, "DRAKS0005.sl2");
-
-    static byte[] _key =
-        { 0x1, 0x23, 0x45, 0x67, 0x89, 0xAB, 0xCD, 0xEF, 0xFE, 0xDC, 0xBA, 0x98, 0x76, 0x54, 0x32, 0x10 };
-
-    private static byte[] _iv;
-
+    private static string dir = @"C:\Users\Tim\Documents\NBGI\DARK SOULS REMASTERED\472496615";
+    private static string path = Path.Join(dir, "DRAKS0005.sl2");
+    private static string path1 = Path.Join(dir, "DRAKS0005 - Kopie (14).sl2");
 
     public static void Main(string[] args)
     {
-        //var data = File.ReadAllBytes(@"C:\Users\Tim\Documents\NBGI\DarkSouls\DRAKS0005.sl2");
-        var data = File.ReadAllBytes(path);
-        
-        Console.WriteLine(BitConverter.ToString(data.Skip(0x300).Take(0x30F - 0x300 + 1).ToArray()));
-        Console.WriteLine(BitConverter.ToString(MD5.Create().ComputeHash(data.Skip(0x310).Take(0x10030F - 0x310 + 1).ToArray())));
-
-        Console.WriteLine(BitConverter.ToUInt32(data.Skip(64 + 16).Take(4).ToArray()));
-        var slot = data.Skip(704).Take(0x60014).ToArray();
-        Console.WriteLine(BitConverter.ToString(slot.Take(16).ToArray()));
-        Console.WriteLine(BitConverter.ToString(MD5.Create().ComputeHash(slot.Skip(16).ToArray())));
-        Console.WriteLine(BitConverter.ToString(MD5.Create().ComputeHash(slot.Skip(20).ToArray())));
-        Console.WriteLine();
-        slot = data.Skip(704).Take(0x60030).ToArray();
-        Console.WriteLine(BitConverter.ToString(slot.Take(16).ToArray()));
-        Console.WriteLine(BitConverter.ToString(MD5.Create().ComputeHash(slot.Skip(16).ToArray())));
-        Console.WriteLine(BitConverter.ToString(MD5.Create().ComputeHash(slot.Skip(20).ToArray())));
-        Console.WriteLine();
-
         var savefile = new SaveFile(File.ReadAllBytes(path));
+        var savefile1 = new SaveFile(File.ReadAllBytes(path1));
+
+        var b0 = savefile.SaveSlots[0].Details.Bytes;
+        var b1 = savefile1.SaveSlots[0].Details.Bytes;
+        var ticks = DateTime.UtcNow.Ticks;
+
+        var sb = new StringBuilder("\n\n\n\n");
+
+        for (var i = 0; i < 300000; i++)
+        {
+            if (b0[i] == b1[i]) continue;
+            File.AppendAllText(ticks + "_log.txt", $"{i} : {b1[i]} -> {b0[i]}\n");
+            sb.AppendLine($"_bytes[{i}] = {b1[i]};");
+        }
+        if (sb.Length > 10) File.AppendAllText(ticks + "_log.txt", sb.ToString());
+
         savefile.WriteToFile();
+        Console.WriteLine("Save file created!");
     }
 }
