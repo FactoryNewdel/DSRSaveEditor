@@ -1,30 +1,19 @@
-﻿namespace DSR.SavefileStructure;
+﻿
+namespace DSR.SlotDetails;
 
 public class SaveSlotDetails
 {
     private byte[] _bytes;
 
+    private CharacterStats _characterStats;
+
     public SaveSlotDetails(byte[] bytes)
     {
         _bytes = bytes;
-
-        Console.WriteLine("VIT                     = " + BitConverter.ToUInt32(_bytes.Skip(140).Take(4).ToArray()));
-        Console.WriteLine("ATT                     = " + BitConverter.ToUInt32(_bytes.Skip(148).Take(4).ToArray()));
-        Console.WriteLine("END                     = " + BitConverter.ToUInt32(_bytes.Skip(156).Take(4).ToArray()));
-        Console.WriteLine("STR                     = " + BitConverter.ToUInt32(_bytes.Skip(164).Take(4).ToArray()));
-        Console.WriteLine("DEX                     = " + BitConverter.ToUInt32(_bytes.Skip(172).Take(4).ToArray()));
-        Console.WriteLine("INT                     = " + BitConverter.ToUInt32(_bytes.Skip(180).Take(4).ToArray()));
-        Console.WriteLine("FTH                     = " + BitConverter.ToUInt32(_bytes.Skip(188).Take(4).ToArray()));
         
-        Console.WriteLine("Humanity                = " + BitConverter.ToUInt32(_bytes.Skip(208).Take(4).ToArray()));
-        Console.WriteLine("Resistance              = " + BitConverter.ToUInt32(_bytes.Skip(212).Take(4).ToArray()));
+        _characterStats = new CharacterStats(bytes);
 
-        var level = BitConverter.ToUInt32(_bytes.Skip(220).Take(4).ToArray());
-        Console.WriteLine("Level                   = " + level);
-        Console.WriteLine("Souls                   = " + BitConverter.ToUInt32(_bytes.Skip(224).Take(4).ToArray()));
-        Console.WriteLine("Total Souls             = " + BitConverter.ToUInt32(_bytes.Skip(228).Take(4).ToArray()));
-
-        if (level == 0) return;
+        if (_characterStats.Level == 0) return;
         
         // x?
         /*_bytes[220958] = 34;
@@ -70,7 +59,7 @@ public class SaveSlotDetails
         //_bytes[220903] = 255;
         //_bytes[220904] = 255;
         //_bytes[220905] = 255;
-        _bytes[220906] = 0;
+        /*_bytes[220906] = 0;
         _bytes[220907] = 0;
         _bytes[220908] = 0;
         _bytes[220909] = 0;
@@ -88,7 +77,7 @@ public class SaveSlotDetails
         _bytes[220921] = 0;
         _bytes[220922] = 0;
         _bytes[220923] = 0;
-        _bytes[220924] = 0;
+        _bytes[220924] = 0;*/
         
         //_bytes[221046] = 0;
         
@@ -101,11 +90,6 @@ public class SaveSlotDetails
         
         
         //_bytes[131388] = 16;    // Taurus Demon dead + Fog wall Bit2
-        
-        _bytes[224] = 200;
-        _bytes[225] = 200;
-        _bytes[228] = 200;
-        _bytes[229] = 200;
 
         //_bytes[357] = 15;    // Weapon level (seams useless, maybe for pvp matchmaking?)
         //_bytes[772] = 245;   // Weapon id for compare  40 Longsword + 0, 140 crystal, 240 lightning
@@ -235,5 +219,14 @@ public class SaveSlotDetails
 
     }
 
-    public byte[] Bytes => _bytes;
+    public byte[] Bytes
+    {
+        get
+        {
+            _characterStats.UpdateData(ref _bytes);
+            return _bytes;
+        }
+    }
+
+    public CharacterStats CharacterStats => _characterStats;
 }

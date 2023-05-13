@@ -1,7 +1,5 @@
-﻿using System.Runtime.Intrinsics.Arm;
-using System.Security.Cryptography;
-using System.Text;
-using Aes = System.Security.Cryptography.Aes;
+﻿using System.Security.Cryptography;
+using DSR.SlotDetails;
 
 namespace DSR.SavefileStructure;
 
