@@ -1,4 +1,5 @@
-﻿using DSR.SlotDetailsDefinition;
+﻿using System.Text;
+using DSR.SlotDetailsDefinition;
 using DSR.Utils;
 
 namespace DSR.SlotDetails;
@@ -9,6 +10,8 @@ public class CharacterStats
     
     private UInt32 _level;
     
+    private string _name;
+
     private UInt32 _vit;
     private UInt32 _att;
     private UInt32 _end;
@@ -22,7 +25,13 @@ public class CharacterStats
     private UInt32 _currentSouls;
     private UInt32 _totalSouls;
 
-    private UInt32 _currentHP;
+    private UInt32 _hpCurrent;
+    private UInt32 _hpTotalUnmodified;
+    private UInt32 _hpTotalModified;
+    
+    private UInt32 _staminaCurrent;
+    private UInt32 _staminaTotalUnmodified;
+    private UInt32 _staminaTotalModified;
     
     private UInt32 _playtime;
 
@@ -32,9 +41,17 @@ public class CharacterStats
     public CharacterStats(byte[] data)
     {
         _data = data;
-        
+
         _level = ToUInt32(CharacterStatsDefinition.Level);
         if (_level == 0) return;
+
+        var sb = new StringBuilder();
+        for (var i = CharacterStatsDefinition.Name.Offset;; i += 2)
+        {
+            if (_data[i] == 0 && _data[i + 1] == 0) break;
+            sb.Append(Encoding.Unicode.GetString(_data.Skip(i).Take(2).ToArray()));
+        }
+        _name = sb.ToString();
 
         _vit = ToUInt32(CharacterStatsDefinition.Vitality);
         _att = ToUInt32(CharacterStatsDefinition.Attunement);
@@ -49,7 +66,13 @@ public class CharacterStats
         _currentSouls = ToUInt32(CharacterStatsDefinition.CurrentSouls);
         _totalSouls = ToUInt32(CharacterStatsDefinition.TotalSouls);
 
-        _currentHP = ToUInt32(CharacterStatsDefinition.CurrentHP);
+        _hpCurrent = ToUInt32(CharacterStatsDefinition.HPCurrent);
+        _hpTotalUnmodified = ToUInt32(CharacterStatsDefinition.HPTotalUnmodified);
+        _hpTotalModified = ToUInt32(CharacterStatsDefinition.HPTotalModified);
+
+        _staminaCurrent = ToUInt32(CharacterStatsDefinition.StaminaCurrent);
+        _staminaTotalUnmodified = ToUInt32(CharacterStatsDefinition.StaminaTotalUnmodified);
+        _staminaTotalModified = ToUInt32(CharacterStatsDefinition.StaminaTotalModified);
 
         _playtime = ToUInt32(CharacterStatsDefinition.Playtime);
 
@@ -60,7 +83,12 @@ public class CharacterStats
     private UInt32 ToUInt32(StatInformation info)
     {
         DetailComparer.Add(info);
-        return BitConverter.ToUInt32(_data.Skip(info.Offset).Take(info.Length).ToArray());
+        return BitConverter.ToUInt32(Take(info));
+    }
+
+    private byte[] Take(StatInformation info)
+    {
+        return _data.Skip(info.Offset).Take(info.Length).ToArray();
     }
 
     private void FillUInt32IntoData(ref byte[] data, UInt32 fill, StatInformation info)
@@ -75,6 +103,12 @@ public class CharacterStats
     public void UpdateData(ref byte[] data)
     {
         FillUInt32IntoData(ref data, _level, CharacterStatsDefinition.Level);
+
+        var nameBytes = Encoding.Unicode.GetBytes(_name);
+        for (int i = 0, offset = CharacterStatsDefinition.Name.Offset; i < nameBytes.Length; i++)
+        {
+            data[i + offset] = nameBytes[i];
+        }
         
         FillUInt32IntoData(ref data, _vit, CharacterStatsDefinition.Vitality);
         FillUInt32IntoData(ref data, _att, CharacterStatsDefinition.Attunement);
@@ -89,7 +123,13 @@ public class CharacterStats
         FillUInt32IntoData(ref data, _currentSouls, CharacterStatsDefinition.CurrentSouls);
         FillUInt32IntoData(ref data, _totalSouls, CharacterStatsDefinition.TotalSouls);
         
-        FillUInt32IntoData(ref data, _currentHP, CharacterStatsDefinition.CurrentHP);
+        FillUInt32IntoData(ref data, _hpCurrent, CharacterStatsDefinition.HPCurrent);
+        FillUInt32IntoData(ref data, _hpTotalUnmodified, CharacterStatsDefinition.HPTotalUnmodified);
+        FillUInt32IntoData(ref data, _hpTotalModified, CharacterStatsDefinition.HPTotalModified);
+        
+        FillUInt32IntoData(ref data, _staminaCurrent, CharacterStatsDefinition.StaminaCurrent);
+        FillUInt32IntoData(ref data, _staminaTotalUnmodified, CharacterStatsDefinition.StaminaTotalUnmodified);
+        FillUInt32IntoData(ref data, _staminaTotalModified, CharacterStatsDefinition.StaminaTotalModified);
         
         FillUInt32IntoData(ref data, _playtime, CharacterStatsDefinition.Playtime);
 
@@ -103,43 +143,49 @@ public class CharacterStats
         set => _level = value;
     }
 
-    public uint Vit
+    public string Name
+    {
+        get => _name;
+        set => _name = value ?? throw new ArgumentNullException(nameof(value));
+    }
+
+    public uint Vitality
     {
         get => _vit;
         set => _vit = value;
     }
 
-    public uint Att
+    public uint Attunement
     {
         get => _att;
         set => _att = value;
     }
 
-    public uint End
+    public uint Endurance
     {
         get => _end;
         set => _end = value;
     }
 
-    public uint Str
+    public uint Strength
     {
         get => _str;
         set => _str = value;
     }
 
-    public uint Dex
+    public uint Dexterity
     {
         get => _dex;
         set => _dex = value;
     }
 
-    public uint I
+    public uint Intelligence
     {
         get => _int;
         set => _int = value;
     }
 
-    public uint Fth
+    public uint Faith
     {
         get => _fth;
         set => _fth = value;
@@ -169,10 +215,42 @@ public class CharacterStats
         set => _totalSouls = value;
     }
 
-    public uint CurrentHp
+    public uint HPCurrent
     {
-        get => _currentHP;
-        set => _currentHP = value;
+        get => _hpCurrent;
+        set => _hpCurrent = value;
+    }
+
+    public uint HPTotalUnmodified
+    {
+        get => _hpTotalUnmodified;
+        set => _hpTotalUnmodified = value;
+    }
+
+    public uint HPTotalModified
+    {
+        get => _hpTotalModified;
+        set => _hpTotalModified = value;
+    }
+
+    
+    
+    public uint StaminaCurrent
+    {
+        get => _staminaCurrent;
+        set => _staminaCurrent = value;
+    }
+
+    public uint StaminaTotalUnmodified
+    {
+        get => _staminaTotalUnmodified;
+        set => _staminaTotalUnmodified = value;
+    }
+
+    public uint StaminaTotalModified
+    {
+        get => _staminaTotalModified;
+        set => _staminaTotalModified = value;
     }
 
 

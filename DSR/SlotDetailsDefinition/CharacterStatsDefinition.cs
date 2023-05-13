@@ -6,6 +6,7 @@ public class CharacterStatsDefinition
 {
     public static StatInformation Level => new (220, 4);
     
+    public static StatInformation Name => new (244, -1);
     
     
     public static StatInformation Vitality => new (140, 4);
@@ -34,10 +35,22 @@ public class CharacterStatsDefinition
     
     
     
-    public static StatInformation CurrentHP => new (96, 4);
+    public static StatInformation HPCurrent => new (96, 4);
     
+    public static StatInformation HPTotalUnmodified => new (100, 4);
     
+    public static StatInformation HPTotalModified => new (104, 4);
+
     
+
+    public static StatInformation StaminaCurrent => new (96, 4);
+    
+    public static StatInformation StaminaTotalUnmodified => new (100, 4);
+    
+    public static StatInformation StaminaTotalModified => new (104, 4);
+
+
+
     public static StatInformation Playtime => new (8, 4);
     
     
