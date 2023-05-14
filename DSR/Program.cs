@@ -6,7 +6,7 @@ class Program
 {
     private static string dir = @"C:\Users\Tim\Documents\NBGI\DARK SOULS REMASTERED\472496615";
     private static string path = Path.Join(dir, "DRAKS0005.sl2");
-    private static string path1 = Path.Join(dir, "DRAKS0005 - Kopie (16).sl2");
+    private static string path1 = Path.Join(dir, "DRAKS0005 - Kopie (24).sl2");
 
     public static void Main(string[] args)
     {

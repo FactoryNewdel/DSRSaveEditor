@@ -15,6 +15,45 @@ public class SaveSlotDetails
 
         if (_characterStats.Level == 0) return;
         
+        
+        for (var i = 220000; i < 222272; i++)
+        {
+            if (i == 220870)
+            {
+                ;
+            }
+            var first = BitConverter.ToUInt32(bytes.Skip(i).Take(4).ToArray());
+            if (first > 5000 || first == 0) continue;
+            var second = BitConverter.ToUInt32(bytes.Skip(i + (int)first + 4).Take(4).ToArray());
+            if (second > 5000 || second == 0) continue;
+            var third = 88;
+            var fourth = BitConverter.ToUInt32(bytes.Skip(i + (int)first + 4 + (int)second + 4 + third).Take(4).ToArray());
+            if (fourth > 5000 || fourth == 0) continue;
+            var fifth = BitConverter.ToUInt32(bytes.Skip(i + (int)first + 4 + (int)second + 4 + third + (int)fourth + 8).Take(4).ToArray());
+            if (fifth > 5000 || fifth == 0) continue;
+            var sixth = BitConverter.ToUInt32(bytes.Skip(i + (int)first + 4 + (int)second + 4 + third + (int)fourth + 8 + (int)fifth + 8).Take(4).ToArray());
+            if (sixth > 5000 || sixth == 0) continue;
+            var seventh = BitConverter.ToUInt32(bytes.Skip(i + (int)first + 4 + (int)second + 4 + third + (int)fourth + 8 + (int)fifth + 8 + (int)sixth + 8).Take(4).ToArray());
+            if (seventh > 5000 || seventh == 0) continue;
+            var eigth = BitConverter.ToUInt32(bytes.Skip(i + (int)first + 4 + (int)second + 4 + third + (int)fourth + 8 + (int)fifth + 8 + (int)sixth + 8 + (int)seventh + 8).Take(4).ToArray());
+            if (eigth > 5000 || eigth == 0) continue;
+            var ninth = BitConverter.ToUInt32(bytes.Skip(i + (int)first + 4 + (int)second + 4 + third + (int)fourth + 8 + (int)fifth + 8 + (int)sixth + 8 + (int)seventh + 8 + (int)eigth + 8).Take(4).ToArray());
+            if (ninth > 5000 || ninth == 0) continue;
+            var bonfires = BitConverter.ToUInt32(bytes.Skip(i + (int)first + 4 + (int)second + 4 + third + (int)fourth + 8 + (int)fifth + 8 + (int)sixth + 8 + (int)seventh + 8 + (int)eigth + 8 + (int)ninth + 8).Take(4).ToArray());
+            if (bonfires > 5000 || bonfires == 0) continue;
+            Console.WriteLine(i + " -> " + first + " -> " + second + " -> " + third + " -> " + fourth + " -> " + fifth + " -> " + sixth + " -> " + seventh + " -> " + eigth + " -> " + ninth + " -> " + bonfires);
+            Console.WriteLine(i + 4 + first + 4 + second + third + 4 + fourth + 4 + 4 + fifth + 4 + 4 + sixth + 4 + 4 + seventh + 4 + 4 + eigth + 4 + 4 + ninth + 4 + 4 + bonfires + 4);
+            for (var j = i + 4 + first + 4 + second + third + 4 + fourth + 4 + 4 + fifth + 4 + 4 + sixth + 4 + 4 + seventh + 4 + 4 + eigth + 4 + 4; j < i + 4 + first + 4 + second + third + 4 + fourth + 4 + 4 + fifth + 4 + 4 + sixth + 4 + 4 + seventh + 4 + 4 + eigth + 4 + 4 + ninth; j++)
+            {
+                //Console.WriteLine(j + " -> " + bytes[j]);
+            }
+            Console.WriteLine();
+            for (var j = i + 4 + first + 4 + second + third + 4 + fourth + 4 + 4 + fifth + 4 + 4 + sixth + 4 + 4 + seventh + 4 + 4 + eigth + 4 + 4 + ninth + 4 + 4; j < i + 4 + first + 4 + second + third + 4 + fourth + 4 + 4 + fifth + 4 + 4 + sixth + 4 + 4 + seventh + 4 + 4 + eigth + 4 + 4 + ninth + 4 + 4 + bonfires; j++)
+            {
+                //Console.WriteLine(j + " -> " + bytes[j]);
+            }
+        }
+        
         // x?
         /*_bytes[220958] = 34;
         _bytes[220959] = 130;

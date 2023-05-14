@@ -1,11 +1,15 @@
-﻿using System.Text;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Text;
 using DSR.SlotDetailsDefinition;
 using DSR.Utils;
 
 namespace DSR.SlotDetails;
 
-public class CharacterStats
+public class CharacterStats : INotifyPropertyChanged
 {
+    #region Variables
+    
     private byte[] _data;
     
     private UInt32 _level;
@@ -34,16 +38,19 @@ public class CharacterStats
     private UInt32 _staminaTotalModified;
     
     private UInt32 _playtime;
+    private string _playtimeString;
 
     private byte _worldPrimary;
     private byte _worldSecondary;
+    
+    #endregion
     
     public CharacterStats(byte[] data)
     {
         _data = data;
 
-        _level = ToUInt32(CharacterStatsDefinition.Level);
-        if (_level == 0) return;
+        Level = ToUInt32(CharacterStatsDefinition.Level);
+        if (Level == 0) return;
 
         var sb = new StringBuilder();
         for (var i = CharacterStatsDefinition.Name.Offset;; i += 2)
@@ -74,7 +81,7 @@ public class CharacterStats
         _staminaTotalUnmodified = ToUInt32(CharacterStatsDefinition.StaminaTotalUnmodified);
         _staminaTotalModified = ToUInt32(CharacterStatsDefinition.StaminaTotalModified);
 
-        _playtime = ToUInt32(CharacterStatsDefinition.Playtime);
+        Playtime = ToUInt32(CharacterStatsDefinition.Playtime);
 
         _worldPrimary = data[CharacterStatsDefinition.WorldPrimary.Offset];
         _worldSecondary = data[CharacterStatsDefinition.WorldSecondary.Offset];
@@ -102,6 +109,8 @@ public class CharacterStats
 
     public void UpdateData(ref byte[] data)
     {
+       if (_level == 0) return; 
+        
         FillUInt32IntoData(ref data, _level, CharacterStatsDefinition.Level);
 
         var nameBytes = Encoding.Unicode.GetBytes(_name);
@@ -140,7 +149,11 @@ public class CharacterStats
     public uint Level
     {
         get => _level;
-        set => _level = value;
+        set
+        {
+            _level = value;
+            NotifyPropertyChanged();
+        }
     }
 
     public string Name
@@ -254,11 +267,38 @@ public class CharacterStats
     }
 
 
-    public uint Playtime => _playtime;
-    
-    
+    public uint Playtime
+    {
+        get => _playtime;
+        private set
+        {
+            _playtime = value;
+            var seconds = _playtime / 1000;
+            var minutes = seconds / 60;
+            var hours = minutes / 60;
+            
+            seconds -= minutes * 60;
+            minutes -= hours * 60;
+            
+            _playtimeString = $"{hours} : {(minutes > 10 ? minutes : "0" + minutes)} : {(seconds > 10 ? seconds : "0" + seconds)}";
+            NotifyPropertyChanged();
+        }
+    }
+
+    public string PlaytimeString => _playtimeString;
+
 
     public byte WorldPrimary => _worldPrimary;
 
     public byte WorldSecondary => _worldSecondary;
+    
+    
+    
+    
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    protected virtual void NotifyPropertyChanged([CallerMemberName] string? propertyName = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
 }

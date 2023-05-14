@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DSR", "DSR\DSR.csproj", "{381DC7C1-3AA1-411C-A6AE-4A1C51BA7018}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUI", "GUI\GUI.csproj", "{1AAD31AA-C9E0-4874-959F-A0050C61B748}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{381DC7C1-3AA1-411C-A6AE-4A1C51BA7018}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{381DC7C1-3AA1-411C-A6AE-4A1C51BA7018}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{381DC7C1-3AA1-411C-A6AE-4A1C51BA7018}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AAD31AA-C9E0-4874-959F-A0050C61B748}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AAD31AA-C9E0-4874-959F-A0050C61B748}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AAD31AA-C9E0-4874-959F-A0050C61B748}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AAD31AA-C9E0-4874-959F-A0050C61B748}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
