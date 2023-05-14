@@ -29,12 +29,16 @@ public class SaveFile
         _saveSlots = new SaveSlot[11];
         for (var i = 0; i < _saveSlots.Length; i++)
         {
-            Console.WriteLine("Skipping " + (0x2C0 + i * 0x60030));
             _saveSlots[i] = new SaveSlot(data.Skip(0x2C0 + i * 0x60030).Take(0x60030).ToArray());
         }
     }
 
     public void WriteToFile()
+    {
+        WriteToFile("DRAKS0005.sl2");
+    }
+ 
+    public void WriteToFile(string path)
     {
         var bytes = new List<byte>();
         bytes.AddRange(_fileHeader.ToBytes());
@@ -53,7 +57,7 @@ public class SaveFile
             bytes.AddRange(saveSlot.ToBytes());
         }
 
-        File.WriteAllBytes("DRAKS0005.sl2", bytes.ToArray());
+        File.WriteAllBytes(path, bytes.ToArray());
     }
 
     public SaveFileHeader FileHeader => _fileHeader;

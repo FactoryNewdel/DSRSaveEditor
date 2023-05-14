@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net6.0-windows</TargetFramework>
+        <Nullable>enable</Nullable>
+        <UseWPF>true</UseWPF>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <None Remove="Images\favicon.ico" />
+      <None Remove="Images\DS1_MenuBackground_large.png" />
+      <Resource Include="Images\DS1_MenuBackground_large.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Images\DS1_MenuBackground_small.png" />
+      <None Remove="Images\TabBackground_Import.jpg" />
+      <Resource Include="Images\TabBackground_Main.jpg">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\DSR\DSR.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Resource Include="Images\favicon.ico">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+    </ItemGroup>
+
+</Project>
