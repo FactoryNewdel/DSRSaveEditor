@@ -42,6 +42,7 @@ public class CharacterStats : INotifyPropertyChanged
 
     private byte _worldPrimary;
     private byte _worldSecondary;
+    private string _locationString;
     
     #endregion
     
@@ -83,8 +84,8 @@ public class CharacterStats : INotifyPropertyChanged
 
         Playtime = ToUInt32(CharacterStatsDefinition.Playtime);
 
-        _worldPrimary = data[CharacterStatsDefinition.WorldPrimary.Offset];
-        _worldSecondary = data[CharacterStatsDefinition.WorldSecondary.Offset];
+        WorldPrimary = data[CharacterStatsDefinition.WorldPrimary.Offset];
+        WorldSecondary = data[CharacterStatsDefinition.WorldSecondary.Offset];
     }
 
     private UInt32 ToUInt32(StatInformation info)
@@ -288,9 +289,36 @@ public class CharacterStats : INotifyPropertyChanged
     public string PlaytimeString => _playtimeString;
 
 
-    public byte WorldPrimary => _worldPrimary;
+    public byte WorldPrimary
+    {
+        get => _worldPrimary;
+        private set
+        {
+            _worldPrimary = value;
+            LocationString = Location.GetLocation(_worldPrimary, _worldSecondary);
+        }
+    }
 
-    public byte WorldSecondary => _worldSecondary;
+    public byte WorldSecondary
+    {
+        get => _worldSecondary;
+        private set
+        {
+            _worldSecondary = value;
+            LocationString = Location.GetLocation(_worldPrimary, _worldSecondary);
+        }
+    }
+
+    public string LocationString
+    {
+        get => _locationString;
+        private set
+        {
+            _locationString = value;
+            NotifyPropertyChanged();
+        }
+    }
+
     
     
     

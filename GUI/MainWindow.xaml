@@ -52,7 +52,7 @@
                             
                             <TextBlock Grid.Row="1" Grid.Column="1" Margin="0 0 0 0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="White" FontSize="30" FontFamily="Times New Roman" Text="{Binding CharacterStats.Level}" />
                             
-                            <TextBlock Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2" Margin="0 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontSize="30" FontFamily="Times New Roman" Text="{Binding CharacterStats.Location}" />
+                            <TextBlock Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2" Margin="0 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontSize="30" FontFamily="Times New Roman" Text="{Binding CharacterStats.LocationString}" />
                             <TextBlock Grid.Row="1" Grid.Column="3" Margin="0 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontSize="30" FontFamily="Times New Roman" Text="PlayTime" />
                             
                             <TextBlock Grid.Row="1" Grid.Column="4" Margin="0 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="30" FontFamily="Times New Roman" Text="{Binding CharacterStats.PlaytimeString}" />

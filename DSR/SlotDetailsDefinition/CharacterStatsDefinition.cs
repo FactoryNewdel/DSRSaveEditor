@@ -55,7 +55,7 @@ public class CharacterStatsDefinition
     
     
     
-    public static StatInformation WorldPrimary => new (6, 1);
+    public static StatInformation WorldPrimary => new (7, 1);
         
-    public static StatInformation WorldSecondary => new (7, 1);
+    public static StatInformation WorldSecondary => new (6, 1);
 }
