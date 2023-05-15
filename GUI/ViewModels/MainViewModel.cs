@@ -13,6 +13,7 @@ public class MainViewModel : INotifyPropertyChanged
 {
     private SaveFile _saveFile;
     private ObservableCollection<SaveSlotDetails> _saveSlotDetails;
+    private SaveSlotDetails _selectedSlot;
 
     public MainViewModel()
     {
@@ -36,7 +37,15 @@ public class MainViewModel : INotifyPropertyChanged
 
     public ObservableCollection<SaveSlotDetails> SaveSlotDetails => _saveSlotDetails;
 
-    
+    public SaveSlotDetails SelectedSlot
+    {
+        get => _selectedSlot;
+        set
+        {
+            _selectedSlot = value;
+            NotifyPropertyChanged();
+        }
+    }
 
     public event PropertyChangedEventHandler? PropertyChanged;
 
