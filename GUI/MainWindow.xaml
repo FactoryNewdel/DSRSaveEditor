@@ -10,36 +10,36 @@
         Icon="Images/favicon.ico"
         Background="Black">
     <TabControl Name="Tabs" Padding="0" Background="Black" SelectedIndex="2">
-        
+
         <TabItem Name="TabMain" Header="Main" Style="{DynamicResource MainTabStyle}">
-            
+
             <Grid Name="GridMain">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="200" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                
+
                 <Image Grid.Column="0" Grid.ColumnSpan="3" Source="Images/Backgrounds/TabBackground_Main.jpg" Stretch="Fill" />
-                
+
                 <Button Name="ButtonImport" Grid.Column="0" Style="{DynamicResource MainTabButtonStyle}" Click="Import_Clicked" >Import Savefile</Button>
                 <Button Name="ButtonExport" Grid.Column="2" Style="{DynamicResource MainTabButtonStyle}" Click="Export_Clicked" >Export Savefile</Button>
             </Grid>
-            
+
         </TabItem>
-        
+
         <TabItem Name="TabSlots" Header="Slots" Style="{DynamicResource MainTabStyle}" IsEnabled="False">
-            
+
             <ListBox Name="Slots"
-                     Margin="0" Padding="0" Background="Black"
+                     Margin="0" Padding="0" Background="Black" ScrollViewer.CanContentScroll="False"
                      HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
-                
+
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem">
                         <EventSetter Event="MouseDoubleClick" Handler="Slot_DoubleClick"></EventSetter>
                     </Style>
                 </ListBox.ItemContainerStyle>
-                
+
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid Margin="0">
@@ -47,7 +47,7 @@
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
-                            
+
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="500" />
                                 <ColumnDefinition Width="200" />
@@ -55,30 +55,31 @@
                                 <ColumnDefinition Width="200" />
                                 <ColumnDefinition Width="600" />
                             </Grid.ColumnDefinitions>
-                            
-                            <Image Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="5" Margin="0" Source="Images/Backgrounds/DS1_MenuBackground_large.png" Stretch="Fill"></Image>
-                            
+
+                            <Image Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="5" Margin="0" Source="Images/Backgrounds/DS1_MenuBackground_large.png" Stretch="Fill" />
+
                             <TextBlock Grid.Row="0" Grid.Column="0" Margin="200 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontSize="30" FontFamily="Times New Roman" Text="{Binding CharacterStats.Name}" />
                             <TextBlock Grid.Row="1" Grid.Column="0" Margin="200 0 0 0" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontSize="30" FontFamily="Times New Roman" Text="Level" />
-                            
+
                             <TextBlock Grid.Row="1" Grid.Column="1" Margin="0 0 0 0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="White" FontSize="30" FontFamily="Times New Roman" Text="{Binding CharacterStats.Level}" />
-                            
+
                             <TextBlock Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2" Margin="0 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontSize="30" FontFamily="Times New Roman" Text="{Binding CharacterStats.LocationString}" />
                             <TextBlock Grid.Row="1" Grid.Column="3" Margin="0 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontSize="30" FontFamily="Times New Roman" Text="PlayTime" />
-                            
+
                             <TextBlock Grid.Row="1" Grid.Column="4" Margin="0 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="30" FontFamily="Times New Roman" Text="{Binding CharacterStats.PlaytimeString}" />
-                            
+
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            
+
         </TabItem>
-        
+
         <TabItem Name="TabCharacterStats" Header="Character" Style="{DynamicResource MainTabStyle}" IsEnabled="False">
-            
+
             <Grid Name="GridCharacter">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
@@ -87,26 +88,31 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
+
+                <Image Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="3" Source="Images/Backgrounds/TabBackground_Character.jpg" Stretch="Fill" />
+
+                <Slider Name="Sliderr" Grid.Row="0" Grid.Column="1" Panel.ZIndex="1" 
+                        Minimum="0" Maximum="1000" Interval="1" IsSnapToTickEnabled="True" Orientation="Horizontal"
+                        Template="{DynamicResource HorizontalSlider}">
+                </Slider>
+                <ProgressBar Grid.Row="0" Grid.Column="1" Panel.ZIndex="0" Background="Transparent" Foreground="Red"
+                             Value="{Binding ElementName=Sliderr, Path=Value}"
+                             Minimum="{Binding ElementName=Sliderr, Path=Minimum}"
+                             Maximum="{Binding ElementName=Sliderr, Path=Maximum}" />
                 
-                <Image Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Source="Images/Backgrounds/TabBackground_Character.jpg" Stretch="Fill" />
-                
-                <Slider Name="Sliderr" Grid.Row="0" Grid.Column="1" Panel.ZIndex="1" IsSnapToTickEnabled="True" Minimum="0" Maximum="1000" Interval="1" Orientation="Horizontal" Template="{DynamicResource HorizontalSlider}" ></Slider>
-                <ProgressBar Grid.Row="0" Grid.Column="1" Panel.ZIndex="0" Background="Transparent" Foreground="Red" 
-                             Value="{Binding ElementName=Sliderr, Path=Value}" 
-                             Minimum="{Binding ElementName=Sliderr, Path=Minimum}" 
-                             Maximum="{Binding ElementName=Sliderr, Path=Maximum}" 
-                             />
-                <TextBox Grid.Row="0" Grid.Column="0" Background="Transparent" BorderThickness="0" Foreground="White" CaretBrush="White" PreviewTextInput="Textbox_PreviewNumberOnly" Text="{Binding ElementName=Sliderr, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-                
+                <TextBox Grid.Row="0" Grid.Column="0" Style="{DynamicResource TextBoxStyle}"
+                         PreviewTextInput="Textbox_PreviewNumberOnly"
+                         Text="{Binding ElementName=Sliderr, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                </TextBox>
+
                 <TextBlock Grid.Row="1" Grid.Column="2" Margin="100 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontSize="30" FontFamily="Times New Roman" Text="{Binding SelectedSlot.CharacterStats.Name, FallbackValue=Name not found}" />
-                
-                
+
             </Grid>
-            
+
         </TabItem>
-        
+
     </TabControl>
-    
+
     <Window.Resources>
         <Style x:Key="MainTabStyle">
             <Setter Property="TextBlock.Foreground" Value="Black"></Setter>
@@ -142,7 +148,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
+
         <Style x:Key="MainTabButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Width" Value="300" />
             <Setter Property="Height" Value="50" />
@@ -151,18 +157,19 @@
             <Setter Property="FontSize" Value="20" />
             <Setter Property="BorderThickness" Value="0.5" />
             <Setter Property="FontFamily" Value="Times New Roman"></Setter>
-            
+
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Border BorderBrush="White" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                        <Border BorderBrush="White" BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}">
                             <ContentPresenter HorizontalAlignment="Center"
-                                              VerticalAlignment="Center"/>
+                                              VerticalAlignment="Center" />
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            
+
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="BorderThickness" Value="3"></Setter>
@@ -173,70 +180,74 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-        
+
+        <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="Transparent"></Setter>
+            <Setter Property="BorderThickness" Value="0"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="CaretBrush" Value="White"></Setter>
+        </Style>
+
         <Style x:Key="SliderThumbStyle"
                TargetType="{x:Type Thumb}">
-            
-  <Setter Property="Width"
-          Value="5" />
-  <Setter Property="Cursor" Value="SizeWE"></Setter>
-  <Setter Property="Template">
-    <Setter.Value>
-      <ControlTemplate TargetType="{x:Type Thumb}">
-          <Rectangle StrokeThickness="1" Fill="White" Stroke="White" />
-      </ControlTemplate>
-    </Setter.Value>
-  </Setter>
-</Style>
 
-<ControlTemplate x:Key="HorizontalSlider"
-                 TargetType="{x:Type Slider}">
-  <Grid>
-    <Grid.RowDefinitions>
-      <RowDefinition Height="*" />
-      <RowDefinition Height="*" />
-      <RowDefinition Height="*" />
-    </Grid.RowDefinitions>
-    <TickBar x:Name="TopTick"
-             SnapsToDevicePixels="True"
-             Placement="Top"
-             Height="4"
-             Visibility="Collapsed">
-      <TickBar.Fill>
-        <SolidColorBrush Color="Green" />
-      </TickBar.Fill>
-    </TickBar>
-      
-      <Track Grid.Row="0" Grid.RowSpan="3" x:Name="PART_Track">
-        <Track.Thumb>
-            <Thumb Style="{StaticResource SliderThumbStyle}" />
-      </Track.Thumb>
-    </Track>
-    <TickBar x:Name="BottomTick"
-             SnapsToDevicePixels="True"
-             Grid.Row="2"
-             Fill="{TemplateBinding Foreground}"
-             Placement="Bottom"
-             Height="4"
-             Visibility="Collapsed" />
-  </Grid>
-</ControlTemplate>
+            <Setter Property="Width"
+                    Value="5" />
+            <Setter Property="Cursor" Value="SizeWE"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Thumb}">
+                        <Rectangle StrokeThickness="1" Fill="White" Stroke="White" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
+        <ControlTemplate x:Key="HorizontalSlider"
+                         TargetType="{x:Type Slider}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TickBar x:Name="TopTick"
+                         SnapsToDevicePixels="True"
+                         Fill="{TemplateBinding Foreground}"
+                         Placement="Top"
+                         Height="4"
+                         Visibility="Collapsed">
+                </TickBar>
 
-<Style TargetType="{x:Type Slider}">
-  <Setter Property="SnapsToDevicePixels"
-          Value="true" />
-  <Setter Property="OverridesDefaultStyle"
-          Value="true" />
-  <Style.Triggers>
-    <Trigger Property="Orientation"
-             Value="Horizontal">
-      <Setter Property="VerticalContentAlignment" Value="Stretch"></Setter>
-      <Setter Property="Template"
-              Value="{StaticResource HorizontalSlider}" />
-    </Trigger>
-  </Style.Triggers>
-</Style>
+                <Track Grid.Row="0" Grid.RowSpan="3" x:Name="PART_Track">
+                    <Track.Thumb>
+                        <Thumb Style="{StaticResource SliderThumbStyle}" />
+                    </Track.Thumb>
+                </Track>
+                <TickBar x:Name="BottomTick"
+                         SnapsToDevicePixels="True"
+                         Grid.Row="2"
+                         Fill="{TemplateBinding Foreground}"
+                         Placement="Bottom"
+                         Height="4"
+                         Visibility="Collapsed" />
+            </Grid>
+        </ControlTemplate>
+
+        <Style TargetType="{x:Type Slider}">
+            <Setter Property="SnapsToDevicePixels"
+                    Value="true" />
+            <Setter Property="OverridesDefaultStyle"
+                    Value="true" />
+            <Style.Triggers>
+                <Trigger Property="Orientation"
+                         Value="Horizontal">
+                    <Setter Property="VerticalContentAlignment" Value="Stretch"></Setter>
+                    <Setter Property="Template"
+                            Value="{StaticResource HorizontalSlider}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
 
     </Window.Resources>
 </Window>
