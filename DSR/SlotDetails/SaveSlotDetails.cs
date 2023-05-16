@@ -6,6 +6,7 @@ public class SaveSlotDetails
     private byte[] _bytes;
 
     private CharacterStats _characterStats;
+    private Inventory _inventory;
 
     public SaveSlotDetails(byte[] bytes)
     {
@@ -14,6 +15,9 @@ public class SaveSlotDetails
         _characterStats = new CharacterStats(bytes);
 
         if (_characterStats.Level == 0) return;
+        
+        _inventory = new Inventory(bytes);
+        
         
         
         for (var i = 220000; i < 222272; i++)

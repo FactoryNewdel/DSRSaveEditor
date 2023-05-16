@@ -9,7 +9,7 @@
         WindowState="Maximized"
         Icon="Images/favicon.ico"
         Background="Black">
-    <TabControl Name="Tabs" Padding="0" Background="Black" SelectedIndex="2">
+    <TabControl Name="Tabs" Padding="0" Background="Black" SelectedIndex="0">
 
         <TabItem Name="TabMain" Header="Main" Style="{DynamicResource MainTabStyle}">
 
