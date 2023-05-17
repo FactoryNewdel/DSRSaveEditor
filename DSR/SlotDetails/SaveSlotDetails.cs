@@ -7,6 +7,7 @@ public class SaveSlotDetails
 
     private CharacterStats _characterStats;
     private Inventory _inventory;
+    private Equipment _equipment;
 
     public SaveSlotDetails(byte[] bytes)
     {
@@ -17,7 +18,12 @@ public class SaveSlotDetails
         if (_characterStats.Level == 0) return;
         
         _inventory = new Inventory(bytes);
+        _equipment = new Equipment(bytes, _inventory.Items);
         
+        Console.WriteLine(_equipment.ItemRight0.Name);
+        Console.WriteLine(_equipment.ItemRight1.Name);
+        Console.WriteLine(_equipment.ItemLeft0.Name);
+        Console.WriteLine(_equipment.ItemLeft1.Name);
         
         
         for (var i = 220000; i < 222272; i++)
@@ -272,4 +278,8 @@ public class SaveSlotDetails
     }
 
     public CharacterStats CharacterStats => _characterStats;
+    
+    public Inventory Inventory => _inventory;
+    
+    public Equipment Equipment => _equipment;
 }

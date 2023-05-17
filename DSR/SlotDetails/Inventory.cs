@@ -3,6 +3,8 @@
 public class Inventory
 {
     private Item[] _items;
+    private static Item _unknownItem;
+    private static Item _noRingItem;
     
     public Inventory(byte[] bytes)
     {
@@ -25,7 +27,29 @@ public class Inventory
 
             var item = _items[i / 28];
             
-            if (item.ID != 0 && item.ID != 0xFFFFFFFF) Console.WriteLine((i + 2652) + " | " + (i / 28) + " ID = " + item.IdSpace + "    " + BitConverter.ToString(BitConverter.GetBytes(item.ID)) + "    " + item.ID + "    " + item.Type);
+            if (item.ID != 0 && item.ID != 0xFFFFFFFF) Console.WriteLine((i + 2652) + " | " + (i / 28) + " ID = " + item.IdSpace + "    " + BitConverter.ToString(BitConverter.GetBytes(item.ID)) + "    " + item.ID + "    " + item.Name);
+        }
+    }
+
+    public Item[] Items => _items;
+
+    public static Item UnknownItem
+    {
+        get
+        {
+            if (_unknownItem != null) return _unknownItem;
+            _unknownItem = new Item(0, 0, 0, 0, false, 0, 0);
+            return _unknownItem;
+        }
+    }
+    
+    public static Item NoRing
+    {
+        get
+        {
+            if (_noRingItem != null) return _noRingItem;
+            _noRingItem = new Item(0, 0, 0, 0, false, 0, 0);
+            return _noRingItem;
         }
     }
 }

@@ -7,7 +7,7 @@ class Program
 {
     private static string dir = @"C:\Users\Tim\Documents\NBGI\DARK SOULS REMASTERED\472496615";
     private static string path = Path.Join(dir, "DRAKS0005.sl2");
-    private static string path1 = Path.Join(dir, "DRAKS0005 - Kopie (23).sl2");
+    private static string path1 = Path.Join(dir, "DRAKS0005 - Kopie (24).sl2");
 
     public static void Main(string[] args)
     {
@@ -16,8 +16,8 @@ class Program
         var savefile = new SaveFile(File.ReadAllBytes(path));
         var savefile1 = new SaveFile(File.ReadAllBytes(path1));
 
-        var b0 = savefile.SaveSlots[1].Details.Bytes;
-        var b1 = savefile1.SaveSlots[1].Details.Bytes;
+        var b0 = savefile.SaveSlots[0].Details.Bytes;
+        var b1 = savefile1.SaveSlots[0].Details.Bytes;
         var ticks = DateTime.UtcNow.Ticks;
 
         var sb = new StringBuilder("\n\n\n\n");

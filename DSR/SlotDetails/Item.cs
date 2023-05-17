@@ -9,8 +9,8 @@ public class Item : INotifyPropertyChanged
     #region Variables
 
     private byte _idSpace;
-    private UInt32 _id;
-    private ItemType _type;
+    private UInt32 _idNum;
+    private ItemName _name;
     private UInt32 _amount;
     private UInt32 _sorting;
     private bool _enabled;
@@ -22,8 +22,8 @@ public class Item : INotifyPropertyChanged
     public Item(byte idSpace, uint id, uint amount, uint sorting, bool enabled, uint durability, uint durabilityLoss)
     {
         _idSpace = idSpace;
-        _id = id;
-        _type = (ItemType)_id;
+        _idNum = id;
+        _name = ItemType.GetItem(_idSpace, _idNum);
         _amount = amount;
         _sorting = sorting;
         _enabled = enabled;
@@ -43,26 +43,26 @@ public class Item : INotifyPropertyChanged
 
     public uint ID
     {
-        get => _id;
+        get => _idNum;
         set
         {
-            _id = value;
+            _idNum = value;
             NotifyPropertyChanged();
 
-            _type = (ItemType)value;
+            _name = (ItemName)value;
             NotifyPropertyChanged("Type");
         }
     }
 
-    public ItemType Type
+    public ItemName Name
     {
-        get => _type;
+        get => _name;
         set
         {
-            _type = value;
+            _name = value;
             NotifyPropertyChanged();
 
-            _id = (uint)value;
+            _idNum = (uint)value;
             NotifyPropertyChanged("ID");
         }
     }

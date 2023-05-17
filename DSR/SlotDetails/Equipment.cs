@@ -3,43 +3,168 @@
 public class Equipment
 {
     #region Variables
+    
+    // TODO ammunition, rings
 
-    //private 
+    private UInt32 _pointerLeft0;
+    private UInt32 _pointerRight0;
+    private UInt32 _pointerLeft1;
+    private UInt32 _pointerRight1;
+    
+    private UInt32 _pointerHelmet;
+    private UInt32 _pointerChestplate;
+    private UInt32 _pointerLeggings;
+    private UInt32 _pointerBoots;
+    
+    // Consumables got 2 pointers for whatever reason
+    private UInt32 _pointerConsumable00;
+    private UInt32 _pointerConsumable01;
+    private UInt32 _pointerConsumable10;
+    private UInt32 _pointerConsumable11;
+    private UInt32 _pointerConsumable20;
+    private UInt32 _pointerConsumable21;
+    private UInt32 _pointerConsumable30;
+    private UInt32 _pointerConsumable31;
+    private UInt32 _pointerConsumable40;
+    private UInt32 _pointerConsumable41;
+
+
+
+    private Item _itemLeft0;
+    private Item _itemRight0;
+    private Item _itemLeft1;
+    private Item _itemRight1;
+    
+    private Item _itemHelmet;
+    private Item _itemChestplate;
+    private Item _itemLeggings;
+    private Item _itemBoots;
+    
+    private Item _itemConsumable0;
+    private Item _itemConsumable1;
+    private Item _itemConsumable2;
+    private Item _itemConsumable3;
+    private Item _itemConsumable4;
 
     #endregion
 
-    public Equipment(byte[] bytes)
+    public Equipment(byte[] bytes, Item[] invItems)
     {
-        // Pointer first left hand 660-3
-        // Pointer first right hand 664-7
-        // Pointer second left hand 668-71
-        // Pointer second right hand 672-5
+        // Get IDs for comparison
+        var leftID0 = BitConverter.ToUInt32(bytes, 768);
+        var rightID0 = BitConverter.ToUInt32(bytes, 772);
+        var leftID1 = BitConverter.ToUInt32(bytes, 776);
+        var rightID1 = BitConverter.ToUInt32(bytes, 780);
         
-        // ID first left hand 768-71
-        // ID first right hand 772-5
-        // ID second left hand 776-9
-        // ID second right hand 780-3
+        var helmetID = BitConverter.ToUInt32(bytes, 800);
+        var chestplateID = BitConverter.ToUInt32(bytes, 804);
+        var leggingsID = BitConverter.ToUInt32(bytes, 808);
+        var bootsID = BitConverter.ToUInt32(bytes, 812);
         
-        // Pointer Helmet 692-5
-        // Pointer Chest 696-9
-        // Pointer Leggings 700-3
-        // Pointer Booties 704-7
+        var consumableID0 = BitConverter.ToUInt32(bytes, 828);
+        var consumableID1 = BitConverter.ToUInt32(bytes, 832);
+        var consumableID2 = BitConverter.ToUInt32(bytes, 836);
+        var consumableID3 = BitConverter.ToUInt32(bytes, 840);
+        var consumableID4 = BitConverter.ToUInt32(bytes, 844);
         
-        // ID Helmet 800-3
-        // ID Chest 804-7
-        // ID Leggings 808-11
-        // ID Booties 812-5
         
-        // Pointer 1st Consumable 720-3     58308-11
-        // Pointer 2nd Consumable 724-7     58312-5
-        // Pointer 3rd Consumable 728-1     58316-9
-        // Pointer 4th Consumable 732-5     58320-3
-        // Pointer 5th Consumable 736-9     58324-7
+
+        _pointerLeft0 = BitConverter.ToUInt32(bytes, 660);
+        _pointerRight0 = BitConverter.ToUInt32(bytes, 664);
+        _pointerLeft1 = BitConverter.ToUInt32(bytes, 668);
+        _pointerRight1 = BitConverter.ToUInt32(bytes, 672);
         
-        // ID 1st Consumable 828-31
-        // ID 2nd Consumable 832-5
-        // ID 3rd Consumable 836-9
-        // ID 4th Consumable 840-3
-        // ID 5th Consumable 844-7
+        _pointerHelmet = BitConverter.ToUInt32(bytes, 692);
+        _pointerChestplate = BitConverter.ToUInt32(bytes, 696);
+        _pointerLeggings = BitConverter.ToUInt32(bytes, 700);
+        _pointerBoots = BitConverter.ToUInt32(bytes, 704);
+        
+        _pointerConsumable00 = BitConverter.ToUInt32(bytes, 720);
+        _pointerConsumable01 = BitConverter.ToUInt32(bytes, 58308);
+        _pointerConsumable10 = BitConverter.ToUInt32(bytes, 724);
+        _pointerConsumable11 = BitConverter.ToUInt32(bytes, 58312);
+        _pointerConsumable20 = BitConverter.ToUInt32(bytes, 728);
+        _pointerConsumable21 = BitConverter.ToUInt32(bytes, 58316);
+        _pointerConsumable30 = BitConverter.ToUInt32(bytes, 732);
+        _pointerConsumable31 = BitConverter.ToUInt32(bytes, 58320);
+        _pointerConsumable40 = BitConverter.ToUInt32(bytes, 736);
+        _pointerConsumable41 = BitConverter.ToUInt32(bytes, 58324);
+
+
+
+        var invItemLeft0 = invItems[_pointerLeft0];
+        _itemLeft0 = invItemLeft0.ID == leftID0 ? invItemLeft0 : Inventory.UnknownItem;
+        var invItemRight0 = invItems[_pointerRight0];
+        _itemRight0 = invItemRight0.ID == rightID0 ? invItemRight0 : Inventory.UnknownItem;
+        var invItemLeft1 = invItems[_pointerLeft1];
+        _itemLeft1 = invItemLeft1.ID == leftID1 ? invItemLeft1 : Inventory.UnknownItem;
+        var invItemRight1 = invItems[_pointerRight1];
+        _itemRight1 = invItemRight1.ID == rightID1 ? invItemRight1 : Inventory.UnknownItem;
+        
+        var invItemHelmet = invItems[_pointerHelmet];
+        _itemHelmet = invItemHelmet.ID == helmetID ? invItemHelmet : Inventory.UnknownItem;
+        var invItemChestplate = invItems[_pointerChestplate];
+        _itemChestplate = invItemChestplate.ID == chestplateID ? invItemChestplate : Inventory.UnknownItem;
+        var invItemLeggings = invItems[_pointerLeggings];
+        _itemLeggings = invItemLeggings.ID == leggingsID ? invItemLeggings : Inventory.UnknownItem;
+        var invItemBoots = invItems[_pointerBoots];
+        _itemBoots = invItemBoots.ID == bootsID ? invItemBoots : Inventory.UnknownItem;
+
+        if (consumableID0 != 0xFFFFFFFF)
+        {
+            var invItemConsumable0 = invItems[_pointerConsumable00];
+            _itemConsumable0 = invItemConsumable0.ID == consumableID0 ? invItemConsumable0 : Inventory.UnknownItem;
+        } else _itemConsumable0 = Inventory.NoRing;
+        
+        if (consumableID1 != 0xFFFFFFFF)
+        {
+            var invItemConsumable1 = invItems[_pointerConsumable10];
+            _itemConsumable1 = invItemConsumable1.ID == consumableID1 ? invItemConsumable1 : Inventory.UnknownItem;
+        } else _itemConsumable1 = Inventory.NoRing;
+        
+        if (consumableID2 != 0xFFFFFFFF)
+        {
+            var invItemConsumable2 = invItems[_pointerConsumable20];
+            _itemConsumable2 = invItemConsumable2.ID == consumableID2 ? invItemConsumable2 : Inventory.UnknownItem;
+        } else _itemConsumable2 = Inventory.NoRing;
+        
+        if (consumableID3 != 0xFFFFFFFF)
+        {
+            var invItemConsumable3 = invItems[_pointerConsumable30];
+            _itemConsumable3 = invItemConsumable3.ID == consumableID3 ? invItemConsumable3 : Inventory.UnknownItem;
+        } else _itemConsumable3 = Inventory.NoRing;
+        
+        if (consumableID4 != 0xFFFFFFFF)
+        {
+            var invItemConsumable4 = invItems[_pointerConsumable40];
+            _itemConsumable4 = invItemConsumable4.ID == consumableID4 ? invItemConsumable4 : Inventory.UnknownItem;
+        } else _itemConsumable4 = Inventory.NoRing;
+        
     }
+
+    public Item ItemLeft0 => _itemLeft0;
+
+    public Item ItemRight0 => _itemRight0;
+
+    public Item ItemLeft1 => _itemLeft1;
+
+    public Item ItemRight1 => _itemRight1;
+
+    public Item ItemHelmet => _itemHelmet;
+
+    public Item ItemChestplate => _itemChestplate;
+
+    public Item ItemLeggings => _itemLeggings;
+
+    public Item ItemBoots => _itemBoots;
+
+    public Item ItemConsumable0 => _itemConsumable0;
+
+    public Item ItemConsumable1 => _itemConsumable1;
+
+    public Item ItemConsumable2 => _itemConsumable2;
+
+    public Item ItemConsumable3 => _itemConsumable3;
+
+    public Item ItemConsumable4 => _itemConsumable4;
 }
