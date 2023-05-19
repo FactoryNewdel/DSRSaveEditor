@@ -1,10 +1,13 @@
-﻿namespace DSR.SlotDetails;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
-public class Equipment
+namespace DSR.SlotDetails;
+
+public class Equipment : INotifyPropertyChanged
 {
     #region Variables
     
-    // TODO ammunition, rings
+    // TODO ammunition, rings, attunement
 
     private UInt32 _pointerLeft0;
     private UInt32 _pointerRight0;
@@ -46,6 +49,13 @@ public class Equipment
     private Item _itemConsumable3;
     private Item _itemConsumable4;
 
+
+
+    private string _iconPathAttunement;
+    private string _iconPathLeftHand;
+    private string _iconPathRightHand;
+    private string _iconPathConsumable;
+
     #endregion
 
     public Equipment(byte[] bytes, Item[] invItems)
@@ -55,11 +65,19 @@ public class Equipment
         var rightID0 = BitConverter.ToUInt32(bytes, 772);
         var leftID1 = BitConverter.ToUInt32(bytes, 776);
         var rightID1 = BitConverter.ToUInt32(bytes, 780);
+
+        var arrowID0 = BitConverter.ToUInt32(bytes, 784);
+        var boltID0 = BitConverter.ToUInt32(bytes, 788);
+        var arrowID1 = BitConverter.ToUInt32(bytes, 792);
+        var boltID1 = BitConverter.ToUInt32(bytes, 796);
         
         var helmetID = BitConverter.ToUInt32(bytes, 800);
         var chestplateID = BitConverter.ToUInt32(bytes, 804);
         var leggingsID = BitConverter.ToUInt32(bytes, 808);
         var bootsID = BitConverter.ToUInt32(bytes, 812);
+
+        var ringID0 = BitConverter.ToUInt32(bytes, 820);
+        var ringID1 = BitConverter.ToUInt32(bytes, 824);
         
         var consumableID0 = BitConverter.ToUInt32(bytes, 828);
         var consumableID1 = BitConverter.ToUInt32(bytes, 832);
@@ -93,9 +111,9 @@ public class Equipment
 
 
         var invItemLeft0 = invItems[_pointerLeft0];
-        _itemLeft0 = invItemLeft0.ID == leftID0 ? invItemLeft0 : Inventory.UnknownItem;
+        ItemLeft0 = invItemLeft0.ID == leftID0 ? invItemLeft0 : Inventory.UnknownItem;
         var invItemRight0 = invItems[_pointerRight0];
-        _itemRight0 = invItemRight0.ID == rightID0 ? invItemRight0 : Inventory.UnknownItem;
+        ItemRight0 = invItemRight0.ID == rightID0 ? invItemRight0 : Inventory.UnknownItem;
         var invItemLeft1 = invItems[_pointerLeft1];
         _itemLeft1 = invItemLeft1.ID == leftID1 ? invItemLeft1 : Inventory.UnknownItem;
         var invItemRight1 = invItems[_pointerRight1];
@@ -142,9 +160,29 @@ public class Equipment
         
     }
 
-    public Item ItemLeft0 => _itemLeft0;
+    public Item ItemLeft0
+    {
+        get => _itemLeft0;
+        set
+        {
+            _itemLeft0 = value;
+            NotifyPropertyChanged();
+            var path = $"Images/ItemIcons/Weapons/{value.Name}.png";
+            if (File.Exists(path)) IconPathLeftHand = path;
+        }
+    }
 
-    public Item ItemRight0 => _itemRight0;
+    public Item ItemRight0
+    {
+        get => _itemRight0;
+        set
+        {
+            _itemRight0 = value;
+            NotifyPropertyChanged();
+            var path = Path.GetFullPath($"Images/ItemIcons/Weapons/{value.Name}.png");
+            if (File.Exists(path)) IconPathRightHand = path;
+        }
+    }
 
     public Item ItemLeft1 => _itemLeft1;
 
@@ -167,4 +205,51 @@ public class Equipment
     public Item ItemConsumable3 => _itemConsumable3;
 
     public Item ItemConsumable4 => _itemConsumable4;
+
+    public string IconPathAttunement
+    {
+        get => _iconPathAttunement;
+        private set
+        {
+            _iconPathAttunement = value;
+            NotifyPropertyChanged();
+        }
+    }
+    
+    public string IconPathLeftHand
+    {
+        get => _iconPathLeftHand;
+        private set
+        {
+            _iconPathLeftHand = value;
+            NotifyPropertyChanged();
+        }
+    }
+    
+    public string IconPathRightHand
+    {
+        get => _iconPathRightHand;
+        private set
+        {
+            _iconPathRightHand = value;
+            NotifyPropertyChanged();
+        }
+    }
+
+    public string IconPathConsumable
+    {
+        get => _iconPathConsumable;
+        private set
+        {
+            _iconPathConsumable = value;
+            NotifyPropertyChanged();
+        }
+    }
+    
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    protected virtual void NotifyPropertyChanged([CallerMemberName] string? propertyName = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
 }

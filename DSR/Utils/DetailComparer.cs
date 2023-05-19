@@ -9,12 +9,17 @@ public class DetailComparer
         _known = new byte[size];
     }
     
-    public static void Add(StatInformation info)
+    public static void Add(int offset, int length)
     {
-        for (int i = 0, offset = info.Offset; i < info.Length; i++)
+        for (int i = 0; i < length; i++)
         {
             _known[i + offset] = 0xFF;
         }
+    }
+
+    public static void Add(StatInformation info)
+    {
+        Add(info.Offset, info.Length);
     }
     
     public static byte[] KnownBytes => _known;

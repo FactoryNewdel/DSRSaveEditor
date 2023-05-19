@@ -24,10 +24,6 @@ public class Inventory
             var durabilityLoss = BitConverter.ToUInt32(inventoryData, i + 24);
 
             _items[i / 28] = new Item(type, id, amount, sorting, enabled, durability, durabilityLoss);
-
-            var item = _items[i / 28];
-            
-            if (item.ID != 0 && item.ID != 0xFFFFFFFF) Console.WriteLine((i + 2652) + " | " + (i / 28) + " ID = " + item.IdSpace + "    " + BitConverter.ToString(BitConverter.GetBytes(item.ID)) + "    " + item.ID + "    " + item.Name);
         }
     }
 
