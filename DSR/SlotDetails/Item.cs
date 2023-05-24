@@ -9,26 +9,59 @@ public class Item : INotifyPropertyChanged
     #region Variables
 
     private byte _idSpace;
-    private UInt32 _idNum;
-    private ItemName _name;
+    private UInt32 _id;
+    private Infusion _infusion;
+    private int _level;
+    private ItemType _type;
     private UInt32 _amount;
     private UInt32 _sorting;
+    private int _index;
     private bool _enabled;
     private UInt32 _durability;
     private UInt32 _durabilityLoss;
 
     #endregion
 
-    public Item(byte idSpace, uint id, uint amount, uint sorting, bool enabled, uint durability, uint durabilityLoss)
+    // Items from Inventory
+    public Item(byte idSpace, uint id, uint amount, uint sorting, int index, bool enabled, uint durability, uint durabilityLoss)
     {
         _idSpace = idSpace;
-        _idNum = id;
-        _name = ItemType.GetItem(_idSpace, _idNum);
+        _id = id;
+        if (index == 75)
+        {
+            ;
+        }
+        if (idSpace == 0)
+        {
+            _id = _id / 1000 * 1000;
+            _infusion = (Infusion)((id - _id) / 100);
+            _level = (int)(id - _id - (int)_infusion * 100);
+        }
+
+        var i = Items.GetItem(idSpace, idSpace == 0 ? id / 1000 * 1000 : id);
+        if (i != null) _type = i._type;
+        
+        //_type = Items.GetItem(idSpace, id).Type;
         _amount = amount;
         _sorting = sorting;
+        _index = index;
         _enabled = enabled;
         _durability = durability;
         _durabilityLoss = durabilityLoss;
+    }
+
+    // All items
+    public Item(ItemType type, byte idSpace, uint id, uint sorting, uint durability)
+    {
+        _idSpace = idSpace;
+        _id = id;
+        _type = type;
+        _amount = 1;
+        _sorting = sorting;
+        _index = 0;
+        _enabled = true;
+        _durability = durability;
+        _durabilityLoss = 0;
     }
 
     public byte IdSpace
@@ -41,31 +74,32 @@ public class Item : INotifyPropertyChanged
         }
     }
 
+    public uint FullID => (uint)(ID + (int)_infusion * 100 + Level);
+
     public uint ID
     {
-        get => _idNum;
+        get => _id;
         set
         {
-            _idNum = value;
+            _id = value;
             NotifyPropertyChanged();
 
-            _name = (ItemName)value;
-            NotifyPropertyChanged("Type");
         }
     }
 
-    public ItemName Name
+    public Infusion Infusion
     {
-        get => _name;
-        set
-        {
-            _name = value;
-            NotifyPropertyChanged();
-
-            _idNum = (uint)value;
-            NotifyPropertyChanged("ID");
-        }
+        get => _infusion;
+        set => _infusion = value;
     }
+
+    public int Level
+    {
+        get => _level;
+        set => _level = value;
+    }
+
+    public ItemType Type => _type;
 
     public uint Amount
     {
@@ -86,6 +120,18 @@ public class Item : INotifyPropertyChanged
             NotifyPropertyChanged();
         }
     }
+    
+    public int Index
+    {
+        get => _index;
+        set
+        {
+            _index = value;
+            NotifyPropertyChanged();
+        }
+    }
+    
+    
 
     public bool Enabled
     {

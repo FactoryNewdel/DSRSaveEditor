@@ -6,9 +6,9 @@ public class SaveSlotDetails
     private byte[] _bytes;
 
     private CharacterStats _characterStats;
-    private Inventory _inventory;
-    private Equipment _equipment;
-    private Progress _progress;
+    private Inventory? _inventory;
+    private Equipment? _equipment;
+    private Progress? _progress;
 
     public SaveSlotDetails(byte[] bytes)
     {
@@ -210,6 +210,8 @@ public class SaveSlotDetails
         get
         {
             _characterStats.UpdateData(ref _bytes);
+            if (_inventory != null) _inventory.UpdateData(ref _bytes);
+            if (_equipment != null) _equipment.UpdateData(ref _bytes);
             return _bytes;
         }
     }
