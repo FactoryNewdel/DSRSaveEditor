@@ -8,6 +8,7 @@ public class Inventory
 
     private int _size;
     private Item[] _items;
+    private UInt32 _inventorySize;
     private UInt32 _latestItemIndex;
     private static Item _unknownItem;
     private static Item _noRingItem;
@@ -16,6 +17,8 @@ public class Inventory
     {
         var inventoryData = bytes.Skip(InventoryOffset).Take(InventorySize * ItemSize).ToArray();
         _items = new Item[InventorySize];
+        
+        _inventorySize = BitConverter.ToUInt32(bytes, 848);
         _latestItemIndex = bytes[58204];
 
         for (var i = 0; i < inventoryData.Length; i += ItemSize)
@@ -29,7 +32,7 @@ public class Inventory
             if (index != 2047)
             {
                 _size = index + 1;
-                if (index != i / 28) throw new Exception($"i = {i / 28}\tindex = {index} {inventoryData[i + 13]} {inventoryData[i + 13]}");
+                if (index != i / 28) throw new Exception($"i = {i / 28}\tindex = {index} | {id}");
             }
             
             var enabled = inventoryData[i + 16] == 1;
@@ -39,7 +42,7 @@ public class Inventory
             _items[i / 28] = new Item(idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss);
 
             var item = _items[i / 28];
-            if (item.ID != 0 && item.ID != 0xFFFFFFFF) Console.WriteLine((i + 2652) + " | " + (i / 28) + " ID = " + item.IdSpace + "    " + item.ID + "    " + item.Sorting + "    0x" + BitConverter.ToString(BitConverter.GetBytes(item.Sorting).Reverse().ToArray()).Replace("-", "").TrimStart('0') + "    " + BitConverter.ToString(BitConverter.GetBytes(item.Sorting + item.Index)) + "    " + item.Index + "    " + item.Type + "    " + item.Durability);
+            if (item.ID != 0 && item.ID != 0xFFFFFFFF) Console.WriteLine((i + 2652) + " | " + (i / 28) + " ID = " + item.IdSpace + "    0x" + BitConverter.ToString(BitConverter.GetBytes(item.ID).Reverse().ToArray()).Replace("-", "").TrimStart('0') + "    " + item.ID + "    " + item.Sorting + "    0x" + BitConverter.ToString(BitConverter.GetBytes(item.Sorting).Reverse().ToArray()).Replace("-", "").TrimStart('0') + "    " + BitConverter.ToString(BitConverter.GetBytes(item.Sorting + item.Index)) + "    " + item.Index + "    " + item.Type + "    " + item.Durability);
 
         }
     }
@@ -49,6 +52,7 @@ public class Inventory
         if (item.IdSpace != 64 || forceNew)
         {
             LatestItemIndex++;
+            item.Index = (int)LatestItemIndex;
             Items[LatestItemIndex] = item;
             return;
         }

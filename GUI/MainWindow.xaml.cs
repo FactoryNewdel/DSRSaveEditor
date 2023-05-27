@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using DSR.SlotDetails;
 using DSR.Utils;
+using GUI.Helper;
 using GUI.ViewModels;
 using Microsoft.Win32;
 
@@ -22,13 +23,30 @@ namespace GUI
         public MainWindow()
         {
             InitializeComponent();
-            
+
             _mainViewModel = new MainViewModel();
+            
+            _mainViewModel.SetupItemGroups();
+            //trvFamilies.ItemsSource = _mainViewModel.WeaponTypeGroups;
 
             Slots.ItemsSource = _mainViewModel.SaveSlotDetails;
             TabCharacterStats.DataContext = _mainViewModel;
+
+            var consumablesContainer = new InventoryImageContainer("Images/InventoryIcons/InventoryTab_Consumables_Unselected.png", "Images/InventoryIcons/InventoryTab_Consumables_Selected.png");
+            ImageConsumables.DataContext = consumablesContainer;
+            _mainViewModel.SetDefaultInventoryItem(consumablesContainer);
+            
+            ImageUpgradeMaterials.DataContext = new InventoryImageContainer("Images/InventoryIcons/InventoryTab_UpgradeMaterials_Unselected.png", "Images/InventoryIcons/InventoryTab_UpgradeMaterials_Selected.png");
+            ImageKeyItems.DataContext =         new InventoryImageContainer("Images/InventoryIcons/InventoryTab_KeyItems_Unselected.png",         "Images/InventoryIcons/InventoryTab_KeyItems_Selected.png");
+            ImageSpells.DataContext =           new InventoryImageContainer("Images/InventoryIcons/InventoryTab_Spells_Unselected.png",           "Images/InventoryIcons/InventoryTab_Spells_Selected.png");
+            ImageWeapons.DataContext =          new InventoryImageContainer("Images/InventoryIcons/InventoryTab_Weapons_Unselected.png",          "Images/InventoryIcons/InventoryTab_Weapons_Selected.png");
+            ImageAmmunition.DataContext =       new InventoryImageContainer("Images/InventoryIcons/InventoryTab_Ammunition_Unselected.png",       "Images/InventoryIcons/InventoryTab_Ammunition_Selected.png");
+            ImageArmor.DataContext =            new InventoryImageContainer("Images/InventoryIcons/InventoryTab_Armor_Unselected.png",            "Images/InventoryIcons/InventoryTab_Armor_Selected.png");
+            ImageRings.DataContext =            new InventoryImageContainer("Images/InventoryIcons/InventoryTab_Rings_Unselected.png",            "Images/InventoryIcons/InventoryTab_Rings_Selected.png");
         }
 
+        #region MainTab
+        
         private void Import_Clicked(object sender, RoutedEventArgs e)
         {
             DetailComparer.Init(0x5FFFC);
@@ -66,6 +84,10 @@ namespace GUI
 
             _mainViewModel.ExportSavefile(dialog.FileName);
         }
+        
+        #endregion
+        
+        #region SlotTab
 
         private void Slot_DoubleClick(object sender, RoutedEventArgs e)
         {
@@ -80,6 +102,21 @@ namespace GUI
             (Tabs.Items[2] as TabItem).IsEnabled = true;
             Tabs.SelectedIndex = 2;
         }
+        
+        #endregion
+        
+        #region InventoryTab
+
+        private void InventoryImage_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (sender is not Image image) return;
+            if (image.DataContext is not InventoryImageContainer inventoryImageContainer) return;
+            if (inventoryImageContainer.Selected) return;
+
+            _mainViewModel.SelectedInventoryTab = inventoryImageContainer;
+        }
+        
+        #endregion
 
         private static readonly Regex _regexNumber = new Regex("[^0-9]+");
         private void Textbox_PreviewNumberOnly(object sender, TextCompositionEventArgs e)

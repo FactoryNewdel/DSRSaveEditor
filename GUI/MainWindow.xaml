@@ -4,12 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI"
+        xmlns:self="clr-namespace:DSR.SlotDetails;assembly=DSR"
         mc:Ignorable="d"
         Title="DSR Save Editor" Height="450" Width="800"
         WindowState="Maximized"
         Icon="Images/favicon.ico"
         Background="Black">
-    <TabControl Name="Tabs" Padding="0" Background="Black" SelectedIndex="2">
+    <TabControl Name="Tabs" Padding="0" Background="Black" SelectedIndex="3">
 
         <TabItem Name="TabMain" Header="Main" Style="{DynamicResource MainTabStyle}">
 
@@ -22,8 +23,8 @@
 
                 <Image Grid.Column="0" Grid.ColumnSpan="3" Source="Images/Backgrounds/TabBackground_Main.jpg" Stretch="Fill" />
 
-                <Button Name="ButtonImport" Grid.Column="0" Style="{DynamicResource MainTabButtonStyle}" Click="Import_Clicked" >Import Savefile</Button>
-                <Button Name="ButtonExport" Grid.Column="2" Style="{DynamicResource MainTabButtonStyle}" Click="Export_Clicked" >Export Savefile</Button>
+                <Button Name="ButtonImport" Grid.Column="0" Style="{DynamicResource MainTabButtonStyle}" Click="Import_Clicked">Import Savefile</Button>
+                <Button Name="ButtonExport" Grid.Column="2" Style="{DynamicResource MainTabButtonStyle}" Click="Export_Clicked">Export Savefile</Button>
             </Grid>
 
         </TabItem>
@@ -89,7 +90,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Image Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Source="Images/Backgrounds/TabBackground_Character.jpg" Stretch="Fill" />
-                
+
                 <!-->Active Equipment like shown on main screen<-->
                 <Grid Name="GridActiveEquip" Grid.Row="1" Grid.Column="0">
                     <Grid.RowDefinitions>
@@ -102,21 +103,21 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    
+
                     <Image Grid.Row="0" Grid.Column="1" Source="Images/Backgrounds/Itemslot.png" Opacity="0.88" />
                     <Image Grid.Row="0" Grid.Column="1" Source="{Binding SelectedSlot.Equipment.IconPathAttunement}" Opacity="0.88" Margin="25" />
-                    
+
                     <Image Grid.Row="1" Grid.Column="0" Source="Images/Backgrounds/Itemslot.png" Opacity="0.88" />
                     <Image Grid.Row="1" Grid.Column="0" Source="{Binding SelectedSlot.Equipment.IconPathLeftHand}" Opacity="0.88" Margin="25" />
-                    
+
                     <Image Grid.Row="1" Grid.Column="2" Source="Images/Backgrounds/Itemslot.png" Opacity="0.88" />
                     <Image Grid.Row="1" Grid.Column="2" Source="{Binding SelectedSlot.Equipment.IconPathRightHand}" Opacity="0.88" Margin="25" />
-                    
+
                     <Image Grid.Row="2" Grid.Column="1" Source="Images/Backgrounds/Itemslot.png" Opacity="0.88" />
                     <Image Grid.Row="2" Grid.Column="1" Source="{Binding SelectedSlot.Equipment.IconPathConsumable}" Opacity="0.88" Margin="25" />
-                    
+
                 </Grid>
-                
+
                 <!-->Stats<-->
                 <Grid Name="GridStats" Grid.Row="1" Grid.Column="2">
                     <Grid.RowDefinitions>
@@ -136,50 +137,50 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="100" />
                     </Grid.ColumnDefinitions>
-                    
+
                     <Image Grid.Row="0" Grid.Column="0" Source="Images/StatusIcons/Level.png" />
                     <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Margin="10 0 0 0" FontSize="15">Level</TextBlock>
                     <TextBlock Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Text="{Binding SelectedSlot.CharacterStats.Level, FallbackValue=0}" />
-                    
+
                     <Image Grid.Row="1" Grid.Column="0" Source="Images/StatusIcons/Vitality.png" />
                     <TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Margin="10 0 0 0" FontSize="15">Vitality</TextBlock>
                     <TextBox Grid.Row="1" Grid.Column="2" Style="{DynamicResource TextBoxStyle}" Text="{Binding SelectedSlot.CharacterStats.Vitality, FallbackValue=0}" />
-                    
+
                     <Image Grid.Row="2" Grid.Column="0" Source="Images/StatusIcons/Attunement.png" />
                     <TextBlock Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Margin="10 0 0 0" FontSize="15">Attunement</TextBlock>
                     <TextBox Grid.Row="2" Grid.Column="2" Style="{DynamicResource TextBoxStyle}" Text="{Binding SelectedSlot.CharacterStats.Attunement, FallbackValue=0}" />
-                    
+
                     <Image Grid.Row="3" Grid.Column="0" Source="Images/StatusIcons/Endurance.png" />
                     <TextBlock Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Margin="10 0 0 0" FontSize="15">Endurance</TextBlock>
                     <TextBox Grid.Row="3" Grid.Column="2" Style="{DynamicResource TextBoxStyle}" Text="{Binding SelectedSlot.CharacterStats.Endurance, FallbackValue=0}" />
-                    
+
                     <Image Grid.Row="4" Grid.Column="0" Source="Images/StatusIcons/Strength.png" />
                     <TextBlock Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Margin="10 0 0 0" FontSize="15">Strength</TextBlock>
                     <TextBox Grid.Row="4" Grid.Column="2" Style="{DynamicResource TextBoxStyle}" Text="{Binding SelectedSlot.CharacterStats.Strength, FallbackValue=0}" />
-                    
+
                     <Image Grid.Row="5" Grid.Column="0" Source="Images/StatusIcons/Dexterity.png" />
                     <TextBlock Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Margin="10 0 0 0" FontSize="15">Dexterity</TextBlock>
                     <TextBox Grid.Row="5" Grid.Column="2" Style="{DynamicResource TextBoxStyle}" Text="{Binding SelectedSlot.CharacterStats.Dexterity, FallbackValue=0}" />
-                    
+
                     <Image Grid.Row="6" Grid.Column="0" Source="Images/StatusIcons/Resistance.png" />
                     <TextBlock Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Margin="10 0 0 0" FontSize="15">Resistance</TextBlock>
                     <TextBox Grid.Row="6" Grid.Column="2" Style="{DynamicResource TextBoxStyle}" Text="{Binding SelectedSlot.CharacterStats.Resistance, FallbackValue=0}" />
-                    
+
                     <Image Grid.Row="7" Grid.Column="0" Source="Images/StatusIcons/Intelligence.png" />
                     <TextBlock Grid.Row="7" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Margin="10 0 0 0" FontSize="15">Intelligence</TextBlock>
                     <TextBox Grid.Row="7" Grid.Column="2" Style="{DynamicResource TextBoxStyle}" Text="{Binding SelectedSlot.CharacterStats.Intelligence, FallbackValue=0}" />
-                    
+
                     <Image Grid.Row="8" Grid.Column="0" Source="Images/StatusIcons/Faith.png" />
                     <TextBlock Grid.Row="8" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Margin="10 0 0 0" FontSize="15">Faith</TextBlock>
                     <TextBox Grid.Row="8" Grid.Column="2" Style="{DynamicResource TextBoxStyle}" Text="{Binding SelectedSlot.CharacterStats.Faith, FallbackValue=0}" />
-                    
+
                     <Image Grid.Row="9" Grid.Column="0" Source="Images/StatusIcons/Humanity.png" />
                     <TextBlock Grid.Row="9" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Margin="10 0 0 0" FontSize="15">Humanity</TextBlock>
                     <TextBox Grid.Row="9" Grid.Column="2" Style="{DynamicResource TextBoxStyle}" Text="{Binding SelectedSlot.CharacterStats.Humanity, FallbackValue=0}" />
-                    
+
                 </Grid>
 
-                <Slider Name="Sliderr" Grid.Row="0" Grid.Column="1" Panel.ZIndex="1" 
+                <Slider Name="Sliderr" Grid.Row="0" Grid.Column="1" Panel.ZIndex="1"
                         Minimum="0" Maximum="1000" Interval="1" IsSnapToTickEnabled="True" Orientation="Horizontal"
                         Template="{DynamicResource HorizontalSlider}">
                 </Slider>
@@ -187,13 +188,101 @@
                              Value="{Binding ElementName=Sliderr, Path=Value}"
                              Minimum="{Binding ElementName=Sliderr, Path=Minimum}"
                              Maximum="{Binding ElementName=Sliderr, Path=Maximum}" />
-                
+
                 <TextBox Grid.Row="0" Grid.Column="0" Style="{DynamicResource TextBoxStyle}"
                          PreviewTextInput="Textbox_PreviewNumberOnly"
                          Text="{Binding ElementName=Sliderr, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 </TextBox>
 
                 <TextBlock Grid.Row="1" Grid.Column="1" Margin="100 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontSize="30" FontFamily="Times New Roman" Text="{Binding SelectedSlot.CharacterStats.Name, FallbackValue=Name not found}" />
+
+            </Grid>
+
+        </TabItem>
+
+        <TabItem Header="Inventory" Style="{DynamicResource MainTabStyle}">
+
+            <Grid>
+
+                <Image Source="Images/Backgrounds/TabBackground_Inventory.jpg" Stretch="Fill" />
+
+                <Grid Margin="100 100 100 0" Background="Black">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Rectangle Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="8" Fill="#111111"></Rectangle>
+
+                        <Border Name="ImageConsumables" Grid.Row="0" Grid.Column="0" Margin="10 10 5 10" BorderBrush="{Binding BorderBrush}" BorderThickness="3">
+                            <Image Stretch="UniformToFill" Source="{Binding ImagePath}" MouseLeftButtonDown="InventoryImage_OnClick"></Image>
+                        </Border>
+                        
+                        <Border Name="ImageUpgradeMaterials" Grid.Row="0" Grid.Column="1" Margin="5 10" BorderBrush="{Binding BorderBrush}" BorderThickness="3">
+                            <Image Stretch="UniformToFill" Source="{Binding ImagePath}" MouseLeftButtonDown="InventoryImage_OnClick"></Image>
+                        </Border>
+                        
+                        <Border Name="ImageKeyItems" Grid.Row="0" Grid.Column="2" Margin="5 10" BorderThickness="3" BorderBrush="{Binding BorderBrush}">
+                            <Image Stretch="UniformToFill" Source="{Binding ImagePath}" MouseLeftButtonDown="InventoryImage_OnClick"></Image>
+                        </Border>
+                        
+                        <Border Name="ImageSpells" Grid.Row="0" Grid.Column="3" Margin="5 10" BorderThickness="3" BorderBrush="{Binding BorderBrush}">
+                            <Image Stretch="UniformToFill" Source="{Binding ImagePath}" MouseLeftButtonDown="InventoryImage_OnClick"></Image>
+                        </Border>
+                        <Border Name="ImageWeapons" Grid.Row="0" Grid.Column="4" Margin="5 10" BorderThickness="3" BorderBrush="{Binding BorderBrush}">
+                            <Image Stretch="UniformToFill" Source="{Binding ImagePath}" MouseLeftButtonDown="InventoryImage_OnClick"></Image>
+                        </Border>
+                        <Border Name="ImageAmmunition" Grid.Row="0" Grid.Column="5" Margin="5 10" BorderThickness="3" BorderBrush="{Binding BorderBrush}">
+                            <Image Stretch="UniformToFill" Source="{Binding ImagePath}" MouseLeftButtonDown="InventoryImage_OnClick"></Image>
+                        </Border>
+                        <Border Name="ImageArmor" Grid.Row="0" Grid.Column="6" Margin="5 10" BorderThickness="3" BorderBrush="{Binding BorderBrush}">
+                            <Image Stretch="UniformToFill" Source="{Binding ImagePath}" MouseLeftButtonDown="InventoryImage_OnClick"></Image>
+                        </Border>
+                        <Border Name="ImageRings" Grid.Row="0" Grid.Column="7" Margin="5 10 10 10" BorderThickness="3" BorderBrush="{Binding BorderBrush}">
+                            <Image Stretch="UniformToFill" Source="{Binding ImagePath}" MouseLeftButtonDown="InventoryImage_OnClick"></Image>
+                        </Border>
+                        
+                    </Grid>
+
+                </Grid>
+
+
+                <!--TreeView Name="trvFamilies">
+                    <TreeView.Resources>
+                        <HierarchicalDataTemplate DataType="{x:Type self:WeaponTypeGroup}" ItemsSource="{Binding WeaponGroups}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{Binding ImagePath}" Margin="0,0,5,0" />
+                                <TextBlock Text="{Binding Title}" />
+                            </StackPanel>
+                        </HierarchicalDataTemplate>
+                        
+                        <HierarchicalDataTemplate DataType="{x:Type self:WeaponGroup}" ItemsSource="{Binding Items}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{Binding ImagePath}" Margin="0,0,5,0" />
+                                <TextBlock Text="{Binding ItemName}" />
+                            </StackPanel>
+                        </HierarchicalDataTemplate>
+                        
+                        <DataTemplate DataType="{x:Type self:WeaponMeta}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Name}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </TreeView.Resources>
+                </TreeView-->
 
             </Grid>
 

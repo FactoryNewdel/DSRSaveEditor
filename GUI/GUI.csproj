@@ -28,9 +28,6 @@
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
       <None Remove="Images\ItemIcons\Weapons\Longsword.png" />
-      <Content Include="Images\ItemIcons\Weapons\Longsword.png">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </Content>
       <None Remove="Images\ItemIcons\Weapons\WingedSpear.png" />
       <Content Include="Images\ItemIcons\Weapons\WingedSpear.png">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -77,6 +74,82 @@
       </Resource>
       <None Remove="Images\StatusIcons\Vitality.png" />
       <Resource Include="Images\StatusIcons\Vitality.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Images\ItemIcons\Weapons\StraightSwords\Longsword.png" />
+      <Content Include="Images\ItemIcons\Weapons\StraightSwords\Longsword.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Images\ItemIcons\Weapons\Types\StraightSwords.png" />
+      <Content Include="Images\ItemIcons\Weapons\Types\StraightSwords.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Images\Backgrounds\TabBackground_Inventory.jpg" />
+      <Resource Include="Images\Backgrounds\TabBackground_Inventory.jpg">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Images\InventoryIcons\InventoryTab_Ammunition_Selected.png" />
+      <Resource Include="Images\InventoryIcons\InventoryTab_Ammunition_Selected.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Images\InventoryIcons\InventoryTab_Ammunition_Unselected.png" />
+      <Resource Include="Images\InventoryIcons\InventoryTab_Ammunition_Unselected.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Images\InventoryIcons\InventoryTab_Armor_Selected.png" />
+      <Resource Include="Images\InventoryIcons\InventoryTab_Armor_Selected.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Images\InventoryIcons\InventoryTab_Armor_Unselected.png" />
+      <Resource Include="Images\InventoryIcons\InventoryTab_Armor_Unselected.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Images\InventoryIcons\InventoryTab_Consumables_Selected.png" />
+      <Resource Include="Images\InventoryIcons\InventoryTab_Consumables_Selected.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Images\InventoryIcons\InventoryTab_Consumables_Unselected.png" />
+      <Resource Include="Images\InventoryIcons\InventoryTab_Consumables_Unselected.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Images\InventoryIcons\InventoryTab_KeyItems_Selected.png" />
+      <Resource Include="Images\InventoryIcons\InventoryTab_KeyItems_Selected.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Images\InventoryIcons\InventoryTab_KeyItems_Unselected.png" />
+      <Resource Include="Images\InventoryIcons\InventoryTab_KeyItems_Unselected.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Images\InventoryIcons\InventoryTab_Rings_Selected.png" />
+      <Resource Include="Images\InventoryIcons\InventoryTab_Rings_Selected.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Images\InventoryIcons\InventoryTab_Rings_Unselected.png" />
+      <Resource Include="Images\InventoryIcons\InventoryTab_Rings_Unselected.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Images\InventoryIcons\InventoryTab_Spells_Selected.png" />
+      <Resource Include="Images\InventoryIcons\InventoryTab_Spells_Selected.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Images\InventoryIcons\InventoryTab_Spells_Unselected.png" />
+      <Resource Include="Images\InventoryIcons\InventoryTab_Spells_Unselected.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Images\InventoryIcons\InventoryTab_UpgradeMaterials_Selected.png" />
+      <Resource Include="Images\InventoryIcons\InventoryTab_UpgradeMaterials_Selected.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Images\InventoryIcons\InventoryTab_UpgradeMaterials_Unselected.png" />
+      <Resource Include="Images\InventoryIcons\InventoryTab_UpgradeMaterials_Unselected.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Images\InventoryIcons\InventoryTab_Weapons_Selected.png" />
+      <Resource Include="Images\InventoryIcons\InventoryTab_Weapons_Selected.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Images\InventoryIcons\InventoryTab_Weapons_Unselected.png" />
+      <Resource Include="Images\InventoryIcons\InventoryTab_Weapons_Unselected.png">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Resource>
     </ItemGroup>

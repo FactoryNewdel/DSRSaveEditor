@@ -13,11 +13,11 @@ public class SaveSlotDetails
     public SaveSlotDetails(byte[] bytes)
     {
         _bytes = bytes;
-        
+
         _characterStats = new CharacterStats(bytes);
 
         if (_characterStats.Level == 0) return;
-        
+
         _inventory = new Inventory(bytes);
         _equipment = new Equipment(bytes, _inventory.Items);
         _progress = new Progress(bytes);

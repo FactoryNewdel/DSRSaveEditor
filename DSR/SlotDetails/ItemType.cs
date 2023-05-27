@@ -75,6 +75,9 @@ public enum ItemType
 	HeavyBolt,
 	WoodBolt,
 	
+	// Rings
+	HavelsRing,
+	
 	// Items
 	BlackSeparationCrystal,
 	CrackedRedEyeOrb,
@@ -82,6 +85,7 @@ public enum ItemType
 	FullEstusFlask,
 	DivineBlessing,
 	LLoydsTalisman,
+	TransientCurse,
 	HomewardBone,
 	SoulOfALostUndead,
 	LargeSoulOfANamelessSoldier,
@@ -89,6 +93,12 @@ public enum ItemType
 	TitaniteShard,
 	TitaniteChunk,
 	TwinklingTitanite,
+	
+	// Spells
+	SoulArrow,
+	HeavySoulArrow,
+	
+	
 
 	/*private static readonly Dictionary<uint, Dictionary<uint, ItemName>> _items = new ()
 	{
@@ -208,7 +218,6 @@ public enum ItemType
 		    {0x000003FC, ItemName.GreenTitaniteShard},
 		    {0x000002C5, ItemName.GuardianSoul},
 		    {0x00001388, ItemName.Heal},
-		    {0x00000BCC, ItemName.HeavySoulArrow},
 		    {0x000001FE, ItemName.HelloCarving},
 		    {0x00000202, ItemName.HelpmeCarving},
 		    {0x00000D52, ItemName.HiddenBody},
@@ -284,7 +293,6 @@ public enum ItemType
 		    {0x0000017E, ItemName.SilverCoin},
 		    {0x000000DC, ItemName.SilverPendant},
 		    {0x000013A6, ItemName.SoothingSunlight},
-		    {0x00000BB8, ItemName.SoulArrow},
 		    {0x00000196, ItemName.SoulofaBraveWarrior},
 		    {0x00000199, ItemName.SoulofaGreatHero},
 		    {0x00000198, ItemName.SoulofaHero},
@@ -312,7 +320,6 @@ public enum ItemType
 		    {0x0000042E, ItemName.TitaniteSlab},
 		    {0x00001072, ItemName.ToxicMist},
 		    {0x000016A8, ItemName.TranquilWalkofPeace},
-		    {0x00000138, ItemName.TransientCurse},
 		    {0x000001F5, ItemName.TwinHumanities},
 		    {0x000007DC, ItemName.UndeadAsylumF2EastKey},
 		    {0x000007E0, ItemName.UndeadAsylumF2WestKey},
@@ -11828,7 +11835,6 @@ public enum ItemType
 		    {0x00000074, ItemName.DuskCrownRing},
 		    {0x00000091, ItemName.EastWoodGrainRing},
 		    {0x00000069, ItemName.FlameStoneplateRing},
-		    {0x00000064, ItemName.HavelsRing},
 		    {0x00000077, ItemName.HawkRing},
 		    {0x00000075, ItemName.HornetRing},
 		    {0x00000090, ItemName.LeoRing},

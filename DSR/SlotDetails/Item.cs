@@ -27,10 +27,7 @@ public class Item : INotifyPropertyChanged
     {
         _idSpace = idSpace;
         _id = id;
-        if (index == 75)
-        {
-            ;
-        }
+        
         if (idSpace == 0)
         {
             _id = _id / 1000 * 1000;
@@ -62,6 +59,21 @@ public class Item : INotifyPropertyChanged
         _enabled = true;
         _durability = durability;
         _durabilityLoss = 0;
+    }
+
+    public Item(Item item)
+    {
+        _idSpace = item._idSpace;
+        _id = item._id;
+        _infusion = item._infusion;
+        _level = item._level;
+        _type = item._type;
+        _amount = item._amount;
+        _sorting = item._sorting;
+        _index = item._index;
+        _enabled = item._enabled;
+        _durability = item._durability;
+        _durabilityLoss = item._durabilityLoss;
     }
 
     public byte IdSpace
