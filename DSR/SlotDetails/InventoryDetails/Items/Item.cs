@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using DSR.SlotDetailsDefinition;
 
-namespace DSR.SlotDetails;
+namespace DSR.SlotDetails.InventoryDetails.Items;
 
 public class Item : INotifyPropertyChanged
 {
@@ -10,8 +10,6 @@ public class Item : INotifyPropertyChanged
 
     private byte _idSpace;
     private UInt32 _id;
-    private Infusion _infusion;
-    private int _level;
     private ItemType _type;
     private UInt32 _amount;
     private UInt32 _sorting;
@@ -23,32 +21,26 @@ public class Item : INotifyPropertyChanged
     #endregion
 
     // Items from Inventory
-    public Item(byte idSpace, uint id, uint amount, uint sorting, int index, bool enabled, uint durability, uint durabilityLoss)
+    protected Item(byte idSpace, uint id, uint amount, uint sorting, int index, bool enabled, uint durability, uint durabilityLoss)
     {
         _idSpace = idSpace;
         _id = id;
-        
-        if (idSpace == 0)
-        {
-            _id = _id / 1000 * 1000;
-            _infusion = (Infusion)((id - _id) / 100);
-            _level = (int)(id - _id - (int)_infusion * 100);
-        }
 
-        var i = Items.GetItem(idSpace, idSpace == 0 ? id / 1000 * 1000 : id);
+        var i = ItemList.GetItem(idSpace, idSpace == 0 ? id / 1000 * 1000 : id);
         if (i != null) _type = i._type;
         
-        //_type = Items.GetItem(idSpace, id).Type;
         _amount = amount;
         _sorting = sorting;
         _index = index;
         _enabled = enabled;
         _durability = durability;
         _durabilityLoss = durabilityLoss;
+
+        ImagePath = "Images/ItemIcons/";
     }
 
     // All items
-    public Item(ItemType type, byte idSpace, uint id, uint sorting, uint durability)
+    protected Item(ItemType type, byte idSpace, uint id, uint sorting, uint durability)
     {
         _idSpace = idSpace;
         _id = id;
@@ -59,14 +51,14 @@ public class Item : INotifyPropertyChanged
         _enabled = true;
         _durability = durability;
         _durabilityLoss = 0;
+        
+        ImagePath = $"Images/ItemIcons/";
     }
 
     public Item(Item item)
     {
         _idSpace = item._idSpace;
         _id = item._id;
-        _infusion = item._infusion;
-        _level = item._level;
         _type = item._type;
         _amount = item._amount;
         _sorting = item._sorting;
@@ -74,6 +66,26 @@ public class Item : INotifyPropertyChanged
         _enabled = item._enabled;
         _durability = item._durability;
         _durabilityLoss = item._durabilityLoss;
+        ImagePath = item.ImagePath;
+    }
+
+    public static Item GetItem(byte idSpace, uint id, uint amount, uint sorting, int index, bool enabled, uint durability, uint durabilityLoss)
+    {
+        if (idSpace == 0) return new Weapon(idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss);
+        if (idSpace == 16) return new Armor(idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss);
+        if (idSpace == 32) return new Ring(idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss);
+        if (idSpace == 64) return GetIngameItem(idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss);
+        if (idSpace == 255) return new Item(255, UInt32.MaxValue, 0, UInt32.MaxValue, 2047, false, UInt32.MaxValue, 0);
+        throw new InvalidDataException($"Invalid IDSpace: {idSpace}");
+    }
+
+    private static Item GetIngameItem(byte idSpace, uint id, uint amount, uint sorting, int index, bool enabled, uint durability, uint durabilityLoss)
+    {
+        if (id / 1000 == 0 && id / 100 == 4) return new CommonSoul(idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss);
+        if (id / 10000 == 0 && id / 1000 == 1) return new UpgradeMaterial(idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss);
+        if (id / 10000 == 0 && id / 1000 == 2) return new KeyItem(idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss);
+        if (id / 10000 == 0 && id / 1000 == 3) return new Spell(idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss);
+        return new CommonItem(idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss);
     }
 
     public byte IdSpace
@@ -86,7 +98,7 @@ public class Item : INotifyPropertyChanged
         }
     }
 
-    public uint FullID => (uint)(ID + (int)_infusion * 100 + Level);
+    public virtual uint FullID => _id;
 
     public uint ID
     {
@@ -97,18 +109,6 @@ public class Item : INotifyPropertyChanged
             NotifyPropertyChanged();
 
         }
-    }
-
-    public Infusion Infusion
-    {
-        get => _infusion;
-        set => _infusion = value;
-    }
-
-    public int Level
-    {
-        get => _level;
-        set => _level = value;
     }
 
     public ItemType Type => _type;
@@ -174,6 +174,8 @@ public class Item : INotifyPropertyChanged
             NotifyPropertyChanged();
         }
     }
+
+    public string ImagePath { get; protected set; }
 
     public event PropertyChangedEventHandler? PropertyChanged;
 

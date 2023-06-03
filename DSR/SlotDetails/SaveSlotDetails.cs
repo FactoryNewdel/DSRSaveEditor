@@ -1,4 +1,5 @@
-﻿
+﻿using DSR.SlotDetails.InventoryDetails;
+
 namespace DSR.SlotDetails;
 
 public class SaveSlotDetails

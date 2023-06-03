@@ -1,6 +1,6 @@
 ﻿using DSR.SlotDetailsDefinition;
 
-namespace DSR.SlotDetails;
+namespace DSR.SlotDetails.InventoryDetails.Items;
 
 public enum ItemType
 {

@@ -5,6 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI"
         xmlns:self="clr-namespace:DSR.SlotDetails;assembly=DSR"
+        xmlns:helper="clr-namespace:GUI.Helper"
+        xmlns:items="clr-namespace:DSR.SlotDetails.InventoryDetails.Items;assembly=DSR"
+        xmlns:system="clr-namespace:System;assembly=System.Runtime"
         mc:Ignorable="d"
         Title="DSR Save Editor" Height="450" Width="800"
         WindowState="Maximized"
@@ -224,65 +227,118 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
+                        <Grid.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="BorderBrush" Value="{Binding BorderBrush}" />
+                                <Style.Triggers>
+                                    <Trigger Property="Border.IsMouseOver" Value="True">
+                                        <Setter Property="Border.BorderBrush" Value="SaddleBrown" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Grid.Resources>
 
                         <Rectangle Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="8" Fill="#111111"></Rectangle>
 
-                        <Border Name="ImageConsumables" Grid.Row="0" Grid.Column="0" Margin="10 10 5 10" BorderBrush="{Binding BorderBrush}" BorderThickness="3">
+                        <Border Name="ImageConsumables" Grid.Row="0" Grid.Column="0" Margin="10 10 5 10" BorderThickness="3">
                             <Image Stretch="UniformToFill" Source="{Binding ImagePath}" MouseLeftButtonDown="InventoryImage_OnClick"></Image>
                         </Border>
-                        
-                        <Border Name="ImageUpgradeMaterials" Grid.Row="0" Grid.Column="1" Margin="5 10" BorderBrush="{Binding BorderBrush}" BorderThickness="3">
+
+                        <Border Name="ImageUpgradeMaterials" Grid.Row="0" Grid.Column="1" Margin="5 10" BorderThickness="3">
                             <Image Stretch="UniformToFill" Source="{Binding ImagePath}" MouseLeftButtonDown="InventoryImage_OnClick"></Image>
                         </Border>
-                        
-                        <Border Name="ImageKeyItems" Grid.Row="0" Grid.Column="2" Margin="5 10" BorderThickness="3" BorderBrush="{Binding BorderBrush}">
+
+                        <Border Name="ImageKeyItems" Grid.Row="0" Grid.Column="2" Margin="5 10" BorderThickness="3">
                             <Image Stretch="UniformToFill" Source="{Binding ImagePath}" MouseLeftButtonDown="InventoryImage_OnClick"></Image>
                         </Border>
-                        
-                        <Border Name="ImageSpells" Grid.Row="0" Grid.Column="3" Margin="5 10" BorderThickness="3" BorderBrush="{Binding BorderBrush}">
+
+                        <Border Name="ImageSpells" Grid.Row="0" Grid.Column="3" Margin="5 10" BorderThickness="3">
                             <Image Stretch="UniformToFill" Source="{Binding ImagePath}" MouseLeftButtonDown="InventoryImage_OnClick"></Image>
                         </Border>
-                        <Border Name="ImageWeapons" Grid.Row="0" Grid.Column="4" Margin="5 10" BorderThickness="3" BorderBrush="{Binding BorderBrush}">
+                        <Border Name="ImageWeapons" Grid.Row="0" Grid.Column="4" Margin="5 10" BorderThickness="3">
                             <Image Stretch="UniformToFill" Source="{Binding ImagePath}" MouseLeftButtonDown="InventoryImage_OnClick"></Image>
                         </Border>
-                        <Border Name="ImageAmmunition" Grid.Row="0" Grid.Column="5" Margin="5 10" BorderThickness="3" BorderBrush="{Binding BorderBrush}">
+                        <Border Name="ImageAmmunition" Grid.Row="0" Grid.Column="5" Margin="5 10" BorderThickness="3">
                             <Image Stretch="UniformToFill" Source="{Binding ImagePath}" MouseLeftButtonDown="InventoryImage_OnClick"></Image>
                         </Border>
-                        <Border Name="ImageArmor" Grid.Row="0" Grid.Column="6" Margin="5 10" BorderThickness="3" BorderBrush="{Binding BorderBrush}">
+                        <Border Name="ImageArmor" Grid.Row="0" Grid.Column="6" Margin="5 10" BorderThickness="3">
                             <Image Stretch="UniformToFill" Source="{Binding ImagePath}" MouseLeftButtonDown="InventoryImage_OnClick"></Image>
                         </Border>
-                        <Border Name="ImageRings" Grid.Row="0" Grid.Column="7" Margin="5 10 10 10" BorderThickness="3" BorderBrush="{Binding BorderBrush}">
+                        <Border Name="ImageRings" Grid.Row="0" Grid.Column="7" Margin="5 10 10 10" BorderThickness="3">
                             <Image Stretch="UniformToFill" Source="{Binding ImagePath}" MouseLeftButtonDown="InventoryImage_OnClick"></Image>
                         </Border>
-                        
+
+                    </Grid>
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <ListView Name="listViewInventory" Grid.Column="0" Background="Black">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid Grid.Column="0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*" />
+                                                <RowDefinition Height="*" />
+                                                <RowDefinition Height="*" />
+                                                <RowDefinition Height="*" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="0" Grid.ColumnSpan="4"
+                                                   Panel.ZIndex="0" Stretch="UniformToFill" 
+                                                   Source="{Binding ImagePath}" />
+                                            <Image Grid.Row="3" Grid.Column="3" 
+                                                   HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                                                   Panel.ZIndex="1" Margin="3"
+                                                   Source="{Binding InfusionImagePath}" />
+                                        </Grid>
+                                        <TextBlock Grid.Column="1" 
+                                                   HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" 
+                                                   Text="{Binding Type}" />
+                                        <TextBlock Grid.Column="2" 
+                                                   HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Margin="5 0 0 0"
+                                                   Text="{Binding Level, StringFormat=+{0}, FallbackValue={x:Static system:String.Empty}}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                        <TreeView Name="treeItems" Grid.Column="1" Background="Transparent" Foreground="White">
+                            <TreeView.Resources>
+                                <HierarchicalDataTemplate DataType="{x:Type helper:ItemGroup}" ItemsSource="{Binding Items}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{Binding ImagePath}" Margin="0,0,5,0" />
+                                        <TextBlock Text="{Binding Title}" Foreground="White" />
+                                    </StackPanel>
+                                </HierarchicalDataTemplate>
+
+                                <DataTemplate DataType="{x:Type items:Item}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <ContentControl MouseDoubleClick="TreeItem_DoubleClick" Focusable="False">
+                                            <TextBlock Text="{Binding Type}" Foreground="White" />
+                                        </ContentControl>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </TreeView.Resources>
+                        </TreeView>
+
                     </Grid>
 
                 </Grid>
-
-
-                <!--TreeView Name="trvFamilies">
-                    <TreeView.Resources>
-                        <HierarchicalDataTemplate DataType="{x:Type self:WeaponTypeGroup}" ItemsSource="{Binding WeaponGroups}">
-                            <StackPanel Orientation="Horizontal">
-                                <Image Source="{Binding ImagePath}" Margin="0,0,5,0" />
-                                <TextBlock Text="{Binding Title}" />
-                            </StackPanel>
-                        </HierarchicalDataTemplate>
-                        
-                        <HierarchicalDataTemplate DataType="{x:Type self:WeaponGroup}" ItemsSource="{Binding Items}">
-                            <StackPanel Orientation="Horizontal">
-                                <Image Source="{Binding ImagePath}" Margin="0,0,5,0" />
-                                <TextBlock Text="{Binding ItemName}" />
-                            </StackPanel>
-                        </HierarchicalDataTemplate>
-                        
-                        <DataTemplate DataType="{x:Type self:WeaponMeta}">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding Name}" />
-                            </StackPanel>
-                        </DataTemplate>
-                    </TreeView.Resources>
-                </TreeView-->
 
             </Grid>
 

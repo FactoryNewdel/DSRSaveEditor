@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using DSR.SlotDetails.InventoryDetails;
+using DSR.SlotDetails.InventoryDetails.Items;
 
 namespace DSR.SlotDetails;
 

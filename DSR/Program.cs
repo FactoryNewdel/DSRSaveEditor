@@ -8,7 +8,7 @@ class Program
 {
     private static string dir = @"C:\Users\Tim\Documents\NBGI\DARK SOULS REMASTERED\472496615";
     private static string path = Path.Join(dir, "DRAKS0005.sl2");
-    private static string path1 = Path.Join(dir, "DRAKS0005 - Kopie (4).sl2");
+    private static string path1 = Path.Join(dir, "DRAKS0005 - Kopie (11).sl2");
 
     public static void Main(string[] args)
     {
@@ -51,17 +51,14 @@ class Program
 
         savefile.SaveSlots[0].Details.CharacterStats.CurrentSouls = 1000000;
         savefile.SaveSlots[0].Details.CharacterStats.TotalSouls = 1000000;
-        var longsword = Items.GetItem(ItemType.Longsword);
+        /*var longsword = Items.GetItem(ItemType.Longsword);
         longsword.Infusion = Infusion.Crystal;
         longsword.Level = 5;
         var pointer = savefile.SaveSlots[0].Details.Equipment.ItemRight0.Index;
         longsword.Index = pointer;
 
         savefile.SaveSlots[0].Details.Inventory.Items[pointer] = longsword;
-        savefile.SaveSlots[0].Details.Equipment.ItemRight0 = longsword;
-        savefile.SaveSlots[0].Details.Inventory.AddItem(longsword);
-        savefile.SaveSlots[0].Details.Inventory.AddItem(longsword);
-        savefile.SaveSlots[0].Details.Inventory.AddItem(longsword);
+        savefile.SaveSlots[0].Details.Equipment.ItemRight0 = longsword;*/
 
         savefile.WriteToFile();
         Console.WriteLine("Save file created!");

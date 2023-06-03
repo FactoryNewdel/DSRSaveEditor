@@ -1,4 +1,6 @@
-﻿namespace DSR.SlotDetails;
+﻿using DSR.SlotDetails.InventoryDetails.Items;
+
+namespace DSR.SlotDetails.InventoryDetails;
 
 public class Inventory
 {
@@ -19,7 +21,7 @@ public class Inventory
         _items = new Item[InventorySize];
         
         _inventorySize = BitConverter.ToUInt32(bytes, 848);
-        _latestItemIndex = bytes[58204];
+        _latestItemIndex = BitConverter.ToUInt32(bytes, 58204);
 
         for (var i = 0; i < inventoryData.Length; i += ItemSize)
         {
@@ -39,7 +41,12 @@ public class Inventory
             var durability =     BitConverter.ToUInt32(inventoryData, i + 20);
             var durabilityLoss = BitConverter.ToUInt32(inventoryData, i + 24);
 
-            _items[i / 28] = new Item(idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss);
+            if (i / ItemSize > 119 && id == 0)
+            {
+                ;
+            }
+            
+            _items[i / 28] = Item.GetItem(idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss);
 
             var item = _items[i / 28];
             if (item.ID != 0 && item.ID != 0xFFFFFFFF) Console.WriteLine((i + 2652) + " | " + (i / 28) + " ID = " + item.IdSpace + "    0x" + BitConverter.ToString(BitConverter.GetBytes(item.ID).Reverse().ToArray()).Replace("-", "").TrimStart('0') + "    " + item.ID + "    " + item.Sorting + "    0x" + BitConverter.ToString(BitConverter.GetBytes(item.Sorting).Reverse().ToArray()).Replace("-", "").TrimStart('0') + "    " + BitConverter.ToString(BitConverter.GetBytes(item.Sorting + item.Index)) + "    " + item.Index + "    " + item.Type + "    " + item.Durability);
@@ -54,6 +61,7 @@ public class Inventory
             LatestItemIndex++;
             item.Index = (int)LatestItemIndex;
             Items[LatestItemIndex] = item;
+            _inventorySize++;
             return;
         }
 
@@ -67,6 +75,18 @@ public class Inventory
         }
         
         AddItem(item, true);
+    }
+
+    public List<Item> GetItemOfType(Type type)
+    {
+        var list = new List<Item>();
+
+        foreach (var item in _items)
+        {
+            if (item.GetType() == type) list.Add(item);
+        }
+
+        return list;
     }
 
     public void UpdateData(ref byte[] data)
@@ -87,15 +107,19 @@ public class Inventory
                 data[InventoryOffset + i * ItemSize + 2] = 255;
             }
             data[InventoryOffset + i * ItemSize + 3] = item.IdSpace;
-            FillUInt32IntoData(ref data, item.FullID, i, 4);
+            FillUInt32IntoData(ref data, item is Weapon weapon ? weapon.FullID : item.ID, i, 4);
             FillUInt32IntoData(ref data, item.Amount, i, 8);
             var sorting = item.Sorting + item.Index;
             FillUInt32IntoData(ref data, (uint)sorting, i, 12);
             data[InventoryOffset + i * ItemSize + 16] = (byte)(item.Enabled ? 1 : 0);
+            data[InventoryOffset + i * ItemSize + 17] = 0;
+            data[InventoryOffset + i * ItemSize + 18] = 0;
+            data[InventoryOffset + i * ItemSize + 19] = 0;
             FillUInt32IntoData(ref data, item.Durability, i, 20);
             FillUInt32IntoData(ref data, item.DurabilityLoss, i, 24);
         }
 
+        FillUInt32IntoData(ref data, _inventorySize, 848);
         FillUInt32IntoData(ref data, _latestItemIndex, 58204);
     }
     
@@ -132,7 +156,7 @@ public class Inventory
         get
         {
             if (_unknownItem != null) return _unknownItem;
-            _unknownItem = new Item(0, 0, 0, 0, 0, false, 0, 0);
+            _unknownItem = Item.GetItem(255, UInt32.MaxValue, 0, UInt32.MaxValue, 2047, false, UInt32.MaxValue, 0);
             return _unknownItem;
         }
     }
@@ -142,7 +166,7 @@ public class Inventory
         get
         {
             if (_noRingItem != null) return _noRingItem;
-            _noRingItem = new Item(0, 0, 0, 0, 0, false, 0, 0);
+            _noRingItem = Item.GetItem(255, UInt32.MaxValue, 0, UInt32.MaxValue, 2047, false, UInt32.MaxValue, 0);
             return _noRingItem;
         }
     }

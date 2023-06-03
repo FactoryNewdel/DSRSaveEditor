@@ -19,23 +19,19 @@ namespace GUI
     public partial class MainWindow : Window
     {
         private MainViewModel _mainViewModel;
+        private InventoryImageContainer _defaultInventoryTab;
         
         public MainWindow()
         {
             InitializeComponent();
 
             _mainViewModel = new MainViewModel();
-            
-            _mainViewModel.SetupItemGroups();
-            //trvFamilies.ItemsSource = _mainViewModel.WeaponTypeGroups;
 
             Slots.ItemsSource = _mainViewModel.SaveSlotDetails;
             TabCharacterStats.DataContext = _mainViewModel;
 
-            var consumablesContainer = new InventoryImageContainer("Images/InventoryIcons/InventoryTab_Consumables_Unselected.png", "Images/InventoryIcons/InventoryTab_Consumables_Selected.png");
-            ImageConsumables.DataContext = consumablesContainer;
-            _mainViewModel.SetDefaultInventoryItem(consumablesContainer);
-            
+            _defaultInventoryTab = new InventoryImageContainer("Images/InventoryIcons/InventoryTab_Consumables_Unselected.png", "Images/InventoryIcons/InventoryTab_Consumables_Selected.png");
+            ImageConsumables.DataContext = _defaultInventoryTab;
             ImageUpgradeMaterials.DataContext = new InventoryImageContainer("Images/InventoryIcons/InventoryTab_UpgradeMaterials_Unselected.png", "Images/InventoryIcons/InventoryTab_UpgradeMaterials_Selected.png");
             ImageKeyItems.DataContext =         new InventoryImageContainer("Images/InventoryIcons/InventoryTab_KeyItems_Unselected.png",         "Images/InventoryIcons/InventoryTab_KeyItems_Selected.png");
             ImageSpells.DataContext =           new InventoryImageContainer("Images/InventoryIcons/InventoryTab_Spells_Unselected.png",           "Images/InventoryIcons/InventoryTab_Spells_Selected.png");
@@ -43,6 +39,9 @@ namespace GUI
             ImageAmmunition.DataContext =       new InventoryImageContainer("Images/InventoryIcons/InventoryTab_Ammunition_Unselected.png",       "Images/InventoryIcons/InventoryTab_Ammunition_Selected.png");
             ImageArmor.DataContext =            new InventoryImageContainer("Images/InventoryIcons/InventoryTab_Armor_Unselected.png",            "Images/InventoryIcons/InventoryTab_Armor_Selected.png");
             ImageRings.DataContext =            new InventoryImageContainer("Images/InventoryIcons/InventoryTab_Rings_Unselected.png",            "Images/InventoryIcons/InventoryTab_Rings_Selected.png");
+
+            listViewInventory.ItemsSource = _mainViewModel.SelectedInventoryItems;
+            treeItems.ItemsSource = _mainViewModel.SelectedTree;
         }
 
         #region MainTab
@@ -101,6 +100,9 @@ namespace GUI
             
             (Tabs.Items[2] as TabItem).IsEnabled = true;
             Tabs.SelectedIndex = 2;
+            (Tabs.Items[3] as TabItem).IsEnabled = true;
+            
+            _mainViewModel.SetDefaultInventoryItem(_defaultInventoryTab);
         }
         
         #endregion
@@ -114,6 +116,11 @@ namespace GUI
             if (inventoryImageContainer.Selected) return;
 
             _mainViewModel.SelectedInventoryTab = inventoryImageContainer;
+        }
+
+        private void TreeItem_DoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show((sender as ContentControl).DataContext + "");
         }
         
         #endregion
