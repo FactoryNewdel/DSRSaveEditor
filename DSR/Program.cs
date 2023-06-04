@@ -2,6 +2,7 @@
 using System.Text;
 using DSR.SavefileStructure;
 using DSR.SlotDetails;
+using DSR.SlotDetails.InventoryDetails.Items;
 using DSR.Utils;
 
 class Program

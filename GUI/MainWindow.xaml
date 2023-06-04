@@ -46,7 +46,7 @@
 
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Grid Margin="0">
+                        <Grid Margin="10">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="*" />
@@ -59,18 +59,24 @@
                                 <ColumnDefinition Width="200" />
                                 <ColumnDefinition Width="600" />
                             </Grid.ColumnDefinitions>
+                            
+                            <Grid.Resources>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="FontSize" Value="40" />
+                                </Style>
+                            </Grid.Resources>
 
                             <Image Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="5" Margin="0" Source="Images/Backgrounds/DS1_MenuBackground_large.png" Stretch="Fill" />
 
-                            <TextBlock Grid.Row="0" Grid.Column="0" Margin="200 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontSize="30" FontFamily="Times New Roman" Text="{Binding CharacterStats.Name}" />
-                            <TextBlock Grid.Row="1" Grid.Column="0" Margin="200 0 0 0" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontSize="30" FontFamily="Times New Roman" Text="Level" />
+                            <TextBlock Grid.Row="0" Grid.Column="0" Margin="200 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontFamily="Times New Roman" Text="{Binding CharacterStats.Name}" />
+                            <TextBlock Grid.Row="1" Grid.Column="0" Margin="200 0 0 0" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontFamily="Times New Roman" Text="Level" />
 
-                            <TextBlock Grid.Row="1" Grid.Column="1" Margin="0 0 0 0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="White" FontSize="30" FontFamily="Times New Roman" Text="{Binding CharacterStats.Level}" />
+                            <TextBlock Grid.Row="1" Grid.Column="1" Margin="0 0 0 0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="White" FontFamily="Times New Roman" Text="{Binding CharacterStats.Level}" />
 
-                            <TextBlock Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2" Margin="0 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontSize="30" FontFamily="Times New Roman" Text="{Binding CharacterStats.LocationString}" />
-                            <TextBlock Grid.Row="1" Grid.Column="3" Margin="0 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontSize="30" FontFamily="Times New Roman" Text="PlayTime" />
+                            <TextBlock Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2" Margin="0 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontFamily="Times New Roman" Text="{Binding CharacterStats.LocationString}" />
+                            <TextBlock Grid.Row="1" Grid.Column="3" Margin="0 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontFamily="Times New Roman" Text="PlayTime" />
 
-                            <TextBlock Grid.Row="1" Grid.Column="4" Margin="0 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="30" FontFamily="Times New Roman" Text="{Binding CharacterStats.PlaytimeString}" />
+                            <TextBlock Grid.Row="1" Grid.Column="4" Margin="0 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontFamily="Times New Roman" Text="{Binding CharacterStats.PlaytimeString}" />
 
                         </Grid>
                     </DataTemplate>
@@ -107,16 +113,16 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <Image Grid.Row="0" Grid.Column="1" Source="Images/Backgrounds/Itemslot.png" Opacity="0.88" />
+                    <Image Grid.Row="0" Grid.Column="1" Source="Images/Backgrounds/Itemslot_Empty.png" Opacity="0.88" />
                     <Image Grid.Row="0" Grid.Column="1" Source="{Binding SelectedSlot.Equipment.IconPathAttunement}" Opacity="0.88" Margin="25" />
 
-                    <Image Grid.Row="1" Grid.Column="0" Source="Images/Backgrounds/Itemslot.png" Opacity="0.88" />
+                    <Image Grid.Row="1" Grid.Column="0" Source="Images/Backgrounds/Itemslot_Empty.png" Opacity="0.88" />
                     <Image Grid.Row="1" Grid.Column="0" Source="{Binding SelectedSlot.Equipment.IconPathLeftHand}" Opacity="0.88" Margin="25" />
 
-                    <Image Grid.Row="1" Grid.Column="2" Source="Images/Backgrounds/Itemslot.png" Opacity="0.88" />
+                    <Image Grid.Row="1" Grid.Column="2" Source="Images/Backgrounds/Itemslot_Empty.png" Opacity="0.88" />
                     <Image Grid.Row="1" Grid.Column="2" Source="{Binding SelectedSlot.Equipment.IconPathRightHand}" Opacity="0.88" Margin="25" />
 
-                    <Image Grid.Row="2" Grid.Column="1" Source="Images/Backgrounds/Itemslot.png" Opacity="0.88" />
+                    <Image Grid.Row="2" Grid.Column="1" Source="Images/Backgrounds/Itemslot_Empty.png" Opacity="0.88" />
                     <Image Grid.Row="2" Grid.Column="1" Source="{Binding SelectedSlot.Equipment.IconPathConsumable}" Opacity="0.88" Margin="25" />
 
                 </Grid>
@@ -307,10 +313,10 @@
                                                    Source="{Binding InfusionImagePath}" />
                                         </Grid>
                                         <TextBlock Grid.Column="1" 
-                                                   HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" 
+                                                   HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="20"
                                                    Text="{Binding Type}" />
                                         <TextBlock Grid.Column="2" 
-                                                   HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Margin="5 0 0 0"
+                                                   HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Margin="5 0 0 0" FontSize="20"
                                                    Text="{Binding Level, StringFormat=+{0}, FallbackValue={x:Static system:String.Empty}}" />
                                     </Grid>
                                 </DataTemplate>
@@ -322,7 +328,7 @@
                                 <HierarchicalDataTemplate DataType="{x:Type helper:ItemGroup}" ItemsSource="{Binding Items}">
                                     <StackPanel Orientation="Horizontal">
                                         <Image Source="{Binding ImagePath}" Margin="0,0,5,0" />
-                                        <TextBlock Text="{Binding Title}" Foreground="White" />
+                                        <TextBlock Text="{Binding Title}" Foreground="White" VerticalAlignment="Center" Margin="5 0 0 0" FontSize="20" />
                                     </StackPanel>
                                 </HierarchicalDataTemplate>
 

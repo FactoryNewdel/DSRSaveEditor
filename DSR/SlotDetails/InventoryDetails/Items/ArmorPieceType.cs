@@ -5,5 +5,5 @@ public enum ArmorPieceType
     Helm = 0,
     Chestplate = 1,
     Gauntlets = 2,
-    Leggins = 3
+    Leggins = 3,
 }

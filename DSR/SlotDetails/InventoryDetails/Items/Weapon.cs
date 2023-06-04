@@ -33,84 +33,11 @@ public class Weapon : Item
         SetInfusionImagePath();
         _level = (int)(id - ID - (int)_infusion * 100);
         
-        var weaponType = id / 100000;
-        switch (weaponType)
-        {
-            case 1:
-                _weaponType = WeaponType.Dagger;
-                ImagePath += $"Weapons/Daggers/{Type}.png";
-                break;
-            case 2:
-                _weaponType = WeaponType.StraightSword;
-                ImagePath += $"Weapons/StraightSwords/{Type}.png";
-                break;
-            case 3:
-                _weaponType = WeaponType.Greatsword;
-                ImagePath += $"Weapons/Greatswords/{Type}.png";
-                break;
-            
-            case 6:
-                _weaponType = WeaponType.PiercingSword;
-                ImagePath += $"Weapons/PiercingSwords/{Type}.png";
-                break;
-            case 7:
-                _weaponType = WeaponType.Axe;
-                ImagePath += $"Weapons/Axes/{Type}.png";
-                break;
-            case 8:
-                _weaponType = WeaponType.Hammer;
-                ImagePath += $"Weapons/Hammers/{Type}.png";
-                break;
-            case 9:
-                _weaponType = WeaponType.FistWeapon;
-                ImagePath += $"Weapons/FistWeapons/{Type}.png";
-                break;
-            case 10:
-                _weaponType = WeaponType.Spear;
-                ImagePath += $"Weapons/Spears/{Type}.png";
-                break;
-            
-            case 13:
-                _weaponType = WeaponType.Talisman;
-                ImagePath += $"Weapons/Talismans/{Type}.png";
-                break;
-            case 14:
-                _weaponType = WeaponType.StandardShield;
-                ImagePath += $"Weapons/StandardShields/{Type}.png";
-                break;
-            
-            case 20:
-                _weaponType = WeaponType.Arrow;
-                ImagePath += $"Weapons/Arrows/{Type}.png";
-                break;
-            case 21:
-                _weaponType = WeaponType.Bolt;
-                ImagePath += $"Weapons/Bolts/{Type}.png";
-                break;
-            
-            default:
-                throw new InvalidDataException($"Invalid Weapon ID: {id}");
-            
-        }
-        _weaponType = weaponType switch
-        {
-            1 => WeaponType.Dagger,
-            2 => WeaponType.StraightSword,
-            3 => WeaponType.Greatsword,
-            
-            6 => WeaponType.PiercingSword,
-            7 => WeaponType.Axe,
-            8 => WeaponType.Hammer,
-            9 => WeaponType.FistWeapon,
-            10 => WeaponType.Spear,
-            
-            13 => WeaponType.Talisman,
-            14 => WeaponType.StandardShield,
-            
-            20 => WeaponType.Arrow,
-            21 => WeaponType.Bolt,
-            _ => throw new InvalidDataException($"Invalid Weapon ID: {id}")
-        };
+        var weaponTypeNum = id / 100000;
+        if (!Enum.IsDefined(typeof(WeaponType), (int)weaponTypeNum)) throw new InvalidDataException($"Invalid WeaponType: {weaponTypeNum}");
+        _weaponType = (WeaponType)weaponTypeNum;
+        
+        ImagePath += $"Weapons/{_weaponType}s/{Type}.png";
     }
 
     private void SetInfusionImagePath()
