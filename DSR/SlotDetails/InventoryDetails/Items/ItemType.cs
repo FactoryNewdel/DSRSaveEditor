@@ -84,7 +84,7 @@ public enum ItemType
 	Darksign,
 	FullEstusFlask,
 	DivineBlessing,
-	LLoydsTalisman,
+	LloydsTalisman,
 	TransientCurse,
 	HomewardBone,
 	SoulOfALostUndead,

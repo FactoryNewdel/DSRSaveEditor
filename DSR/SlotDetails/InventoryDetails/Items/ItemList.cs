@@ -35,7 +35,7 @@ public class ItemList
         
         // Weapons      0       XXXNXX Infusion, XXXXNN Level
         // Empty Slots
-        new CommonItem(ItemType.Fists,    0, 900000, 0x2AB98000, 5),
+        new Weapon(ItemType.Fists,    0, 900000, 0x2AB98000, 5),
 
         // Daggers          01XXXXX
         // Straight Swords  02XXXXX
@@ -87,7 +87,7 @@ public class ItemList
         new CommonItem(ItemType.Darksign              , 64, 117, 0x6E000, 0),
         new CommonItem(ItemType.FullEstusFlask        , 64, 201, 0x2000, 0),
         new CommonItem(ItemType.DivineBlessing        , 64, 240, 0x2B000, 0),
-        new CommonItem(ItemType.LLoydsTalisman        , 64, 296, 0x35000, 0),
+        new CommonItem(ItemType.LloydsTalisman        , 64, 296, 0x35000, 0),
         new CommonItem(ItemType.TransientCurse        , 64, 312, 0x37000, 0),
         new CommonItem(ItemType.HomewardBone          , 64, 330, 0x38000, 0),
         // Souls 4XX

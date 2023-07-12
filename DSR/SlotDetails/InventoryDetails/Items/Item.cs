@@ -28,7 +28,9 @@ public class Item : INotifyPropertyChanged
 
         var i = ItemList.GetItem(idSpace, idSpace == 0 ? id / 1000 * 1000 : id);
         if (i != null) _type = i._type;
-        
+        else _type = ItemType.UNKNOWN;
+
+        Name = GetName();
         _amount = amount;
         _sorting = sorting;
         _index = index;
@@ -45,13 +47,14 @@ public class Item : INotifyPropertyChanged
         _idSpace = idSpace;
         _id = id;
         _type = type;
+        Name = GetName();
         _amount = 1;
         _sorting = sorting;
         _index = 0;
         _enabled = true;
         _durability = durability;
         _durabilityLoss = 0;
-        
+
         ImagePath = $"Images/ItemIcons/";
     }
 
@@ -60,6 +63,7 @@ public class Item : INotifyPropertyChanged
         _idSpace = item._idSpace;
         _id = item._id;
         _type = item._type;
+        Name = item.Name;
         _amount = item._amount;
         _sorting = item._sorting;
         _index = item._index;
@@ -88,6 +92,22 @@ public class Item : INotifyPropertyChanged
         return new CommonItem(idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss);
     }
 
+    private string GetName()
+    {
+        if (_type == ItemType.UNKNOWN) return "";
+        var compare = _type.ToString();
+        var output = _type.ToString();
+        var added = 0;
+
+        for (var i = 0; i < compare.Length; i++)
+        {
+            var ascii = (int)compare[i];
+            if (ascii >= 65 && ascii <= 90) output = output.Insert(i + added++, " ");
+        }
+        
+        return output;
+    }
+
     public byte IdSpace
     {
         get => _idSpace;
@@ -112,6 +132,8 @@ public class Item : INotifyPropertyChanged
     }
 
     public ItemType Type => _type;
+
+    public string Name { get; private set; }
 
     public uint Amount
     {

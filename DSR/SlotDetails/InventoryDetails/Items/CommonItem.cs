@@ -10,5 +10,6 @@ public class CommonItem : Item
 
     public CommonItem(ItemType type, byte idSpace, uint id, uint sorting, uint durability) : base(type, idSpace, id, sorting, durability)
     {
+        ImagePath += $"Items/{Type}.png";
     }
 }
