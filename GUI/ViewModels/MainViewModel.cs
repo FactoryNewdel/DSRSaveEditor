@@ -188,6 +188,35 @@ public class MainViewModel : INotifyPropertyChanged
         }
     }
 
+
+
+    public void AddItem(Item item)
+    {
+        if (item is Weapon weapon && weapon.WeaponType is not WeaponType.Arrow and WeaponType.Bolt)
+        {
+                
+        }
+            
+        if (item is not UpgradeMaterial material) return;
+
+        if (SelectedSlot.Inventory.TryGetItem(item.Type, out var invItem))
+        {
+            // Item already exists in inventory
+            invItem.Amount = invItem.MaxAmount;
+        }
+        else
+        {
+            // Add new item
+            item.Amount = item.MaxAmount;
+            SelectedSlot.Inventory.AddItem(item);
+            LoadTree(SelectedInventoryTab);
+        }
+    }
+    
+    
+    
+    
+
     public ObservableCollection<SaveSlotDetails> SaveSlotDetails => _saveSlotDetails;
 
     public SaveSlotDetails SelectedSlot

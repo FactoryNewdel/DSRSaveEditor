@@ -1,8 +1,10 @@
-﻿using DSR.SlotDetails.InventoryDetails.Items;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using DSR.SlotDetails.InventoryDetails.Items;
 
 namespace DSR.SlotDetails.InventoryDetails;
 
-public class Inventory
+public class Inventory : INotifyPropertyChanged
 {
     private const int InventoryOffset = 860;
     private const int InventorySize = 2048;
@@ -41,11 +43,6 @@ public class Inventory
             var durability =     BitConverter.ToUInt32(inventoryData, i + 20);
             var durabilityLoss = BitConverter.ToUInt32(inventoryData, i + 24);
 
-            if (i / ItemSize > 119 && id == 0)
-            {
-                ;
-            }
-            
             _items[i / 28] = Item.GetItem(idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss);
 
             var item = _items[i / 28];
@@ -75,6 +72,20 @@ public class Inventory
         }
         
         AddItem(item, true);
+    }
+
+    public bool TryGetItem(ItemType type, out Item? item)
+    {
+        item = null;
+        foreach (var invItem in _items)
+        {
+            if (type != invItem.Type) continue;
+
+            item = invItem;
+            return true;
+        }
+
+        return false;
     }
 
     public List<Item> GetItemOfType(Type type)
@@ -169,5 +180,12 @@ public class Inventory
             _noRingItem = Item.GetItem(255, UInt32.MaxValue, 0, UInt32.MaxValue, 2047, false, UInt32.MaxValue, 0);
             return _noRingItem;
         }
+    }
+
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    protected virtual void NotifyPropertyChanged([CallerMemberName] string? propertyName = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

@@ -31,6 +31,7 @@ public class Item : INotifyPropertyChanged
         else _type = ItemType.UNKNOWN;
 
         Name = GetName();
+        MaxAmount = 99;
         _amount = amount;
         _sorting = sorting;
         _index = index;
@@ -48,6 +49,7 @@ public class Item : INotifyPropertyChanged
         _id = id;
         _type = type;
         Name = GetName();
+        MaxAmount = 99;
         _amount = 1;
         _sorting = sorting;
         _index = 0;
@@ -64,6 +66,7 @@ public class Item : INotifyPropertyChanged
         _id = item._id;
         _type = item._type;
         Name = item.Name;
+        MaxAmount = item.MaxAmount;
         _amount = item._amount;
         _sorting = item._sorting;
         _index = item._index;
@@ -134,6 +137,8 @@ public class Item : INotifyPropertyChanged
     public ItemType Type => _type;
 
     public string Name { get; private set; }
+    
+    public virtual uint MaxAmount { get; private set; }
 
     public uint Amount
     {

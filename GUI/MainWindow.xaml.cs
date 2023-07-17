@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using DSR.SlotDetails;
+using DSR.SlotDetails.InventoryDetails.Items;
 using DSR.Utils;
 using GUI.Helper;
 using GUI.ViewModels;
@@ -120,9 +121,22 @@ namespace GUI
 
         private void TreeItem_DoubleClick(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show((sender as ContentControl).DataContext + "");
+            if (sender is not ContentControl cc) return;
+            if (cc.DataContext is not Item item) return;
+            
+            _mainViewModel.AddItem(item);
         }
         
+        private void TreeItem_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key != Key.Return) return;
+            if (sender is not TreeViewItem treeViewItem) return;
+            if (treeViewItem.DataContext is not Item item) return;
+            
+            _mainViewModel.AddItem(item);
+        }
+
+
         #endregion
 
         private static readonly Regex _regexNumber = new Regex("[^0-9]+");
