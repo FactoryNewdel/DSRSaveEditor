@@ -124,6 +124,7 @@ namespace GUI
             if (sender is not ContentControl cc) return;
             if (cc.DataContext is not Item item) return;
             
+            Keyboard.ClearFocus();
             _mainViewModel.AddItem(item);
             Keyboard.ClearFocus();
         }
