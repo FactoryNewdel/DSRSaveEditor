@@ -125,6 +125,7 @@ namespace GUI
             if (cc.DataContext is not Item item) return;
             
             _mainViewModel.AddItem(item);
+            Keyboard.ClearFocus();
         }
         
         private void TreeItem_KeyDown(object sender, KeyEventArgs e)
@@ -133,16 +134,18 @@ namespace GUI
             if (sender is not TreeViewItem treeViewItem) return;
             if (treeViewItem.DataContext is not Item item) return;
             
+            Keyboard.ClearFocus();
             _mainViewModel.AddItem(item);
+            Keyboard.ClearFocus();
         }
 
 
         #endregion
 
-        private static readonly Regex _regexNumber = new Regex("[^0-9]+");
+        private static readonly Regex _regexNumber = new Regex("[0-9]+");
         private void Textbox_PreviewNumberOnly(object sender, TextCompositionEventArgs e)
         {
-            e.Handled = _regexNumber.IsMatch(e.Text);
+            e.Handled = !_regexNumber.IsMatch(e.Text);
         }
     }
 }

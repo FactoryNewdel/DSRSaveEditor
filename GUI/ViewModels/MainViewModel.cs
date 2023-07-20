@@ -9,6 +9,7 @@ using DSR.SavefileStructure;
 using DSR.SlotDetails;
 using DSR.SlotDetails.InventoryDetails.Items;
 using GUI.Helper;
+using GUI.Views;
 
 namespace GUI.ViewModels;
 
@@ -39,7 +40,8 @@ public class MainViewModel : INotifyPropertyChanged
 
         _consumables = new List<ItemGroup>
         {
-            new ("Images/ItemIcons/Types/Consumables.png", "Consumables", ItemList.GetItems(typeof(CommonItem)))
+            new ("Images/ItemIcons/Types/Consumables.png", "Consumables", ItemList.GetItems(typeof(CommonItem), true)),
+            new ("Images/ItemIcons/Types/Souls.png",       "Souls",       ItemList.GetItems(typeof(CommonSoul)))
         };
         var upgradeMaterials = ItemList.GetItems(typeof(UpgradeMaterial));
         _upgradeMaterials = new List<ItemGroup>
@@ -111,7 +113,6 @@ public class MainViewModel : INotifyPropertyChanged
         {
             inventoryItemList = new List<Item>();
             inventoryItemList.AddRange(SelectedSlot.Inventory.GetItemOfType(typeof(CommonItem)));
-            inventoryItemList.AddRange(SelectedSlot.Inventory.GetItemOfType(typeof(CommonSoul)));
             
             FillTree(_consumables);
             
@@ -192,6 +193,11 @@ public class MainViewModel : INotifyPropertyChanged
 
     public void AddItem(Item item)
     {
+        var addItemView = new AddItemView(SelectedSlot.Inventory, item);
+        var dialogResult = addItemView.ShowDialog();
+        
+        if (true) return;
+        
         if (item is Weapon weapon && weapon.WeaponType is not WeaponType.Arrow and WeaponType.Bolt)
         {
                 
