@@ -1,6 +1,6 @@
 ﻿namespace DSR.SlotDetails.InventoryDetails.Items;
 
-public class CommonSoul : Item
+public class CommonSoul : CommonItem
 {
     private UInt32 _soulAmount;
     
@@ -9,7 +9,7 @@ public class CommonSoul : Item
         
     }
 
-    public CommonSoul(ItemType type, byte idSpace, uint id, uint sorting, uint durability) : base(type, idSpace, id, sorting, durability)
+    public CommonSoul(ItemType type, byte idSpace, uint id, uint sorting) : base(type, idSpace, id, sorting)
     {
         
     }

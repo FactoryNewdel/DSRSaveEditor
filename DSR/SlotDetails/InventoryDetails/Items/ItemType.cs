@@ -82,7 +82,7 @@ public enum ItemType
 	BlackSeparationCrystal,
 	CrackedRedEyeOrb,
 	Darksign,
-	FullEstusFlask,
+	EstusFlask,
 	DivineBlessing,
 	LloydsTalisman,
 	TransientCurse,

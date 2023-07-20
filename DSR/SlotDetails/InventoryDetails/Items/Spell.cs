@@ -7,7 +7,7 @@ public class Spell : Item
         
     }
 
-    public Spell(ItemType type, byte idSpace, uint id, uint sorting, uint durability) : base(type, idSpace, id, sorting, durability)
+    public Spell(ItemType type, byte idSpace, uint id, uint sorting) : base(type, idSpace, id, sorting, 0)
     {
         
     }

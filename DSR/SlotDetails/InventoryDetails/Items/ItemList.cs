@@ -7,14 +7,14 @@ public class ItemList
     private static readonly List<Item> _items = new()
     {
         // Keys       64      2XXX
-        new KeyItem(ItemType.CrestOfArtorias,        64, 2002, 0xFD6000, 0),
-        new KeyItem(ItemType.DungeonCellKey,         64, 2010, 0xFD8000, 0),
-        new KeyItem(ItemType.BigPilgrimsKey,         64, 2011, 0xFDE000, 0),
-        new KeyItem(ItemType.UndeadAsylumF2EastKey,  64, 2012, 0xFDA000, 0),
-        new KeyItem(ItemType.MasterKey,              64, 2100, 0xFD5000, 0),
-        new KeyItem(ItemType.WeaponSmithBox,         64, 2600, 0xFCC000, 0),
-        new KeyItem(ItemType.ArmorSmithBox,          64, 2601, 0xFCE000, 0),
-        new KeyItem(ItemType.RepairBox,              64, 2602, 0xFCA000, 0),
+        new KeyItem(ItemType.CrestOfArtorias,        64, 2002, 0xFD6000),
+        new KeyItem(ItemType.DungeonCellKey,         64, 2010, 0xFD8000),
+        new KeyItem(ItemType.BigPilgrimsKey,         64, 2011, 0xFDE000),
+        new KeyItem(ItemType.UndeadAsylumF2EastKey,  64, 2012, 0xFDA000),
+        new KeyItem(ItemType.MasterKey,              64, 2100, 0xFD5000),
+        new KeyItem(ItemType.WeaponSmithBox,         64, 2600, 0xFCC000),
+        new KeyItem(ItemType.ArmorSmithBox,          64, 2601, 0xFCE000),
+        new KeyItem(ItemType.RepairBox,              64, 2602, 0xFCA000),
 
         // Armor        16      XX0000 = Helm, XX1000 Chest, XX2000 Gauntlets, XX3000 Leggings
         // Empty Slots
@@ -82,28 +82,28 @@ public class ItemList
         new Ring(ItemType.HavelsRing,   32,     100,     0x3000, 0),
 
         // Items
-        new CommonItem(ItemType.BlackSeparationCrystal, 64, 103, 0x1F000, 0),
-        new CommonItem(ItemType.CrackedRedEyeOrb      , 64, 111, 0x16000, 0),
-        new CommonItem(ItemType.Darksign              , 64, 117, 0x6E000, 0),
-        new CommonItem(ItemType.FullEstusFlask        , 64, 201, 0x2000, 0),
-        new CommonItem(ItemType.DivineBlessing        , 64, 240, 0x2B000, 0),
-        new CommonItem(ItemType.LloydsTalisman        , 64, 296, 0x35000, 0),
-        new CommonItem(ItemType.TransientCurse        , 64, 312, 0x37000, 0),
-        new CommonItem(ItemType.HomewardBone          , 64, 330, 0x38000, 0),
+        new SpecialItem(ItemType.BlackSeparationCrystal, 64, 103, 0x1F000),
+        new CommonItem(ItemType.CrackedRedEyeOrb      , 64, 111, 0x16000),
+        new SpecialItem(ItemType.Darksign              , 64, 117, 0x6E000),
+        new EstusFlask(),
+        new CommonItem(ItemType.DivineBlessing        , 64, 240, 0x2B000),
+        new CommonItem(ItemType.LloydsTalisman        , 64, 296, 0x35000),
+        new CommonItem(ItemType.TransientCurse        , 64, 312, 0x37000),
+        new CommonItem(ItemType.HomewardBone          , 64, 330, 0x38000),
         // Souls 4XX
-        new CommonSoul(ItemType.SoulOfALostUndead          , 64, 400, 0x41000, 0),
-        new CommonSoul(ItemType.LargeSoulOfANamelessSoldier, 64, 403, 0x44000, 0),
+        new CommonSoul(ItemType.SoulOfALostUndead          , 64, 400, 0x41000),
+        new CommonSoul(ItemType.LargeSoulOfANamelessSoldier, 64, 403, 0x44000),
         
-        new CommonItem(ItemType.Humanity              , 64, 500, 0x65000, 0),
+        new CommonItem(ItemType.Humanity              , 64, 500, 0x65000),
         
         // Upgrade Materials 1XXX
-        new UpgradeMaterial(ItemType.TitaniteShard         , 64, 1000, 0x3E9000, 0),
-        new UpgradeMaterial(ItemType.TitaniteChunk         , 64, 1030, 0x3EB000, 0),
-        new UpgradeMaterial(ItemType.TwinklingTitanite     , 64, 1130, 0x3F4000, 0),
+        new UpgradeMaterial(ItemType.TitaniteShard         , 64, 1000, 0x3E9000),
+        new UpgradeMaterial(ItemType.TitaniteChunk         , 64, 1030, 0x3EB000),
+        new UpgradeMaterial(ItemType.TwinklingTitanite     , 64, 1130, 0x3F4000),
         
         // Spells   3XXX
-        new Spell(ItemType.SoulArrow             , 64, 3000, 0xBB9000, 0),
-        new Spell(ItemType.HeavySoulArrow        , 64, 3020, 0xBBB000, 0),
+        new Spell(ItemType.SoulArrow             , 64, 3000, 0xBB9000),
+        new Spell(ItemType.HeavySoulArrow        , 64, 3020, 0xBBB000),
         
         
     };
@@ -128,13 +128,23 @@ public class ItemList
         return null;
     }
 
-    public static List<Item> GetItems(Type type)
+    public static List<Item> GetItems(Type type, bool explicitType = false)
     {
         var list = new List<Item>();
 
-        foreach (var item in _items)
+        if (!explicitType)
         {
-            if (item.GetType() == type) list.Add(item);
+            foreach (var item in _items)
+            {
+                if (type.IsInstanceOfType(item)) list.Add(item);
+            }
+        }
+        else
+        {
+            foreach (var item in _items)
+            {
+                if (item.GetType() == type) list.Add(item);
+            }   
         }
 
         return list;

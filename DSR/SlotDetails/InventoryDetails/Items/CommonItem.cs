@@ -8,7 +8,7 @@ public class CommonItem : Item
         //Console.WriteLine($"Common Item = {Type}");
     }
 
-    public CommonItem(ItemType type, byte idSpace, uint id, uint sorting, uint durability) : base(type, idSpace, id, sorting, durability)
+    public CommonItem(ItemType type, byte idSpace, uint id, uint sorting) : base(type, idSpace, id, sorting, 0)
     {
         ImagePath += $"Items/{Type}.png";
     }

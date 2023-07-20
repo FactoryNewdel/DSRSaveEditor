@@ -18,6 +18,8 @@ public class Item : INotifyPropertyChanged
     private UInt32 _durability;
     private UInt32 _durabilityLoss;
 
+    private string _imagePath; 
+
     #endregion
 
     // Items from Inventory
@@ -92,6 +94,7 @@ public class Item : INotifyPropertyChanged
         if (id / 10000 == 0 && id / 1000 == 1) return new UpgradeMaterial(idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss);
         if (id / 10000 == 0 && id / 1000 == 2) return new KeyItem(idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss);
         if (id / 10000 == 0 && id / 1000 == 3) return new Spell(idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss);
+        if (id >= 200 && id <= 215) return new EstusFlask(id, amount, index);
         return new CommonItem(idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss);
     }
 
@@ -145,7 +148,7 @@ public class Item : INotifyPropertyChanged
         get => _amount;
         set
         {
-            _amount = value;
+            _amount = value < MaxAmount ? value : MaxAmount;
             NotifyPropertyChanged();
         }
     }
@@ -202,7 +205,14 @@ public class Item : INotifyPropertyChanged
         }
     }
 
-    public string ImagePath { get; protected set; }
+    public string ImagePath
+    {
+        get => _imagePath;
+        protected set
+        {
+            _imagePath = Path.GetFullPath(value);
+        } 
+    }
 
     public event PropertyChangedEventHandler? PropertyChanged;
 

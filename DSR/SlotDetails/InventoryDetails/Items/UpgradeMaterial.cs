@@ -9,7 +9,7 @@ public class UpgradeMaterial : Item
         GetMaterialDetails();
     }
 
-    public UpgradeMaterial(ItemType type, byte idSpace, uint id, uint sorting, uint durability) : base(type, idSpace, id, sorting, durability)
+    public UpgradeMaterial(ItemType type, byte idSpace, uint id, uint sorting) : base(type, idSpace, id, sorting, 0)
     {
         GetMaterialDetails();
     }

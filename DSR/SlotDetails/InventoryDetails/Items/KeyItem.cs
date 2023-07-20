@@ -7,7 +7,7 @@ public class KeyItem : Item
         
     }
 
-    public KeyItem(ItemType type, byte idSpace, uint id, uint sorting, uint durability) : base(type, idSpace, id, sorting, durability)
+    public KeyItem(ItemType type, byte idSpace, uint id, uint sorting) : base(type, idSpace, id, sorting, 0)
     {
         
     }
