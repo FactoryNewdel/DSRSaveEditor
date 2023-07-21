@@ -102,7 +102,9 @@ namespace GUI
             (Tabs.Items[2] as TabItem).IsEnabled = true;
             Tabs.SelectedIndex = 2;
             (Tabs.Items[3] as TabItem).IsEnabled = true;
-            
+
+            if (_mainViewModel.SelectedInventoryTab != null) _mainViewModel.SelectedInventoryTab.Selected = false;
+
             _mainViewModel.SetDefaultInventoryItem(_defaultInventoryTab);
         }
         
@@ -121,23 +123,19 @@ namespace GUI
 
         private void TreeItem_DoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (sender is not ContentControl cc) return;
-            if (cc.DataContext is not Item item) return;
-            
-            Keyboard.ClearFocus();
+            if (sender is not TreeViewItem treeViewItem) return;
+            if (treeViewItem.DataContext is not Item item) return;
+
             _mainViewModel.AddItem(item);
-            Keyboard.ClearFocus();
         }
         
-        private void TreeItem_KeyDown(object sender, KeyEventArgs e)
+        private void TreeItem_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key != Key.Return) return;
             if (sender is not TreeViewItem treeViewItem) return;
             if (treeViewItem.DataContext is not Item item) return;
             
-            Keyboard.ClearFocus();
             _mainViewModel.AddItem(item);
-            Keyboard.ClearFocus();
         }
 
 

@@ -1,5 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using DSR.SlotDetails.InventoryDetails;
 using DSR.SlotDetails.InventoryDetails.Items;
@@ -24,15 +25,28 @@ public partial class AddItemView : Window
 
     public void Btn_Confirm_OnClick(object sender, RoutedEventArgs e)
     {
-        if (!uint.TryParse(TBAmount.Text, out var amount)) return;
-        
-        DialogResult = _vm.AddItem(amount);
-        Close();
+        Confirm();
     }
-    
+
     public void Btn_Close_OnClick(object sender, RoutedEventArgs e)
     {
         DialogResult = false;
+        Close();
+    }
+
+    public void Window_PreviewKeyUp(object sender, KeyEventArgs e)
+    {
+        if (e.Key != Key.Return) return;
+        
+        e.Handled = true;
+        Confirm();
+    }
+
+    private void Confirm()
+    {
+        if (!uint.TryParse(TBAmount.Text, out var amount)) return;
+
+        DialogResult = _vm.AddItem(amount);
         Close();
     }
     

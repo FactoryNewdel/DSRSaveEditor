@@ -285,7 +285,7 @@
                         <ListView Name="listViewInventory" Grid.Column="0" Background="Black" ScrollViewer.VerticalScrollBarVisibility="Disabled">
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="ListViewItem">
-                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                                 </Style>
                             </ListView.ItemContainerStyle>
                             <ListView.ItemTemplate>
@@ -296,7 +296,9 @@
                                             <ColumnDefinition Width="Auto" />
                                             <ColumnDefinition Width="Auto" />
                                             <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="50" />
                                         </Grid.ColumnDefinitions>
+
                                         <Grid Grid.Column="0">
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="*" />
@@ -318,6 +320,7 @@
                                                    Panel.ZIndex="1" Margin="3"
                                                    Source="{Binding InfusionImagePath}" />
                                         </Grid>
+
                                         <TextBlock Grid.Column="1"
                                                    HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="20"
                                                    Text="{Binding Name}" />
@@ -327,6 +330,28 @@
                                         <TextBlock Grid.Column="3"
                                                    HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="White" Margin="5 0 10 0" FontSize="20"
                                                    Text="{Binding Amount, StringFormat={}{0:#;'';''}, FallbackValue={x:Static system:String.Empty}}" />
+                                        <Button Grid.Column="4" Name="DeleteItemButton"
+                                                Height="25" Width="25"
+                                                Foreground="Red" Background="Black"
+                                                Content="X">
+                                            <Button.Style>
+                                                <Style TargetType="{x:Type Button}">
+                                                    <Setter Property="Visibility" Value="Collapsed" />
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
+                                                                                        AncestorType={x:Type ListBoxItem}},Path=IsSelected}"
+                                                                     Value="True">
+                                                            <Setter Property="Visibility" Value="Visible" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
+                                                                                        AncestorType={x:Type ListBoxItem}},Path=IsMouseOver}"
+                                                                     Value="True">
+                                                            <Setter Property="Visibility" Value="Visible" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Button.Style>
+                                        </Button>
                                     </Grid>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
@@ -338,7 +363,8 @@
                                     <Setter Property="Foreground" Value="White" />
                                     <Setter Property="BorderBrush" Value="Transparent" />
                                     <Setter Property="BorderThickness" Value="0" />
-                                    <EventSetter Event="KeyUp" Handler="TreeItem_KeyDown"></EventSetter>
+                                    <EventSetter Event="PreviewKeyDown" Handler="TreeItem_PreviewKeyDown"></EventSetter>
+                                    <EventSetter Event="MouseDoubleClick" Handler="TreeItem_DoubleClick"></EventSetter>
                                     <Style.Triggers>
                                         <Trigger Property="IsSelected" Value="True">
                                             <Setter Property="Foreground" Value="White" />
@@ -362,12 +388,10 @@
                                 </HierarchicalDataTemplate>
 
                                 <DataTemplate DataType="{x:Type items:Item}">
-                                    <ContentControl MouseDoubleClick="TreeItem_DoubleClick" Focusable="False">
-                                        <StackPanel Orientation="Horizontal" Margin="0 5">
-                                            <Image Source="{Binding ImagePath}" MaxHeight="40" />
-                                            <TextBlock Text="{Binding Name}" VerticalAlignment="Center" Margin="5 0 0 0" FontSize="18" />
-                                        </StackPanel>
-                                    </ContentControl>
+                                    <StackPanel Orientation="Horizontal" Margin="0 5">
+                                        <Image Source="{Binding ImagePath}" MaxHeight="40" />
+                                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center" Margin="5 0 0 0" FontSize="18" />
+                                    </StackPanel>
                                 </DataTemplate>
                             </TreeView.Resources>
                         </TreeView>

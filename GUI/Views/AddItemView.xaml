@@ -7,8 +7,10 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Title="Add Item" 
+        Icon="../Images/favicon.ico"
         Height="350" Width="550"
-        MinHeight="350" MinWidth="550">
+        MinHeight="350" MinWidth="550"
+        PreviewKeyUp="Window_PreviewKeyUp">
     <Border BorderThickness="25" BorderBrush="Black" Padding="0" Margin="0">
         <Grid Name="MainGrid" Background="#222222" Margin="0">
             <Grid.RowDefinitions>

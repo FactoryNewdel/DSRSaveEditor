@@ -196,6 +196,8 @@ public class MainViewModel : INotifyPropertyChanged
         var addItemView = new AddItemView(SelectedSlot.Inventory, item);
         var dialogResult = addItemView.ShowDialog();
         
+        LoadTree(SelectedInventoryTab);
+        
         if (true) return;
         
         if (item is Weapon weapon && weapon.WeaponType is not WeaponType.Arrow and WeaponType.Bolt)
@@ -215,7 +217,6 @@ public class MainViewModel : INotifyPropertyChanged
             // Add new item
             item.Amount = item.MaxAmount;
             SelectedSlot.Inventory.AddItem(item);
-            LoadTree(SelectedInventoryTab);
         }
     }
     
