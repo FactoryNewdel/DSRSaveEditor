@@ -7,9 +7,13 @@ using DSR.Utils;
 
 class Program
 {
-    private static string dir = @"C:\Users\Tim\Documents\NBGI\DARK SOULS REMASTERED\472496615";
+    /*private static string dir = @"C:\Users\Tim\Documents\NBGI\DARK SOULS REMASTERED\472496615";
     private static string path = Path.Join(dir, "DRAKS0005.sl2");
-    private static string path1 = Path.Join(dir, "DRAKS0005 - Kopie (11).sl2");
+    private static string path1 = Path.Join(dir, "DRAKS0005 - Kopie (11).sl2");*/
+
+    private static string dir = @"C:\Users\Tim\Downloads";
+    private static string path = Path.Join(dir, "DRAKS0005.sl2");
+    private static string path1 = Path.Join(dir, "DRAKS0005.sl2");
 
     public static void Main(string[] args)
     {
@@ -32,7 +36,7 @@ class Program
             sb.AppendLine($"_bytes[{i}] = {b1[i]};");
         }
 
-        var section0 = savefile.SaveSlots[1].Details.Progress.Sections;
+        /*var section0 = savefile.SaveSlots[1].Details.Progress.Sections;
         var section1 = savefile1.SaveSlots[1].Details.Progress.Sections;
         for (var i = 0; i < section0.Length; i++)
         {
@@ -41,7 +45,7 @@ class Program
                 if (section0[i][j] == section1[i][j]) continue;
                 File.AppendAllText(ticks + "_log.txt", $"S_{i}_{j} : {section1[i][j]} -> {section0[i][j]}\n");
             }
-        }
+        }*/
 
         if (sb.Length > 10)
         {
@@ -50,8 +54,8 @@ class Program
             //Process.Start("explorer.exe", Path.GetFullPath(p));
         }
 
-        savefile.SaveSlots[0].Details.CharacterStats.CurrentSouls = 1000000;
-        savefile.SaveSlots[0].Details.CharacterStats.TotalSouls = 1000000;
+        /*savefile.SaveSlots[0].Details.CharacterStats.CurrentSouls = 1000000;
+        savefile.SaveSlots[0].Details.CharacterStats.TotalSouls = 1000000;*/
         /*var longsword = Items.GetItem(ItemType.Longsword);
         longsword.Infusion = Infusion.Crystal;
         longsword.Level = 5;

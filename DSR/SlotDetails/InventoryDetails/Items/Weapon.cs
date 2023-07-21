@@ -34,8 +34,13 @@ public class Weapon : Item
         _level = (int)(id - ID - (int)_infusion * 100);
         
         var weaponTypeNum = id / 100000;
-        if (!Enum.IsDefined(typeof(WeaponType), (int)weaponTypeNum)) throw new InvalidDataException($"Invalid WeaponType: {weaponTypeNum}");
+        if (!Enum.IsDefined(typeof(WeaponType), (int)weaponTypeNum)) throw new InvalidDataException($"Invalid WeaponType: {weaponTypeNum}; ID: {id}");
         _weaponType = (WeaponType)weaponTypeNum;
+        if (_weaponType == WeaponType.GreatSword && id / 10000 == 35) _weaponType = WeaponType.UltraGreatsword;
+        if (_weaponType == WeaponType.CurvedSword && id / 10000 == 45) _weaponType = WeaponType.CurvedGreatsword;
+        if (_weaponType == WeaponType.Axe && id / 10000 == 75) _weaponType = WeaponType.GreatAxe;
+        if (_weaponType == WeaponType.Hammer && id / 10000 == 85) _weaponType = WeaponType.GreatHammer;
+        if (_weaponType == WeaponType.Bow && id / 10000 == 125) _weaponType = WeaponType.Crossbow;
         
         ImagePath += $"Weapons/{_weaponType}s/{Type}.png";
     }

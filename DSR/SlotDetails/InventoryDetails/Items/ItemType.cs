@@ -80,6 +80,7 @@ public enum ItemType
 	
 	// Items
 	BlackSeparationCrystal,
+	EyeOfDeath,
 	CrackedRedEyeOrb,
 	Darksign,
 	EstusFlask,
@@ -87,9 +88,14 @@ public enum ItemType
 	LloydsTalisman,
 	TransientCurse,
 	HomewardBone,
+	SouvenirOfReprisal,
+	SunlightMedal,
+	
 	SoulOfALostUndead,
 	LargeSoulOfANamelessSoldier,
+	
 	Humanity,
+	
 	TitaniteShard,
 	TitaniteChunk,
 	TwinklingTitanite,

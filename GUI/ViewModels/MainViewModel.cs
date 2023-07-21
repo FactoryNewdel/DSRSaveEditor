@@ -65,7 +65,7 @@ public class MainViewModel : INotifyPropertyChanged
         {
             new ("Images/ItemIcons/Types/Daggers.png",        "Daggers",         weapons.Where(w => (w as Weapon).WeaponType == WeaponType.Dagger).ToList()),
             new ("Images/ItemIcons/Types/StraightSwords.png", "Straight Swords", weapons.Where(w => (w as Weapon).WeaponType == WeaponType.StraightSword).ToList()),
-            new ("Images/ItemIcons/Types/Greatswords.png",    "Greatswords",     weapons.Where(w => (w as Weapon).WeaponType == WeaponType.Greatsword).ToList()),
+            new ("Images/ItemIcons/Types/Greatswords.png",    "Greatswords",     weapons.Where(w => (w as Weapon).WeaponType == WeaponType.GreatSword).ToList()),
         };
         // TODO
         _ammunition = new List<ItemGroup>
@@ -105,7 +105,7 @@ public class MainViewModel : INotifyPropertyChanged
         LoadTree(inventoryImageContainer);
     }
 
-    private void LoadTree(InventoryImageContainer inventoryImageContainer)
+    private void LoadTree(InventoryImageContainer inventoryImageContainer, bool loadTree = true)
     {
         List<Item> inventoryItemList = new List<Item>();
         
@@ -114,55 +114,55 @@ public class MainViewModel : INotifyPropertyChanged
             inventoryItemList = new List<Item>();
             inventoryItemList.AddRange(SelectedSlot.Inventory.GetItemOfType(typeof(CommonItem)));
             
-            FillTree(_consumables);
+            if (loadTree) FillTree(_consumables);
             
         } else if (inventoryImageContainer.ImagePath.Contains("UpgradeMaterial", StringComparison.InvariantCultureIgnoreCase))
         {
             inventoryItemList = SelectedSlot.Inventory.GetItemOfType(typeof(UpgradeMaterial));
             
-            FillTree(_upgradeMaterials);
+            if (loadTree) FillTree(_upgradeMaterials);
             
         }
         else if (inventoryImageContainer.ImagePath.Contains("KeyItems", StringComparison.InvariantCultureIgnoreCase))
         {
             inventoryItemList = SelectedSlot.Inventory.GetItemOfType(typeof(KeyItem));
             
-            FillTree(_keyItems);
+            if (loadTree) FillTree(_keyItems);
             
         }
         else if (inventoryImageContainer.ImagePath.Contains("Spells", StringComparison.InvariantCultureIgnoreCase))
         {
             inventoryItemList = SelectedSlot.Inventory.GetItemOfType(typeof(Spell));
             
-            FillTree(_spells);
+            if (loadTree) FillTree(_spells);
             
         }
         else if (inventoryImageContainer.ImagePath.Contains("Weapon", StringComparison.InvariantCultureIgnoreCase))
         {
             inventoryItemList = SelectedSlot.Inventory.GetItemOfType(typeof(Weapon)).Where(w => w.ID < 2000000).ToList();
             
-            FillTree(_weapons);
+            if (loadTree) FillTree(_weapons);
             
         } 
         else if (inventoryImageContainer.ImagePath.Contains("Ammunition", StringComparison.InvariantCultureIgnoreCase))
         {
             inventoryItemList = SelectedSlot.Inventory.GetItemOfType(typeof(Weapon)).Where(w => (w as Weapon).WeaponType is WeaponType.Arrow or WeaponType.Bolt).ToList();
             
-            FillTree(_ammunition);
+            if (loadTree) FillTree(_ammunition);
             
         }
         else if (inventoryImageContainer.ImagePath.Contains("Armor", StringComparison.InvariantCultureIgnoreCase))
         {
             inventoryItemList = SelectedSlot.Inventory.GetItemOfType(typeof(Armor));
 
-            FillTree(_armor);
+            if (loadTree) FillTree(_armor);
             
         }
         else if (inventoryImageContainer.ImagePath.Contains("Rings", StringComparison.InvariantCultureIgnoreCase))
         {
             inventoryItemList = SelectedSlot.Inventory.GetItemOfType(typeof(Ring));
 
-            FillTree(_rings);
+            if (loadTree) FillTree(_rings);
             
         }
         
@@ -196,7 +196,7 @@ public class MainViewModel : INotifyPropertyChanged
         var addItemView = new AddItemView(SelectedSlot.Inventory, item);
         var dialogResult = addItemView.ShowDialog();
         
-        LoadTree(SelectedInventoryTab);
+        LoadTree(SelectedInventoryTab, false);
         
         if (true) return;
         

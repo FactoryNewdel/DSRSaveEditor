@@ -13,7 +13,7 @@
         WindowState="Maximized"
         Icon="Images/favicon.ico"
         Background="Black">
-    <TabControl Name="Tabs" Padding="0" Background="Black" SelectedIndex="3">
+    <TabControl Name="Tabs" Padding="0" Background="Black" SelectedIndex="0">
 
         <TabItem Name="TabMain" Header="Main" Style="{DynamicResource MainTabStyle}">
 
@@ -209,7 +209,7 @@
 
         </TabItem>
 
-        <TabItem Header="Inventory" Style="{DynamicResource MainTabStyle}">
+        <TabItem Header="Inventory" Style="{DynamicResource MainTabStyle}" IsEnabled="False">
 
             <Grid>
 

@@ -37,43 +37,54 @@ public class ItemList
         // Empty Slots
         new Weapon(ItemType.Fists,    0, 900000, 0x2AB98000, 5),
 
-        // Daggers          01XXXXX
-        // Straight Swords  02XXXXX
+        // Daggers             01XXXXX
+        // Straight Swords     02XXXXX
         new Weapon(ItemType.Longsword        , 0, 201000, 0x2B5C000, 200),
         new Weapon(ItemType.Broadsword       , 0, 202000, 0x2F44000, 200),
         new Weapon(ItemType.StraightSwordHilt, 0, 212000, 0x5654000, 200),
-        // Greatswords      03XXXXX
+        // Greatswords         03XXXXX
         new Weapon(ItemType.BastardSword     , 0, 300000, 0x7594000, 200),
+        // Ultra Greatswords   035XXXX
         new Weapon(ItemType.Greatsword       , 0, 351000, 0xC3B4000, 200),
-        // Piercing Swords  06XXXXX
+        // Curved Swords       04XXXXX
+        // Curved Greatswords  045XXXX
+        // Katanas             05XXXXX
+        // Piercing Swords     06XXXXX
         new Weapon(ItemType.Estoc            , 0, 602000, 0x167C4000, 150),
-        // Axes             07XXXXX
+        // Axes                07XXXXX
         new Weapon(ItemType.BattleAxe        , 0, 701000, 0x18AEC000, 250),
-        // Hammers          08XXXXX
+        // GreatAxes           075XXXX
+        // Hammers             08XXXXX
         new Weapon(ItemType.MorningStar      , 0, 802000, 0x1E0DC000, 180),
         new Weapon(ItemType.Warpick          , 0, 803000, 0x1E4C4000, 220),
-        // Fist Weapons     09XXXXX
+        // GreatHammers        085XXXX
+        // Fist Weapons        09XXXXX
         new Weapon(ItemType.Caestus          , 0, 901000, 0x2ABFC000, 300),
-        // Spears           10XXXXX
+        // Spears              10XXXXX
         new Weapon(ItemType.WingedSpear      , 0, 1001000, 0x2272C000, 140),
         new Weapon(ItemType.Pike             , 0, 1050000, 0x232E4000, 180),
-        
-        // Talismans        13XXXXX
+        // Halberds            11XXXXX
+        // Bows                12XXXXX
+        // Crossbow            125XXXX
+        // Talismans           13XXXXX
         new Weapon(ItemType.Talisman          , 0, 1360000, 0x321F4000, 50),
         
         // Shields
-        // Standard Shields 14XXXXX
+        // Standard Shields    14XXXXX
         new Weapon(ItemType.LargeLeatherShield, 0, 1402000, 0x38AA4000, 200),
         new Weapon(ItemType.HeaterShield      , 0, 1450000, 0x38E8C000, 250),
         new Weapon(ItemType.TowerKiteShield   , 0, 1452000, 0x39274000, 250),
         new Weapon(ItemType.CaduceusKiteShield, 0, 1477000, 0x3965C000, 250),
+        // Great Shields               15XXXXX
+        // Whips               16XXXXX
+        // DLC Dagger          90XXXXX
 
         // Ammunition
-        // Arrows           20XXXXX
+        // Arrows              20XXXXX
         new Weapon(ItemType.StandardArrow, 0, 2000000, 0x7A1E8000, 0),
         new Weapon(ItemType.LargeArrow,    0, 2001000, 0x7A24C000, 0),
         new Weapon(ItemType.WoodenArrow,   0, 2006000, 0x7A184000, 0),
-        // Bolts            21XXXXX
+        // Bolts               21XXXXX
         new Weapon(ItemType.StandardBolt,  0, 2100000, 0x7B570000, 0),
         new Weapon(ItemType.HeavyBolt,     0, 2101000, 0x7B5D4000, 0),
         new Weapon(ItemType.WoodBolt,      0, 2103000, 0x7B50C000, 0),
@@ -83,13 +94,16 @@ public class ItemList
 
         // Items
         new SpecialItem(ItemType.BlackSeparationCrystal, 64, 103, 0x1F000),
-        new CommonItem(ItemType.CrackedRedEyeOrb      , 64, 111, 0x16000),
+        new CommonItem(ItemType.EyeOfDeath             , 64, 109, 0x1E000),
+        new CommonItem(ItemType.CrackedRedEyeOrb       , 64, 111, 0x16000),
         new SpecialItem(ItemType.Darksign              , 64, 117, 0x6E000),
         new EstusFlask(),
-        new CommonItem(ItemType.DivineBlessing        , 64, 240, 0x2B000),
-        new CommonItem(ItemType.LloydsTalisman        , 64, 296, 0x35000),
-        new CommonItem(ItemType.TransientCurse        , 64, 312, 0x37000),
-        new CommonItem(ItemType.HomewardBone          , 64, 330, 0x38000),
+        new CommonItem(ItemType.DivineBlessing         , 64, 240, 0x2B000),
+        new CommonItem(ItemType.LloydsTalisman         , 64, 296, 0x35000),
+        new CommonItem(ItemType.TransientCurse         , 64, 312, 0x37000),
+        new CommonItem(ItemType.HomewardBone           , 64, 330, 0x38000),
+        new CommonItem(ItemType.SouvenirOfReprisal     , 64, 374, 0x18000),
+        new CommonItem(ItemType.SunlightMedal          , 64, 375, 0x13000),
         // Souls 4XX
         new CommonSoul(ItemType.SoulOfALostUndead          , 64, 400, 0x41000),
         new CommonSoul(ItemType.LargeSoulOfANamelessSoldier, 64, 403, 0x44000),
@@ -146,6 +160,8 @@ public class ItemList
                 if (item.GetType() == type) list.Add(item);
             }   
         }
+        
+        list.Sort((i1, i2) => (int)(i1.Sorting - i2.Sorting));
 
         return list;
     }
