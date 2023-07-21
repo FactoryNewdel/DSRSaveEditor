@@ -33,14 +33,7 @@ public class Inventory : INotifyPropertyChanged
             var id = BitConverter.ToUInt32(inventoryData, i + 4);
             var amount = BitConverter.ToUInt32(inventoryData, i + 8);
             var sorting = BitConverter.ToUInt32(new byte[] { 0, (byte)(inventoryData[i + 13] & 0b11111000), inventoryData[i + 14], inventoryData[i + 15] });
-            //var sorting =        BitConverter.ToUInt32(inventoryData, i + 12);
             var index = (inventoryData[i + 13] & 0b111) * 256 + inventoryData[i + 12];
-            if (index != 2047)
-            {
-                _size = index + 1;
-                if (index != i / 28) throw new Exception($"i = {i / 28}\tindex = {index} | {id}");
-            }
-
             var enabled = inventoryData[i + 16] == 1;
             var durability = BitConverter.ToUInt32(inventoryData, i + 20);
             var durabilityLoss = BitConverter.ToUInt32(inventoryData, i + 24);
@@ -48,7 +41,7 @@ public class Inventory : INotifyPropertyChanged
             _items[i / 28] = Item.GetItem(idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss);
 
             var item = _items[i / 28];
-            if (slot == 1 && item.ID != 0 && item.ID != 0xFFFFFFFF) Console.WriteLine((i + 2652) + " | " + (i / 28) + " ID = " + item.IdSpace + "    0x" + BitConverter.ToString(BitConverter.GetBytes(item.ID).Reverse().ToArray()).Replace("-", "").TrimStart('0') + "    " + item.ID + "    " + item.Sorting + "    0x" + BitConverter.ToString(BitConverter.GetBytes(item.Sorting).Reverse().ToArray()).Replace("-", "").TrimStart('0') + "    " + BitConverter.ToString(BitConverter.GetBytes(item.Sorting + item.Index)) + "    " + item.Index + "    " + item.Type + "    " + item.Durability);
+            if (slot == 0 && item.ID != 0 && item.ID != 0xFFFFFFFF) Console.WriteLine((i + 2652) + " | " + (i / 28) + " ID = " + item.IdSpace + "    0x" + BitConverter.ToString(BitConverter.GetBytes(item.ID).Reverse().ToArray()).Replace("-", "").TrimStart('0') + "    " + item.ID + "    " + item.Sorting + "    0x" + BitConverter.ToString(BitConverter.GetBytes(item.Sorting).Reverse().ToArray()).Replace("-", "").TrimStart('0') + "    " + BitConverter.ToString(BitConverter.GetBytes(item.Sorting + item.Index)) + "    " + item.Index + "    " + item.Type + "    " + item.Durability);
         }
 
         slot++;
@@ -120,8 +113,14 @@ public class Inventory : INotifyPropertyChanged
     {
         for (var i = 0; i < _items.Length; i++)
         {
+            if (i == 12)
+            {
+                for (var j = 0; j < 28; j++)
+                    Console.WriteLine((InventoryOffset + i * ItemSize + j) + "    " + data.Skip(InventoryOffset).ToArray()[i * ItemSize + j]);
+            }
+            
             var item = _items[i];
-            if (item.Index != 2047)
+            if (item.IdSpace != 255)
             {
                 data[InventoryOffset + i * ItemSize + 0] = 0;
                 data[InventoryOffset + i * ItemSize + 1] = 0;
@@ -135,7 +134,7 @@ public class Inventory : INotifyPropertyChanged
             }
 
             data[InventoryOffset + i * ItemSize + 3] = item.IdSpace;
-            FillUInt32IntoData(ref data, item is Weapon weapon ? weapon.FullID : item.ID, i, 4);
+            FillUInt32IntoData(ref data, item.FullID, i, 4);
             FillUInt32IntoData(ref data, item.Amount, i, 8);
             var sorting = item.Sorting + item.Index;
             FillUInt32IntoData(ref data, (uint)sorting, i, 12);

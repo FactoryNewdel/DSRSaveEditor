@@ -84,7 +84,7 @@ public class Item : INotifyPropertyChanged
         if (idSpace == 16) return new Armor(idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss);
         if (idSpace == 32) return new Ring(idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss);
         if (idSpace == 64) return GetIngameItem(idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss);
-        if (idSpace == 255) return new Item(255, UInt32.MaxValue, 0, UInt32.MaxValue, 2047, false, UInt32.MaxValue, 0);
+        if (idSpace == 255) return new Item(255, id, amount, sorting, index, false, durability, durabilityLoss);
         throw new InvalidDataException($"Invalid IDSpace: {idSpace}");
     }
 

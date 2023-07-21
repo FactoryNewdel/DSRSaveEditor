@@ -11,7 +11,8 @@ class Program
     private static string path = Path.Join(dir, "DRAKS0005.sl2");
     private static string path1 = Path.Join(dir, "DRAKS0005 - Kopie (11).sl2");*/
 
-    private static string dir = @"C:\Users\Tim\Downloads";
+    //private static string dir = @"C:\Users\Tim\Downloads";
+    private static string dir = @"G:\Dokumente\RiderProjects\DSRSaveEditor\DSR\bin\Debug\net6.0\win-x64";
     private static string path = Path.Join(dir, "DRAKS0005.sl2");
     private static string path1 = Path.Join(dir, "DRAKS0005.sl2");
 
