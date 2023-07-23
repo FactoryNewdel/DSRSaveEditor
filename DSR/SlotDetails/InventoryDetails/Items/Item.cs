@@ -105,13 +105,20 @@ public class Item : INotifyPropertyChanged
         var output = _type.ToString();
         var added = 0;
 
-        for (var i = 0; i < compare.Length; i++)
+        for (var i = 1; i < compare.Length; i++)
         {
             var ascii = (int)compare[i];
             if (ascii >= 65 && ascii <= 90) output = output.Insert(i + added++, " ");
         }
         
         return output;
+    }
+
+    public void Delete()
+    {
+        _idSpace = 255;
+        _id = 0xFFFFFFFF;
+        _type = ItemType.UNKNOWN;
     }
 
     public byte IdSpace

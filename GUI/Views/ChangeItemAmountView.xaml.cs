@@ -8,18 +8,17 @@ using GUI.ViewModels;
 
 namespace GUI.Views;
 
-public partial class AddItemView : Window
+public partial class ChangeItemAmountView : Window
 {
-    private AddItemViewModel _vm;
-    private Item? _itemInInventory;
-    
-    public AddItemView(Inventory inventory, Item item)
+    private ChangeItemAmountViewModel _vm;
+
+    public ChangeItemAmountView(Item item)
     {
         InitializeComponent();
 
-        inventory.TryGetItem(item.Type, out _itemInInventory);
-        _vm = new AddItemViewModel(inventory, item);
+        _vm = new ChangeItemAmountViewModel(item);
         MainGrid.DataContext = _vm;
+        TBAmount.Text = "" + item.Amount;
         TBAmount.Focus();
     }
 
@@ -37,7 +36,7 @@ public partial class AddItemView : Window
     public void Window_PreviewKeyDown(object sender, KeyEventArgs e)
     {
         if (e.Key != Key.Return) return;
-        
+
         e.Handled = true;
         Confirm();
     }
@@ -46,11 +45,12 @@ public partial class AddItemView : Window
     {
         if (!uint.TryParse(TBAmount.Text, out var amount)) return;
 
-        DialogResult = _vm.AddItem(amount);
+        DialogResult = _vm.ChangeItemAmount(amount);
         Close();
     }
-    
+
     private static readonly Regex _regexNumber = new Regex("[0-9]+");
+
     private void Textbox_PreviewNumberOnly(object sender, TextCompositionEventArgs e)
     {
         if (!_regexNumber.IsMatch(e.Text))
@@ -60,19 +60,14 @@ public partial class AddItemView : Window
         }
 
         var num = uint.Parse(TBAmount.Text + e.Text);
-        if (_itemInInventory == null) {
-            if (num > _vm.Item.MaxAmount)
-            {
-                TBAmount.Text = "" + _vm.Item.MaxAmount;
-                e.Handled = true;
-                return;
-            }
-        } else if (num > _vm.Item.MaxAmount - _itemInInventory.Amount)
+
+        if (num > _vm.Item.MaxAmount)
         {
-            TBAmount.Text = "" + (_vm.Item.MaxAmount - _itemInInventory.Amount);
+            TBAmount.Text = "" + _vm.Item.MaxAmount;
             e.Handled = true;
             return;
         }
+
 
         e.Handled = false;
     }

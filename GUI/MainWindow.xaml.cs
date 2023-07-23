@@ -64,9 +64,9 @@ namespace GUI
             {
                 _mainViewModel.ImportSavefile(dialog.FileName);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Import failed!\nSavefile might be invalid", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Import failed!\nSavefile might be invalid\nError: {ex}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -82,7 +82,17 @@ namespace GUI
             
             if (File.Exists(dialog.FileName) && MessageBox.Show($"File already exists!\nDo you want to replace it", "Replace", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes) return;
 
-            _mainViewModel.ExportSavefile(dialog.FileName);
+            try
+            {
+                _mainViewModel.ExportSavefile(dialog.FileName);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Save file could not be exported!\nError: {ex}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            MessageBox.Show("Save file has been exported!");
         }
         
         #endregion
@@ -121,21 +131,66 @@ namespace GUI
             _mainViewModel.SelectedInventoryTab = inventoryImageContainer;
         }
 
+        private void ListViewItem_DoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is not ListViewItem listViewItem) return;
+            if (listViewItem.DataContext is not Item item) return;
+            
+            ListViewItem_Interact(item);
+        }
+
+        private void ListViewItem_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (sender is not ListViewItem listViewItem) return;
+            if (listViewItem.DataContext is not Item item) return;
+            
+            if (e.Key == Key.Return) ListViewItem_Interact(item);
+            else if (e.Key == Key.Back || e.Key == Key.Delete) ListViewItem_Delete(item);
+        }
+
+        private void ListViewItem_Interact(Item item)
+        {
+            _mainViewModel.ChangeItemAmount(item);
+        }
+
+
+
+        private void ListViewItem_DeleteButtonClicked(object sender, RoutedEventArgs e)
+        {
+            if (sender is not Button button) return;
+            if (button.DataContext is not Item item) return;
+            
+            ListViewItem_Delete(item);
+        }
+
+        private void ListViewItem_Delete(Item item)
+        {
+            if (MessageBox.Show($"Are you sure you want to delete {item.Name}?", "Warning", MessageBoxButton.YesNo) != MessageBoxResult.Yes) return;
+
+            if (_mainViewModel.DeleteItem(item)) MessageBox.Show($"{item.Name} has been removed from the inventory!");
+            else MessageBox.Show($"{item.Name} could not be removed from the inventory", "Error");
+        }
+        
+        
+
         private void TreeItem_DoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (sender is not TreeViewItem treeViewItem) return;
-            if (treeViewItem.DataContext is not Item item) return;
-
-            _mainViewModel.AddItem(item);
+            TreeItem_Interact(sender);
         }
         
         private void TreeItem_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key != Key.Return) return;
+            TreeItem_Interact(sender);
+        }
+
+        private void TreeItem_Interact(object sender)
+        {
             if (sender is not TreeViewItem treeViewItem) return;
             if (treeViewItem.DataContext is not Item item) return;
             
-            _mainViewModel.AddItem(item);
+            if (_mainViewModel.AddItem(item)) MessageBox.Show($"Added {item.Name} x{item.Amount} to inventory!");
+            else MessageBox.Show($"{item.Name} could not be added to the inventory", "Error");
         }
 
 

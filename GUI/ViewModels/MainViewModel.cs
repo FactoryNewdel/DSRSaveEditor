@@ -5,8 +5,10 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using DSR.SavefileStructure;
 using DSR.SlotDetails;
+using DSR.SlotDetails.InventoryDetails;
 using DSR.SlotDetails.InventoryDetails.Items;
 using GUI.Helper;
 using GUI.Views;
@@ -191,36 +193,34 @@ public class MainViewModel : INotifyPropertyChanged
 
 
 
-    public void AddItem(Item item)
+    public bool AddItem(Item item)
     {
         var addItemView = new AddItemView(SelectedSlot.Inventory, item);
         var dialogResult = addItemView.ShowDialog();
         
+        if (dialogResult != true) return false;
+        
         LoadTree(SelectedInventoryTab, false);
-        
-        if (true) return;
-        
-        if (item is Weapon weapon && weapon.WeaponType is not WeaponType.Arrow and WeaponType.Bolt)
-        {
-                
-        }
-            
-        if (item is not UpgradeMaterial material) return;
-
-        if (SelectedSlot.Inventory.TryGetItem(item.Type, out var invItem))
-        {
-            // Item already exists in inventory
-            invItem.Amount = invItem.MaxAmount;
-        }
-        else
-        {
-            // Add new item
-            item.Amount = item.MaxAmount;
-            SelectedSlot.Inventory.AddItem(item);
-        }
+        return true;
     }
-    
-    
+
+    public bool ChangeItemAmount(Item item)
+    {
+        var addItemView = new ChangeItemAmountView(item);
+        var dialogResult = addItemView.ShowDialog();
+        
+        if (dialogResult != true) return false;
+        
+        LoadTree(SelectedInventoryTab, false);
+        return true;
+    }
+
+    public bool DeleteItem(Item item)
+    {
+        bool result = SelectedSlot.Inventory.RemoveItem(item);
+        LoadTree(SelectedInventoryTab);
+        return result;
+    }
     
     
 

@@ -73,6 +73,17 @@ public class Inventory : INotifyPropertyChanged
         return AddItem(item, true);
     }
 
+    public bool RemoveItem(Item item)
+    {
+        if (item.Index == LatestItemIndex) LatestItemIndex--;
+
+        _inventorySize--;
+        item.Delete();
+        _items[item.Index] = new Item(item);
+        
+        return true;
+    }
+
     public bool TryGetItem(ItemType type, out Item? item)
     {
         item = null;

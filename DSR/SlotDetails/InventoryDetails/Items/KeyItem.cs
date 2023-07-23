@@ -12,4 +12,5 @@ public class KeyItem : Item
         
     }
 
+    public override uint MaxAmount => 1;
 }
