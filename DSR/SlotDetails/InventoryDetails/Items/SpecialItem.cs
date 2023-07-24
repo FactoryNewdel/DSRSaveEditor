@@ -9,4 +9,6 @@ public class SpecialItem : CommonItem
     public SpecialItem(ItemType type, byte idSpace, uint id, uint sorting) : base(type, idSpace, id, sorting)
     {
     }
+
+    public override uint MaxAmount => 1;
 }

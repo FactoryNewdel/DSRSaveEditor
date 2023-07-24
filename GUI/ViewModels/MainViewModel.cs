@@ -42,8 +42,9 @@ public class MainViewModel : INotifyPropertyChanged
 
         _consumables = new List<ItemGroup>
         {
-            new ("Images/ItemIcons/Types/Consumables.png", "Consumables", ItemList.GetItems(typeof(CommonItem), true)),
-            new ("Images/ItemIcons/Types/Souls.png",       "Souls",       ItemList.GetItems(typeof(CommonSoul)))
+            new ("Images/ItemIcons/Types/Consumables.png",  "Consumables",   ItemList.GetItems(typeof(CommonItem), true)),
+            new ("Images/ItemIcons/Types/Souls.png",        "Souls",         ItemList.GetItems(typeof(CommonSoul))),
+            new ("Images/ItemIcons/Types/SpecialItems.png", "Special Items", ItemList.GetItems(typeof(SpecialItem)))
         };
         var upgradeMaterials = ItemList.GetItems(typeof(UpgradeMaterial));
         _upgradeMaterials = new List<ItemGroup>

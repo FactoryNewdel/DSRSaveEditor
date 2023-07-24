@@ -360,7 +360,7 @@
                             </ListView.ItemTemplate>
                         </ListView>
 
-                        <TreeView Name="treeItems" Grid.Column="1" Background="Transparent" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                        <TreeView Name="treeItems" Grid.Column="1" Background="Transparent" ScrollViewer.VerticalScrollBarVisibility="Auto">
                             <TreeView.ItemContainerStyle>
                                 <Style BasedOn="{StaticResource {x:Type TreeViewItem}}" TargetType="{x:Type TreeViewItem}">
                                     <Setter Property="Foreground" Value="White" />

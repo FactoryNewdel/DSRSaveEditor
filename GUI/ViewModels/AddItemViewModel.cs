@@ -16,6 +16,7 @@ public class AddItemViewModel
 
     public bool AddItem(uint amount)
     {
+        if (amount <= 0) return false;
         _item.Amount = amount;
         return _inventory.AddItem(_item);
     }

@@ -14,6 +14,7 @@ public class ChangeItemAmountViewModel
 
     public bool ChangeItemAmount(uint amount)
     {
+        if (amount <= 0) return false;
         _item.Amount = amount;
         return true;
     }

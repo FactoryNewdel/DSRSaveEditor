@@ -58,17 +58,34 @@ public partial class ChangeItemAmountView : Window
             e.Handled = true;
             return;
         }
+        
+        e.Handled = !CheckTextboxNumber(TBAmount.Text + e.Text);
+    }
 
-        var num = uint.Parse(TBAmount.Text + e.Text);
+    private void Textbox_PreviewKeyUp(object sender, KeyEventArgs e)
+    {
+        if (e.Key != Key.Back && e.Key != Key.Delete) return;
+        e.Handled = !CheckTextboxNumber(TBAmount.Text);
+    }
 
+    private bool CheckTextboxNumber(string text)
+    {
+        if (string.IsNullOrEmpty(text)) return true;
+        
+        var num = uint.Parse(text);
+
+        if (num == 0)
+        {
+            TBAmount.Text = "1";
+            return false;
+        }
+        
         if (num > _vm.Item.MaxAmount)
         {
             TBAmount.Text = "" + _vm.Item.MaxAmount;
-            e.Handled = true;
-            return;
+            return false;
         }
-
-
-        e.Handled = false;
+        
+        return true;
     }
 }

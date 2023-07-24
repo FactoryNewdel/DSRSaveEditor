@@ -47,7 +47,8 @@
                      Margin="20 0"
                      TextAlignment="Center" VerticalContentAlignment="Center"
                      Foreground="White"
-                     PreviewTextInput="Textbox_PreviewNumberOnly">
+                     PreviewTextInput="Textbox_PreviewNumberOnly"
+                     PreviewKeyUp="Textbox_PreviewKeyUp">
                 <TextBox.Style>
                     <Style TargetType="TextBox">
                         <Setter Property="Background" Value="Transparent"></Setter>

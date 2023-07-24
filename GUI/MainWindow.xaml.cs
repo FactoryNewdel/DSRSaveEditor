@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,7 +22,7 @@ namespace GUI
     {
         private MainViewModel _mainViewModel;
         private InventoryImageContainer _defaultInventoryTab;
-        
+
         public MainWindow()
         {
             InitializeComponent();
@@ -31,7 +32,7 @@ namespace GUI
             Slots.ItemsSource = _mainViewModel.SaveSlotDetails;
             TabCharacterStats.DataContext = _mainViewModel;
 
-            _defaultInventoryTab = new InventoryImageContainer("Images/InventoryIcons/InventoryTab_Consumables_Unselected.png", "Images/InventoryIcons/InventoryTab_Consumables_Selected.png");
+            _defaultInventoryTab =              new InventoryImageContainer("Images/InventoryIcons/InventoryTab_Consumables_Unselected.png",      "Images/InventoryIcons/InventoryTab_Consumables_Selected.png");
             ImageConsumables.DataContext = _defaultInventoryTab;
             ImageUpgradeMaterials.DataContext = new InventoryImageContainer("Images/InventoryIcons/InventoryTab_UpgradeMaterials_Unselected.png", "Images/InventoryIcons/InventoryTab_UpgradeMaterials_Selected.png");
             ImageKeyItems.DataContext =         new InventoryImageContainer("Images/InventoryIcons/InventoryTab_KeyItems_Unselected.png",         "Images/InventoryIcons/InventoryTab_KeyItems_Selected.png");
@@ -46,11 +47,11 @@ namespace GUI
         }
 
         #region MainTab
-        
+
         private void Import_Clicked(object sender, RoutedEventArgs e)
         {
             DetailComparer.Init(0x5FFFC);
-            
+
             var dialog = new OpenFileDialog();
             dialog.Filter = "Dark Souls Remastered Savefile (DRAKS0005.sl2)|DRAKS0005.sl2";
             if (dialog.ShowDialog() != true) return;
@@ -73,13 +74,13 @@ namespace GUI
             (Tabs.Items[1] as TabItem).IsEnabled = true;
             Tabs.SelectedIndex = 1;
         }
-        
+
         private void Export_Clicked(object sender, RoutedEventArgs e)
         {
             var dialog = new OpenFileDialog();
             dialog.Filter = "Dark Souls Savefile (.sl2)|*.sl2";
             if (dialog.ShowDialog() != true) return;
-            
+
             if (File.Exists(dialog.FileName) && MessageBox.Show($"File already exists!\nDo you want to replace it", "Replace", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes) return;
 
             try
@@ -94,21 +95,21 @@ namespace GUI
 
             MessageBox.Show("Save file has been exported!");
         }
-        
+
         #endregion
-        
+
         #region SlotTab
 
         private void Slot_DoubleClick(object sender, RoutedEventArgs e)
         {
             var lbItem = sender as ListBoxItem;
             if (lbItem?.DataContext == null) return;
-            
+
             var slot = lbItem.DataContext as SaveSlotDetails;
             if (slot == null) return;
-            
+
             _mainViewModel.SelectedSlot = slot;
-            
+
             (Tabs.Items[2] as TabItem).IsEnabled = true;
             Tabs.SelectedIndex = 2;
             (Tabs.Items[3] as TabItem).IsEnabled = true;
@@ -117,9 +118,9 @@ namespace GUI
 
             _mainViewModel.SetDefaultInventoryItem(_defaultInventoryTab);
         }
-        
+
         #endregion
-        
+
         #region InventoryTab
 
         private void InventoryImage_OnClick(object sender, RoutedEventArgs e)
@@ -135,7 +136,7 @@ namespace GUI
         {
             if (sender is not ListViewItem listViewItem) return;
             if (listViewItem.DataContext is not Item item) return;
-            
+
             ListViewItem_Interact(item);
         }
 
@@ -143,9 +144,26 @@ namespace GUI
         {
             if (sender is not ListViewItem listViewItem) return;
             if (listViewItem.DataContext is not Item item) return;
-            
+
             if (e.Key == Key.Return) ListViewItem_Interact(item);
-            else if (e.Key == Key.Back || e.Key == Key.Delete) ListViewItem_Delete(item);
+            else if (e.Key == Key.Back || e.Key == Key.Delete)
+            {
+                if (listViewInventory.SelectedItems.Count == 1)
+                {
+                    ListViewItem_Delete(item);
+                    return;
+                }
+
+                var items = new List<Item>();
+                
+                foreach (var selected in listViewInventory.SelectedItems)
+                {
+                    if (selected is not Item selectedItem) continue;
+                    items.Add(selectedItem);
+                }
+                
+                ListViewItem_Delete(items);
+            }
         }
 
         private void ListViewItem_Interact(Item item)
@@ -154,30 +172,73 @@ namespace GUI
         }
 
 
-
         private void ListViewItem_DeleteButtonClicked(object sender, RoutedEventArgs e)
         {
             if (sender is not Button button) return;
             if (button.DataContext is not Item item) return;
-            
+
             ListViewItem_Delete(item);
         }
 
         private void ListViewItem_Delete(Item item)
         {
-            if (MessageBox.Show($"Are you sure you want to delete {item.Name}?", "Warning", MessageBoxButton.YesNo) != MessageBoxResult.Yes) return;
-
-            if (_mainViewModel.DeleteItem(item)) MessageBox.Show($"{item.Name} has been removed from the inventory!");
-            else MessageBox.Show($"{item.Name} could not be removed from the inventory", "Error");
+            ListViewItem_Delete(new List<Item>{ item });
         }
         
-        
+        private void ListViewItem_Delete(List<Item> items)
+        {
+            if (items.Count == 0) return;
+            if (items.Count == 1)
+            {
+                var item = items[0];
+                if (MessageBox.Show($"Are you sure you want to delete {item.Name}?", "Warning", MessageBoxButton.YesNo) != MessageBoxResult.Yes) return;
+
+                if (_mainViewModel.DeleteItem(item)) MessageBox.Show($"{item.Name} has been removed from the inventory!");
+                else MessageBox.Show($"{item.Name} could not be removed from the inventory", "Error");
+                
+                return;
+            }
+
+            var sb = new StringBuilder();
+            
+            foreach (var item in items)
+            {
+                sb.Append(item.Name).Append(", ");
+            }
+
+            sb.Remove(sb.Length - 2, 2);
+            
+            if (MessageBox.Show($"Are you sure you want to delete those items?\n{sb}", "Warning", MessageBoxButton.YesNo) != MessageBoxResult.Yes) return;
+
+            sb.Clear();
+            var sbDeleted = new StringBuilder();
+            var sbError   = new StringBuilder();
+            foreach (var item in items)
+            {
+                if (_mainViewModel.DeleteItem(item)) sbDeleted.Append(item.Name).Append(", ");
+                else sbError.Append(item.Name).Append(", ");
+            }
+
+            if (sbDeleted.Length != 0)
+            {
+                sbDeleted.Remove(sbDeleted.Length - 2, 2);
+                sb.AppendLine("Successfully deleted those items:").AppendLine(sbDeleted.ToString());
+            }
+            if (sbError.Length != 0)
+            {
+                sbError.Remove(sbError.Length - 2, 2);
+                sb.AppendLine("Could not delete those items:").AppendLine(sbError.ToString());
+            }
+
+            MessageBox.Show(sb.ToString(), "Info");
+        }
+
 
         private void TreeItem_DoubleClick(object sender, MouseButtonEventArgs e)
         {
             TreeItem_Interact(sender);
         }
-        
+
         private void TreeItem_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key != Key.Return) return;
@@ -188,15 +249,14 @@ namespace GUI
         {
             if (sender is not TreeViewItem treeViewItem) return;
             if (treeViewItem.DataContext is not Item item) return;
-            
-            if (_mainViewModel.AddItem(item)) MessageBox.Show($"Added {item.Name} x{item.Amount} to inventory!");
-            else MessageBox.Show($"{item.Name} could not be added to the inventory", "Error");
-        }
 
+            if (_mainViewModel.AddItem(item)) MessageBox.Show($"Added {item.Name} x{item.Amount} to inventory!");
+        }
 
         #endregion
 
         private static readonly Regex _regexNumber = new Regex("[0-9]+");
+
         private void Textbox_PreviewNumberOnly(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !_regexNumber.IsMatch(e.Text);
