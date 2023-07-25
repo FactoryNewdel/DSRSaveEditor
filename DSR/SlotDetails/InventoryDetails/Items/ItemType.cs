@@ -850,10 +850,22 @@ public enum ItemType
     SoulOfPriscilla,
     SoulOfGwyndolin,
     
-
+    // Upgrade Materials
     TitaniteShard,
+    LargeTitaniteShard,
+    GreenTitaniteShard,
     TitaniteChunk,
+    BlueTitaniteChunk,
+    WhiteTitaniteChunk,
+    RedTitaniteChunk,
+    TitaniteSlab,
+    BlueTitaniteSlab,
+    WhiteTitaniteSlab,
+    RedTitaniteSlab,
+    DragonScale,
+    DemonTitanite,
     TwinklingTitanite,
+
 
     // Spells
     SoulArrow,

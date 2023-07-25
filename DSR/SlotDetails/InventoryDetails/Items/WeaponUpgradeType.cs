@@ -7,6 +7,7 @@ public enum WeaponUpgradeType
     Full,
     Twinkling,
     Scales,
+    Demon,
     
     FullCrossbow,
     
@@ -16,4 +17,5 @@ public enum WeaponUpgradeType
     ShieldFull,
     ShieldTwinkling,
     ShieldScales,
+    ShieldDemon,
 }

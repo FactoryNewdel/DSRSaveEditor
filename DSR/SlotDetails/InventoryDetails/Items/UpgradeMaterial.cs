@@ -21,10 +21,31 @@ public class UpgradeMaterial : Item
 
     private void GetMaterialDetails()
     {
-        var substract = ID / 1000 * 1000;
-        var materialTypeNum = (ID - substract) / 100;
-        if (!Enum.IsDefined(typeof(MaterialType), (int)materialTypeNum)) throw new InvalidDataException($"Invalid MaterialType: {materialTypeNum}");
-        _materialType = (MaterialType)materialTypeNum;
+        switch (Type)
+        {
+            case ItemType.TitaniteShard:
+            case ItemType.LargeTitaniteShard:
+            case ItemType.TitaniteChunk:
+            case ItemType.TitaniteSlab:
+                _materialType = MaterialType.Normal;
+                break;
+            case ItemType.GreenTitaniteShard:
+            case ItemType.BlueTitaniteChunk:
+            case ItemType.BlueTitaniteSlab:
+            case ItemType.WhiteTitaniteChunk:
+            case ItemType.WhiteTitaniteSlab:
+            case ItemType.RedTitaniteChunk:
+            case ItemType.RedTitaniteSlab:
+                _materialType = MaterialType.Colored;
+                break;
+            case ItemType.DragonScale:
+            case ItemType.TwinklingTitanite:
+            case ItemType.DemonTitanite:
+                _materialType = MaterialType.Unique;
+                break;
+            default:
+                throw new Exception($"Invalid Type: {Type}");
+        }
     }
 
     public MaterialType MaterialType => _materialType;

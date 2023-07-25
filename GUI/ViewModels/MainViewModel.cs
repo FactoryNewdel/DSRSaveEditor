@@ -42,9 +42,10 @@ public class MainViewModel : INotifyPropertyChanged
 
         _consumables = new List<ItemGroup>
         {
-            new ("Images/ItemIcons/Types/Consumables.png",  "Consumables",   ItemList.GetItems(typeof(CommonItem), true)),
+            new ("Images/ItemIcons/Types/Consumables.png",  "Consumables",   ItemList.GetItems(typeof(CommonItem), true).OrderBy(i => i.Name).ToList()),
+            new ("Images/ItemIcons/Types/SpecialItems.png", "Special Items", ItemList.GetItems(typeof(SpecialItem)).OrderBy(i => i.Name).ToList()),
             new ("Images/ItemIcons/Types/Souls.png",        "Souls",         ItemList.GetItems(typeof(CommonSoul))),
-            new ("Images/ItemIcons/Types/SpecialItems.png", "Special Items", ItemList.GetItems(typeof(SpecialItem)))
+            new ("Images/ItemIcons/Types/BossSouls.png",    "Boss Souls",    ItemList.GetItems(typeof(BossSoul))),
         };
         var upgradeMaterials = ItemList.GetItems(typeof(UpgradeMaterial));
         _upgradeMaterials = new List<ItemGroup>

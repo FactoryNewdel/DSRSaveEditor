@@ -2,9 +2,7 @@
 
 public enum MaterialType
 {
-    Normal = 0,
-    Unique = 1,
-    
-    // ???
+    Normal,
     Colored,
+    Unique,
 }
