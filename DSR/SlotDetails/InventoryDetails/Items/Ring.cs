@@ -14,5 +14,10 @@ public class Ring : Item
         ImagePath += $"Rings/{Type}.png";
     }
 
+    public Ring(Ring ring) : base(ring)
+    {
+        _ringEffects = ring._ringEffects;
+    }
+
     public List<Action> RingEffects => _ringEffects;
 }

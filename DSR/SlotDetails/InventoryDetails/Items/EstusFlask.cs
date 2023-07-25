@@ -14,6 +14,12 @@ public class EstusFlask : SpecialItem
         
     }
 
+    public EstusFlask(EstusFlask estusFlask) : base(estusFlask)
+    {
+        Strength = estusFlask.Strength;
+        Empty = estusFlask.Empty;
+    }
+
     public override uint FullID => (uint)(200 + Strength * 2 + (Empty ? 0 : 1));
 
     // TODO Check if max possible amount is saved somewhere to detect cheating. If not, set to 20

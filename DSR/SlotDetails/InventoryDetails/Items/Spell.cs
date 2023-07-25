@@ -11,5 +11,10 @@ public class Spell : Item
     {
         
     }
+
+    public Spell(Spell spell) : base(spell)
+    {
+        
+    }
     
 }

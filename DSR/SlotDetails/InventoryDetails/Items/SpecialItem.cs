@@ -10,5 +10,10 @@ public class SpecialItem : CommonItem
     {
     }
 
+    public SpecialItem(SpecialItem specialItem) : base(specialItem)
+    {
+        
+    }
+
     public override uint MaxAmount => 1;
 }

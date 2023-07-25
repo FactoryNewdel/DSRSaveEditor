@@ -14,6 +14,11 @@ public class UpgradeMaterial : Item
         GetMaterialDetails();
     }
 
+    public UpgradeMaterial(UpgradeMaterial upgradeMaterial) : base(upgradeMaterial)
+    {
+        _materialType = upgradeMaterial._materialType;
+    }
+
     private void GetMaterialDetails()
     {
         var substract = ID / 1000 * 1000;

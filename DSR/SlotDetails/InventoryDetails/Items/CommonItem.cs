@@ -12,4 +12,9 @@ public class CommonItem : Item
     {
         ImagePath += $"Items/{Type}.png";
     }
+
+    public CommonItem(CommonItem commonItem) : base(commonItem)
+    {
+        
+    }
 }

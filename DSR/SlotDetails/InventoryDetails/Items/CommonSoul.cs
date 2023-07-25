@@ -14,5 +14,10 @@ public class CommonSoul : CommonItem
         
     }
 
+    public CommonSoul(CommonSoul commonSoul) : base(commonSoul)
+    {
+        
+    }
+
     public uint SoulAmount => _soulAmount;
 }

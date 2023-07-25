@@ -2,6 +2,7 @@
 
 public class Weapon : Item
 {
+    private WeaponUpgradeType _weaponUpgradeType;
     private WeaponType _weaponType;
     private Infusion _infusion;
     private string _infusionImagePath;
@@ -9,19 +10,23 @@ public class Weapon : Item
     
     public Weapon(byte idSpace, uint id, uint amount, uint sorting, int index, bool enabled, uint durability, uint durabilityLoss) : base(idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss)
     {
+        _weaponUpgradeType = (ItemList.GetItem(Type) as Weapon).WeaponUpgradeType;
         GetWeaponDetails();
     }
 
-    public Weapon(ItemType type, byte idSpace, uint id, uint sorting, uint durability) : base(type, idSpace, id, sorting, durability)
+    public Weapon(ItemType type, byte idSpace, uint id, uint sorting, uint durability, WeaponUpgradeType weaponUpgradeType) : base(type, idSpace, id, sorting, durability)
     {
+        _weaponUpgradeType = weaponUpgradeType;
         GetWeaponDetails();
     }
 
     public Weapon(Weapon weapon) : base(weapon)
     {
-        _infusion = weapon._infusion;
-        _level = weapon._level;
+        _weaponUpgradeType = weapon._weaponUpgradeType;
         _weaponType = weapon._weaponType;
+        _infusion = weapon._infusion;
+        _infusionImagePath = weapon._infusionImagePath;
+        _level = weapon._level;
     }
 
     private void GetWeaponDetails()
@@ -36,11 +41,14 @@ public class Weapon : Item
         var weaponTypeNum = id / 100000;
         if (!Enum.IsDefined(typeof(WeaponType), (int)weaponTypeNum)) throw new InvalidDataException($"Invalid WeaponType: {weaponTypeNum}; ID: {id}");
         _weaponType = (WeaponType)weaponTypeNum;
-        if (_weaponType == WeaponType.GreatSword && id / 10000 == 35) _weaponType = WeaponType.UltraGreatsword;
+        if (_weaponType == WeaponType.Greatsword && id / 10000 == 35) _weaponType = WeaponType.UltraGreatsword;
         if (_weaponType == WeaponType.CurvedSword && id / 10000 == 45) _weaponType = WeaponType.CurvedGreatsword;
         if (_weaponType == WeaponType.Axe && id / 10000 == 75) _weaponType = WeaponType.GreatAxe;
         if (_weaponType == WeaponType.Hammer && id / 10000 == 85) _weaponType = WeaponType.GreatHammer;
         if (_weaponType == WeaponType.Bow && id / 10000 == 125) _weaponType = WeaponType.Crossbow;
+        if (_weaponType == WeaponType.Catalyst && id / 10000 == 133) _weaponType = WeaponType.PyromancyFlame;
+        if (_weaponType == WeaponType.Catalyst && id / 10000 == 136) _weaponType = WeaponType.Talisman;
+        if (_weaponType == WeaponType.SmallShield && id / 10000 == 145) _weaponType = WeaponType.StandardShield;
         
         ImagePath += $"Weapons/{_weaponType}s/{Type}.png";
     }
@@ -64,6 +72,8 @@ public class Weapon : Item
     }
     
     public override uint FullID => (uint)(ID + (int)_infusion * 100 + Level);
+
+    public WeaponUpgradeType WeaponUpgradeType => _weaponUpgradeType;
 
     public WeaponType WeaponType
     {

@@ -4,7 +4,7 @@ public enum WeaponType
 {
     Dagger = 1,
     StraightSword = 2,
-    GreatSword = 3,
+    Greatsword = 3,
     UltraGreatsword = 35,
     CurvedSword = 4,
     CurvedGreatsword = 45,
@@ -20,8 +20,11 @@ public enum WeaponType
     Bow = 12,
     Crossbow = 125,
     
-    Talisman = 13,
-    StandardShield = 14,
+    Catalyst = 13,
+    PyromancyFlame = 133,
+    Talisman = 136,
+    SmallShield = 14,
+    StandardShield = 145,
     GreatShield = 15,
     Whip = 16,
     
