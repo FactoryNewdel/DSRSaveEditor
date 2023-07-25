@@ -32,7 +32,6 @@ public class Item : INotifyPropertyChanged
         if (i != null) _type = i._type;
         else _type = ItemType.UNKNOWN;
 
-        Name = GetName();
         MaxAmount = 99;
         _amount = amount;
         _sorting = sorting;
@@ -40,6 +39,7 @@ public class Item : INotifyPropertyChanged
         _enabled = enabled;
         _durability = durability;
         _durabilityLoss = durabilityLoss;
+        Name = GetName();
 
         ImagePath = "Images/ItemIcons/";
     }
@@ -50,7 +50,6 @@ public class Item : INotifyPropertyChanged
         _idSpace = idSpace;
         _id = id;
         _type = type;
-        Name = GetName();
         MaxAmount = 99;
         _amount = 1;
         _sorting = sorting;
@@ -58,6 +57,7 @@ public class Item : INotifyPropertyChanged
         _enabled = true;
         _durability = durability;
         _durabilityLoss = 0;
+        Name = GetName();
 
         ImagePath = $"Images/ItemIcons/";
     }
@@ -67,7 +67,6 @@ public class Item : INotifyPropertyChanged
         _idSpace = item._idSpace;
         _id = item._id;
         _type = item._type;
-        Name = item.Name;
         MaxAmount = item.MaxAmount;
         _amount = item._amount;
         _sorting = item._sorting;
@@ -75,6 +74,7 @@ public class Item : INotifyPropertyChanged
         _enabled = item._enabled;
         _durability = item._durability;
         _durabilityLoss = item._durabilityLoss;
+        Name = item.Name;
         ImagePath = item.ImagePath;
     }
 
@@ -110,6 +110,8 @@ public class Item : INotifyPropertyChanged
             var ascii = (int)compare[i];
             if (ascii >= 65 && ascii <= 90) output = output.Insert(i + added++, " ");
         }
+
+        if (_sorting == 0) output += " (DO NOT USE ONLINE)";
         
         return output;
     }

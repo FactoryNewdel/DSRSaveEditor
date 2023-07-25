@@ -64,9 +64,12 @@ public class MainViewModel : INotifyPropertyChanged
             new ("Images/ItemIcons/Types/KeyItems.png",      "Special Items",    keyItems.Where(k => (k as KeyItem).KeyItemType == KeyItemType.Special).ToList()),
         };
         // TODO 
+        var spells = ItemList.GetItems(typeof(Spell));
         _spells = new List<ItemGroup>
         {
-            new ("Images/ItemIcons/Types/Spells.png",      "Spells",      ItemList.GetItems(typeof(Spell))),
+            new ("Images/ItemIcons/Types/Spells.png",      "Sorceries",      spells.Where(s => (s as Spell).SpellType == SpellType.Sorcery).ToList()),
+            new ("Images/ItemIcons/Types/Spells.png",      "Pyromancy",      spells.Where(s => (s as Spell).SpellType == SpellType.Pyromany).ToList()),
+            new ("Images/ItemIcons/Types/Spells.png",      "Miracle",        spells.Where(s => (s as Spell).SpellType == SpellType.Miracle).ToList()),
         };
         var weapons = ItemList.GetItems(typeof(Weapon)).Where(w => w.Type is not ItemType.Fists);
         _weapons = new List<ItemGroup>

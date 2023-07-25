@@ -16,7 +16,7 @@ public class BossSoul : CommonItem
 
     public BossSoul(BossSoul bossSoul) : base(bossSoul)
     {
-        
+        _soulAmount = bossSoul._soulAmount;
     }
 
     public uint SoulAmount => _soulAmount;
