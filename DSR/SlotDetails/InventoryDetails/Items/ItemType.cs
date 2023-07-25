@@ -226,10 +226,10 @@ public enum ItemType
     WandererManchette,
     WandererBoots,
 
-    MageSmithHat, // Unoptainable
-    MageSmithCoat, // Unoptainable
+    MageSmithHat,       // Unoptainable
+    MageSmithCoat,      // Unoptainable
     MageSmithGauntlets, // Unoptainable
-    MageSmithBoots, // Unoptainable
+    MageSmithBoots,     // Unoptainable
 
     BigHat,
     SageRobe,
@@ -327,10 +327,10 @@ public enum ItemType
     BlackSorcererGauntlets,
     BlackSorcererBoots,
 
-    EliteClericHelm, // Unoptainable
-    EliteClericArmor, // Unoptainable
-    EliteClericGauntlets, // Unoptainable
-    EliteClericLeggings, // Unoptainable
+    EliteClericHelm,        // Unoptainable
+    EliteClericArmor,       // Unoptainable
+    EliteClericGauntlets,   // Unoptainable
+    EliteClericLeggings,    // Unoptainable
 
 
     // Weapons
@@ -729,9 +729,48 @@ public enum ItemType
     LightningBolt,
 
     
-
     // Rings
     HavelsRing,
+    RedTearstoneRing,
+    DarkmoonBladeCovenantRing,
+    CatCovenantRing,
+    CloranthyRing,
+    FlameStoneplateRing,
+    ThunderStoneplateRing,
+    SpellStoneplateRing,
+    SpeckledStoneplateRing,
+    BloodbiteRing,
+    PoisonbiteRing,
+    TinyBeingsRing,
+    CursebiteRing,
+    WhiteSeanceRing,
+    BellowingDragoncrestRing,
+    DuskCrownRing,
+    HornetRing,
+    HawkRing,
+    RingOfSteelProtection,
+    CovetousGoldSerpentRing,
+    CovetousSilverSerpentRing,
+    SlumberingDragoncrestRing,
+    RingOfFog,
+    RustedIronRing,
+    RingOfSacrifice,
+    RareRingOfSacrifice,
+    DarkWoodGrainRing,
+    RingOfTheSunPrincess,
+    OldWitchsRing,
+    CovenantOfArtorias,
+    OrangeCharredRing,
+    LingeringDragoncrestRing,
+    RingOfTheEvilEye,
+    RingOfFavorandProtection,
+    LeoRing,
+    EastWoodGrainRing,
+    WolfRing,
+    BlueTearstoneRing,
+    RingOfTheSunsFirstborn,
+    DarkmoonSeanceRing,
+
 
     // Items
     BlackSeparationCrystal,

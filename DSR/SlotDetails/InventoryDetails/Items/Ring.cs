@@ -9,7 +9,7 @@ public class Ring : Item
         ImagePath += $"Rings/{Type}.png";
     }
 
-    public Ring(ItemType type, byte idSpace, uint id, uint sorting, uint durability) : base(type, idSpace, id, sorting, durability)
+    public Ring(ItemType type, byte idSpace, uint id, uint sorting) : base(type, idSpace, id, sorting, 0)
     {
         ImagePath += $"Rings/{Type}.png";
     }

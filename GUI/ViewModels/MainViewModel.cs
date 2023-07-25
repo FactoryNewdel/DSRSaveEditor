@@ -53,10 +53,14 @@ public class MainViewModel : INotifyPropertyChanged
             new ("Images/ItemIcons/Types/ColoredTitanite.png", "Colored Titanite", upgradeMaterials.Where(um => (um as UpgradeMaterial).MaterialType == MaterialType.Colored).ToList()),
             new ("Images/ItemIcons/Types/UniqueTitanite.png",  "Unique Titanite",  upgradeMaterials.Where(um => (um as UpgradeMaterial).MaterialType == MaterialType.Unique).ToList()),
         };
-        // TODO
+        var keyItems = ItemList.GetItems(typeof(KeyItem));
         _keyItems = new List<ItemGroup>
         {
-            new ("Images/ItemIcons/Types/KeyItems.png",      "Key Items",      ItemList.GetItems(typeof(KeyItem))),
+            new ("Images/ItemIcons/Types/KeyItems.png",      "Keys",             keyItems.Where(k => (k as KeyItem).KeyItemType == KeyItemType.Key).ToList()),
+            new ("Images/ItemIcons/Types/KeyItems.png",      "Embers",           keyItems.Where(k => (k as KeyItem).KeyItemType == KeyItemType.Ember).ToList()),
+            new ("Images/ItemIcons/Types/KeyItems.png",      "Bonfire Upgrades", keyItems.Where(k => (k as KeyItem).KeyItemType == KeyItemType.BonfireUpgrade).ToList()),
+            new ("Images/ItemIcons/Types/KeyItems.png",      "Lord Items",       keyItems.Where(k => (k as KeyItem).KeyItemType == KeyItemType.LordItem).ToList()),
+            new ("Images/ItemIcons/Types/KeyItems.png",      "Special Items",    keyItems.Where(k => (k as KeyItem).KeyItemType == KeyItemType.Special).ToList()),
         };
         // TODO 
         _spells = new List<ItemGroup>
@@ -66,23 +70,45 @@ public class MainViewModel : INotifyPropertyChanged
         var weapons = ItemList.GetItems(typeof(Weapon)).Where(w => w.Type is not ItemType.Fists);
         _weapons = new List<ItemGroup>
         {
-            new ("Images/ItemIcons/Types/Daggers.png",        "Daggers",         weapons.Where(w => (w as Weapon).WeaponType == WeaponType.Dagger).ToList()),
-            new ("Images/ItemIcons/Types/StraightSwords.png", "Straight Swords", weapons.Where(w => (w as Weapon).WeaponType == WeaponType.StraightSword).ToList()),
-            new ("Images/ItemIcons/Types/Greatswords.png",    "Greatswords",     weapons.Where(w => (w as Weapon).WeaponType == WeaponType.GreatSword).ToList()),
+            new ("Images/ItemIcons/Types/Daggers.png",            "Daggers",            weapons.Where(w => (w as Weapon).WeaponType == WeaponType.Dagger).ToList()),
+            new ("Images/ItemIcons/Types/StraightSwords.png",     "Straight Swords",    weapons.Where(w => (w as Weapon).WeaponType == WeaponType.StraightSword).ToList()),
+            new ("Images/ItemIcons/Types/Greatswords.png",        "Greatswords",        weapons.Where(w => (w as Weapon).WeaponType == WeaponType.Greatsword).ToList()),
+            new ("Images/ItemIcons/Types/UltraGreatswords.png",   "Ultra Greatswords",  weapons.Where(w => (w as Weapon).WeaponType == WeaponType.UltraGreatsword).ToList()),
+            new ("Images/ItemIcons/Types/CurvedSwords.png",       "Curved Swords",      weapons.Where(w => (w as Weapon).WeaponType == WeaponType.CurvedSword).ToList()),
+            new ("Images/ItemIcons/Types/Katanas.png",            "Katanas",            weapons.Where(w => (w as Weapon).WeaponType == WeaponType.Katana).ToList()),
+            new ("Images/ItemIcons/Types/CurvedGreatswords.png",  "Curved Greatswords", weapons.Where(w => (w as Weapon).WeaponType == WeaponType.CurvedGreatsword).ToList()),
+            new ("Images/ItemIcons/Types/PiercingSwords.png",     "Piercing Swords",    weapons.Where(w => (w as Weapon).WeaponType == WeaponType.PiercingSword).ToList()),
+            new ("Images/ItemIcons/Types/Axes.png",               "Axes",               weapons.Where(w => (w as Weapon).WeaponType == WeaponType.Axe).ToList()),
+            new ("Images/ItemIcons/Types/GreatAxes.png",          "Great Axes",         weapons.Where(w => (w as Weapon).WeaponType == WeaponType.GreatAxe).ToList()),
+            new ("Images/ItemIcons/Types/Hammers.png",            "Hammers",            weapons.Where(w => (w as Weapon).WeaponType == WeaponType.Hammer).ToList()),
+            new ("Images/ItemIcons/Types/GreatHammers.png",       "Great Hammers",      weapons.Where(w => (w as Weapon).WeaponType == WeaponType.GreatHammer).ToList()),
+            new ("Images/ItemIcons/Types/FistWeapons.png",        "Fist Weapons",       weapons.Where(w => (w as Weapon).WeaponType == WeaponType.FistWeapon).ToList()),
+            new ("Images/ItemIcons/Types/Spears.png",             "Spears",             weapons.Where(w => (w as Weapon).WeaponType == WeaponType.Spear).ToList()),
+            new ("Images/ItemIcons/Types/Halberds.png",           "Halberds",           weapons.Where(w => (w as Weapon).WeaponType == WeaponType.Halberd).ToList()),
+            new ("Images/ItemIcons/Types/Whips.png",              "Whips",              weapons.Where(w => (w as Weapon).WeaponType == WeaponType.Whip).ToList()),
+            new ("Images/ItemIcons/Types/Bows.png",               "Bows",               weapons.Where(w => (w as Weapon).WeaponType == WeaponType.Bow).ToList()),
+            new ("Images/ItemIcons/Types/Crossbows.png",          "Crossbows",          weapons.Where(w => (w as Weapon).WeaponType == WeaponType.Crossbow).ToList()),
+            new ("Images/ItemIcons/Types/Catalysts.png",          "Catalysts",          weapons.Where(w => (w as Weapon).WeaponType == WeaponType.Catalyst).ToList()),
+            new ("Images/ItemIcons/Types/PyromancyFlames.png",    "Pyromancy Flames",   weapons.Where(w => (w as Weapon).WeaponType == WeaponType.PyromancyFlame).ToList()),
+            new ("Images/ItemIcons/Types/Talismans.png",          "Talismans",          weapons.Where(w => (w as Weapon).WeaponType == WeaponType.Talisman).ToList()),
         };
         // TODO
         _ammunition = new List<ItemGroup>
         {
-            new ("Images/ItemIcons/Types/Arrows.png",      "Arrows",      weapons.Where(w => (w as Weapon).WeaponType == WeaponType.Arrow).ToList()),
+            new ("Images/ItemIcons/Types/Arrows.png",      "Arrows",     weapons.Where(w => (w as Weapon).WeaponType == WeaponType.Arrow).ToList()),
             new ("Images/ItemIcons/Types/Bolts.png",       "Bolts",      weapons.Where(w => (w as Weapon).WeaponType == WeaponType.Bolt).ToList()),
         };
+        var armor = ItemList.GetItems(typeof(Armor)).Where(a => (a as Armor).BaseID != 900000);
         _armor = new List<ItemGroup>
         {
-            new ("Images/ItemIcons/Types/Armor.png",      "Armor",      ItemList.GetItems(typeof(Armor)).Where(a => (a as Armor).BaseID is not 900000).ToList()),
+            new ("Images/ItemIcons/Types/Armor.png",      "Head Pieces", armor.Where(a => (a as Armor).ArmorPieceType == ArmorPieceType.Helm)      .OrderBy(i => i.Name).ToList()),
+            new ("Images/ItemIcons/Types/Armor.png",      "Chestplates", armor.Where(a => (a as Armor).ArmorPieceType == ArmorPieceType.Chestplate).OrderBy(i => i.Name).ToList()),
+            new ("Images/ItemIcons/Types/Armor.png",      "Gauntlets",   armor.Where(a => (a as Armor).ArmorPieceType == ArmorPieceType.Gauntlets) .OrderBy(i => i.Name).ToList()),
+            new ("Images/ItemIcons/Types/Armor.png",      "Legs",        armor.Where(a => (a as Armor).ArmorPieceType == ArmorPieceType.Leggins)   .OrderBy(i => i.Name).ToList()),
         };
         _rings = new List<ItemGroup>
         {
-            new ("Images/ItemIcons/Types/Rings.png",      "Rings",      ItemList.GetItems(typeof(Ring))),
+            new ("Images/ItemIcons/Types/Rings.png",      "Rings",      ItemList.GetItems(typeof(Ring)).OrderBy(i => i.Name).ToList()),
         };
     }
 
@@ -142,7 +168,7 @@ public class MainViewModel : INotifyPropertyChanged
         }
         else if (inventoryImageContainer.ImagePath.Contains("Weapon", StringComparison.InvariantCultureIgnoreCase))
         {
-            inventoryItemList = SelectedSlot.Inventory.GetItemOfType(typeof(Weapon)).Where(w => w.ID < 2000000).ToList();
+            inventoryItemList = SelectedSlot.Inventory.GetItemOfType(typeof(Weapon)).Where(w => w.ID < 2000000 && w.Type != ItemType.Fists).ToList();
             
             if (loadTree) FillTree(_weapons);
             
@@ -156,7 +182,7 @@ public class MainViewModel : INotifyPropertyChanged
         }
         else if (inventoryImageContainer.ImagePath.Contains("Armor", StringComparison.InvariantCultureIgnoreCase))
         {
-            inventoryItemList = SelectedSlot.Inventory.GetItemOfType(typeof(Armor));
+            inventoryItemList = SelectedSlot.Inventory.GetItemOfType(typeof(Armor)).Where(a => a.Type is not (ItemType.Helm or ItemType.Chest or ItemType.Gauntlets or ItemType.Leggings)).ToList();
 
             if (loadTree) FillTree(_armor);
             
