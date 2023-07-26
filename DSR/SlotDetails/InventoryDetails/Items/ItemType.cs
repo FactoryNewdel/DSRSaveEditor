@@ -763,7 +763,7 @@ public enum ItemType
     OrangeCharredRing,
     LingeringDragoncrestRing,
     RingOfTheEvilEye,
-    RingOfFavorandProtection,
+    RingOfFavorAndProtection,
     LeoRing,
     EastWoodGrainRing,
     WolfRing,

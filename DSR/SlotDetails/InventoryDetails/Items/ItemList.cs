@@ -41,7 +41,7 @@ public class ItemList
         new KeyItem(ItemType.WatchtowerBasementKey,                             64,     2019,   0x00FE80),
         new KeyItem(ItemType.ArchivePrisonExtraKey,                             64,     2020,   0x00FF60),
         new KeyItem(ItemType.ResidenceKey,                                      64,     2021,   0x00FE00),
-        new KeyItem(ItemType.MasterKey,                                         64,     2100,   0x00FD40),
+        new KeyItem(ItemType.MasterKey,                                         64,     2100,   0x00FD50),
         // Lord Souls /-vessel   25xx
         new KeyItem(ItemType.LordSoulGravelordNito,                             64,     2500,   0x00FA40),
         new KeyItem(ItemType.LordSoulBedOfChaos,                                64,     2501,   0x00FA60),
@@ -71,25 +71,25 @@ public class ItemList
         new Armor(ItemType.CatarinaGauntlets,           16,     12000,  0x01CE80,       400,    ArmorUpgradeType.Twinkling),
         new Armor(ItemType.CatarinaLeggings,            16,     13000,  0x01D4C0,       400,    ArmorUpgradeType.Twinkling),
 
-        new Armor(ItemType.PaladinHelm,                 16,     20000,  0x04DBC0,       500,    ArmorUpgradeType.Twinkling),
-        new Armor(ItemType.PaladinArmor,                16,     21000,  0x04E200,       500,    ArmorUpgradeType.Twinkling),
-        new Armor(ItemType.PaladinGauntlets,            16,     22000,  0x04E840,       500,    ArmorUpgradeType.Twinkling),
-        new Armor(ItemType.PaladinLeggings,             16,     23000,  0x04EE80,       500,    ArmorUpgradeType.Twinkling),
+        new Armor(ItemType.PaladinHelm,                 16,     20000,  0x053FC0,       500,    ArmorUpgradeType.Twinkling),
+        new Armor(ItemType.PaladinArmor,                16,     21000,  0x054600,       500,    ArmorUpgradeType.Twinkling),
+        new Armor(ItemType.PaladinGauntlets,            16,     22000,  0x054C40,       500,    ArmorUpgradeType.Twinkling),
+        new Armor(ItemType.PaladinLeggings,             16,     23000,  0x055280,       500,    ArmorUpgradeType.Twinkling),
 
-        new Armor(ItemType.DarkMask,                    16,     40000,  0x0490C0,       300,    ArmorUpgradeType.Twinkling),
-        new Armor(ItemType.DarkArmor,                   16,     41000,  0x049700,       300,    ArmorUpgradeType.Twinkling),
-        new Armor(ItemType.DarkGauntlets,               16,     42000,  0x049D40,       300,    ArmorUpgradeType.Twinkling),
-        new Armor(ItemType.DarkLeggings,                16,     43000,  0x04A380,       300,    ArmorUpgradeType.Twinkling),
+        new Armor(ItemType.DarkMask,                    16,     40000,  0x04F4C0,       300,    ArmorUpgradeType.Twinkling),
+        new Armor(ItemType.DarkArmor,                   16,     41000,  0x04FB00,       300,    ArmorUpgradeType.Twinkling),
+        new Armor(ItemType.DarkGauntlets,               16,     42000,  0x050140,       300,    ArmorUpgradeType.Twinkling),
+        new Armor(ItemType.DarkLeggings,                16,     43000,  0x050780,       300,    ArmorUpgradeType.Twinkling),
 
         new Armor(ItemType.BrigandHood,                 16,     50000,  0x009C40,       200,    ArmorUpgradeType.Regular),
         new Armor(ItemType.BrigandArmor,                16,     51000,  0x00A280,       200,    ArmorUpgradeType.Regular),
         new Armor(ItemType.BrigandGauntlets,            16,     52000,  0x00A8C0,       200,    ArmorUpgradeType.Regular),
         new Armor(ItemType.BrigandTrousers,             16,     53000,  0x00AF00,       200,    ArmorUpgradeType.Regular),
 
-        new Armor(ItemType.ShadowMask,                  16,     60000,  0x02F440,       200,    ArmorUpgradeType.Twinkling),
-        new Armor(ItemType.ShadowGarb,                  16,     61000,  0x02FA80,       200,    ArmorUpgradeType.Twinkling),
-        new Armor(ItemType.ShadowGauntlets,             16,     62000,  0x0300C0,       200,    ArmorUpgradeType.Twinkling),
-        new Armor(ItemType.ShadowLeggings,              16,     63000,  0x030700,       200,    ArmorUpgradeType.Twinkling),
+        new Armor(ItemType.ShadowMask,                  16,     60000,  0x030D40,       200,    ArmorUpgradeType.Twinkling),
+        new Armor(ItemType.ShadowGarb,                  16,     61000,  0x031380,       200,    ArmorUpgradeType.Twinkling),
+        new Armor(ItemType.ShadowGauntlets,             16,     62000,  0x0319C0,       200,    ArmorUpgradeType.Twinkling),
+        new Armor(ItemType.ShadowLeggings,              16,     63000,  0x032000,       200,    ArmorUpgradeType.Twinkling),
 
         new Armor(ItemType.BlackIronHelm,               16,     70000,  0x019000,       600,    ArmorUpgradeType.Twinkling),
         new Armor(ItemType.BlackIronArmor,              16,     71000,  0x019640,       600,    ArmorUpgradeType.Twinkling),
@@ -101,25 +101,25 @@ public class ItemList
         new Armor(ItemType.SmoughsGauntlets,           16,     82000,  0x043940,       700,    ArmorUpgradeType.None),
         new Armor(ItemType.SmoughsLeggings,            16,     83000,  0x043F80,       700,    ArmorUpgradeType.None),
 
-        new Armor(ItemType.SixEyedHelmOfTheChannelers,  16,     90000,  0x03D540,       300,    ArmorUpgradeType.None),
-        new Armor(ItemType.RobeOfTheChannelers,         16,     91000,  0x03DB80,       300,    ArmorUpgradeType.None),
-        new Armor(ItemType.GauntletsOfTheChannelers,    16,     92000,  0x03E1C0,       300,    ArmorUpgradeType.None),
-        new Armor(ItemType.WaistclothOfTheChannelers,   16,     93000,  0x03E800,       300,    ArmorUpgradeType.None),
+        new Armor(ItemType.SixEyedHelmOfTheChannelers,  16,     90000,  0x03EE40,       300,    ArmorUpgradeType.None),
+        new Armor(ItemType.RobeOfTheChannelers,         16,     91000,  0x03F480,       300,    ArmorUpgradeType.None),
+        new Armor(ItemType.GauntletsOfTheChannelers,    16,     92000,  0x03FAC0,       300,    ArmorUpgradeType.None),
+        new Armor(ItemType.WaistclothOfTheChannelers,   16,     93000,  0x040100,       300,    ArmorUpgradeType.None),
 
-        new Armor(ItemType.HelmOfFavor,                 16,     100000, 0x04C2C0,       500,    ArmorUpgradeType.Twinkling),
-        new Armor(ItemType.EmbracedArmorOfFavor,        16,     101000, 0x04C900,       500,    ArmorUpgradeType.Twinkling),
-        new Armor(ItemType.GauntletsOfFavor,            16,     102000, 0x04CF40,       500,    ArmorUpgradeType.Twinkling),
-        new Armor(ItemType.LeggingsOfFavor,             16,     103000, 0x04D580,       500,    ArmorUpgradeType.Twinkling),
+        new Armor(ItemType.HelmOfFavor,                 16,     100000, 0x0526C0,       500,    ArmorUpgradeType.Twinkling),
+        new Armor(ItemType.EmbracedArmorOfFavor,        16,     101000, 0x052D00,       500,    ArmorUpgradeType.Twinkling),
+        new Armor(ItemType.GauntletsOfFavor,            16,     102000, 0x053340,       500,    ArmorUpgradeType.Twinkling),
+        new Armor(ItemType.LeggingsOfFavor,             16,     103000, 0x053980,       500,    ArmorUpgradeType.Twinkling),
 
         new Armor(ItemType.HelmOfTheWise,               16,     110000, 0x01A900,       500,    ArmorUpgradeType.None),
         new Armor(ItemType.ArmorOfTheGlorious,          16,     111000, 0x01AF40,       500,    ArmorUpgradeType.None),
         new Armor(ItemType.GauntletsOfTheVanquisher,    16,     112000, 0x01B580,       500,    ArmorUpgradeType.None),
         new Armor(ItemType.BootsOfTheExplorer,          16,     113000, 0x01BBC0,       500,    ArmorUpgradeType.None),
 
-        new Armor(ItemType.StoneHelm,                   16,     120000, 0x04F4C0,       800,    ArmorUpgradeType.None),
-        new Armor(ItemType.StoneArmor,                  16,     121000, 0x04FB00,       800,    ArmorUpgradeType.None),
-        new Armor(ItemType.StoneGauntlets,              16,     122000, 0x050140,       800,    ArmorUpgradeType.None),
-        new Armor(ItemType.StoneLeggings,               16,     123000, 0x050780,       800,    ArmorUpgradeType.None),
+        new Armor(ItemType.StoneHelm,                   16,     120000, 0x0558C0,       800,    ArmorUpgradeType.None),
+        new Armor(ItemType.StoneArmor,                  16,     121000, 0x055F00,       800,    ArmorUpgradeType.None),
+        new Armor(ItemType.StoneGauntlets,              16,     122000, 0x056540,       800,    ArmorUpgradeType.None),
+        new Armor(ItemType.StoneLeggings,               16,     123000, 0x056B80,       800,    ArmorUpgradeType.None),
 
         new Armor(ItemType.CrystallineHelm,             16,     130000, 0x01DB00,       150,    ArmorUpgradeType.None),
         new Armor(ItemType.CrystallineArmor,            16,     131000, 0x01E140,       150,    ArmorUpgradeType.None),
@@ -134,15 +134,15 @@ public class ItemList
         new Armor(ItemType.MaskOfVelka,                 16,     150000, 0x029040,       400,    ArmorUpgradeType.Twinkling),
         new Armor(ItemType.BlackClericRobe,             16,     151000, 0x029680,       400,    ArmorUpgradeType.Twinkling),
         new Armor(ItemType.BlackManchette,              16,     152000, 0x029CC0,       400,    ArmorUpgradeType.Twinkling),
-        new Armor(ItemType.BlackTights,                 16,     153000, 0x01A2C0,       400,    ArmorUpgradeType.Twinkling),
+        new Armor(ItemType.BlackTights,                 16,     153000, 0x02A300,       400,    ArmorUpgradeType.Twinkling),
 
         new Armor(ItemType.IronHelm,                    16,     160000, 0x017700,       350,    ArmorUpgradeType.Regular),
         new Armor(ItemType.ArmorOfTheSun,               16,     161000, 0x017D40,       350,    ArmorUpgradeType.Regular),
         new Armor(ItemType.IronBracelet,                16,     162000, 0x018380,       350,    ArmorUpgradeType.Regular),
-        new Armor(ItemType.IronLeggings,                16,     163000, 0x02A300,       350,    ArmorUpgradeType.Regular),
+        new Armor(ItemType.IronLeggings,                16,     163000, 0x0189C0,       350,    ArmorUpgradeType.Regular),
 
         new Armor(ItemType.ChainHelm,                   16,     170000, 0x001F40,       300,    ArmorUpgradeType.Regular),
-        new Armor(ItemType.ChainArmor,                  16,     171000, 0x014B40,       300,    ArmorUpgradeType.Regular),
+        new Armor(ItemType.ChainArmor,                  16,     171000, 0x002580,       300,    ArmorUpgradeType.Regular),
         new Armor(ItemType.LeatherGauntlets,            16,     172000, 0x002BC0,       300,    ArmorUpgradeType.Regular),
         new Armor(ItemType.ChainLeggings,               16,     173000, 0x003200,       300,    ArmorUpgradeType.Regular),
 
@@ -151,12 +151,12 @@ public class ItemList
         new Armor(ItemType.ClericGauntlets,             16,     182000, 0x015180,       500,    ArmorUpgradeType.Regular),
         new Armor(ItemType.ClericLeggings,              16,     183000, 0x0157C0,       500,    ArmorUpgradeType.Regular),
 
-        new Armor(ItemType.SunlightMaggot,              16,     190000, 0x055F00,       80,     ArmorUpgradeType.None),
+        new Armor(ItemType.SunlightMaggot,              16,     190000, 0x05DC00,       80,     ArmorUpgradeType.None),
 
-        new Armor(ItemType.HelmOfThorns,                16,     200000, 0x04A9C0,       250,    ArmorUpgradeType.Twinkling),
-        new Armor(ItemType.ArmorOfThorns,               16,     201000, 0x04B000,       250,    ArmorUpgradeType.Twinkling),
-        new Armor(ItemType.GauntletsOfThorns,           16,     202000, 0x04B640,       250,    ArmorUpgradeType.Twinkling),
-        new Armor(ItemType.LeggingsOfThorns,            16,     203000, 0x04BC80,       250,    ArmorUpgradeType.Twinkling),
+        new Armor(ItemType.HelmOfThorns,                16,     200000, 0x050DC0,       250,    ArmorUpgradeType.Twinkling),
+        new Armor(ItemType.ArmorOfThorns,               16,     201000, 0x051400,       250,    ArmorUpgradeType.Twinkling),
+        new Armor(ItemType.GauntletsOfThorns,           16,     202000, 0x051A40,       250,    ArmorUpgradeType.Twinkling),
+        new Armor(ItemType.LeggingsOfThorns,            16,     203000, 0x052080,       250,    ArmorUpgradeType.Twinkling),
 
         new Armor(ItemType.StandardHelm,                16,     210000, 0x000640,       250,    ArmorUpgradeType.Regular),
         new Armor(ItemType.HardLeatherArmor,            16,     211000, 0x000C80,       250,    ArmorUpgradeType.Regular),
@@ -178,25 +178,25 @@ public class ItemList
         new Armor(ItemType.LeatherGloves,               16,     242000, 0x00BB80,       250,    ArmorUpgradeType.Regular),
         new Armor(ItemType.LeatherBoots,                16,     243000, 0x00C1C0,       250,    ArmorUpgradeType.Regular),
 
-        new Armor(ItemType.PaintingGuardianHood,        16,     250000, 0x03EE40,       150,    ArmorUpgradeType.Twinkling),
-        new Armor(ItemType.PaintingGuardianRobe,        16,     251000, 0x03F480,       150,    ArmorUpgradeType.Twinkling),
-        new Armor(ItemType.PaintingGuardianGloves,      16,     252000, 0x03FAC0,       150,    ArmorUpgradeType.Twinkling),
-        new Armor(ItemType.PaintingGuardianWaistcloth,  16,     253000, 0x040100,       150,    ArmorUpgradeType.Twinkling),
+        new Armor(ItemType.PaintingGuardianHood,        16,     250000, 0x040740,       150,    ArmorUpgradeType.Twinkling),
+        new Armor(ItemType.PaintingGuardianRobe,        16,     251000, 0x040D80,       150,    ArmorUpgradeType.Twinkling),
+        new Armor(ItemType.PaintingGuardianGloves,      16,     252000, 0x0413C0,       150,    ArmorUpgradeType.Twinkling),
+        new Armor(ItemType.PaintingGuardianWaistcloth,  16,     253000, 0x041A00,       150,    ArmorUpgradeType.Twinkling),
 
         new Armor(ItemType.OrnsteinsHelm,              16,     270000, 0x0445C0,       700,    ArmorUpgradeType.None),
         new Armor(ItemType.OrnsteinsArmor,             16,     271000, 0x044C00,       700,    ArmorUpgradeType.None),
         new Armor(ItemType.OrnsteinsGauntlets,         16,     272000, 0x045240,       700,    ArmorUpgradeType.None),
         new Armor(ItemType.OrnsteinsLeggings,          16,     273000, 0x045880,       700,    ArmorUpgradeType.None),
 
-        new Armor(ItemType.EasternHelm,                 16,     280000, 0x02DB40,       450,    ArmorUpgradeType.Twinkling),
-        new Armor(ItemType.EasternArmor,                16,     281000, 0x02E180,       450,    ArmorUpgradeType.Twinkling),
-        new Armor(ItemType.EasternGauntlets,            16,     282000, 0x02E7C0,       450,    ArmorUpgradeType.Twinkling),
-        new Armor(ItemType.EasternLeggings,             16,     283000, 0x02EE00,       450,    ArmorUpgradeType.Twinkling),
+        new Armor(ItemType.EasternHelm,                 16,     280000, 0x02F440,       450,    ArmorUpgradeType.Twinkling),
+        new Armor(ItemType.EasternArmor,                16,     281000, 0x02FA80,       450,    ArmorUpgradeType.Twinkling),
+        new Armor(ItemType.EasternGauntlets,            16,     282000, 0x0300C0,       450,    ArmorUpgradeType.Twinkling),
+        new Armor(ItemType.EasternLeggings,             16,     283000, 0x030700,       450,    ArmorUpgradeType.Twinkling),
 
-        new Armor(ItemType.XanthousCrown,               16,     290000, 0x0526C0,       400,    ArmorUpgradeType.Twinkling),
-        new Armor(ItemType.XanthousOvercoat,            16,     291000, 0x052D00,       400,    ArmorUpgradeType.Twinkling),
-        new Armor(ItemType.XanthousGloves,              16,     292000, 0x053340,       400,    ArmorUpgradeType.Twinkling),
-        new Armor(ItemType.XanthousWaistcloth,          16,     293000, 0x053980,       400,    ArmorUpgradeType.Twinkling),
+        new Armor(ItemType.XanthousCrown,               16,     290000, 0x05A3C0,       400,    ArmorUpgradeType.Twinkling),
+        new Armor(ItemType.XanthousOvercoat,            16,     291000, 0x05AA00,       400,    ArmorUpgradeType.Twinkling),
+        new Armor(ItemType.XanthousGloves,              16,     292000, 0x05B040,       400,    ArmorUpgradeType.Twinkling),
+        new Armor(ItemType.XanthousWaistcloth,          16,     293000, 0x05B680,       400,    ArmorUpgradeType.Twinkling),
 
         new Armor(ItemType.ThiefMask,                   16,     300000, 0x008340,       250,    ArmorUpgradeType.Regular),
         new Armor(ItemType.BlackLeatherArmor,           16,     301000, 0x008980,       250,    ArmorUpgradeType.Regular),
@@ -208,10 +208,10 @@ public class ItemList
         new Armor(ItemType.TravelingGlovesCleric,     16,     312000, 0x013880,       350,    ArmorUpgradeType.Regular),
         new Armor(ItemType.HolyTrousers,                16,     313000, 0x013EC0,       350,    ArmorUpgradeType.Regular),
 
-        new Armor(ItemType.BlackKnightHelm,             16,     320000, 0x03A340,       550,    ArmorUpgradeType.Twinkling),
-        new Armor(ItemType.BlackKnightArmor,            16,     321000, 0x03A980,       550,    ArmorUpgradeType.Twinkling),
-        new Armor(ItemType.BlackKnightGauntlets,        16,     322000, 0x03AFC0,       550,    ArmorUpgradeType.Twinkling),
-        new Armor(ItemType.BlackKnightLeggings,         16,     323000, 0x03B600,       550,    ArmorUpgradeType.Twinkling),
+        new Armor(ItemType.BlackKnightHelm,             16,     320000, 0x03BC40,       550,    ArmorUpgradeType.Twinkling),
+        new Armor(ItemType.BlackKnightArmor,            16,     321000, 0x03C280,       550,    ArmorUpgradeType.Twinkling),
+        new Armor(ItemType.BlackKnightGauntlets,        16,     322000, 0x03C8C0,       550,    ArmorUpgradeType.Twinkling),
+        new Armor(ItemType.BlackKnightLeggings,         16,     323000, 0x03CF00,       550,    ArmorUpgradeType.Twinkling),
 
         new Armor(ItemType.CrownOfDusk,                 16,     330000, 0x024B80,       150,    ArmorUpgradeType.None),
         new Armor(ItemType.AntiquatedDress,             16,     331000, 0x0251C0,       150,    ArmorUpgradeType.Twinkling),
@@ -245,28 +245,28 @@ public class ItemList
 
         new Armor(ItemType.KnightHelm,                  16,     390000, 0x003840,       400,    ArmorUpgradeType.Regular),
         new Armor(ItemType.KnightArmor,                 16,     391000, 0x003E80,       400,    ArmorUpgradeType.Regular),
-        new Armor(ItemType.KnightGauntlets,             16,     392000, 0x03AFC0,       400,    ArmorUpgradeType.Regular),
+        new Armor(ItemType.KnightGauntlets,             16,     392000, 0x0044C0,       400,    ArmorUpgradeType.Regular),
         new Armor(ItemType.KnightLeggings,              16,     393000, 0x004B00,       400,    ArmorUpgradeType.Regular),
 
-        new Armor(ItemType.DingyHood,                   16,     400000, 0x02C240,       150,    ArmorUpgradeType.Regular),
-        new Armor(ItemType.DingyRobe,                   16,     401000, 0x02C880,       150,    ArmorUpgradeType.Regular),
-        new Armor(ItemType.DingyGloves,                 16,     402000, 0x02CEC0,       150,    ArmorUpgradeType.Regular),
-        new Armor(ItemType.BloodStainedSkirt,          16,     403000, 0x02D500,       150,    ArmorUpgradeType.Regular),
+        new Armor(ItemType.DingyHood,                   16,     400000, 0x02DB40,       150,    ArmorUpgradeType.Regular),
+        new Armor(ItemType.DingyRobe,                   16,     401000, 0x02E180,       150,    ArmorUpgradeType.Regular),
+        new Armor(ItemType.DingyGloves,                 16,     402000, 0x02E7C0,       150,    ArmorUpgradeType.Regular),
+        new Armor(ItemType.BloodStainedSkirt,           16,     403000, 0x02EE00,       150,    ArmorUpgradeType.Regular),
 
-        new Armor(ItemType.MaidenHood,                  16,     410000, 0x02A940,       150,    ArmorUpgradeType.Regular),
-        new Armor(ItemType.MaidenBody,                  16,     411000, 0x02AF80,       150,    ArmorUpgradeType.Regular),
-        new Armor(ItemType.MaidenGloves,                16,     412000, 0x02B5C0,       150,    ArmorUpgradeType.Regular),
-        new Armor(ItemType.MaidenSkirt,                 16,     413000, 0x02BC00,       150,    ArmorUpgradeType.Regular),
+        new Armor(ItemType.MaidenHood,                  16,     410000, 0x02C240,       150,    ArmorUpgradeType.Regular),
+        new Armor(ItemType.MaidenBody,                  16,     411000, 0x02C880,       150,    ArmorUpgradeType.Regular),
+        new Armor(ItemType.MaidenGloves,                16,     412000, 0x02CEC0,       150,    ArmorUpgradeType.Regular),
+        new Armor(ItemType.MaidenSkirt,                 16,     413000, 0x02D500,       150,    ArmorUpgradeType.Regular),
 
-        new Armor(ItemType.SilverKnightHelm,            16,     420000, 0x038A40,       600,    ArmorUpgradeType.Twinkling),
-        new Armor(ItemType.SilverKnightArmor,           16,     421000, 0x039080,       600,    ArmorUpgradeType.Twinkling),
-        new Armor(ItemType.SilverKnightGauntlets,       16,     422000, 0x0396C0,       600,    ArmorUpgradeType.Twinkling),
-        new Armor(ItemType.SilverKnightLeggings,        16,     423000, 0x039D00,       600,    ArmorUpgradeType.Twinkling),
+        new Armor(ItemType.SilverKnightHelm,            16,     420000, 0x03A340,       600,    ArmorUpgradeType.Twinkling),
+        new Armor(ItemType.SilverKnightArmor,           16,     421000, 0x03A980,       600,    ArmorUpgradeType.Twinkling),
+        new Armor(ItemType.SilverKnightGauntlets,       16,     422000, 0x03AFC0,       600,    ArmorUpgradeType.Twinkling),
+        new Armor(ItemType.SilverKnightLeggings,        16,     423000, 0x03B600,       600,    ArmorUpgradeType.Twinkling),
 
-        new Armor(ItemType.HavelsHelm,                 16,     440000, 0x050DC0,       900,    ArmorUpgradeType.None),
-        new Armor(ItemType.HavelsArmor,                16,     441000, 0x051400,       900,    ArmorUpgradeType.None),
-        new Armor(ItemType.HavelsGauntlets,            16,     442000, 0x051A40,       900,    ArmorUpgradeType.None),
-        new Armor(ItemType.HavelsLeggings,             16,     443000, 0x052080,       900,    ArmorUpgradeType.None),
+        new Armor(ItemType.HavelsHelm,                 16,     440000, 0x058AC0,       900,    ArmorUpgradeType.None),
+        new Armor(ItemType.HavelsArmor,                16,     441000, 0x059100,       900,    ArmorUpgradeType.None),
+        new Armor(ItemType.HavelsGauntlets,            16,     442000, 0x059740,       900,    ArmorUpgradeType.None),
+        new Armor(ItemType.HavelsLeggings,             16,     443000, 0x059D80,       900,    ArmorUpgradeType.None),
 
         new Armor(ItemType.BrassHelm,                   16,     450000, 0x01F400,       600,    ArmorUpgradeType.Twinkling),
         new Armor(ItemType.BrassArmor,                  16,     451000, 0x01FA40,       600,    ArmorUpgradeType.Twinkling),
@@ -283,29 +283,29 @@ public class ItemList
         new Armor(ItemType.GolemGauntlets,              16,     472000, 0x042040,       700,    ArmorUpgradeType.None),
         new Armor(ItemType.GolemLeggings,               16,     473000, 0x042680,       700,    ArmorUpgradeType.None),
 
-        new Armor(ItemType.HollowSoldierHelm,           16,     480000, 0x032640,       200,    ArmorUpgradeType.Regular),
-        new Armor(ItemType.HollowSoldierArmor,          16,     481000, 0x032C80,       200,    ArmorUpgradeType.Regular),
-        new Armor(ItemType.HollowSoldierWaistcloth,     16,     483000, 0x033900,       200,    ArmorUpgradeType.Regular),
+        new Armor(ItemType.HollowSoldierHelm,           16,     480000, 0x033F40,       200,    ArmorUpgradeType.Regular),
+        new Armor(ItemType.HollowSoldierArmor,          16,     481000, 0x034580,       200,    ArmorUpgradeType.Regular),
+        new Armor(ItemType.HollowSoldierWaistcloth,     16,     483000, 0x035200,       200,    ArmorUpgradeType.Regular),
 
-        new Armor(ItemType.SteelHelm,                   16,     490000, 0x035840,       500,    ArmorUpgradeType.Regular),
-        new Armor(ItemType.SteelArmor,                  16,     491000, 0x035E80,       500,    ArmorUpgradeType.Regular),
-        new Armor(ItemType.SteelGauntlets,              16,     492000, 0x0364C0,       500,    ArmorUpgradeType.Regular),
-        new Armor(ItemType.SteelLeggings,               16,     493000, 0x036B00,       500,    ArmorUpgradeType.Regular),
+        new Armor(ItemType.SteelHelm,                   16,     490000, 0x037140,       500,    ArmorUpgradeType.Regular),
+        new Armor(ItemType.SteelArmor,                  16,     491000, 0x037780,       500,    ArmorUpgradeType.Regular),
+        new Armor(ItemType.SteelGauntlets,              16,     492000, 0x037DC0,       500,    ArmorUpgradeType.Regular),
+        new Armor(ItemType.SteelLeggings,               16,     493000, 0x038400,       500,    ArmorUpgradeType.Regular),
 
-        new Armor(ItemType.HollowThiefsHood,           16,     500000, 0x037140,       250,    ArmorUpgradeType.Regular),
-        new Armor(ItemType.HollowThiefsLeatherArmor,   16,     501000, 0x037780,       250,    ArmorUpgradeType.Regular),
-        new Armor(ItemType.HollowThiefsTights,         16,     503000, 0x038400,       250,    ArmorUpgradeType.Regular),
+        new Armor(ItemType.HollowThiefsHood,            16,     500000, 0x038A40,       250,    ArmorUpgradeType.Regular),
+        new Armor(ItemType.HollowThiefsLeatherArmor,    16,     501000, 0x037780,       250,    ArmorUpgradeType.Regular),
+        new Armor(ItemType.HollowThiefsTights,          16,     503000, 0x039D00,       250,    ArmorUpgradeType.Regular),
 
-        new Armor(ItemType.BalderHelm,                  16,     510000, 0x033F40,       450,    ArmorUpgradeType.Regular),
-        new Armor(ItemType.BalderArmor,                 16,     511000, 0x034580,       450,    ArmorUpgradeType.Regular),
-        new Armor(ItemType.BalderGauntlets,             16,     512000, 0x034BC0,       450,    ArmorUpgradeType.Regular),
-        new Armor(ItemType.BalderLeggings,              16,     513000, 0x035200,       450,    ArmorUpgradeType.Regular),
+        new Armor(ItemType.BalderHelm,                  16,     510000, 0x035840,       450,    ArmorUpgradeType.Regular),
+        new Armor(ItemType.BalderArmor,                 16,     511000, 0x035E80,       450,    ArmorUpgradeType.Regular),
+        new Armor(ItemType.BalderGauntlets,             16,     512000, 0x0364C0,       450,    ArmorUpgradeType.Regular),
+        new Armor(ItemType.BalderLeggings,              16,     513000, 0x036B00,       450,    ArmorUpgradeType.Regular),
 
         new Armor(ItemType.HollowWarriorHelm,           16,     520000, 0x030D40,       250,    ArmorUpgradeType.Regular),
-        new Armor(ItemType.HollowWarriorArmor,          16,     521000, 0x031380,       250,    ArmorUpgradeType.Regular),
-        new Armor(ItemType.HollowWarriorWaistcloth,     16,     523000, 0x032000,       250,    ArmorUpgradeType.Regular),
+        new Armor(ItemType.HollowWarriorArmor,          16,     521000, 0x032C80,       250,    ArmorUpgradeType.Regular),
+        new Armor(ItemType.HollowWarriorWaistcloth,     16,     523000, 0x033900,       250,    ArmorUpgradeType.Regular),
 
-        new Armor(ItemType.GiantHelm,                   16,     530000, 0x03BC40,       600,    ArmorUpgradeType.Twinkling),
+        new Armor(ItemType.GiantHelm,                   16,     530000, 0x03D540,       600,    ArmorUpgradeType.Twinkling),
         new Armor(ItemType.GiantArmor,                  16,     531000, 0x03C280,       600,    ArmorUpgradeType.Twinkling),
         new Armor(ItemType.GiantGauntlets,              16,     532000, 0x03C8C0,       600,    ArmorUpgradeType.Twinkling),
         new Armor(ItemType.GiantLeggings,               16,     533000, 0x03CF00,       600,    ArmorUpgradeType.Twinkling),
@@ -320,15 +320,15 @@ public class ItemList
         new Armor(ItemType.BraceletOfTheGreatLord,      16,     552000, 0x048440,       400,    ArmorUpgradeType.None),
         new Armor(ItemType.AnkletOfTheGreatLord,        16,     553000, 0x048A80,       400,    ArmorUpgradeType.None),
 
-        new Armor(ItemType.Sack,                        16,     560000, 0x0558C0,       150,    ArmorUpgradeType.Regular),
+        new Armor(ItemType.Sack,                        16,     560000, 0x05D5C0,       150,    ArmorUpgradeType.Regular),
 
-        new Armor(ItemType.SymbolOfAvarice,             16,     570000, 0x056540,       300,    ArmorUpgradeType.None),
-        new Armor(ItemType.RoyalHelm,                   16,     580000, 0x055280,       500,    ArmorUpgradeType.Regular),
-        new Armor(ItemType.MaskOfTheFather,             16,     590000, 0x053FC0,       200,    ArmorUpgradeType.None),
-        new Armor(ItemType.MaskOfTheMother,             16,     600000, 0x054600,       200,    ArmorUpgradeType.None),
-        new Armor(ItemType.MaskOfTheChild,              16,     610000, 0x054C40,       200,    ArmorUpgradeType.None),
-        new Armor(ItemType.FangBoarHelm,                16,     620000, 0x040740,       600,    ArmorUpgradeType.Twinkling),
-        new Armor(ItemType.GargoyleHelm,                16,     630000, 0x040D80,       500,    ArmorUpgradeType.Twinkling),
+        new Armor(ItemType.SymbolOfAvarice,             16,     570000, 0x05E240,       300,    ArmorUpgradeType.None),
+        new Armor(ItemType.RoyalHelm,                   16,     580000, 0x05CF80,       500,    ArmorUpgradeType.Regular),
+        new Armor(ItemType.MaskOfTheFather,             16,     590000, 0x05BCC0,       200,    ArmorUpgradeType.None),
+        new Armor(ItemType.MaskOfTheMother,             16,     600000, 0x05C300,       200,    ArmorUpgradeType.None),
+        new Armor(ItemType.MaskOfTheChild,              16,     610000, 0x05C940,       200,    ArmorUpgradeType.None),
+        new Armor(ItemType.FangBoarHelm,                16,     620000, 0x042040,       600,    ArmorUpgradeType.Twinkling),
+        new Armor(ItemType.GargoyleHelm,                16,     630000, 0x042680,       500,    ArmorUpgradeType.Twinkling),
 
         new Armor(ItemType.BlackSorcererHat,            16,     640000, 0x00E100,       200,    ArmorUpgradeType.Regular),
         new Armor(ItemType.BlackSorcererCloak,          16,     641000, 0x00E740,       200,    ArmorUpgradeType.Regular),
@@ -344,7 +344,7 @@ public class ItemList
 
         // Weapons      0       XXXNXX Infusion, XXXXNN Level
         // Empty Slots
-        new Weapon(ItemType.Fists, 0, 900000, 0x2AB98000, 5, WeaponUpgradeType.Unoptainable),
+        new Weapon(ItemType.Fists, 0, 900000, 0x2AB980, 5, WeaponUpgradeType.Unoptainable),
         
         // Daggers             01XXXXX
         new Weapon(ItemType.Dagger,                                             0,      100000, 0x000640,       200,    WeaponUpgradeType.Full),
@@ -377,7 +377,7 @@ public class ItemList
         new Weapon(ItemType.StoneGreatsword,                                    0,      306000, 0x08D040,       800,    WeaponUpgradeType.Twinkling),
         new Weapon(ItemType.GreatswordOfArtoriasBrokenStraightSword,            0,      307000, 0x0526C0,       400,    WeaponUpgradeType.Demon),
         new Weapon(ItemType.GreatswordOfArtoriasStraightSwordHilt,              0,      307100, 0x056540,       400,    WeaponUpgradeType.Demon),
-        new Weapon(ItemType.MoonlightGreatsword,                                0,      309000, 0x0A08C0,       300,    WeaponUpgradeType.Scales),
+        new Weapon(ItemType.MoonlightGreatsword,                                0,      309000, 0x0B02C0,       300,    WeaponUpgradeType.Scales),
         new Weapon(ItemType.BlackKnightSword,                                   0,      310000, 0x0891C0,       300,    WeaponUpgradeType.Twinkling),
         new Weapon(ItemType.GreatswordOfArtoriasCursedDagger,                   0,      311000, 0x000640,       400,    WeaponUpgradeType.Demon),
         new Weapon(ItemType.GreatswordOfArtoriasCursedParryingDagger,           0,      311100, 0x0044C0,       400,    WeaponUpgradeType.Demon),
@@ -423,7 +423,7 @@ public class ItemList
         
         // Curved Swords       04XXXXX
         new Weapon(ItemType.Scimitar,                                           0,      400000, 0x0EAC40,       160,    WeaponUpgradeType.Full),
-        new Weapon(ItemType.Falchion,                                           0,      401000, 0x0F0A00,       160,    WeaponUpgradeType.Full),
+        new Weapon(ItemType.Falchion,                                           0,      401000, 0x0EEAC0,       160,    WeaponUpgradeType.Full),
         new Weapon(ItemType.Shotel,                                             0,      402000, 0x0F2940,       120,    WeaponUpgradeType.Full),
         new Weapon(ItemType.JaggedGhostBlade,                                   0,      403000, 0x0FA640,       100,    WeaponUpgradeType.Twinkling),
         new Weapon(ItemType.PaintingGuardianSword,                              0,      405000, 0x0F67C0,       100,    WeaponUpgradeType.Full),
@@ -470,10 +470,10 @@ public class ItemList
         new Weapon(ItemType.Greataxe,                                           0,      750000, 0x1AE140,       230,    WeaponUpgradeType.Full),
         new Weapon(ItemType.DemonsGreataxe,                                     0,      751000, 0x1B1FC0,       600,    WeaponUpgradeType.Full),
         new Weapon(ItemType.DragonKingGreataxe,                                 0,      752000, 0x1B9CC0,       400,    WeaponUpgradeType.Scales),
-        new Weapon(ItemType.BlackKnightGreataxe,                                0,      753000, 0x1B5E40,       300,    WeaponUpgradeType.Twinkling),
+        new Weapon(ItemType.BlackKnightGreataxe,                                0,      753000, 0x1B6480,       300,    WeaponUpgradeType.Twinkling),
         
         // Hammers             08XXXXX
-        new Weapon(ItemType.Club,                                               0,      800000, 0x1D3F80,       250,    WeaponUpgradeType.Full),
+        new Weapon(ItemType.Club,                                               0,      800000, 0x1D13C0,       250,    WeaponUpgradeType.Full),
         new Weapon(ItemType.Mace,                                               0,      801000, 0x1DCF40,       250,    WeaponUpgradeType.Full),
         new Weapon(ItemType.MorningStar,                                        0,      802000, 0x1E0DC0,       180,    WeaponUpgradeType.Full),
         new Weapon(ItemType.Warpick,                                            0,      803000, 0x1E4C40,       220,    WeaponUpgradeType.Full),
@@ -511,11 +511,11 @@ public class ItemList
         new Weapon(ItemType.Spear,                                              0,      1000000,        0x223440,       180,    WeaponUpgradeType.Full),
         new Weapon(ItemType.WingedSpear,                                        0,      1001000,        0x2272C0,       140,    WeaponUpgradeType.Full),
         new Weapon(ItemType.Partizan,                                           0,      1002000,        0x22B140,       160,    WeaponUpgradeType.Full),
-        new Weapon(ItemType.DemonsSpear,                                        0,      1003000,        0x236CC0,       400,    WeaponUpgradeType.Demon),
-        new Weapon(ItemType.ChannelersTrident,                                  0,      1004000,        0x232E40,       240,    WeaponUpgradeType.Twinkling),
+        new Weapon(ItemType.DemonsSpear,                                        0,      1003000,        0x237300,       400,    WeaponUpgradeType.Demon),
+        new Weapon(ItemType.ChannelersTrident,                                  0,      1004000,        0x236CC0,       240,    WeaponUpgradeType.Twinkling),
         new Weapon(ItemType.SilverKnightSpear,                                  0,      1006000,        0x23AB40,       300,    WeaponUpgradeType.Twinkling),
         new Weapon(ItemType.Pike,                                               0,      1050000,        0x3B9840,       180,    WeaponUpgradeType.Full),
-        new Weapon(ItemType.DragonslayerSpearMailBreaker,                       0,      1051000,        0x15FF40,       300,    WeaponUpgradeType.Demon),
+        new Weapon(ItemType.DragonslayerSpearMailBreaker,                       0,      1051000,        0x223440,       300,    WeaponUpgradeType.Demon), //
         new Weapon(ItemType.DragonslayerSpearRapier,                            0,      1051100,        0x163DC0,       300,    WeaponUpgradeType.Demon),
         new Weapon(ItemType.DragonslayerSpearEstoc,                             0,      1051200,        0x167C40,       300,    WeaponUpgradeType.Demon),
         new Weapon(ItemType.DragonslayerSpearRicardsRapier,                     0,      1051900,        0x16BAC0,       300,    WeaponUpgradeType.Demon),
@@ -541,7 +541,7 @@ public class ItemList
         new Weapon(ItemType.Lucerne,                                            0,      1106000,        0x24E3C0,       200,    WeaponUpgradeType.Full),
         new Weapon(ItemType.Scythe,                                             0,      1107000,        0x252240,       150,    WeaponUpgradeType.Full),
         new Weapon(ItemType.GreatScythe,                                        0,      1150000,        0x271640,       130,    WeaponUpgradeType.Full),
-        new Weapon(ItemType.LifehuntScytheHalberd,                              0,      1151000,        0x24A540,       100,    WeaponUpgradeType.Demon),
+        new Weapon(ItemType.LifehuntScytheHalberd,                              0,      1151000,        0x2A0440,       100,    WeaponUpgradeType.Demon),  //
         new Weapon(ItemType.LifehuntScytheGargoylesHalberd,                     0,      1151400,        0x2560C0,       100,    WeaponUpgradeType.Demon),
         new Weapon(ItemType.LifehuntScytheLucerne,                              0,      1151100,        0x24E3C0,       100,    WeaponUpgradeType.Demon),
         new Weapon(ItemType.LifehuntScytheScythe,                               0,      1151205,        0x252240,       100,    WeaponUpgradeType.Demon),
@@ -569,7 +569,7 @@ public class ItemList
         // Catalysts           130XXXX
         new Weapon(ItemType.SorcerersCatalyst,                                  0,      1300000,        0x30DA40,       90,     WeaponUpgradeType.None),
         new Weapon(ItemType.BeatricesCatalyst,                                  0,      1301000,        0x30E080,       90,     WeaponUpgradeType.None),
-        new Weapon(ItemType.TinBanishmentCatalyst,                              0,      1302000,        0x30FFC0,       160,    WeaponUpgradeType.None),
+        new Weapon(ItemType.TinBanishmentCatalyst,                              0,      1302000,        0x310600,       160,    WeaponUpgradeType.None),
         new Weapon(ItemType.LogansCatalyst,                                     0,      1303000,        0x30E6C0,       90,     WeaponUpgradeType.None),
         new Weapon(ItemType.TinDarkmoonCatalystSorcerersCatalyst,               0,      1304000,        0x30DA40,       60,     WeaponUpgradeType.None),
         new Weapon(ItemType.TinDarkmoonCatalystBeatricesCatalyst,               0,      1304100,        0x30E080,       60,     WeaponUpgradeType.None),
@@ -577,22 +577,22 @@ public class ItemList
         new Weapon(ItemType.TinDarkmoonCatalystLogansCatalyst,                  0,      1304300,        0x30E6C0,       60,     WeaponUpgradeType.None),
         new Weapon(ItemType.TinDarkmoonCatalystOolacileIvoryCatalyst,           0,      1304400,        0x30ED00,       60,     WeaponUpgradeType.None),
         new Weapon(ItemType.OolacileIvoryCatalyst,                              0,      1305000,        0x30ED00,       30,     WeaponUpgradeType.None),
-        new Weapon(ItemType.TinCrystallizationCatalyst,                         0,      1306000,        0x310600,       90,     WeaponUpgradeType.None),
-        new Weapon(ItemType.DemonsCatalyst,                                     0,      1307000,        0x30F340,       300,    WeaponUpgradeType.None),
-        new Weapon(ItemType.IzalithCatalyst,                                    0,      1308000,        0x30F980,       300,    WeaponUpgradeType.None),
+        new Weapon(ItemType.TinCrystallizationCatalyst,                         0,      1306000,        0x310C40,       90,     WeaponUpgradeType.None),
+        new Weapon(ItemType.DemonsCatalyst,                                     0,      1307000,        0x30F980,       300,    WeaponUpgradeType.None),
+        new Weapon(ItemType.IzalithCatalyst,                                    0,      1308000,        0x30FFC0,       300,    WeaponUpgradeType.None),
         // Pyromancy Flames    133XXXX
-        new Weapon(ItemType.PyromancyFlame,                                     0,      1330000,        0x315740,       30,     WeaponUpgradeType.Souls10),
-        new Weapon(ItemType.PyromancyFlameAscended,                             0,      1332000,        0x315740,       30,     WeaponUpgradeType.Souls5),
+        new Weapon(ItemType.PyromancyFlame,                                     0,      1330000,        0x3195C0,       30,     WeaponUpgradeType.Souls10),
+        new Weapon(ItemType.PyromancyFlameAscended,                             0,      1332000,        0x3195C0,       30,     WeaponUpgradeType.Souls5),
         // Talismans           136XXXX
-        new Weapon(ItemType.Talisman,                                           0,      1360000,        0x31E0C0,       50,     WeaponUpgradeType.None),
-        new Weapon(ItemType.CanvasTalisman,                                     0,      1361000,        0x31E700,       50,     WeaponUpgradeType.None),
-        new Weapon(ItemType.ThorolundTalisman,                                  0,      1362000,        0x31ED40,       50,     WeaponUpgradeType.None),
-        new Weapon(ItemType.IvoryTalisman,                                      0,      1363000,        0x31F380,       50,     WeaponUpgradeType.None),
-        new Weapon(ItemType.SunlightTalisman,                                   0,      1365000,        0x320000,       50,     WeaponUpgradeType.None),
-        new Weapon(ItemType.DarkmoonTalisman,                                   0,      1366000,        0x320640,       50,     WeaponUpgradeType.None),
+        new Weapon(ItemType.Talisman,                                           0,      1360000,        0x321F40,       50,     WeaponUpgradeType.None),
+        new Weapon(ItemType.CanvasTalisman,                                     0,      1361000,        0x322580,       50,     WeaponUpgradeType.None),
+        new Weapon(ItemType.ThorolundTalisman,                                  0,      1362000,        0x322BC0,       50,     WeaponUpgradeType.None),
+        new Weapon(ItemType.IvoryTalisman,                                      0,      1363000,        0x323200,       50,     WeaponUpgradeType.None),
+        new Weapon(ItemType.SunlightTalisman,                                   0,      1365000,        0x323E80,       50,     WeaponUpgradeType.None),
+        new Weapon(ItemType.DarkmoonTalisman,                                   0,      1366000,        0x3244C0,       50,     WeaponUpgradeType.None),
         new Weapon(ItemType.VelkasTalisman,                                     0,      1367000,        0x320C80,       50,     WeaponUpgradeType.None),
         
-        new Weapon(ItemType.SkullLantern,                                       0,      1396000,        0x3212C0,       50,     WeaponUpgradeType.None),
+        new Weapon(ItemType.SkullLantern,                                       0,      1396000,        0x325140,       50,     WeaponUpgradeType.None),
         
         // Whips               16XXXXX
         new Weapon(ItemType.Whip,                                               0,      1600000,        0x298740,       200,    WeaponUpgradeType.Full),
@@ -631,7 +631,7 @@ public class ItemList
         new Weapon(ItemType.CrystalRingShieldIronRoundShield,                   0,      1412700,        0x3AE940,       120,    WeaponUpgradeType.ShieldDemon),
         new Weapon(ItemType.CrystalRingShieldSpiderShield,                      0,      1412800,        0x3A5FC0,       120,    WeaponUpgradeType.ShieldDemon),
         new Weapon(ItemType.CrystalRingShieldSpikedShield,                      0,      1412900,        0x3B9840,       120,    WeaponUpgradeType.ShieldDemon),
-        new Weapon(ItemType.CrystalRingShieldSunlightShield,                    0,      1413100,        0x3B1B40,       120,    WeaponUpgradeType.ShieldDemon),
+        new Weapon(ItemType.CrystalRingShieldSunlightShield,                    0,      1413100,        0x3965C0,       120,    WeaponUpgradeType.ShieldDemon), //
         new Weapon(ItemType.CrystalRingShieldPierceShield,                      0,      1413000,        0x3B59C0,       120,    WeaponUpgradeType.ShieldDemon),
         new Weapon(ItemType.CrystalRingShieldRedandWhiteRoundShield,            0,      1413200,        0x33EDC0,       120,    WeaponUpgradeType.ShieldDemon),
         new Weapon(ItemType.CrystalRingShieldCaduceusKiteShield,                0,      1413300,        0x3965C0,       120,    WeaponUpgradeType.ShieldDemon),
@@ -726,9 +726,9 @@ public class ItemList
         new Weapon(ItemType.DragonslayerArrow,  0,      2007000,        0x7A4400,       0,      WeaponUpgradeType.None),
         
         // Bolts               21XXXXX
-        new Weapon(ItemType.StandardBolt,       0,      2100000,        0x928880,       0,      WeaponUpgradeType.None),
-        new Weapon(ItemType.HeavyBolt,          0,      2101000,        0x928EC0,       0,      WeaponUpgradeType.None),
-        new Weapon(ItemType.SniperBolt,         0,      2102000,        0x929500,       0,      WeaponUpgradeType.None),
+        new Weapon(ItemType.StandardBolt,       0,      2100000,        0x7B5700,       0,      WeaponUpgradeType.None),
+        new Weapon(ItemType.HeavyBolt,          0,      2101000,        0x7B5D40,       0,      WeaponUpgradeType.None),
+        new Weapon(ItemType.SniperBolt,         0,      2102000,        0x7B6380,       0,      WeaponUpgradeType.None),
         new Weapon(ItemType.WoodBolt,           0,      2103000,        0x928240,       0,      WeaponUpgradeType.None),
         new Weapon(ItemType.LightningBolt,      0,      2104000,        0x929B40,       0,      WeaponUpgradeType.None),
 
@@ -766,7 +766,7 @@ public class ItemList
         new Ring(ItemType.OrangeCharredRing,            32,     139,    0x000230),
         new Ring(ItemType.LingeringDragoncrestRing,     32,     141,    0x000110),
         new Ring(ItemType.RingOfTheEvilEye,             32,     142,    0x000280),
-        new Ring(ItemType.RingOfFavorandProtection,     32,     143,    0x000270),
+        new Ring(ItemType.RingOfFavorAndProtection,     32,     143,    0x000270),
         new Ring(ItemType.LeoRing,                      32,     144,    0x000190),
         new Ring(ItemType.EastWoodGrainRing,            32,     145,    0x0001D0),
         new Ring(ItemType.WolfRing,                     32,     146,    0x0001A0),
@@ -777,60 +777,61 @@ public class ItemList
 
         // Items
         // Special Items
-        new SpecialItem(ItemType.WhiteSignSoapstone,                     64,     100,    0x000120),
-        new SpecialItem(ItemType.RedSignSoapstone,                       64,     101,    0x000140),
+        new SpecialItem(ItemType.WhiteSignSoapstone,                    64,     100,    0x000120),
+        new SpecialItem(ItemType.RedSignSoapstone,                      64,     101,    0x000140),
         new CommonItem(ItemType.RedEyeOrb,                              64,     102,    0x000150),
-        new SpecialItem(ItemType.BlackSeparationCrystal,                 64,     103,    0x0001F0),
-        new SpecialItem(ItemType.OrangeGuidanceSoapstone,                64,     106,    0x000110),
-        new SpecialItem(ItemType.BookOfTheGuilty,                        64,     108,    0x000200),
+        new SpecialItem(ItemType.BlackSeparationCrystal,                64,     103,    0x0001F0),
+        new SpecialItem(ItemType.OrangeGuidanceSoapstone,               64,     106,    0x000110),
+        new SpecialItem(ItemType.BookOfTheGuilty,                       64,     108,    0x000210),
         new CommonItem(ItemType.EyeOfDeath,                             64,     109,    0x0001E0),
         new CommonItem(ItemType.CrackedRedEyeOrb,                       64,     111,    0x000160),
-        new SpecialItem(ItemType.ServantRoster,                          64,     112,    0x000220),
-        new SpecialItem(ItemType.BlueEyeOrb,                             64,     113,    0x000170),
+        new SpecialItem(ItemType.ServantRoster,                         64,     112,    0x000230),
+        new SpecialItem(ItemType.BlueEyeOrb,                            64,     113,    0x000170),
         new CommonItem(ItemType.DragonEye,                              64,     114,    0x0001B0),
-        new SpecialItem(ItemType.BlackEyeOrb,                            64,     115,    0x000190),
+        new SpecialItem(ItemType.BlackEyeOrb,                           64,     115,    0x000190),
         new SpecialItem(ItemType.BlackEyeOrbShiva,                      64,     116,    0x000000),      // Unoptainable
-        new SpecialItem(ItemType.Darksign,                               64,     117,    0x000600),
+        new SpecialItem(ItemType.Darksign,                              64,     117,    0x0006E0),
         new EstusFlask(),
-        new CommonItem(ItemType.DivineBlessing,                         64,     240,    0x000290),
-        new CommonItem(ItemType.GreenBlossom,                           64,     260,    0x000230),
-        new CommonItem(ItemType.BloodredMossClump,                      64,     270,    0x000240),
-        new CommonItem(ItemType.PurpleMossClump,                        64,     271,    0x000250),
-        new CommonItem(ItemType.BloomingPurpleMossClump,                64,     272,    0x000260),
-        new CommonItem(ItemType.PurgingStone,                           64,     274,    0x000270),
-        new CommonItem(ItemType.EggVermifluge,                          64,     275,    0x000280),
-        new CommonItem(ItemType.RepairPowder,                           64,     280,    0x0002F0),
-        new CommonItem(ItemType.ThrowingKnife,                          64,     290,    0x0002C0),
-        new CommonItem(ItemType.PoisonThrowingKnife,                    64,     291,    0x0002D0),
-        new CommonItem(ItemType.Firebomb,                               64,     292,    0x0002A0),
-        new CommonItem(ItemType.DungPie,                                64,     293,    0x0002E0),
-        new CommonItem(ItemType.AlluringSkull,                          64,     294,    0x000340),
-        new CommonItem(ItemType.LloydsTalisman,                         64,     296,    0x000330),
-        new CommonItem(ItemType.BlackFirebomb,                          64,     297,    0x0002B0),
-        new CommonItem(ItemType.CharcoalPineResin,                      64,     310,    0x000300),
-        new CommonItem(ItemType.GoldPineResin,                          64,     311,    0x000310),
-        new CommonItem(ItemType.TransientCurse,                         64,     312,    0x000350),
-        new CommonItem(ItemType.RottenPineResin,                        64,     313,    0x000320),
-        new CommonItem(ItemType.HomewardBone,                           64,     330,    0x000360),
-        new CommonItem(ItemType.PrismStone,                             64,     370,    0x000370),
-        new SpecialItem(ItemType.Binoculars,                             64,     371,    0x000390),
-        new CommonItem(ItemType.Indictment,                             64,     373,    0x000210),
+        new CommonItem(ItemType.DivineBlessing,                         64,     240,    0x0002B0),
+        new CommonItem(ItemType.GreenBlossom,                           64,     260,    0x000240),
+        new CommonItem(ItemType.BloodredMossClump,                      64,     270,    0x000260),
+        new CommonItem(ItemType.PurpleMossClump,                        64,     271,    0x000270),
+        new CommonItem(ItemType.BloomingPurpleMossClump,                64,     272,    0x000280),
+        new CommonItem(ItemType.PurgingStone,                           64,     274,    0x000290),
+        new CommonItem(ItemType.EggVermifluge,                          64,     275,    0x0002A0),
+        new CommonItem(ItemType.RepairPowder,                           64,     280,    0x000310),
+        new CommonItem(ItemType.ThrowingKnife,                          64,     290,    0x0002E0),
+        new CommonItem(ItemType.PoisonThrowingKnife,                    64,     291,    0x0002F0),
+        new CommonItem(ItemType.Firebomb,                               64,     292,    0x0002C0),
+        new CommonItem(ItemType.DungPie,                                64,     293,    0x000300),
+        new CommonItem(ItemType.AlluringSkull,                          64,     294,    0x000360),
+        new CommonItem(ItemType.LloydsTalisman,                         64,     296,    0x000350),
+        new CommonItem(ItemType.BlackFirebomb,                          64,     297,    0x0002D0),
+        new CommonItem(ItemType.CharcoalPineResin,                      64,     310,    0x000320),
+        new CommonItem(ItemType.GoldPineResin,                          64,     311,    0x000330),
+        new CommonItem(ItemType.TransientCurse,                         64,     312,    0x000370),
+        new CommonItem(ItemType.RottenPineResin,                        64,     313,    0x000340),
+        new CommonItem(ItemType.HomewardBone,                           64,     330,    0x000380),
+        new CommonItem(ItemType.PrismStone,                             64,     370,    0x000390),
+        new SpecialItem(ItemType.Binoculars,                            64,     371,    0x0003F0),
+        new CommonItem(ItemType.Indictment,                             64,     373,    0x000220),
         new CommonItem(ItemType.SouvenirOfReprisal,                     64,     374,    0x000180),
         new CommonItem(ItemType.SunlightMedal,                          64,     375,    0x000130),
         
-        new SpecialItem(ItemType.Pendant,                                64,     376,    0x000570),
-        new SpecialItem(ItemType.DragonHeadStone,                        64,     377,    0x0001C0),
-        new SpecialItem(ItemType.DragonTorsoStone,                       64,     378,    0x0001D0),
+        new SpecialItem(ItemType.Pendant,                               64,     376,    0x000680),
+        new SpecialItem(ItemType.DragonHeadStone,                       64,     377,    0x0001C0),
+        new SpecialItem(ItemType.DragonTorsoStone,                      64,     378,    0x0001D0),
         
-        new CommonItem(ItemType.Rubbish,                                64,     380,    0x0005A0),
-        new CommonItem(ItemType.CopperCoin,                             64,     381,    0x0005B0),
-        new CommonItem(ItemType.SilverCoin,                             64,     382,    0x0005C0),
-        new CommonItem(ItemType.GoldCoin,                               64,     383,    0x0005D0),
-        new CommonItem(ItemType.DriedFinger,                            64,     385,    0x000600),
+        new CommonItem(ItemType.Rubbish,                                64,     380,    0x0006A0),
+        new CommonItem(ItemType.CopperCoin,                             64,     381,    0x0006B0),
+        new CommonItem(ItemType.SilverCoin,                             64,     382,    0x0006C0),
+        new CommonItem(ItemType.GoldCoin,                               64,     383,    0x0006D0),
+        new CommonItem(ItemType.DriedFinger,                            64,     385,    0x0006F0),
         
         // Firekeeper souls 39x
+        // TODO CHECK SORTING
         new SpecialItem(ItemType.FireKeeperSoulAnastaciaOfAstora,        64,     390,    0x000560),
-        new SpecialItem(ItemType.FireKeeperSoulDarkmoonKnightess,        64,     391,    0x000440),
+        new SpecialItem(ItemType.FireKeeperSoulDarkmoonKnightess,        64,     391,    0x0004B0),
         new SpecialItem(ItemType.FireKeeperSoulQuelaagsSister,           64,     392,    0x000450),
         new SpecialItem(ItemType.FireKeeperSoulNewLondoRuins,            64,     393,    0x000460),
         new SpecialItem(ItemType.FireKeeperSoulBlighttown,               64,     394,    0x000470),
@@ -838,30 +839,30 @@ public class ItemList
         new SpecialItem(ItemType.FireKeeperSoulUndeadParish,             64,     396,    0x000490),
         
         // Common souls     4xx
-        new CommonSoul(ItemType.SoulOfALostUndead,                      64,     400,    0x0003A0),
-        new CommonSoul(ItemType.LargeSoulOfALostUndead,                 64,     401,    0x0003B0),
-        new CommonSoul(ItemType.SoulOfANamelessSoldier,                 64,     402,    0x0003C0),
-        new CommonSoul(ItemType.LargeSoulOfANamelessSoldier,            64,     403,    0x0003D0),
-        new CommonSoul(ItemType.SoulOfAProudKnight,                     64,     404,    0x0003E0),
-        new CommonSoul(ItemType.LargeSoulOfAProudKnight,                64,     405,    0x0003F0),
-        new CommonSoul(ItemType.SoulOfABraveWarrior,                    64,     406,    0x000400),
-        new CommonSoul(ItemType.LargeSoulOfABraveWarrior,               64,     407,    0x000410),
-        new CommonSoul(ItemType.SoulOfAHero,                            64,     408,    0x000420),
-        new CommonSoul(ItemType.SoulOfAGreatHero,                       64,     409,    0x000430),
+        new CommonSoul(ItemType.SoulOfALostUndead,                      64,     400,    0x000410),
+        new CommonSoul(ItemType.LargeSoulOfALostUndead,                 64,     401,    0x000420),
+        new CommonSoul(ItemType.SoulOfANamelessSoldier,                 64,     402,    0x000430),
+        new CommonSoul(ItemType.LargeSoulOfANamelessSoldier,            64,     403,    0x000440),
+        new CommonSoul(ItemType.SoulOfAProudKnight,                     64,     404,    0x000450),
+        new CommonSoul(ItemType.LargeSoulOfAProudKnight,                64,     405,    0x000460),
+        new CommonSoul(ItemType.SoulOfABraveWarrior,                    64,     406,    0x000470),
+        new CommonSoul(ItemType.LargeSoulOfABraveWarrior,               64,     407,    0x000480),
+        new CommonSoul(ItemType.SoulOfAHero,                            64,     408,    0x000490),
+        new CommonSoul(ItemType.SoulOfAGreatHero,                       64,     409,    0x0004A0),
         
-        new CommonItem(ItemType.Humanity,                               64,     500,    0x000540),
-        new CommonItem(ItemType.TwinHumanity,                           64,     501,    0x000550),
+        new CommonItem(ItemType.Humanity,                               64,     500,    0x000650),
+        new CommonItem(ItemType.TwinHumanity,                           64,     501,    0x000660),
         
         // Boss souls       7xx
-        new BossSoul(ItemType.SoulOfQuelaag,                          64,     700,    0x0004B0),
-        new BossSoul(ItemType.SoulOfSif,                              64,     701,    0x0004F0),
-        new BossSoul(ItemType.SoulOfGwyn,                             64,     702,    0x000520),
-        new BossSoul(ItemType.CoreOfAnIronGolem,                      64,     703,    0x0004C0),
+        new BossSoul(ItemType.SoulOfQuelaag,                          64,     700,    0x000520),
+        new BossSoul(ItemType.SoulOfSif,                              64,     701,    0x000560),
+        new BossSoul(ItemType.SoulOfGwyn,                             64,     702,    0x0005C0),
+        new BossSoul(ItemType.CoreOfAnIronGolem,                      64,     703,    0x000530),
         new BossSoul(ItemType.SoulOfOrnstein,                         64,     704,    0x0004D0),
-        new BossSoul(ItemType.SoulOfTheMoonlightButterfly,            64,     705,    0x0004A0),
-        new BossSoul(ItemType.SoulOfSmough,                           64,     706,    0x0004E0),
-        new BossSoul(ItemType.SoulOfPriscilla,                        64,     707,    0x000510),
-        new BossSoul(ItemType.SoulOfGwyndolin,                        64,     708,    0x000500),
+        new BossSoul(ItemType.SoulOfTheMoonlightButterfly,            64,     705,    0x000510),
+        new BossSoul(ItemType.SoulOfSmough,                           64,     706,    0x000550),
+        new BossSoul(ItemType.SoulOfPriscilla,                        64,     707,    0x000580),
+        new BossSoul(ItemType.SoulOfGwyndolin,                        64,     708,    0x000570),
 
         // Upgrade Materials 1XXX
         new UpgradeMaterial(ItemType.TitaniteShard,             64,     1000,   0x003E90),
@@ -908,51 +909,51 @@ public class ItemList
         new Spell(ItemType.WhiteDragonBreath,           64,     3700,   0x00BC10),
         
         // Pyromancies
-        new Spell(ItemType.Fireball,                    64,     4000,   0x00BD10),
-        new Spell(ItemType.FireOrb,                     64,     4010,   0x00BD20),
-        new Spell(ItemType.GreatFireball,               64,     4020,   0x00BD30),
-        new Spell(ItemType.Firestorm,                   64,     4030,   0x00BD50),
-        new Spell(ItemType.FireTempest,                 64,     4040,   0x00BD60),
-        new Spell(ItemType.FireSurge,                   64,     4050,   0x00BDA0),
-        new Spell(ItemType.FireWhip,                    64,     4060,   0x00BDB0),
-        new Spell(ItemType.Combustion,                  64,     4100,   0x00BD80),
-        new Spell(ItemType.GreatCombustion,             64,     4110,   0x00BD90),
-        new Spell(ItemType.PoisonMist,                  64,     4200,   0x00BDD0),
-        new Spell(ItemType.ToxicMist,                   64,     4210,   0x00BDE0),
-        new Spell(ItemType.AcidSurge,                   64,     4220,   0x00BDF0),
-        new Spell(ItemType.IronFlesh,                   64,     4300,   0x00BE10),
-        new Spell(ItemType.FlashSweat,                  64,     4310,   0x00BE00),
-        new Spell(ItemType.UndeadRapport,               64,     4360,   0x00BE30),
-        new Spell(ItemType.PowerWithin,                 64,     4400,   0x00BE20),
-        new Spell(ItemType.GreatChaosFireball,          64,     4500,   0x00BD40),
-        new Spell(ItemType.ChaosStorm,                  64,     4510,   0x00BD70),
-        new Spell(ItemType.ChaosFireWhip,               64,     4520,   0x00BDC0),
+        new Spell(ItemType.Fireball,                    64,     4000,   0x00BD50),
+        new Spell(ItemType.FireOrb,                     64,     4010,   0x00BD60),
+        new Spell(ItemType.GreatFireball,               64,     4020,   0x00BD70),
+        new Spell(ItemType.Firestorm,                   64,     4030,   0x00BD90),
+        new Spell(ItemType.FireTempest,                 64,     4040,   0x00BDA0),
+        new Spell(ItemType.FireSurge,                   64,     4050,   0x00BDE0),
+        new Spell(ItemType.FireWhip,                    64,     4060,   0x00BDF0),
+        new Spell(ItemType.Combustion,                  64,     4100,   0x00BDC0),
+        new Spell(ItemType.GreatCombustion,             64,     4110,   0x00BDD0),
+        new Spell(ItemType.PoisonMist,                  64,     4200,   0x00BE10),
+        new Spell(ItemType.ToxicMist,                   64,     4210,   0x00BE20),
+        new Spell(ItemType.AcidSurge,                   64,     4220,   0x00BE30),
+        new Spell(ItemType.IronFlesh,                   64,     4300,   0x00BE50),
+        new Spell(ItemType.FlashSweat,                  64,     4310,   0x00BE40),
+        new Spell(ItemType.UndeadRapport,               64,     4360,   0x00BE70),
+        new Spell(ItemType.PowerWithin,                 64,     4400,   0x00BE60),
+        new Spell(ItemType.GreatChaosFireball,          64,     4500,   0x00BD80),
+        new Spell(ItemType.ChaosStorm,                  64,     4510,   0x00BDB0),
+        new Spell(ItemType.ChaosFireWhip,               64,     4520,   0x00BE00),
         
         // Miracles
-        new Spell(ItemType.Heal,                        64,     5000,   0x00BE40),
-        new Spell(ItemType.GreatHeal,                   64,     5010,   0x00BE60),
-        new Spell(ItemType.GreatHealExcerpt,            64,     5020,   0x00BE50),
-        new Spell(ItemType.SoothingSunlight,            64,     5030,   0x00BE70),
-        new Spell(ItemType.Replenishment,               64,     5040,   0x00BE80),
-        new Spell(ItemType.BountifulSunlight,           64,     5050,   0x00BE90),
-        new Spell(ItemType.GravelordSwordDance,         64,     5100,   0x00BFA0),
-        new Spell(ItemType.GravelordGreatswordDance,    64,     5110,   0x00BFB0),
-        new Spell(ItemType.EscapeDeath,                64,     5200,   0x000000),       // Unoptainable
-        new Spell(ItemType.Homeward,                    64,     5210,   0x00BEF0),
-        new Spell(ItemType.Force,                       64,     5300,   0x00BEA0),
-        new Spell(ItemType.WrathoftheGods,              64,     5310,   0x00BEB0),
-        new Spell(ItemType.EmitForce,                   64,     5320,   0x00BEC0),
-        new Spell(ItemType.SeekGuidance,                64,     5400,   0x00BF10),
-        new Spell(ItemType.LightningSpear,              64,     5500,   0x00BF50),
-        new Spell(ItemType.GreatLightningSpear,         64,     5510,   0x00BF60),
+        new Spell(ItemType.Heal,                        64,     5000,   0x00BE90),
+        new Spell(ItemType.GreatHeal,                   64,     5010,   0x00BEB0),
+        new Spell(ItemType.GreatHealExcerpt,            64,     5020,   0x00BEA0),
+        new Spell(ItemType.SoothingSunlight,            64,     5030,   0x00BEC0),
+        new Spell(ItemType.Replenishment,               64,     5040,   0x00BED0),
+        new Spell(ItemType.BountifulSunlight,           64,     5050,   0x00BEE0),
+        new Spell(ItemType.GravelordSwordDance,         64,     5100,   0x00BFF0),
+        new Spell(ItemType.GravelordGreatswordDance,    64,     5110,   0x00C000),
+        new Spell(ItemType.EscapeDeath,                 64,     5200,   0x000000),       // Unoptainable
+        new Spell(ItemType.Homeward,                    64,     5210,   0x00BF40),
+        new Spell(ItemType.Force,                       64,     5300,   0x00BEF0),
+        new Spell(ItemType.WrathoftheGods,              64,     5310,   0x00BF00),
+        new Spell(ItemType.EmitForce,                   64,     5320,   0x00BF10),
+        new Spell(ItemType.SeekGuidance,                64,     5400,   0x00BF60),
+        new Spell(ItemType.LightningSpear,              64,     5500,   0x00BFA0),
+        new Spell(ItemType.GreatLightningSpear,         64,     5510,   0x00BFB0),
         new Spell(ItemType.SunlightSpear,               64,     5520,   0x00BF70),
-        new Spell(ItemType.MagicBarrier,                64,     5600,   0x00BED0),
-        new Spell(ItemType.GreatMagicBarrier,           64,     5610,   0x00BEE0),
+        new Spell(ItemType.MagicBarrier,                64,     5600,   0x00BF20),
+        new Spell(ItemType.GreatMagicBarrier,           64,     5610,   0x00BF30),
         new Spell(ItemType.KarmicJustice,               64,     5700,   0x00BF20),
-        new Spell(ItemType.TranquilWalkofPeace,         64,     5800,   0x00BF40),
-        new Spell(ItemType.VowofSilence,                64,     5810,   0x00BF30),
-        new Spell(ItemType.SunlightBlade,               64,     5900,   0x00BF80),
-        new Spell(ItemType.DarkmoonBlade,               64,     5910,   0x00BF90),
+        new Spell(ItemType.TranquilWalkofPeace,         64,     5800,   0x00BF90),
+        new Spell(ItemType.VowofSilence,                64,     5810,   0x00BF80),
+        new Spell(ItemType.SunlightBlade,               64,     5900,   0x00BFD0),
+        new Spell(ItemType.DarkmoonBlade,               64,     5910,   0x00BFE0),
 
     };
 
@@ -970,20 +971,19 @@ public class ItemList
     {
         foreach (var item in _items)
         {
-            if (item.Type == type)
-            {
-                if (item is Weapon weapon) return new Weapon(weapon);
-                if (item is Armor armor)   return new Armor(armor);
-                if (item is EstusFlask estus) return new EstusFlask(estus);
-                if (item is KeyItem keyItem) return new KeyItem(keyItem);
-                if (item is Ring ring) return new Ring(ring);
-                if (item is SpecialItem specialItem) return new SpecialItem(specialItem);
-                if (item is Spell spell) return new Spell(spell);
-                if (item is UpgradeMaterial upgradeMaterial) return new UpgradeMaterial(upgradeMaterial);
-                if (item is CommonSoul commonSoul) return new CommonSoul(commonSoul);
-                if (item is CommonItem commonItem) return new CommonItem(commonItem);
-                return new Item(item);
-            }
+            if (item.Type != type) continue;
+            
+            if (item is Weapon weapon) return new Weapon(weapon);
+            if (item is Armor armor)   return new Armor(armor);
+            if (item is EstusFlask estus) return new EstusFlask(estus);
+            if (item is KeyItem keyItem) return new KeyItem(keyItem);
+            if (item is Ring ring) return new Ring(ring);
+            if (item is SpecialItem specialItem) return new SpecialItem(specialItem);
+            if (item is Spell spell) return new Spell(spell);
+            if (item is UpgradeMaterial upgradeMaterial) return new UpgradeMaterial(upgradeMaterial);
+            if (item is CommonSoul commonSoul) return new CommonSoul(commonSoul);
+            if (item is CommonItem commonItem) return new CommonItem(commonItem);
+            return new Item(item);
         }
 
         return null;
