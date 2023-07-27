@@ -25,11 +25,11 @@ public enum WeaponType
     Talisman = 136,
     SmallShield = 14,
     StandardShield = 145,
-    GreatShield = 15,
+    Greatshield = 15,
     Whip = 16,
     
     Arrow = 20,
     Bolt = 21,
     
-    DLCDagger = 90,
+    SpecialAndDLC = 90,
 }

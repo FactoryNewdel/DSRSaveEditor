@@ -18,7 +18,7 @@ public class Progress
 
         for (int i = 0; i < _sections[8].Length - 19; i += 20)
         {
-            Console.WriteLine(i + " -> ID: " + BitConverter.ToUInt32(_sections[8], i + 8) + " | " + BitConverter.ToString(BitConverter.GetBytes(BitConverter.ToUInt32(_sections[8], i + 8))) + ", Strength: " + _sections[8][i + 12]);
+            //Console.WriteLine(i + " -> ID: " + BitConverter.ToUInt32(_sections[8], i + 8) + " | " + BitConverter.ToString(BitConverter.GetBytes(BitConverter.ToUInt32(_sections[8], i + 8))) + ", Strength: " + _sections[8][i + 12]);
         }
     }
 

@@ -95,6 +95,10 @@ public class MainViewModel : INotifyPropertyChanged
             new ("Images/ItemIcons/Types/Catalysts.png",          "Catalysts",          weapons.Where(w => (w as Weapon).WeaponType == WeaponType.Catalyst).ToList()),
             new ("Images/ItemIcons/Types/PyromancyFlames.png",    "Pyromancy Flames",   weapons.Where(w => (w as Weapon).WeaponType == WeaponType.PyromancyFlame).ToList()),
             new ("Images/ItemIcons/Types/Talismans.png",          "Talismans",          weapons.Where(w => (w as Weapon).WeaponType == WeaponType.Talisman).ToList()),
+            new ("Images/ItemIcons/Types/SmallShields.png",       "Small Shields",      weapons.Where(w => (w as Weapon).WeaponType == WeaponType.SmallShield).ToList()),
+            new ("Images/ItemIcons/Types/StandardShields.png",    "Standard Shields",   weapons.Where(w => (w as Weapon).WeaponType == WeaponType.StandardShield).ToList()),
+            new ("Images/ItemIcons/Types/Greatshields.png",       "Greatshields",       weapons.Where(w => (w as Weapon).WeaponType == WeaponType.Greatshield).ToList()),
+            new ("Images/ItemIcons/Types/SpecialShields.png",     "Special / DLC",    weapons.Where(w => (w as Weapon).WeaponType == WeaponType.SpecialAndDLC).ToList()),
         };
         // TODO
         _ammunition = new List<ItemGroup>

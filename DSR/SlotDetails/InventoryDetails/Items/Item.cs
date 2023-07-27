@@ -28,9 +28,11 @@ public class Item : INotifyPropertyChanged
         _idSpace = idSpace;
         _id = id;
 
-        var i = ItemList.GetItem(idSpace, idSpace == 0 ? id / 1000 * 1000 : id);
+        var i = ItemList.GetItem(idSpace, idSpace == 0 || idSpace == 16 ? id / 1000 * 1000 : id);
         if (i != null) _type = i._type;
         else _type = ItemType.UNKNOWN;
+
+        if (i != null && (i._sorting != sorting)) Console.WriteLine($"INVALID SORTING ({index}): {Type} ({id}); List: {i._sorting} | 0x{Convert.ToHexString(BitConverter.GetBytes(i._sorting).Reverse().ToArray())}; Inv: {sorting} | 0x{Convert.ToHexString(BitConverter.GetBytes(sorting).Reverse().ToArray())}; Diff: {sorting - i._sorting}");
 
         MaxAmount = 99;
         _amount = amount;
@@ -80,6 +82,7 @@ public class Item : INotifyPropertyChanged
 
     public static Item GetItem(byte idSpace, uint id, uint amount, uint sorting, int index, bool enabled, uint durability, uint durabilityLoss)
     {
+        if (id / 10000 == 133) return new PyromancyFlame(id, index);
         if (idSpace == 0) return new Weapon(idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss);
         if (idSpace == 16) return new Armor(idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss);
         if (idSpace == 32) return new Ring(idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss);
@@ -90,11 +93,11 @@ public class Item : INotifyPropertyChanged
 
     private static Item GetIngameItem(byte idSpace, uint id, uint amount, uint sorting, int index, bool enabled, uint durability, uint durabilityLoss)
     {
+        if (id >= 200 && id <= 215) return new EstusFlask(id, amount, index);
         if (id / 1000 == 0 && id / 100 == 4) return new CommonSoul(idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss);
         if (id / 10000 == 0 && id / 1000 == 1) return new UpgradeMaterial(idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss);
         if (id / 10000 == 0 && id / 1000 == 2) return new KeyItem(idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss);
         if (id / 10000 == 0 && id / 1000 == 3) return new Spell(idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss);
-        if (id >= 200 && id <= 215) return new EstusFlask(id, amount, index);
         return new CommonItem(idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss);
     }
 

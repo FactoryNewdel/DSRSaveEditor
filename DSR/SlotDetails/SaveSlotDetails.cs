@@ -19,6 +19,8 @@ public class SaveSlotDetails
 
         if (_characterStats.Level == 0) return;
 
+        Console.WriteLine($"ACCOUNT {_characterStats.Name}");
+
         _inventory = new Inventory(bytes);
         _equipment = new Equipment(bytes, _inventory.Items);
         _progress = new Progress(bytes);

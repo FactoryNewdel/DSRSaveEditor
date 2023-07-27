@@ -39,12 +39,16 @@ public enum ItemType
     WatchtowerBasementKey,
     ArchivePrisonExtraKey,
     ResidenceKey,
+    CrestKey,
     MasterKey,
+
     LordSoulGravelordNito,
     LordSoulBedOfChaos,
     BequeathedLordSoulShardFourKings,
     BequeathedLordSoulShardSeathTheScaleless,
     Lordvessel,
+    BrokenPendant,
+    
     WeaponSmithbox,
     ArmorSmithbox,
     Repairbox,
@@ -331,6 +335,34 @@ public enum ItemType
     EliteClericArmor,       // Unoptainable
     EliteClericGauntlets,   // Unoptainable
     EliteClericLeggings,    // Unoptainable
+    
+    HelmOfArtorias,
+    ArmorOfArtorias,
+    GauntletsOfArtorias,
+    LeggingsOfArtorias,
+    
+    PorcelainMask,
+    LordsBladeRobe,
+    LordsBladeGloves,
+    LordsBladeWaistcloth,
+    
+    GoughsHelm,
+    GoughsChest,
+    GoughsGloves,
+    GoughsLeggings,
+    
+    GuardianHelm,
+    GuardianArmor,
+    GuardianGauntlets,
+    GuardianLeggings,
+    
+    SnickeringTopHat,
+    ChestersLongCoat,
+    ChestersGloves,
+    ChestersTrousers,
+    
+    BloatedHead,
+    BloatedSorcererHead,
 
 
     // Weapons
@@ -709,6 +741,18 @@ public enum ItemType
     Bloodshield,
     BlackIronGreatshield,
     
+    // DLC Weapon
+    AbyssGreatsword,
+    StoneGreataxe,
+    FourProngedPlow,
+    OolacileCatalyst,
+    GuardianTail,
+    GoldTracer,
+    DarkSilverTracer,
+    CleansingGreatshield,
+    ManusCatalyst,
+    ObsidianGreatsword,
+    GoughsGreatbow,
 
     // Ammunition
     // Arrows
@@ -720,6 +764,8 @@ public enum ItemType
     MoonlightArrow,
     WoodenArrow,
     DragonslayerArrow,
+    
+    GoughsArrow,
     
     // Bolts
     StandardBolt,
@@ -770,6 +816,8 @@ public enum ItemType
     BlueTearstoneRing,
     RingOfTheSunsFirstborn,
     DarkmoonSeanceRing,
+    
+    CalamityRing,
 
 
     // Items
@@ -821,6 +869,16 @@ public enum ItemType
     SilverCoin,
     GoldCoin,
     DriedFinger,
+    
+    PurpleCowardsCrystal,
+    SilverPendant,
+    ElizabethsMushroom,
+    HelloCarving,
+    ThankYouCarving,
+    VeryGoodCarving,
+    ImSorryCarving,
+    HelpMeCarving,
+    
     FireKeeperSoulAnastaciaOfAstora,
     FireKeeperSoulDarkmoonKnightess,
     FireKeeperSoulQuelaagsSister,
@@ -849,6 +907,11 @@ public enum ItemType
     SoulOfSmough,
     SoulOfPriscilla,
     SoulOfGwyndolin,
+    
+    // DLC
+    GuardiansSoul,
+    SoulOfArtorias,
+    SoulOfManus,
     
     // Upgrade Materials
     TitaniteShard,
@@ -940,5 +1003,12 @@ public enum ItemType
     VowofSilence,
     SunlightBlade,
     DarkmoonBlade,
+    
+    // DLC
+    DarkOrb,
+    DarkBead,
+    DarkFog,
+    Pursuers,
+    BlackFlame,
 
 }

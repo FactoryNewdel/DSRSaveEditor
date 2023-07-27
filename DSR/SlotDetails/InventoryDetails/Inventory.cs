@@ -26,14 +26,15 @@ public class Inventory : INotifyPropertyChanged
 
         _inventorySize = BitConverter.ToUInt32(bytes, 848);
         _latestItemIndex = BitConverter.ToUInt32(bytes, 58204);
-
+        
+        Console.WriteLine($"INVENTORY No {slot}");
         for (var i = 0; i < inventoryData.Length; i += ItemSize)
         {
             var idSpace = inventoryData[i + 3];
             var id = BitConverter.ToUInt32(inventoryData, i + 4);
             var amount = BitConverter.ToUInt32(inventoryData, i + 8);
-            var sorting = BitConverter.ToUInt32(new byte[] { 0, (byte)(inventoryData[i + 13] & 0b11111000), inventoryData[i + 14], inventoryData[i + 15] });
-            var index = (inventoryData[i + 13] & 0b111) * 256 + inventoryData[i + 12];
+            var index = (inventoryData[i + 13] & 0b00000111) * 256 + inventoryData[i + 12];
+            var sorting = (BitConverter.ToUInt32(inventoryData, i + 12) - (uint)index) / 256;
             var enabled = inventoryData[i + 16] == 1;
             var durability = BitConverter.ToUInt32(inventoryData, i + 20);
             var durabilityLoss = BitConverter.ToUInt32(inventoryData, i + 24);
@@ -117,19 +118,13 @@ public class Inventory : INotifyPropertyChanged
             }   
         }
 
-        return list;
+        return list.OrderBy(i => i.Sorting).ToList();
     }
 
     public void UpdateData(ref byte[] data)
     {
         for (var i = 0; i < _items.Length; i++)
         {
-            if (i == 12)
-            {
-                for (var j = 0; j < 28; j++)
-                    Console.WriteLine((InventoryOffset + i * ItemSize + j) + "    " + data.Skip(InventoryOffset).ToArray()[i * ItemSize + j]);
-            }
-            
             var item = _items[i];
             if (item.IdSpace != 255)
             {
@@ -147,7 +142,7 @@ public class Inventory : INotifyPropertyChanged
             data[InventoryOffset + i * ItemSize + 3] = item.IdSpace;
             FillUInt32IntoData(ref data, item.FullID, i, 4);
             FillUInt32IntoData(ref data, item.Amount, i, 8);
-            var sorting = item.Sorting + item.Index;
+            var sorting = item.Sorting * 256 + item.Index;
             FillUInt32IntoData(ref data, (uint)sorting, i, 12);
             data[InventoryOffset + i * ItemSize + 16] = (byte)(item.Enabled ? 1 : 0);
             data[InventoryOffset + i * ItemSize + 17] = 0;

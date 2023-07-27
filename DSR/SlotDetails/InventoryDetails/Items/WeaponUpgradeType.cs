@@ -11,8 +11,7 @@ public enum WeaponUpgradeType
     
     FullCrossbow,
     
-    Souls10,
-    Souls5,
+    Souls,
     
     ShieldFull,
     ShieldTwinkling,
