@@ -24,7 +24,7 @@ public class BossWeapon : Weapon
     }
 
     // Item List
-    public BossWeapon(ItemType type, byte idSpace, uint id, uint durability, WeaponUpgradeType weaponUpgradeType) : base(type, idSpace, id, 0, durability, weaponUpgradeType)
+    public BossWeapon(ItemType type, byte idSpace, uint id, uint durability, WeaponUpgradeType weaponUpgradeType) : base(type, idSpace, id, 1, durability, weaponUpgradeType)
     {
         _originalItemID = (id - (id / 10000 * 10000)) / 100;
         Infusion = Infusion.None;
