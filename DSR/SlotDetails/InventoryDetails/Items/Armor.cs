@@ -42,7 +42,7 @@ public class Armor : Item
         _armorPieceType = (ArmorPieceType)armorPieceTypeNum;
         _level = (int)(ID - _baseID - armorPieceTypeNum * 1000);
 
-        ImagePath += $"Armor/{Type}.png";
+        ImagePath += $"Armor/{_armorPieceType}/{Type}.png";
     }
 
     public uint BaseID => _baseID;

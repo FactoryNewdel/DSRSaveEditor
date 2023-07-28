@@ -109,10 +109,11 @@ public class MainViewModel : INotifyPropertyChanged
         var armor = ItemList.GetItems(typeof(Armor)).Where(a => (a as Armor).BaseID != 900000);
         _armor = new List<ItemGroup>
         {
-            new ("Images/ItemIcons/Types/Armor.png",      "Head Pieces", armor.Where(a => (a as Armor).ArmorPieceType == ArmorPieceType.Helm)      .OrderBy(i => i.Name).ToList()),
-            new ("Images/ItemIcons/Types/Armor.png",      "Chestplates", armor.Where(a => (a as Armor).ArmorPieceType == ArmorPieceType.Chestplate).OrderBy(i => i.Name).ToList()),
-            new ("Images/ItemIcons/Types/Armor.png",      "Gauntlets",   armor.Where(a => (a as Armor).ArmorPieceType == ArmorPieceType.Gauntlets) .OrderBy(i => i.Name).ToList()),
-            new ("Images/ItemIcons/Types/Armor.png",      "Legs",        armor.Where(a => (a as Armor).ArmorPieceType == ArmorPieceType.Leggins)   .OrderBy(i => i.Name).ToList()),
+            new ("Images/ItemIcons/Types/Helm.png",            "Head Pieces",    armor.Where(a => (a as Armor).ArmorPieceType == ArmorPieceType.Helm)      .OrderBy(i => i.Name).ToList()),
+            new ("Images/ItemIcons/Types/Chestplate.png",      "Chestplates",    armor.Where(a => (a as Armor).ArmorPieceType == ArmorPieceType.Chestplate).OrderBy(i => i.Name).ToList()),
+            new ("Images/ItemIcons/Types/Gauntlets.png",       "Gauntlets",      armor.Where(a => (a as Armor).ArmorPieceType == ArmorPieceType.Gauntlets) .OrderBy(i => i.Name).ToList()),
+            new ("Images/ItemIcons/Types/Leggings.png",        "Leggings",       armor.Where(a => (a as Armor).ArmorPieceType == ArmorPieceType.Leggings)   .OrderBy(i => i.Name).ToList()),
+            new ("Images/ItemIcons/Types/AllArmorSets.png",    "All Armor Sets", armor.ToList()),
         };
         _rings = new List<ItemGroup>
         {

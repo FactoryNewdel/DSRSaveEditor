@@ -202,7 +202,7 @@ public enum ItemType
 
     PriestsHat,
     HolyRobe,
-    TravelingGlovesCleric,
+    TravelingGlovesHolySet,
     HolyTrousers,
 
     BlackKnightHelm,
@@ -237,7 +237,7 @@ public enum ItemType
 
     BigHat,
     SageRobe,
-    TravelingGlovesBigHat,
+    TravelingGlovesBigHatSet,
     TravelingBoots,
 
     KnightHelm,
@@ -251,7 +251,7 @@ public enum ItemType
     BloodStainedSkirt,
 
     MaidenHood,
-    MaidenBody,
+    MaidenRobe,
     MaidenGloves,
     MaidenSkirt,
 

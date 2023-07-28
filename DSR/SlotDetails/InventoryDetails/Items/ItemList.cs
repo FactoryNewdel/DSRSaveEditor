@@ -207,7 +207,7 @@ public class ItemList
 
         new Armor(ItemType.PriestsHat,                  16,     310000, 0x012C00,       350,    ArmorUpgradeType.Regular),
         new Armor(ItemType.HolyRobe,                    16,     311000, 0x013240,       350,    ArmorUpgradeType.Regular),
-        new Armor(ItemType.TravelingGlovesCleric,       16,     312000, 0x013880,       350,    ArmorUpgradeType.Regular),
+        new Armor(ItemType.TravelingGlovesHolySet,       16,     312000, 0x013880,       350,    ArmorUpgradeType.Regular),
         new Armor(ItemType.HolyTrousers,                16,     313000, 0x013EC0,       350,    ArmorUpgradeType.Regular),
 
         new Armor(ItemType.BlackKnightHelm,             16,     320000, 0x03BC40,       550,    ArmorUpgradeType.Twinkling),
@@ -242,7 +242,7 @@ public class ItemList
 
         new Armor(ItemType.BigHat,                      16,     380000, 0x021340,       250,    ArmorUpgradeType.Twinkling),
         new Armor(ItemType.SageRobe,                    16,     381000, 0x021980,       250,    ArmorUpgradeType.Twinkling),
-        new Armor(ItemType.TravelingGlovesBigHat,     16,     382000, 0x021FC0,       250,    ArmorUpgradeType.Twinkling),
+        new Armor(ItemType.TravelingGlovesBigHatSet,     16,     382000, 0x021FC0,       250,    ArmorUpgradeType.Twinkling),
         new Armor(ItemType.TravelingBoots,              16,     383000, 0x022600,       250,    ArmorUpgradeType.Twinkling),
 
         new Armor(ItemType.KnightHelm,                  16,     390000, 0x003840,       400,    ArmorUpgradeType.Regular),
@@ -256,7 +256,7 @@ public class ItemList
         new Armor(ItemType.BloodStainedSkirt,           16,     403000, 0x02EE00,       150,    ArmorUpgradeType.Regular),
 
         new Armor(ItemType.MaidenHood,                  16,     410000, 0x02C240,       150,    ArmorUpgradeType.Regular),
-        new Armor(ItemType.MaidenBody,                  16,     411000, 0x02C880,       150,    ArmorUpgradeType.Regular),
+        new Armor(ItemType.MaidenRobe,                  16,     411000, 0x02C880,       150,    ArmorUpgradeType.Regular),
         new Armor(ItemType.MaidenGloves,                16,     412000, 0x02CEC0,       150,    ArmorUpgradeType.Regular),
         new Armor(ItemType.MaidenSkirt,                 16,     413000, 0x02D500,       150,    ArmorUpgradeType.Regular),
 
