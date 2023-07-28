@@ -394,7 +394,7 @@ public class ItemList
         new Weapon(ItemType.BarbedStraightSword,                                0,      207000, 0x042CC0,       160,    WeaponUpgradeType.Full),
         new Weapon(ItemType.SilverKnightStraightSword,                          0,      208000, 0x04A9C0,       300,    WeaponUpgradeType.Twinkling),
         new Weapon(ItemType.AstorasStraightSword,                               0,      209000, 0x04B000,       160,    WeaponUpgradeType.Twinkling),
-        new Weapon(ItemType.DarkSword,                                          0,      210000, 0x03EE40,       200,    WeaponUpgradeType.Full),
+        new Weapon(ItemType.Darksword,                                          0,      210000, 0x03EE40,       200,    WeaponUpgradeType.Full),
         new Weapon(ItemType.DrakeSword,                                         0,      211000, 0x04EE80,       360,    WeaponUpgradeType.Scales),
         new Weapon(ItemType.StraightSwordHilt,                                  0,      212000, 0x056540,       200,    WeaponUpgradeType.Full),
         

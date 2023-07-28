@@ -219,7 +219,7 @@ public class BossWeapon : Weapon
                 case 16: return ItemType.BalderSideSword;
                 case 17: return ItemType.SunlightStraightSword;
                 case 18: return ItemType.BarbedStraightSword;
-                case 20: return ItemType.DarkSword;
+                case 20: return ItemType.Darksword;
                 case 21: return ItemType.BastardSword;
                 case 22: return ItemType.Claymore;
                 case 23: return ItemType.ManserpentGreatsword;
@@ -335,7 +335,7 @@ public class BossWeapon : Weapon
                 case 46: return ItemType.BalderSideSword;
                 case 47: return ItemType.SunlightStraightSword;
                 case 48: return ItemType.BarbedStraightSword;
-                case 50: return ItemType.DarkSword;
+                case 50: return ItemType.Darksword;
                 case 51: return ItemType.BastardSword;
                 case 52: return ItemType.Claymore;
                 case 53: return ItemType.ManserpentGreatsword;
@@ -377,7 +377,7 @@ public class BossWeapon : Weapon
                 case 26: return ItemType.BalderSideSword;
                 case 27: return ItemType.SunlightStraightSword;
                 case 28: return ItemType.BarbedStraightSword;
-                case 30: return ItemType.DarkSword;
+                case 30: return ItemType.Darksword;
                 case 31: return ItemType.BastardSword;
                 case 32: return ItemType.Claymore;
                 case 33: return ItemType.ManserpentGreatsword;

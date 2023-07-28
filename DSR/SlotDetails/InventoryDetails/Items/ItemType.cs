@@ -387,7 +387,7 @@ public enum ItemType
     BarbedStraightSword,
     SilverKnightStraightSword,
     AstorasStraightSword,
-    DarkSword,
+    Darksword,
     DrakeSword,
     StraightSwordHilt,
 
