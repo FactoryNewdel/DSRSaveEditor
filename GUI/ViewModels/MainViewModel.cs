@@ -57,19 +57,19 @@ public class MainViewModel : INotifyPropertyChanged
         var keyItems = ItemList.GetItems(typeof(KeyItem));
         _keyItems = new List<ItemGroup>
         {
-            new ("Images/ItemIcons/Types/KeyItems.png",      "Keys",             keyItems.Where(k => (k as KeyItem).KeyItemType == KeyItemType.Key).ToList()),
-            new ("Images/ItemIcons/Types/KeyItems.png",      "Embers",           keyItems.Where(k => (k as KeyItem).KeyItemType == KeyItemType.Ember).ToList()),
-            new ("Images/ItemIcons/Types/KeyItems.png",      "Bonfire Upgrades", keyItems.Where(k => (k as KeyItem).KeyItemType == KeyItemType.BonfireUpgrade).ToList()),
-            new ("Images/ItemIcons/Types/KeyItems.png",      "Lord Items",       keyItems.Where(k => (k as KeyItem).KeyItemType == KeyItemType.LordItem).ToList()),
-            new ("Images/ItemIcons/Types/KeyItems.png",      "Special Items",    keyItems.Where(k => (k as KeyItem).KeyItemType == KeyItemType.Special).ToList()),
+            new ("Images/ItemIcons/Types/Keys.png",             "Keys",             keyItems.Where(k => (k as KeyItem).KeyItemType == KeyItemType.Key).ToList()),
+            new ("Images/ItemIcons/Types/Embers.png",           "Embers",           keyItems.Where(k => (k as KeyItem).KeyItemType == KeyItemType.Ember).ToList()),
+            new ("Images/ItemIcons/Types/BonfireUpgrades.png",  "Bonfire Upgrades", keyItems.Where(k => (k as KeyItem).KeyItemType == KeyItemType.BonfireUpgrade).ToList()),
+            new ("Images/ItemIcons/Types/LordItems.png",        "Lord Items",       keyItems.Where(k => (k as KeyItem).KeyItemType == KeyItemType.LordItem).ToList()),
+            new ("Images/ItemIcons/Types/SpecialItemsKeys.png", "Special Items",    keyItems.Where(k => (k as KeyItem).KeyItemType == KeyItemType.Special).ToList()),
         };
         // TODO 
         var spells = ItemList.GetItems(typeof(Spell));
         _spells = new List<ItemGroup>
         {
-            new ("Images/ItemIcons/Types/Spells.png",      "Sorceries",      spells.Where(s => (s as Spell).SpellType == SpellType.Sorcery).ToList()),
-            new ("Images/ItemIcons/Types/Spells.png",      "Pyromancy",      spells.Where(s => (s as Spell).SpellType == SpellType.Pyromany).ToList()),
-            new ("Images/ItemIcons/Types/Spells.png",      "Miracle",        spells.Where(s => (s as Spell).SpellType == SpellType.Miracle).ToList()),
+            new ("Images/ItemIcons/Types/Sorceries.png",       "Sorceries",      spells.Where(s => (s as Spell).SpellType == SpellType.Sorcery).ToList()),
+            new ("Images/ItemIcons/Types/Pyromancies.png",     "Pyromancy",      spells.Where(s => (s as Spell).SpellType == SpellType.Pyromancy).ToList()),
+            new ("Images/ItemIcons/Types/Miracles.png",        "Miracle",        spells.Where(s => (s as Spell).SpellType == SpellType.Miracle).ToList()),
         };
         var weapons = ItemList.GetItems(typeof(Weapon)).Where(w => w.Type is not ItemType.Fists);
         _weapons = new List<ItemGroup>
