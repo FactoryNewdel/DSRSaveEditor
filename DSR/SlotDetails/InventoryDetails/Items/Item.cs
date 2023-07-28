@@ -83,6 +83,33 @@ public class Item : INotifyPropertyChanged
     public static Item GetItem(byte idSpace, uint id, uint amount, uint sorting, int index, bool enabled, uint durability, uint durabilityLoss)
     {
         if (id / 10000 == 133) return new PyromancyFlame(id, index);
+        var bossID = id / 1000;
+        if (bossID >= 1052 && bossID < 1053     // Moonlight Butterfly Horn
+            || bossID >= 406 && bossID < 407    // Quelaags Furry Sword
+            || bossID >= 503 && bossID < 504    // Chaos Blade
+            || bossID >= 903 && bossID < 904    // Dragon Bone Fist
+            || bossID >= 704 && bossID < 705    // Golem Axe
+            || bossID >= 1051 && bossID < 1052  // Dragonslayer Spear
+            || bossID >= 307 && bossID < 308    // Greatsword of Artorias
+            || bossID >= 1205 && bossID < 1206  // Darkmoon Bow
+            || bossID >= 1304 && bossID < 1305  // Tin Darkmoon Catalyst
+            || bossID >= 1151 && bossID < 1152  // Lifehunt Scythe
+            || bossID >= 9017 && bossID < 9018  // Manus Catalyst
+           ) return new BossWeapon(id, amount, sorting, index, enabled, durability, durabilityLoss);
+
+        if (bossID >= 1411 && bossID < 1415) // Crystal Ring Shield
+            return new BossWeapon(ItemType.CrystalRingShield, id, amount, sorting, index, enabled, durability, durabilityLoss);
+        if (bossID >= 856 && bossID < 858)   // Smoughs Hammer
+            return new BossWeapon(ItemType.SmoughsHammer, id, amount, sorting, index, enabled, durability, durabilityLoss);
+        if (bossID >= 311 && bossID < 313)   // Cursed Greatsword of Artorias
+            return new BossWeapon(ItemType.GreatswordOfArtoriasCursed, id, amount, sorting, index, enabled, durability, durabilityLoss);
+        if (bossID >= 1507 && bossID < 1511) // Greatshield of Artorias
+            return new BossWeapon(ItemType.GreatshieldOfArtorias, id, amount, sorting, index, enabled, durability, durabilityLoss);
+        if (bossID >= 314 && bossID < 316)   // Great Lord Greatsword
+            return new BossWeapon(ItemType.GreatLordGreatsword, id, amount, sorting, index, enabled, durability, durabilityLoss);
+        if (bossID >= 9012 && bossID < 9014) // Abyss Greatsword
+            return new BossWeapon(ItemType.AbyssGreatsword, id, amount, sorting, index, enabled, durability, durabilityLoss);
+        
         if (idSpace == 0) return new Weapon(idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss);
         if (idSpace == 16) return new Armor(idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss);
         if (idSpace == 32) return new Ring(idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss);
@@ -149,7 +176,11 @@ public class Item : INotifyPropertyChanged
         }
     }
 
-    public ItemType Type => _type;
+    public ItemType Type
+    {
+        get => _type;
+        protected set => _type = value;
+    }
 
     public string Name { get; private set; }
     

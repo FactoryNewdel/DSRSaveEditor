@@ -20,6 +20,22 @@ public class Weapon : Item
         }
         GetWeaponDetails();
     }
+    
+    // Constructor for boss weapons with many IDs
+    public Weapon(ItemType type, byte idSpace, uint id, uint amount, uint sorting, int index, bool enabled, uint durability, uint durabilityLoss) : base(idSpace, id, amount, sorting , index, enabled, durability, durabilityLoss)
+    {
+        if (Type == ItemType.UNKNOWN) Type = type;
+        
+        try
+        {
+            _weaponUpgradeType = (ItemList.GetItem(Type) as Weapon).WeaponUpgradeType;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine($"UNKNOWN WEAPON: {id}\t{sorting}\t{durability}");
+        }
+        GetWeaponDetails();
+    }
 
     public Weapon(ItemType type, byte idSpace, uint id, uint sorting, uint durability, WeaponUpgradeType weaponUpgradeType) : base(type, idSpace, id, sorting, durability)
     {
