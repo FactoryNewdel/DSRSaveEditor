@@ -5,33 +5,18 @@
         <TargetFramework>net6.0-windows</TargetFramework>
         <Nullable>enable</Nullable>
         <UseWPF>true</UseWPF>
+        <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+        <SelfContained>true</SelfContained>
     </PropertyGroup>
 
     <ItemGroup>
-      <None Remove="Images\favicon.ico" />
-      <None Remove="Images\DS1_MenuBackground_large.png" />
-      <None Remove="Images\DS1_MenuBackground_small.png" />
-      <None Remove="Images\TabBackground_Import.jpg" />
-      <Resource Include="Images\Backgrounds\DS1_MenuBackground_large.png">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </Resource>
-      <None Remove="Images\Backgrounds\TabBackground_Character.jpg" />
-      <Resource Include="Images\Backgrounds\TabBackground_Character.jpg">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </Resource>
+        <ProjectReference Include="..\DSR\DSR.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\DSR\DSR.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Resource Include="Images\Backgrounds\TabBackground_Main.jpg">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </Resource>
-      <Resource Include="Images\favicon.ico">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </Resource>
+    <ItemGroup Label="Images">
+        <Content Include="Images\**">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
     </ItemGroup>
 
 </Project>

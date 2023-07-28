@@ -1,4 +1,5 @@
-﻿
+﻿using DSR.SlotDetails.InventoryDetails;
+
 namespace DSR.SlotDetails;
 
 public class SaveSlotDetails
@@ -6,78 +7,27 @@ public class SaveSlotDetails
     private byte[] _bytes;
 
     private CharacterStats _characterStats;
+    private Inventory? _inventory;
+    private Equipment? _equipment;
+    private Progress? _progress;
 
     public SaveSlotDetails(byte[] bytes)
     {
         _bytes = bytes;
-        
+
         _characterStats = new CharacterStats(bytes);
 
         if (_characterStats.Level == 0) return;
+
+        Console.WriteLine($"ACCOUNT {_characterStats.Name}");
+
+        _inventory = new Inventory(bytes);
+        _equipment = new Equipment(bytes, _inventory.Items);
+        _progress = new Progress(bytes);
         
         
-        for (var i = 220000; i < 222272; i++)
-        {
-            if (i == 220870)
-            {
-                ;
-            }
-            var first = BitConverter.ToUInt32(bytes.Skip(i).Take(4).ToArray());
-            if (first > 5000 || first == 0) continue;
-            var second = BitConverter.ToUInt32(bytes.Skip(i + (int)first + 4).Take(4).ToArray());
-            if (second > 5000 || second == 0) continue;
-            var third = 88;
-            var fourth = BitConverter.ToUInt32(bytes.Skip(i + (int)first + 4 + (int)second + 4 + third).Take(4).ToArray());
-            if (fourth > 5000 || fourth == 0) continue;
-            var fifth = BitConverter.ToUInt32(bytes.Skip(i + (int)first + 4 + (int)second + 4 + third + (int)fourth + 8).Take(4).ToArray());
-            if (fifth > 5000 || fifth == 0) continue;
-            var sixth = BitConverter.ToUInt32(bytes.Skip(i + (int)first + 4 + (int)second + 4 + third + (int)fourth + 8 + (int)fifth + 8).Take(4).ToArray());
-            if (sixth > 5000 || sixth == 0) continue;
-            var seventh = BitConverter.ToUInt32(bytes.Skip(i + (int)first + 4 + (int)second + 4 + third + (int)fourth + 8 + (int)fifth + 8 + (int)sixth + 8).Take(4).ToArray());
-            if (seventh > 5000 || seventh == 0) continue;
-            var eigth = BitConverter.ToUInt32(bytes.Skip(i + (int)first + 4 + (int)second + 4 + third + (int)fourth + 8 + (int)fifth + 8 + (int)sixth + 8 + (int)seventh + 8).Take(4).ToArray());
-            if (eigth > 5000 || eigth == 0) continue;
-            var ninth = BitConverter.ToUInt32(bytes.Skip(i + (int)first + 4 + (int)second + 4 + third + (int)fourth + 8 + (int)fifth + 8 + (int)sixth + 8 + (int)seventh + 8 + (int)eigth + 8).Take(4).ToArray());
-            if (ninth > 5000 || ninth == 0) continue;
-            var bonfires = BitConverter.ToUInt32(bytes.Skip(i + (int)first + 4 + (int)second + 4 + third + (int)fourth + 8 + (int)fifth + 8 + (int)sixth + 8 + (int)seventh + 8 + (int)eigth + 8 + (int)ninth + 8).Take(4).ToArray());
-            if (bonfires > 5000 || bonfires == 0) continue;
-            Console.WriteLine(i + " -> " + first + " -> " + second + " -> " + third + " -> " + fourth + " -> " + fifth + " -> " + sixth + " -> " + seventh + " -> " + eigth + " -> " + ninth + " -> " + bonfires);
-            Console.WriteLine(i + 4 + first + 4 + second + third + 4 + fourth + 4 + 4 + fifth + 4 + 4 + sixth + 4 + 4 + seventh + 4 + 4 + eigth + 4 + 4 + ninth + 4 + 4 + bonfires + 4);
-            for (var j = i + 4 + first + 4 + second + third + 4 + fourth + 4 + 4 + fifth + 4 + 4 + sixth + 4 + 4 + seventh + 4 + 4 + eigth + 4 + 4; j < i + 4 + first + 4 + second + third + 4 + fourth + 4 + 4 + fifth + 4 + 4 + sixth + 4 + 4 + seventh + 4 + 4 + eigth + 4 + 4 + ninth; j++)
-            {
-                //Console.WriteLine(j + " -> " + bytes[j]);
-            }
-            Console.WriteLine();
-            for (var j = i + 4 + first + 4 + second + third + 4 + fourth + 4 + 4 + fifth + 4 + 4 + sixth + 4 + 4 + seventh + 4 + 4 + eigth + 4 + 4 + ninth + 4 + 4; j < i + 4 + first + 4 + second + third + 4 + fourth + 4 + 4 + fifth + 4 + 4 + sixth + 4 + 4 + seventh + 4 + 4 + eigth + 4 + 4 + ninth + 4 + 4 + bonfires; j++)
-            {
-                //Console.WriteLine(j + " -> " + bytes[j]);
-            }
-        }
-        
-        // x?
-        /*_bytes[220958] = 34;
-        _bytes[220959] = 130;
-        _bytes[220960] = 65;
-        _bytes[220961] = 64;
-        
-        // y?
-        _bytes[220962] = 41;
-        _bytes[220963] = 226;
-        _bytes[220964] = 68;
-        _bytes[220965] = 67;
-        
-        // z?
-        _bytes[220966] = 109;
-        _bytes[220967] = 25;
-        _bytes[220968] = 22;
-        _bytes[220969] = 65;
-        
-        //_bytes[220978] = 226;
-        //_bytes[220979] = 178;
-        
-        // pitch
-        _bytes[220980] = 192;
-        _bytes[220981] = 62;*/
+        //_bytes[221174] = 0;
+        //_bytes[221180] = 0;
         
         // 2984 counter until weapon loses durability
         // 2844, 2872 armor counter
@@ -263,9 +213,17 @@ public class SaveSlotDetails
         get
         {
             _characterStats.UpdateData(ref _bytes);
+            if (_inventory != null) _inventory.UpdateData(ref _bytes);
+            if (_equipment != null) _equipment.UpdateData(ref _bytes);
             return _bytes;
         }
     }
 
     public CharacterStats CharacterStats => _characterStats;
+    
+    public Inventory Inventory => _inventory;
+    
+    public Equipment Equipment => _equipment;
+
+    public Progress Progress => _progress;
 }

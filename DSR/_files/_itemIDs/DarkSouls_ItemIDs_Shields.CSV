@@ -1,0 +1,126 @@
+NAME;DURABILITY;SORTING ID;;ID DEC;ID HEX;;Upgrades;;;;;
+East-West Shield;160;382D40;;1400000;155CC0;;Full;;;160 382D40;;1400000 155CC0
+Wooden Shield;160;386BC0;;1401000;1560A8;;Full;;;160 386BC0;;1401000 1560A8
+Large Leather Shield;200;38AA40;;1402000;156490;;Full;;;200 38AA40;;1402000 156490
+Small Leather Shield;200;3483C0;;1403000;156878;;Full;;;200 3483C0;;1403000 156878
+Target Shield;150;353F40;;1404000;156C60;;Full;;;150 353F40;;1404000 156C60
+Buckler;140;3500C0;;1405000;157048;;Full;;;140 3500C0;;1405000 157048
+Cracked Round Shield;60;341340;;1406000;157430;;Full;;;60 341340;;1406000 157430
+Leather Shield;200;34C240;;1408000;157C00;;Full;;;200 34C240;;1408000 157C00
+Plank Shield;120;344540;;1409000;157FE8;;Full;;;120 344540;;1409000 157FE8
+Caduceus Round Shield;180;3389C0;;1410000;1583D0;;Full;;;180 3389C0;;1410000 1583D0
+Crystal Ring Shield (East-West Shield);120;382D40;;1411000;1587B8;;Scales;;;120 382D40;;1411000 1587B8
+Crystal Ring Shield (Wooden Shield);120;386BC0;;1411100;15881C;;Scales;;;120 386BC0;;1411100 15881C
+Crystal Ring Shield (Large Leather Shield);120;38AA40;;1411300;1588E4;;Scales;;;120 38AA40;;1411300 1588E4
+Crystal Ring Shield (Small Leather Shield);120;3483C0;;1411400;158948;;Scales;;;120 3483C0;;1411400 158948
+Crystal Ring Shield (Target Shield);120;353F40;;1411600;158A10;;Scales;;;120 353F40;;1411600 158A10
+Crystal Ring Shield (Buckler);120;3500C0;;1411700;158A74;;Scales;;;120 3500C0;;1411700 158A74
+Crystal Ring Shield (Cracked Round Shield);120;341340;;1411800;158AD8;;Scales;;;120 341340;;1411800 158AD8
+Crystal Ring Shield (Leather Shield);120;34C240;;1411500;1589AC;;Scales;;;120 34C240;;1411500 1589AC
+Crystal Ring Shield (Plank Shield);120;344540;;1411200;158880;;Scales;;;120 344540;;1411200 158880
+Crystal Ring Shield (Caduceus Round Shield);120;3389C0;;1411900;158B3C;;Scales;;;120 3389C0;;1411900 158B3C
+Crystal Ring Shield (Heater Shield);120;38E8C0;;1412000;158BA0;;Scales;;;120 38E8C0;;1412000 158BA0
+Crystal Ring Shield (Knight Shield);120;39E2C0;;1412100;158C04;;Scales;;;120 39E2C0;;1412100 158C04
+Crystal Ring Shield (Tower Kite Shield);120;392740;;1412200;158C68;;Scales;;;120 392740;;1412200 158C68
+Crystal Ring Shield (Grass Crest Shield);120;3A9E40;;1412300;158CCC;;Scales;;;120 3A9E40;;1412300 158CCC
+Crystal Ring Shield (Hollow Soldier Shield);120;39A440;;1412400;158D30;;Scales;;;120 39A440;;1412400 158D30
+Crystal Ring Shield (Balder Shield);120;3A2DC0;;1412500;158D94;;Scales;;;120 3A2DC0;;1412500 158D94
+Crystal Ring Shield (Warrior's Round Shield);120;334B40;;1412600;158DF8;;Scales;;;120 334B40;;1412600 158DF8
+Crystal Ring Shield (Iron Round Shield);120;3AE940;;1412700;158E5C;;Scales;;;120 3AE940;;1412700 158E5C
+Crystal Ring Shield (Spider Shield);120;3A5FC0;;1412800;158EC0;;Scales;;;120 3A5FC0;;1412800 158EC0
+Crystal Ring Shield (Spiked Shield);120;3B9840;;1412900;158F24;;Scales;;;120 3B9840;;1412900 158F24
+Crystal Ring Shield (Sunlight Shield);120;3B1B40;;1413100;158FEC;;Scales;;;120 3B1B40;;1413100 158FEC
+Crystal Ring Shield (Pierce Shield);120;3B59C0;;1413000;158F88;;Scales;;;120 3B59C0;;1413000 158F88
+Crystal Ring Shield (Red and White Round Shield);120;33EDC0;;1413200;159050;;Scales;;;120 33EDC0;;1413200 159050
+Crystal Ring Shield (Caduceus Kite Shield);120;3965C0;;1413300;1590B4;;Scales;;;120 3965C0;;1413300 1590B4
+Crystal Ring Shield (Gargoyle's Shield);120;3BD6C0;;1413400;159118;;Scales;;;120 3BD6C0;;1413400 159118
+Crystal Ring Shield (Eagle Shield);120;3F8040;;1413500;15917C;;Scales;;;120 3F8040;;1413500 15917C
+Crystal Ring Shield (Tower Shield);120;3FBEC0;;1413600;1591E0;;Scales;;;120 3FBEC0;;1413600 1591E0
+Crystal Ring Shield (Giant Shield);120;4009C0;;1413700;159244;;Scales;;;120 4009C0;;1413700 159244
+Crystal Ring Shield (Bonewheel Shield);120;403BC0;;1413800;1592A8;;Scales;;;120 403BC0;;1413800 1592A8
+Crystal Ring Shield (Effigy Shield);120;33C840;;1413900;15930C;;Scales;;;120 33C840;;1413900 15930C
+Crystal Ring Shield (Sanctus);120;3A0840;;1414000;159370;;Scales;;;120 3A0840;;1414000 159370
+Crystal Ring Shield (Bloodshield);120;3AC3C0;;1414100;1593D4;;Scales;;;120 3AC3C0;;1414100 1593D4
+Crystal Ring Shield (Black Iron Greatshield);120;3FE440;;1414200;159438;;Scales;;;120 3FE440;;1414200 159438
+Heater Shield;250;38E8C0;;1450000;162010;;Full;;;250 38E8C0;;1450000 162010
+Knight Shield;200;39E2C0;;1451000;1623F8;;Full;;;200 39E2C0;;1451000 1623F8
+Tower Kite Shield;250;392740;;1452000;1627E0;;Full;;;250 392740;;1452000 1627E0
+Grass Crest Shield;200;3A9E40;;1453000;162BC8;;Full;;;200 3A9E40;;1453000 162BC8
+Hollow Soldier Shield;250;39A440;;1454000;162FB0;;Full;;;250 39A440;;1454000 162FB0
+Balder Shield;220;3A2DC0;;1455000;163398;;Full;;;220 3A2DC0;;1455000 163398
+Crest Shield;300;3C53C0;;1456000;163780;;Twinkling;;;300 3C53C0;;1456000 163780
+Dragon Crest Shield;300;3C5A00;;1457000;163B68;;Twinkling;;;300 3C5A00;;1457000 163B68
+Warrior's Round Shield;180;334B40;;1460000;164720;;Full;;;180 334B40;;1460000 164720
+Iron Round Shield;280;3AE940;;1461000;164B08;;Full;;;280 3AE940;;1461000 164B08
+Spider Shield;230;3A5FC0;;1462000;164EF0;;Full;;;230 3A5FC0;;1462000 164EF0
+Spiked Shield;160;3B9840;;1470000;166E30;;Full;;;160 3B9840;;1470000 166E30
+Crystal Shield;250;3C1540;;1471000;167218;;None;;;250 3C1540;;1471000 167218
+Sunlight Shield;280;3B1B40;;1472000;167600;;Full;;;280 3B1B40;;1472000 167600
+Silver Knight Shield;250;3C9240;;1473000;1679E8;;Twinkling;;;250 3C9240;;1473000 1679E8
+Black Knight Shield;250;3C9880;;1474000;167DD0;;Twinkling;;;250 3C9880;;1474000 167DD0
+Pierce Shield;180;3B59C0;;1475000;1681B8;;Full;;;180 3B59C0;;1475000 1681B8
+Red and White Round Shield;180;33EDC0;;1476000;1685A0;;Full;;;180 33EDC0;;1476000 1685A0
+Caduceus Kite Shield;250;3965C0;;1477000;168988;;Full;;;250 3965C0;;1477000 168988
+Gargoyle's Shield;300;3BD6C0;;1478000;168D70;;Full;;;300 3BD6C0;;1478000 168D70
+Eagle Shield;300;3F8040;;1500000;16E360;;Full;;;300 3F8040;;1500000 16E360
+Tower Shield;300;3FBEC0;;1501000;16E748;;Full;;;300 3FBEC0;;1501000 16E748
+Giant Shield;300;4009C0;;1502000;16EB30;;Full;;;300 4009C0;;1502000 16EB30
+Stone Greatshield;400;407A40;;1503000;16EF18;;Twinkling;;;400 407A40;;1503000 16EF18
+Havel's Greatshield;500;40B8C0;;1505000;16F6E8;;Twinkling;;;500 40B8C0;;1505000 16F6E8
+Bonewheel Shield;200;403BC0;;1506000;16FAD0;;Full;;;200 403BC0;;1506000 16FAD0
+Greatshield of Artorias (East-West Shield);600;382D40;;1507000;16FEB8;;Scales;;;600 382D40;;1507000 16FEB8
+Greatshield of Artorias (Wooden Shield);600;386BC0;;1507100;16FF1C;;Scales;;;600 386BC0;;1507100 16FF1C
+Greatshield of Artorias (Large Leather Shield);600;38AA40;;1507300;16FFE4;;Scales;;;600 38AA40;;1507300 16FFE4
+Greatshield of Artorias (Small Leather Shield);600;3483C0;;1507400;170048;;Scales;;;600 3483C0;;1507400 170048
+Greatshield of Artorias (Target Shield);600;353F40;;1507600;170110;;Scales;;;600 353F40;;1507600 170110
+Greatshield of Artorias (Buckler);600;3500C0;;1507700;170174;;Scales;;;600 3500C0;;1507700 170174
+Greatshield of Artorias (Cracked Round Shield);600;341340;;1507800;1701D8;;Scales;;;600 341340;;1507800 1701D8
+Greatshield of Artorias (Leather Shield);600;34C240;;1507500;1700AC;;Scales;;;600 34C240;;1507500 1700AC
+Greatshield of Artorias (Plank Shield);600;344540;;1507200;16FF80;;Scales;;;600 344540;;1507200 16FF80
+Greatshield of Artorias (Caduceus Round Shield);600;3389C0;;1507900;17023C;;Scales;;;600 3389C0;;1507900 17023C
+Greatshield of Artorias (Heater Shield);600;38E8C0;;1508000;1702A0;;Scales;;;600 38E8C0;;1508000 1702A0
+Greatshield of Artorias (Knight Shield);600;39E2C0;;1508100;170304;;Scales;;;600 39E2C0;;1508100 170304
+Greatshield of Artorias (Tower Kite Shield);600;392740;;1508200;170368;;Scales;;;600 392740;;1508200 170368
+Greatshield of Artorias (Grass Crest Shield);600;3A9E40;;1508300;1703CC;;Scales;;;600 3A9E40;;1508300 1703CC
+Greatshield of Artorias (Hollow Soldier Shield);600;39A440;;1508400;170430;;Scales;;;600 39A440;;1508400 170430
+Greatshield of Artorias (Balder Shield);600;3A2DC0;;1508500;170494;;Scales;;;600 3A2DC0;;1508500 170494
+Greatshield of Artorias (Warrior's Round Shield);600;334B40;;1508600;1704F8;;Scales;;;600 334B40;;1508600 1704F8
+Greatshield of Artorias (Iron Round Shield);600;3AE940;;1508700;17055C;;Scales;;;600 3AE940;;1508700 17055C
+Greatshield of Artorias (Spider Shield);600;3A5FC0;;1508800;1705C0;;Scales;;;600 3A5FC0;;1508800 1705C0
+Greatshield of Artorias (Spiked Shield);600;3B9840;;1508900;170624;;Scales;;;600 3B9840;;1508900 170624
+Greatshield of Artorias (Sunlight Shield);600;3B1B40;;1509100;1706EC;;Scales;;;600 3B1B40;;1509100 1706EC
+Greatshield of Artorias (Pierce Shield);600;3B59C0;;1509000;170688;;Scales;;;600 3B59C0;;1509000 170688
+Greatshield of Artorias (Red and White Round Shield);600;33EDC0;;1509200;170750;;Scales;;;600 33EDC0;;1509200 170750
+Greatshield of Artorias (Caduceus Kite Shield);600;3965C0;;1509300;1707B4;;Scales;;;600 3965C0;;1509300 1707B4
+Greatshield of Artorias (Gargoyle's Shield);600;3BD6C0;;1509400;170818;;Scales;;;600 3BD6C0;;1509400 170818
+Greatshield of Artorias (Eagle Shield);600;3F8040;;1509500;17087C;;Scales;;;600 3F8040;;1509500 17087C
+Greatshield of Artorias (Tower Shield);600;3FBEC0;;1509600;1708E0;;Scales;;;600 3FBEC0;;1509600 1708E0
+Greatshield of Artorias (Giant Shield);600;4009C0;;1509700;170944;;Scales;;;600 4009C0;;1509700 170944
+Greatshield of Artorias (Bonewheel Shield);600;403BC0;;1509800;1709A8;;Scales;;;600 403BC0;;1509800 1709A8
+Greatshield of Artorias (Effigy Shield);600;33C840;;1509900;170A0C;;Scales;;;600 33C840;;1509900 170A0C
+Greatshield of Artorias (Sanctus);600;3A0840;;1510000;170A70;;Scales;;;600 3A0840;;1510000 170A70
+Greatshield of Artorias (Bloodshield);600;3AC3C0;;1510100;170AD4;;Scales;;;600 3AC3C0;;1510100 170AD4
+Greatshield of Artorias (Black Iron Greatshield);600;3FE440;;1510200;170B38;;Scales;;;600 3FE440;;1510200 170B38
+Effigy Shield;180;33C840;;9000000;895440;;Full;;;180 33C840;;9000000 895440
+Sanctus;410;3A0840;;9001000;895828;;Full;;;410 3A0840;;9001000 895828
+Bloodshield;240;3AC3C0;;9002000;895C10;;Full;;;240 3AC3C0;;9002000 895C10
+Black Iron Greatshield;230;3FE440;;9003000;895FF8;;Full;;;230 3FE440;;9003000 895FF8
+;;;;;;;;;;;;
+;;;;;;;;;;;;
+;;;;;;;;;;;;
+;;;;;;;;;;;;
+;;;;;;;;;;;;
+;;;;;;;;;;;;
+;;;;;;;;;;;;
+;;;;;;;;;;;;
+;;;;;;;;;;;;
+;;;;;;;;;;;;
+;;;;;;;;;;;;
+;;;;;;;;;;;;
+;;;;;;;;;;;;
+;;;;;;;;;;;;
+;;;;;;;;;;;;
+;;;;;;;;;;;;
+;;;;;;;;;;;;
+;;;;;;;;;;;;
+;;;;;;;;;;;;

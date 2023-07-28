@@ -4,12 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI"
+        xmlns:self="clr-namespace:DSR.SlotDetails;assembly=DSR"
+        xmlns:helper="clr-namespace:GUI.Helper"
+        xmlns:items="clr-namespace:DSR.SlotDetails.InventoryDetails.Items;assembly=DSR"
+        xmlns:system="clr-namespace:System;assembly=System.Runtime"
         mc:Ignorable="d"
         Title="DSR Save Editor" Height="450" Width="800"
         WindowState="Maximized"
         Icon="Images/favicon.ico"
         Background="Black">
-    <TabControl Name="Tabs" Padding="0" Background="Black" SelectedIndex="2">
+    <TabControl Name="Tabs" Padding="0" Background="Black" SelectedIndex="0">
 
         <TabItem Name="TabMain" Header="Main" Style="{DynamicResource MainTabStyle}">
 
@@ -22,8 +26,8 @@
 
                 <Image Grid.Column="0" Grid.ColumnSpan="3" Source="Images/Backgrounds/TabBackground_Main.jpg" Stretch="Fill" />
 
-                <Button Name="ButtonImport" Grid.Column="0" Style="{DynamicResource MainTabButtonStyle}" Click="Import_Clicked" >Import Savefile</Button>
-                <Button Name="ButtonExport" Grid.Column="2" Style="{DynamicResource MainTabButtonStyle}" Click="Export_Clicked" >Export Savefile</Button>
+                <Button Name="ButtonImport" Grid.Column="0" Style="{DynamicResource MainTabButtonStyle}" Click="Import_Clicked">Import Savefile</Button>
+                <Button Name="ButtonExport" Grid.Column="2" Style="{DynamicResource MainTabButtonStyle}" Click="Export_Clicked">Export Savefile</Button>
             </Grid>
 
         </TabItem>
@@ -42,7 +46,7 @@
 
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Grid Margin="0">
+                        <Grid Margin="10">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="*" />
@@ -56,17 +60,23 @@
                                 <ColumnDefinition Width="600" />
                             </Grid.ColumnDefinitions>
 
+                            <Grid.Resources>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="FontSize" Value="40" />
+                                </Style>
+                            </Grid.Resources>
+
                             <Image Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="5" Margin="0" Source="Images/Backgrounds/DS1_MenuBackground_large.png" Stretch="Fill" />
 
-                            <TextBlock Grid.Row="0" Grid.Column="0" Margin="200 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontSize="30" FontFamily="Times New Roman" Text="{Binding CharacterStats.Name}" />
-                            <TextBlock Grid.Row="1" Grid.Column="0" Margin="200 0 0 0" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontSize="30" FontFamily="Times New Roman" Text="Level" />
+                            <TextBlock Grid.Row="0" Grid.Column="0" Margin="200 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontFamily="Times New Roman" Text="{Binding CharacterStats.Name}" />
+                            <TextBlock Grid.Row="1" Grid.Column="0" Margin="200 0 0 0" Padding="0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontFamily="Times New Roman" Text="Level" />
 
-                            <TextBlock Grid.Row="1" Grid.Column="1" Margin="0 0 0 0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="White" FontSize="30" FontFamily="Times New Roman" Text="{Binding CharacterStats.Level}" />
+                            <TextBlock Grid.Row="1" Grid.Column="1" Margin="0 0 0 0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="White" FontFamily="Times New Roman" Text="{Binding CharacterStats.Level}" />
 
-                            <TextBlock Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2" Margin="0 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontSize="30" FontFamily="Times New Roman" Text="{Binding CharacterStats.LocationString}" />
-                            <TextBlock Grid.Row="1" Grid.Column="3" Margin="0 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontSize="30" FontFamily="Times New Roman" Text="PlayTime" />
+                            <TextBlock Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2" Margin="0 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontFamily="Times New Roman" Text="{Binding CharacterStats.LocationString}" />
+                            <TextBlock Grid.Row="1" Grid.Column="3" Margin="0 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontFamily="Times New Roman" Text="PlayTime" />
 
-                            <TextBlock Grid.Row="1" Grid.Column="4" Margin="0 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="30" FontFamily="Times New Roman" Text="{Binding CharacterStats.PlaytimeString}" />
+                            <TextBlock Grid.Row="1" Grid.Column="4" Margin="0 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontFamily="Times New Roman" Text="{Binding CharacterStats.PlaytimeString}" />
 
                         </Grid>
                     </DataTemplate>
@@ -79,19 +89,107 @@
 
             <Grid Name="GridCharacter">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="50" />
                     <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
+                    <RowDefinition Height="600" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="600" />
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="300" />
                 </Grid.ColumnDefinitions>
 
-                <Image Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="3" Source="Images/Backgrounds/TabBackground_Character.jpg" Stretch="Fill" />
+                <Image Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Source="Images/Backgrounds/TabBackground_Character.jpg" Stretch="Fill" />
 
-                <Slider Name="Sliderr" Grid.Row="0" Grid.Column="1" Panel.ZIndex="1" 
+                <!-->Active Equipment like shown on main screen<-->
+                <Grid Name="GridActiveEquip" Grid.Row="1" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Image Grid.Row="0" Grid.Column="1" Source="Images/Backgrounds/Itemslot_Empty.png" Opacity="0.88" />
+                    <Image Grid.Row="0" Grid.Column="1" Source="{Binding SelectedSlot.Equipment.IconPathAttunement}" Opacity="0.88" Margin="25" />
+
+                    <Image Grid.Row="1" Grid.Column="0" Source="Images/Backgrounds/Itemslot_Empty.png" Opacity="0.88" />
+                    <Image Grid.Row="1" Grid.Column="0" Source="{Binding SelectedSlot.Equipment.IconPathLeftHand}" Opacity="0.88" Margin="25" />
+
+                    <Image Grid.Row="1" Grid.Column="2" Source="Images/Backgrounds/Itemslot_Empty.png" Opacity="0.88" />
+                    <Image Grid.Row="1" Grid.Column="2" Source="{Binding SelectedSlot.Equipment.IconPathRightHand}" Opacity="0.88" Margin="25" />
+
+                    <Image Grid.Row="2" Grid.Column="1" Source="Images/Backgrounds/Itemslot_Empty.png" Opacity="0.88" />
+                    <Image Grid.Row="2" Grid.Column="1" Source="{Binding SelectedSlot.Equipment.IconPathConsumable}" Opacity="0.88" Margin="25" />
+
+                </Grid>
+
+                <!-->Stats<-->
+                <Grid Name="GridStats" Grid.Row="1" Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="100" />
+                    </Grid.ColumnDefinitions>
+
+                    <Image Grid.Row="0" Grid.Column="0" Source="Images/StatusIcons/Level.png" />
+                    <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Margin="10 0 0 0" FontSize="15">Level</TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Text="{Binding SelectedSlot.CharacterStats.Level, FallbackValue=0}" />
+
+                    <Image Grid.Row="1" Grid.Column="0" Source="Images/StatusIcons/Vitality.png" />
+                    <TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Margin="10 0 0 0" FontSize="15">Vitality</TextBlock>
+                    <TextBox Grid.Row="1" Grid.Column="2" Style="{DynamicResource TextBoxStyle}" Text="{Binding SelectedSlot.CharacterStats.Vitality, FallbackValue=0}" />
+
+                    <Image Grid.Row="2" Grid.Column="0" Source="Images/StatusIcons/Attunement.png" />
+                    <TextBlock Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Margin="10 0 0 0" FontSize="15">Attunement</TextBlock>
+                    <TextBox Grid.Row="2" Grid.Column="2" Style="{DynamicResource TextBoxStyle}" Text="{Binding SelectedSlot.CharacterStats.Attunement, FallbackValue=0}" />
+
+                    <Image Grid.Row="3" Grid.Column="0" Source="Images/StatusIcons/Endurance.png" />
+                    <TextBlock Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Margin="10 0 0 0" FontSize="15">Endurance</TextBlock>
+                    <TextBox Grid.Row="3" Grid.Column="2" Style="{DynamicResource TextBoxStyle}" Text="{Binding SelectedSlot.CharacterStats.Endurance, FallbackValue=0}" />
+
+                    <Image Grid.Row="4" Grid.Column="0" Source="Images/StatusIcons/Strength.png" />
+                    <TextBlock Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Margin="10 0 0 0" FontSize="15">Strength</TextBlock>
+                    <TextBox Grid.Row="4" Grid.Column="2" Style="{DynamicResource TextBoxStyle}" Text="{Binding SelectedSlot.CharacterStats.Strength, FallbackValue=0}" />
+
+                    <Image Grid.Row="5" Grid.Column="0" Source="Images/StatusIcons/Dexterity.png" />
+                    <TextBlock Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Margin="10 0 0 0" FontSize="15">Dexterity</TextBlock>
+                    <TextBox Grid.Row="5" Grid.Column="2" Style="{DynamicResource TextBoxStyle}" Text="{Binding SelectedSlot.CharacterStats.Dexterity, FallbackValue=0}" />
+
+                    <Image Grid.Row="6" Grid.Column="0" Source="Images/StatusIcons/Resistance.png" />
+                    <TextBlock Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Margin="10 0 0 0" FontSize="15">Resistance</TextBlock>
+                    <TextBox Grid.Row="6" Grid.Column="2" Style="{DynamicResource TextBoxStyle}" Text="{Binding SelectedSlot.CharacterStats.Resistance, FallbackValue=0}" />
+
+                    <Image Grid.Row="7" Grid.Column="0" Source="Images/StatusIcons/Intelligence.png" />
+                    <TextBlock Grid.Row="7" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Margin="10 0 0 0" FontSize="15">Intelligence</TextBlock>
+                    <TextBox Grid.Row="7" Grid.Column="2" Style="{DynamicResource TextBoxStyle}" Text="{Binding SelectedSlot.CharacterStats.Intelligence, FallbackValue=0}" />
+
+                    <Image Grid.Row="8" Grid.Column="0" Source="Images/StatusIcons/Faith.png" />
+                    <TextBlock Grid.Row="8" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Margin="10 0 0 0" FontSize="15">Faith</TextBlock>
+                    <TextBox Grid.Row="8" Grid.Column="2" Style="{DynamicResource TextBoxStyle}" Text="{Binding SelectedSlot.CharacterStats.Faith, FallbackValue=0}" />
+
+                    <Image Grid.Row="9" Grid.Column="0" Source="Images/StatusIcons/Humanity.png" />
+                    <TextBlock Grid.Row="9" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Margin="10 0 0 0" FontSize="15">Humanity</TextBlock>
+                    <TextBox Grid.Row="9" Grid.Column="2" Style="{DynamicResource TextBoxStyle}" Text="{Binding SelectedSlot.CharacterStats.Humanity, FallbackValue=0}" />
+
+                </Grid>
+
+                <Slider Name="Sliderr" Grid.Row="0" Grid.Column="1" Panel.ZIndex="1"
                         Minimum="0" Maximum="1000" Interval="1" IsSnapToTickEnabled="True" Orientation="Horizontal"
                         Template="{DynamicResource HorizontalSlider}">
                 </Slider>
@@ -99,13 +197,215 @@
                              Value="{Binding ElementName=Sliderr, Path=Value}"
                              Minimum="{Binding ElementName=Sliderr, Path=Minimum}"
                              Maximum="{Binding ElementName=Sliderr, Path=Maximum}" />
-                
+
                 <TextBox Grid.Row="0" Grid.Column="0" Style="{DynamicResource TextBoxStyle}"
                          PreviewTextInput="Textbox_PreviewNumberOnly"
                          Text="{Binding ElementName=Sliderr, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 </TextBox>
 
-                <TextBlock Grid.Row="1" Grid.Column="2" Margin="100 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontSize="30" FontFamily="Times New Roman" Text="{Binding SelectedSlot.CharacterStats.Name, FallbackValue=Name not found}" />
+                <TextBlock Grid.Row="1" Grid.Column="1" Margin="100 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontSize="30" FontFamily="Times New Roman" Text="{Binding SelectedSlot.CharacterStats.Name, FallbackValue=Name not found}" />
+
+            </Grid>
+
+        </TabItem>
+
+        <TabItem Header="Inventory" Style="{DynamicResource MainTabStyle}" IsEnabled="False">
+
+            <Grid>
+
+                <Image Source="Images/Backgrounds/TabBackground_Inventory.jpg" Stretch="Fill" />
+
+                <Grid Margin="100 100 100 0" Background="Black">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="BorderBrush" Value="{Binding BorderBrush}" />
+                                <Style.Triggers>
+                                    <Trigger Property="Border.IsMouseOver" Value="True">
+                                        <Setter Property="Border.BorderBrush" Value="SaddleBrown" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Grid.Resources>
+
+                        <Rectangle Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="8" Fill="#111111"></Rectangle>
+
+                        <Border Name="ImageConsumables" Grid.Row="0" Grid.Column="0" Margin="10 10 5 10" BorderThickness="3">
+                            <Image Stretch="UniformToFill" Source="{Binding ImagePath}" MouseLeftButtonDown="InventoryImage_OnClick"></Image>
+                        </Border>
+
+                        <Border Name="ImageUpgradeMaterials" Grid.Row="0" Grid.Column="1" Margin="5 10" BorderThickness="3">
+                            <Image Stretch="UniformToFill" Source="{Binding ImagePath}" MouseLeftButtonDown="InventoryImage_OnClick"></Image>
+                        </Border>
+
+                        <Border Name="ImageKeyItems" Grid.Row="0" Grid.Column="2" Margin="5 10" BorderThickness="3">
+                            <Image Stretch="UniformToFill" Source="{Binding ImagePath}" MouseLeftButtonDown="InventoryImage_OnClick"></Image>
+                        </Border>
+
+                        <Border Name="ImageSpells" Grid.Row="0" Grid.Column="3" Margin="5 10" BorderThickness="3">
+                            <Image Stretch="UniformToFill" Source="{Binding ImagePath}" MouseLeftButtonDown="InventoryImage_OnClick"></Image>
+                        </Border>
+                        <Border Name="ImageWeapons" Grid.Row="0" Grid.Column="4" Margin="5 10" BorderThickness="3">
+                            <Image Stretch="UniformToFill" Source="{Binding ImagePath}" MouseLeftButtonDown="InventoryImage_OnClick"></Image>
+                        </Border>
+                        <Border Name="ImageAmmunition" Grid.Row="0" Grid.Column="5" Margin="5 10" BorderThickness="3">
+                            <Image Stretch="UniformToFill" Source="{Binding ImagePath}" MouseLeftButtonDown="InventoryImage_OnClick"></Image>
+                        </Border>
+                        <Border Name="ImageArmor" Grid.Row="0" Grid.Column="6" Margin="5 10" BorderThickness="3">
+                            <Image Stretch="UniformToFill" Source="{Binding ImagePath}" MouseLeftButtonDown="InventoryImage_OnClick"></Image>
+                        </Border>
+                        <Border Name="ImageRings" Grid.Row="0" Grid.Column="7" Margin="5 10 10 10" BorderThickness="3">
+                            <Image Stretch="UniformToFill" Source="{Binding ImagePath}" MouseLeftButtonDown="InventoryImage_OnClick"></Image>
+                        </Border>
+
+                    </Grid>
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <ListView Name="listViewInventory" Grid.Column="0" Background="Black" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                    <EventSetter Event="MouseDoubleClick" Handler="ListViewItem_DoubleClick"></EventSetter>
+                                    <EventSetter Event="PreviewKeyDown"   Handler="ListViewItem_PreviewKeyDown"></EventSetter>
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="50" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid Grid.Column="0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*" />
+                                                <RowDefinition Height="*" />
+                                                <RowDefinition Height="*" />
+                                                <RowDefinition Height="*" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="0" Grid.ColumnSpan="4"
+                                                   Panel.ZIndex="0" Stretch="UniformToFill"
+                                                   Source="{Binding ImagePath}" />
+                                            <Image Grid.Row="3" Grid.Column="3"
+                                                   HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                                                   Panel.ZIndex="1" Margin="3"
+                                                   Source="{Binding InfusionImagePath}" />
+                                        </Grid>
+
+                                        <TextBlock Grid.Column="1"
+                                                   HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="18pt" Margin="10 0 0 0"
+                                                   Text="{Binding Name}" />
+                                        <TextBlock Grid.Column="2"
+                                                   HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Margin="5 0 0 0" FontSize="18pt"
+                                                   Text="{Binding Level, StringFormat={}{0:+#;'';''}, FallbackValue={x:Static system:String.Empty}}" />
+                                        <TextBlock Grid.Column="3"
+                                                   HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="White" Margin="5 0 10 0" FontSize="20pt"
+                                                   Text="{Binding Amount, StringFormat={}{0:#;'';''}, FallbackValue={x:Static system:String.Empty}}" />
+                                        <Button Grid.Column="4" Name="DeleteItemButton"
+                                                Height="25" Width="25"
+                                                Foreground="Red" Background="Black"
+                                                Content="X">
+                                            <Button.Style>
+                                                <Style TargetType="{x:Type Button}">
+                                                    <Setter Property="Visibility" Value="Collapsed" />
+                                                    <EventSetter Event="Click" Handler="ListViewItem_DeleteButtonClicked" />
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
+                                                                                        AncestorType={x:Type ListBoxItem}},Path=IsSelected}"
+                                                                     Value="True">
+                                                            <Setter Property="Visibility" Value="Visible" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
+                                                                                        AncestorType={x:Type ListBoxItem}},Path=IsMouseOver}"
+                                                                     Value="True">
+                                                            <Setter Property="Visibility" Value="Visible" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Button.Style>
+                                        </Button>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                        <TreeView Name="treeItems" Grid.Column="1" Background="Transparent" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                            <TreeView.ItemContainerStyle>
+                                <Style BasedOn="{StaticResource {x:Type TreeViewItem}}" TargetType="{x:Type TreeViewItem}">
+                                    <Setter Property="Foreground" Value="White" />
+                                    <Setter Property="BorderBrush" Value="Transparent" />
+                                    <Setter Property="BorderThickness" Value="0" />
+                                    <EventSetter Event="PreviewKeyDown" Handler="TreeItem_PreviewKeyDown"></EventSetter>
+                                    <EventSetter Event="MouseDoubleClick" Handler="TreeItem_DoubleClick"></EventSetter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Foreground" Value="White" />
+                                            <Setter Property="BorderBrush" Value="White" />
+                                            <Setter Property="BorderThickness" Value="1" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TreeView.ItemContainerStyle>
+                            <TreeView.Resources>
+                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
+                                                 Color="#333333" />
+                                <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}"
+                                                 Color="Black" />
+
+                                <HierarchicalDataTemplate DataType="{x:Type helper:ItemGroup}" ItemsSource="{Binding Items}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{Binding ImagePath}" />
+                                        <TextBlock Text="{Binding Title}" VerticalAlignment="Center" Margin="5 0 0 0" FontSize="20" />
+                                    </StackPanel>
+                                </HierarchicalDataTemplate>
+
+                                <DataTemplate DataType="{x:Type items:Item}">
+                                    <Grid Margin="0 5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition MaxWidth="50" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Image Grid.Column="0" Source="{Binding ImagePath}" MaxHeight="50" />
+                                        <TextBlock Grid.Column="1" Text="{Binding Name}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 10 0" FontSize="18" />
+                                    </Grid>
+                                </DataTemplate>
+                            </TreeView.Resources>
+                        </TreeView>
+
+                    </Grid>
+
+                </Grid>
 
             </Grid>
 
@@ -183,9 +483,14 @@
 
         <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}">
             <Setter Property="Background" Value="Transparent"></Setter>
-            <Setter Property="BorderThickness" Value="0"></Setter>
+            <Setter Property="BorderThickness" Value="1"></Setter>
             <Setter Property="Foreground" Value="White"></Setter>
             <Setter Property="CaretBrush" Value="White"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalAlignment" Value="Stretch"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+            <Setter Property="Margin" Value="10"></Setter>
         </Style>
 
         <Style x:Key="SliderThumbStyle"
