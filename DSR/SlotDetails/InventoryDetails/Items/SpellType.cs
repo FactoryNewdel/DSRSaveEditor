@@ -3,6 +3,6 @@
 public enum SpellType
 {
     Sorcery = 3,
-    Pyromany = 4,
+    Pyromancy = 4,
     Miracle = 5,
 }

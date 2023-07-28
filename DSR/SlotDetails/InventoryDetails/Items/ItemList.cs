@@ -46,8 +46,8 @@ public class ItemList
         // Lord Souls /-vessel   25xx
         new KeyItem(ItemType.LordSoulGravelordNito,                             64,     2500,   0x00FA40),
         new KeyItem(ItemType.LordSoulBedOfChaos,                                64,     2501,   0x00FA60),
-        new KeyItem(ItemType.BequeathedLordSoulShardFourKings,                  64,     2502,   0x00FA80),
-        new KeyItem(ItemType.BequeathedLordSoulShardSeathTheScaleless,          64,     2503,   0x00FAA0),
+        new KeyItem(ItemType.LordSoulFourKings,                                 64,     2502,   0x00FA80),
+        new KeyItem(ItemType.LordSoulSeathTheScaleless,                         64,     2503,   0x00FAA0),
         new KeyItem(ItemType.Lordvessel,                                        64,     2510,   0x00FA20),
         new KeyItem(ItemType.BrokenPendant,                                     64,     2520,   0x00FD40),
         // Bonfire Upgrades     26xx
@@ -621,7 +621,7 @@ public class ItemList
         new Weapon(ItemType.WoodenArrow,        0,      2006000,        0x7A1840,       0,      WeaponUpgradeType.None),
         new Weapon(ItemType.DragonslayerArrow,  0,      2007000,        0x7A4400,       0,      WeaponUpgradeType.None),
         
-        new Weapon(ItemType.GoughsArrow,        0,      2008000,        0x7A4A40,       0,      WeaponUpgradeType.None),
+        new Weapon(ItemType.GoughsGreatArrow,   0,      2008000,        0x7A4A40,       0,      WeaponUpgradeType.None),
         
         // Bolts                21XXXXX
         new Weapon(ItemType.StandardBolt,       0,      2100000,        0x7B5700,       0,      WeaponUpgradeType.None),
@@ -699,7 +699,7 @@ public class ItemList
         new CommonItem(ItemType.PurpleMossClump,                        64,     271,    0x000270),
         new CommonItem(ItemType.BloomingPurpleMossClump,                64,     272,    0x000280),
         new CommonItem(ItemType.PurgingStone,                           64,     274,    0x000290),
-        new CommonItem(ItemType.EggVermifluge,                          64,     275,    0x0002A0),
+        new CommonItem(ItemType.EggVermifuge,                          64,     275,    0x0002A0),
         new CommonItem(ItemType.RepairPowder,                           64,     280,    0x000310),
         new CommonItem(ItemType.ThrowingKnife,                          64,     290,    0x0002E0),
         new CommonItem(ItemType.PoisonThrowingKnife,                    64,     291,    0x0002F0),
@@ -762,7 +762,7 @@ public class ItemList
         new CommonSoul(ItemType.SoulOfAGreatHero,                       64,     409,    0x0004A0),
         
         new CommonItem(ItemType.Humanity,                               64,     500,    0x000650),
-        new CommonItem(ItemType.TwinHumanity,                           64,     501,    0x000660),
+        new CommonItem(ItemType.TwinHumanities,                         64,     501,    0x000660),
         
         // Boss souls       7xx
         new BossSoul(ItemType.SoulOfQuelaag,                          64,     700,    0x000520),

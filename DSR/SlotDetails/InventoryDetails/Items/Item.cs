@@ -124,6 +124,7 @@ public class Item : INotifyPropertyChanged
     private static Item GetIngameItem(byte idSpace, uint id, uint amount, uint sorting, int index, bool enabled, uint durability, uint durabilityLoss)
     {
         if (id >= 200 && id <= 215) return new EstusFlask(id, amount, index);
+        if (id / 1000 == 0 && id / 100 == 7) return new BossSoul(idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss);
         if (id / 1000 == 0 && id / 100 == 4) return new CommonSoul(idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss);
         if (id / 10000 == 0 && id / 1000 == 1) return new UpgradeMaterial(idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss);
         if (id == 384 // Peculiar Doll

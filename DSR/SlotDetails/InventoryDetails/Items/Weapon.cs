@@ -2,6 +2,7 @@
 
 public class Weapon : Item
 {
+    private uint _maxAmount;
     private WeaponUpgradeType _weaponUpgradeType;
     private WeaponType _weaponType;
     private Infusion _infusion;
@@ -72,7 +73,9 @@ public class Weapon : Item
         else if (_weaponType == WeaponType.Catalyst && id / 10000 == 136) _weaponType = WeaponType.Talisman;
         else if (_weaponType == WeaponType.SmallShield && id / 10000 == 145) _weaponType = WeaponType.StandardShield;
 
-
+        if (_weaponType == WeaponType.Arrow || _weaponType == WeaponType.Bolt) _maxAmount = 999;
+        else _maxAmount = 1;
+        
         ImagePath += $"Weapons/{_weaponType}s/{Type}.png";
     }
 
@@ -95,6 +98,8 @@ public class Weapon : Item
     }
     
     public override uint FullID => (uint)(ID + (int)_infusion * 100 + Level);
+
+    public override uint MaxAmount => _maxAmount;
 
     public WeaponUpgradeType WeaponUpgradeType => _weaponUpgradeType;
 

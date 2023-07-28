@@ -6,11 +6,13 @@ public class UpgradeMaterial : Item
     
     public UpgradeMaterial(byte idSpace, uint id, uint amount, uint sorting, int index, bool enabled, uint durability, uint durabilityLoss) : base (idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss)
     {
+        ImagePath += $"Items/UpgradeMaterials/{Type}.png";
         GetMaterialDetails();
     }
 
     public UpgradeMaterial(ItemType type, byte idSpace, uint id, uint sorting) : base(type, idSpace, id, sorting, 0)
     {
+        ImagePath += $"Items/UpgradeMaterials/{Type}.png";
         GetMaterialDetails();
     }
 

@@ -6,12 +6,12 @@ public class BossSoul : CommonItem
     
     public BossSoul(byte idSpace, uint id, uint amount, uint sorting, int index, bool enabled, uint durability, uint durabilityLoss) : base (idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss)
     {
-        
+        ImagePath = ImagePath.Insert(ImagePath.LastIndexOf("\\", StringComparison.InvariantCulture) + 1, "BossSouls\\");
     }
 
     public BossSoul(ItemType type, byte idSpace, uint id, uint sorting) : base(type, idSpace, id, sorting)
     {
-        
+        ImagePath = ImagePath.Insert(ImagePath.LastIndexOf("\\", StringComparison.InvariantCulture) + 1, "BossSouls\\");
     }
 
     public BossSoul(BossSoul bossSoul) : base(bossSoul)

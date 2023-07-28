@@ -44,8 +44,8 @@ public enum ItemType
 
     LordSoulGravelordNito,
     LordSoulBedOfChaos,
-    BequeathedLordSoulShardFourKings,
-    BequeathedLordSoulShardSeathTheScaleless,
+    LordSoulFourKings,
+    LordSoulSeathTheScaleless,
     Lordvessel,
     BrokenPendant,
     
@@ -620,7 +620,7 @@ public enum ItemType
     WoodenArrow,
     DragonslayerArrow,
     
-    GoughsArrow,
+    GoughsGreatArrow,
     
     // Bolts
     StandardBolt,
@@ -697,7 +697,7 @@ public enum ItemType
     PurpleMossClump,
     BloomingPurpleMossClump,
     PurgingStone,
-    EggVermifluge,
+    EggVermifuge,
     RepairPowder,
     ThrowingKnife,
     PoisonThrowingKnife,
@@ -752,7 +752,7 @@ public enum ItemType
     SoulOfAHero,
     SoulOfAGreatHero,
     Humanity,
-    TwinHumanity,
+    TwinHumanities,
     SoulOfQuelaag,
     SoulOfSif,
     SoulOfGwyn,
