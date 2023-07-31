@@ -2,12 +2,12 @@
 
 public enum WeaponUpgradeType
 {
-    Unoptainable,
-    None,
-    Full,
-    Twinkling,
-    Scales,
-    Demon,
+    Unoptainable = 0,
+    None = 0,
+    Full = 15,
+    Twinkling = 5,
+    Scales = 5,
+    Demon = 5,
     
     FullCrossbow,
     

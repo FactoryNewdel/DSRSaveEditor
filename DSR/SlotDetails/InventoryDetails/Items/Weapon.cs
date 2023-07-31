@@ -1,4 +1,6 @@
-﻿namespace DSR.SlotDetails.InventoryDetails.Items;
+﻿using System.ComponentModel;
+
+namespace DSR.SlotDetails.InventoryDetails.Items;
 
 public class Weapon : Item
 {
@@ -83,7 +85,7 @@ public class Weapon : Item
     private void SetInfusionImagePath()
     {
         var basePath = "Images/InfusionIcons/";
-        _infusionImagePath = _infusion switch
+        _infusionImagePath = Path.GetFullPath(_infusion switch
         {
             Infusion.None      => basePath + "",
             Infusion.Crystal   => basePath + "Crystal.png",
@@ -95,7 +97,7 @@ public class Weapon : Item
             Infusion.Occult    => basePath + "Occult.png",
             Infusion.Fire      => basePath + "Fire.png",
             Infusion.Chaos     => basePath + "Chaos.png",
-        };
+        });
     }
     
     public override uint FullID => (uint)(ID + (int)_infusion * 100 + Level);
@@ -113,7 +115,12 @@ public class Weapon : Item
     public Infusion Infusion
     {
         get => _infusion;
-        set => _infusion = value;
+        set
+        {
+            _infusion = value;
+            SetInfusionImagePath();
+            NotifyPropertyChanged("InfusionImagePath");
+        }
     }
 
     public string InfusionImagePath => _infusionImagePath;
@@ -121,6 +128,10 @@ public class Weapon : Item
     public uint Level
     {
         get => _level;
-        set => _level = value;
+        set
+        {
+            _level = value;
+            NotifyPropertyChanged();
+        }
     }
 }
