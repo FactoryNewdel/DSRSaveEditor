@@ -233,7 +233,7 @@ public class MainViewModel : INotifyPropertyChanged
     {
         bool? dialogResult;
 
-        if (item is Weapon weapon && item is not PyromancyFlame && weapon.WeaponType is not (WeaponType.Arrow or WeaponType.Bolt))
+        if (item is Weapon weapon && weapon.WeaponType is not (WeaponType.Arrow or WeaponType.Bolt))
         {
             var weaponConfiguratorView = new WeaponConfiguratorView(SelectedSlot.Inventory, weapon, true);
             dialogResult = weaponConfiguratorView.ShowDialog();
@@ -254,7 +254,7 @@ public class MainViewModel : INotifyPropertyChanged
     {
         bool? dialogResult;
         
-        if (item is Weapon weapon && item is not PyromancyFlame && weapon.WeaponType is not (WeaponType.Arrow or WeaponType.Bolt))
+        if (item is Weapon weapon && weapon.WeaponType is not (WeaponType.Arrow or WeaponType.Bolt))
         {
             var weaponConfiguratorView = new WeaponConfiguratorView(SelectedSlot.Inventory, weapon, false);
             dialogResult = weaponConfiguratorView.ShowDialog();

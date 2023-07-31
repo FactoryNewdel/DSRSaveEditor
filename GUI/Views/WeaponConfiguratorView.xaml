@@ -32,7 +32,6 @@
             
             <ComboBox Name="CBInfusion" Grid.Row="1" Grid.Column="0"
                       Height="25" Margin="20 0" 
-                      Background="Red" Foreground="Red"
                       SelectionChanged="CBInfusion_SelectionChanged">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>

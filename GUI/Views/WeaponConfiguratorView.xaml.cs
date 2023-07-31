@@ -81,6 +81,9 @@ public partial class WeaponConfiguratorView : Window
         } else if (upgradeType == WeaponUpgradeType.ShieldFull)
         {
             list.AddRange(allCrossbowAndShield);
+        } else if (_vm.Weapon is PyromancyFlame)
+        {
+            list.Add(new (Infusion.Ascended));
         }
 
         CBInfusion.ItemsSource = list;
@@ -145,6 +148,15 @@ public partial class WeaponConfiguratorView : Window
         {
             list.AddRange(u5);
         }
+        else if (_vm.Weapon is PyromancyFlame pyromancyFlame)
+        {
+            list.AddRange(u5);
+            if (!pyromancyFlame.Ascended)
+            {
+                list.AddRange(u10);
+                list.AddRange(u15);
+            }
+        }
 
         CBLevel.ItemsSource = list;
     }
@@ -167,9 +179,12 @@ public partial class WeaponConfiguratorView : Window
     {
         if (CBInfusion.SelectedItem is not CBInfusionItem cbInfusionItem) return;
         if (_vm.Weapon.Infusion == cbInfusionItem.Infusion) return;
-        
-        _vm.Weapon.Infusion = cbInfusionItem.Infusion;
+
+        if (_vm.Weapon is not PyromancyFlame pyromancyFlame) _vm.Weapon.Infusion = cbInfusionItem.Infusion;
+        else pyromancyFlame.Ascended = cbInfusionItem.Infusion == Infusion.Ascended;
+
         _vm.Weapon.Level = 0;
+        
         SetAvailableLevels();
     }
 
