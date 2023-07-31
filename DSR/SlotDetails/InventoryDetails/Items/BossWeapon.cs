@@ -754,5 +754,7 @@ public class BossWeapon : Weapon
         return 0;
     }
 
+    public override uint FullID => ID + (_originalItemID - (_originalItemID / 10 * 10)) * 100 + Level;
+
     public ItemType OriginalItemType => _originalItemType;
 }
