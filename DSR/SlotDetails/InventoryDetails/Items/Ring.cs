@@ -20,4 +20,6 @@ public class Ring : Item
     }
 
     public List<Action> RingEffects => _ringEffects;
+
+    public override uint MaxAmount => 1;
 }
