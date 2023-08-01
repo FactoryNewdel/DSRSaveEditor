@@ -8,8 +8,8 @@
         WindowStartupLocation="CenterScreen"
         Title="Add Item" 
         Icon="../Images/favicon.ico"
-        Height="350" Width="550"
-        MinHeight="350" MinWidth="550"
+        Height="400" Width="600"
+        MinHeight="400" MinWidth="600"
         PreviewKeyDown="Window_PreviewKeyDown">
     <Border BorderThickness="25" BorderBrush="Black" Padding="0" Margin="0">
         <Grid Name="MainGrid" Background="#222222" Margin="0">

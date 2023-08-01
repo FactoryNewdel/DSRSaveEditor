@@ -845,7 +845,7 @@ public enum ItemType
     EscapeDeath,        // Unoptainable
     Homeward,
     Force,
-    WrathoftheGods,
+    WrathOfTheGods,
     EmitForce,
     SeekGuidance,
     LightningSpear,
@@ -854,8 +854,8 @@ public enum ItemType
     MagicBarrier,
     GreatMagicBarrier,
     KarmicJustice,
-    TranquilWalkofPeace,
-    VowofSilence,
+    TranquilWalkOfPeace,
+    VowOfSilence,
     SunlightBlade,
     DarkmoonBlade,
     

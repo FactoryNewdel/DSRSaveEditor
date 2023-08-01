@@ -53,7 +53,7 @@ namespace GUI
             DetailComparer.Init(0x5FFFC);
 
             var dialog = new OpenFileDialog();
-            dialog.Filter = "Dark Souls Remastered Savefile (DRAKS0005.sl2)|DRAKS0005.sl2";
+            dialog.Filter = "Dark Souls Remastered Savefile (*.sl2)|*.sl2";
             if (dialog.ShowDialog() != true) return;
             if (!File.Exists(dialog.FileName))
             {

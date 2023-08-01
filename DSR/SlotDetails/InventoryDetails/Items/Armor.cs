@@ -50,4 +50,6 @@ public class Armor : Item
     public ArmorUpgradeType ArmorUpgradeType => _armorUpgradeType;
 
     public ArmorPieceType ArmorPieceType => _armorPieceType;
+    
+    public override uint MaxAmount => 1;
 }

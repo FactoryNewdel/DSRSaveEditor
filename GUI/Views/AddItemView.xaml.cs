@@ -59,7 +59,12 @@ public partial class AddItemView : Window
             return;
         }
 
-        var num = uint.Parse(TBAmount.Text + e.Text);
+        if (!uint.TryParse(TBAmount.Text + e.Text, out var num))
+        {
+            e.Handled = true;
+            return;
+        }
+        
         if (_itemInInventory == null) {
             if (num > _vm.Item.MaxAmount)
             {

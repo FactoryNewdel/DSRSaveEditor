@@ -12,4 +12,6 @@ public enum Infusion
     Occult = 7,
     Fire = 8,
     Chaos = 9,
+    
+    Ascended = 187,
 }

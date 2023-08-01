@@ -4,7 +4,7 @@ public class EstusFlask : SpecialItem
 { 
     public EstusFlask(uint id, uint amount, int index) : base(64, 200, amount, 0x20, index, true, 0, 0)
     {
-        Strength = (id - 200) % 7;
+        Strength = (id - 200) / 2;
         Empty = (id - 200) % 2 == 0;
         ImagePath = "Images/ItemIcons/Items/EstusFlask.png";
     }

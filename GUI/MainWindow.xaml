@@ -282,7 +282,7 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <ListView Name="listViewInventory" Grid.Column="0" Background="Black" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                        <ListView Name="listViewInventory" Grid.Column="0" Background="Black" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="False">
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="ListViewItem">
                                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />

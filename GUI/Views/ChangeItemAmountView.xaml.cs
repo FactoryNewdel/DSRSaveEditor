@@ -72,7 +72,7 @@ public partial class ChangeItemAmountView : Window
     {
         if (string.IsNullOrEmpty(text)) return true;
         
-        var num = uint.Parse(text);
+        if (!uint.TryParse(text, out var num)) return false;
 
         if (num == 0)
         {

@@ -857,7 +857,7 @@ public class ItemList
         new Spell(ItemType.EscapeDeath,                 64,     5200,   0x000000),       // Unoptainable
         new Spell(ItemType.Homeward,                    64,     5210,   0x00BF40),
         new Spell(ItemType.Force,                       64,     5300,   0x00BEF0),
-        new Spell(ItemType.WrathoftheGods,              64,     5310,   0x00BF00),
+        new Spell(ItemType.WrathOfTheGods,              64,     5310,   0x00BF00),
         new Spell(ItemType.EmitForce,                   64,     5320,   0x00BF10),
         new Spell(ItemType.SeekGuidance,                64,     5400,   0x00BF60),
         new Spell(ItemType.LightningSpear,              64,     5500,   0x00BFA0),
@@ -866,8 +866,8 @@ public class ItemList
         new Spell(ItemType.MagicBarrier,                64,     5600,   0x00BF20),
         new Spell(ItemType.GreatMagicBarrier,           64,     5610,   0x00BF30),
         new Spell(ItemType.KarmicJustice,               64,     5700,   0x00BF70),
-        new Spell(ItemType.TranquilWalkofPeace,         64,     5800,   0x00BF90),
-        new Spell(ItemType.VowofSilence,                64,     5810,   0x00BF80),
+        new Spell(ItemType.TranquilWalkOfPeace,         64,     5800,   0x00BF90),
+        new Spell(ItemType.VowOfSilence,                64,     5810,   0x00BF80),
         new Spell(ItemType.SunlightBlade,               64,     5900,   0x00BFD0),
         new Spell(ItemType.DarkmoonBlade,               64,     5910,   0x00BFE0),
         

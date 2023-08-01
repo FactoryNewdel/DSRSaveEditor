@@ -231,8 +231,18 @@ public class MainViewModel : INotifyPropertyChanged
 
     public bool AddItem(Item item)
     {
-        var addItemView = new AddItemView(SelectedSlot.Inventory, item);
-        var dialogResult = addItemView.ShowDialog();
+        bool? dialogResult;
+
+        if (item is Weapon weapon && weapon.WeaponType is not (WeaponType.Arrow or WeaponType.Bolt))
+        {
+            var weaponConfiguratorView = new WeaponConfiguratorView(SelectedSlot.Inventory, weapon, true);
+            dialogResult = weaponConfiguratorView.ShowDialog();
+        }
+        else
+        {
+            var addItemView = new AddItemView(SelectedSlot.Inventory, item);
+            dialogResult = addItemView.ShowDialog();
+        }
         
         if (dialogResult != true) return false;
         
@@ -242,8 +252,18 @@ public class MainViewModel : INotifyPropertyChanged
 
     public bool ChangeItemAmount(Item item)
     {
-        var addItemView = new ChangeItemAmountView(item);
-        var dialogResult = addItemView.ShowDialog();
+        bool? dialogResult;
+        
+        if (item is Weapon weapon && weapon.WeaponType is not (WeaponType.Arrow or WeaponType.Bolt))
+        {
+            var weaponConfiguratorView = new WeaponConfiguratorView(SelectedSlot.Inventory, weapon, false);
+            dialogResult = weaponConfiguratorView.ShowDialog();
+        }
+        else
+        {
+            var changeItemAmountView = new ChangeItemAmountView(item);
+            dialogResult = changeItemAmountView.ShowDialog();
+        }
         
         if (dialogResult != true) return false;
         
