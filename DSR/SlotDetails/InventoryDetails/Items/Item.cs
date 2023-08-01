@@ -256,7 +256,11 @@ public class Item : INotifyPropertyChanged
     public string ImagePath
     {
         get => _imagePath;
-        protected set { _imagePath = Path.GetFullPath(value); }
+        protected set
+        {
+            _imagePath = Path.GetFullPath(value);
+            NotifyPropertyChanged();
+        }
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;

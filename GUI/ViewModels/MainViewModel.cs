@@ -243,6 +243,16 @@ public class MainViewModel : INotifyPropertyChanged
             var armorConfiguratorView = new ArmorConfiguratorView(SelectedSlot.Inventory, armor, true);
             dialogResult = armorConfiguratorView.ShowDialog();
         }
+        else if (item is EstusFlask)
+        {
+            if (!SelectedSlot.Inventory.TryGetItem(ItemType.EstusFlask, out var invItem))
+            {
+                MessageBox.Show("Estus not found");
+                return false;
+            }
+            var estusConfiguratorView = new EstusConfiguratorView(invItem as EstusFlask);
+            dialogResult = estusConfiguratorView.ShowDialog();
+        }
         else
         {
             var addItemView = new AddItemView(SelectedSlot.Inventory, item);
@@ -269,6 +279,11 @@ public class MainViewModel : INotifyPropertyChanged
             var armorConfiguratorView = new ArmorConfiguratorView(SelectedSlot.Inventory, armor, false);
             dialogResult = armorConfiguratorView.ShowDialog();
         }
+        else if (item is EstusFlask estus)
+        {
+            var estusConfiguratorView = new EstusConfiguratorView(estus);
+            dialogResult = estusConfiguratorView.ShowDialog();
+        }
         else
         {
             var changeItemAmountView = new ChangeItemAmountView(item);
@@ -283,6 +298,12 @@ public class MainViewModel : INotifyPropertyChanged
 
     public bool DeleteItem(Item item)
     {
+        if (item is EstusFlask)
+        {
+            MessageBox.Show("Cannot delete Estus Flask!");
+            return false;
+        }
+        
         bool result = SelectedSlot.Inventory.RemoveItem(item);
         LoadTree(SelectedInventoryTab);
         return result;
