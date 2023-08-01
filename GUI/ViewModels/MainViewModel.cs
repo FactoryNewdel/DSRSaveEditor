@@ -238,6 +238,11 @@ public class MainViewModel : INotifyPropertyChanged
             var weaponConfiguratorView = new WeaponConfiguratorView(SelectedSlot.Inventory, weapon, true);
             dialogResult = weaponConfiguratorView.ShowDialog();
         }
+        else if (item is Armor armor)
+        {
+            var armorConfiguratorView = new ArmorConfiguratorView(SelectedSlot.Inventory, armor, true);
+            dialogResult = armorConfiguratorView.ShowDialog();
+        }
         else
         {
             var addItemView = new AddItemView(SelectedSlot.Inventory, item);
@@ -258,6 +263,11 @@ public class MainViewModel : INotifyPropertyChanged
         {
             var weaponConfiguratorView = new WeaponConfiguratorView(SelectedSlot.Inventory, weapon, false);
             dialogResult = weaponConfiguratorView.ShowDialog();
+        }
+        else if (item is Armor armor)
+        {
+            var armorConfiguratorView = new ArmorConfiguratorView(SelectedSlot.Inventory, armor, false);
+            dialogResult = armorConfiguratorView.ShowDialog();
         }
         else
         {

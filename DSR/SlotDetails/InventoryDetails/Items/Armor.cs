@@ -5,7 +5,7 @@ public class Armor : Item
     private UInt32 _baseID;
     private ArmorPieceType _armorPieceType;
     private ArmorUpgradeType _armorUpgradeType;
-    private int _level;
+    private uint _level;
     
     public Armor(byte idSpace, uint id, uint amount, uint sorting, int index, bool enabled, uint durability, uint durabilityLoss) : base (idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss)
     {
@@ -40,7 +40,7 @@ public class Armor : Item
         var armorPieceTypeNum = (ID - _baseID) / 1000;
         if (!Enum.IsDefined(typeof(ArmorPieceType), (int)armorPieceTypeNum)) throw new InvalidDataException($"Invalid ArmorPieceType: {armorPieceTypeNum}");
         _armorPieceType = (ArmorPieceType)armorPieceTypeNum;
-        _level = (int)(ID - _baseID - armorPieceTypeNum * 1000);
+        _level = ID - _baseID - armorPieceTypeNum * 1000;
 
         ImagePath += $"Armor/{_armorPieceType}/{Type}.png";
     }
@@ -50,6 +50,16 @@ public class Armor : Item
     public ArmorUpgradeType ArmorUpgradeType => _armorUpgradeType;
 
     public ArmorPieceType ArmorPieceType => _armorPieceType;
-    
+
+    public uint Level
+    {
+        get => _level;
+        set
+        {
+            _level = value;
+            NotifyPropertyChanged();
+        }
+    }
+
     public override uint MaxAmount => 1;
 }
