@@ -282,9 +282,11 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <ListView Name="listViewInventory" Grid.Column="0" Background="Black" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="False">
+                        <ListView Name="listViewInventory" Grid.Column="0" Background="Black"
+                                  ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="False">
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="ListViewItem">
+                                    <Setter Property="Height" Value="100" />
                                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                                     <EventSetter Event="MouseDoubleClick" Handler="ListViewItem_DoubleClick"></EventSetter>
                                     <EventSetter Event="PreviewKeyDown"   Handler="ListViewItem_PreviewKeyDown"></EventSetter>
@@ -294,7 +296,7 @@
                                 <DataTemplate>
                                     <Grid>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="100" />
                                             <ColumnDefinition Width="Auto" />
                                             <ColumnDefinition Width="Auto" />
                                             <ColumnDefinition Width="*" />
@@ -315,7 +317,7 @@
                                                 <ColumnDefinition Width="*" />
                                             </Grid.ColumnDefinitions>
                                             <Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="0" Grid.ColumnSpan="4"
-                                                   Panel.ZIndex="0" Stretch="UniformToFill"
+                                                   Panel.ZIndex="0" Stretch="Uniform"
                                                    Source="{Binding ImagePath}" />
                                             <Image Grid.Row="3" Grid.Column="3"
                                                    HorizontalAlignment="Right" VerticalAlignment="Bottom"

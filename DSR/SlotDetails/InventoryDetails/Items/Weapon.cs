@@ -97,6 +97,7 @@ public class Weapon : Item
             Infusion.Occult    => basePath + "Occult.png",
             Infusion.Fire      => basePath + "Fire.png",
             Infusion.Chaos     => basePath + "Chaos.png",
+            _ => basePath,
         });
     }
     
