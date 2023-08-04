@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using DSR.SlotDetails.InventoryDetails.Items;
+using DSR.Utils;
 
 namespace DSR.SlotDetails.InventoryDetails;
 
@@ -27,7 +28,11 @@ public class Inventory : INotifyPropertyChanged
         _inventorySize = BitConverter.ToUInt32(bytes, 848);
         _latestItemIndex = BitConverter.ToUInt32(bytes, 58204);
         
-        Console.WriteLine($"INVENTORY No {slot}");
+        DetailComparer.Add(InventoryOffset, InventorySize * ItemSize);
+        DetailComparer.Add(848, 4);
+        DetailComparer.Add(58204, 4);
+        
+        //Console.WriteLine($"INVENTORY No {slot}");
         for (var i = 0; i < inventoryData.Length; i += ItemSize)
         {
             var idSpace = inventoryData[i + 3];
@@ -194,7 +199,7 @@ public class Inventory : INotifyPropertyChanged
         }
     }
 
-    public static Item NoRing
+    public static Item NoItem
     {
         get
         {

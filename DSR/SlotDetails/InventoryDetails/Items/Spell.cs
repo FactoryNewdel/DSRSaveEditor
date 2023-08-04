@@ -3,16 +3,19 @@
 public class Spell : Item
 {
     private SpellType _spellType;
+    private UInt32 _maxUsages;
     
     public Spell(byte idSpace, uint id, uint amount, uint sorting, int index, bool enabled, uint durability, uint durabilityLoss) : base (idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss)
     {
         _spellType = (SpellType)(id / 1000);
+        _maxUsages = (ItemList.GetItem(Type) as Spell).MaxUsages;
         ImagePath += $"Spells/{_spellType}/{Type}.png";
     }
 
-    public Spell(ItemType type, byte idSpace, uint id, uint sorting) : base(type, idSpace, id, sorting, 0)
+    public Spell(ItemType type, byte idSpace, uint id, uint sorting, uint maxUsages) : base(type, idSpace, id, sorting, 0)
     {
         _spellType = (SpellType)(id / 1000);
+        _maxUsages = maxUsages;
         ImagePath += $"Spells/{_spellType}/{Type}.png";
     }
 
@@ -22,4 +25,6 @@ public class Spell : Item
     }
 
     public SpellType SpellType => _spellType;
+
+    public uint MaxUsages => _maxUsages;
 }
