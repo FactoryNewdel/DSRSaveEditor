@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using DSR.SlotDetails;
 using DSR.SlotDetails.InventoryDetails;
 using DSR.SlotDetails.InventoryDetails.Items;
 using GUI.ViewModels;

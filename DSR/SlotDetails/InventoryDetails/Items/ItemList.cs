@@ -841,17 +841,17 @@ public class ItemList
         new Spell(ItemType.FlashSweat,                  64,     4310,   0x00BE40,  3),
         new Spell(ItemType.UndeadRapport,               64,     4360,   0x00BE70,  7),
         new Spell(ItemType.PowerWithin,                 64,     4400,   0x00BE60,  1),
-        new Spell(ItemType.GreatChaosFireball,          64,     4500,   0x00BD80,  4),
-        new Spell(ItemType.ChaosStorm,                  64,     4510,   0x00BDB0, 20),
-        new Spell(ItemType.ChaosFireWhip,               64,     4520,   0x00BE00, 80),
+        new Spell(ItemType.GreatChaosFireball,          64,     4500,   0x00BD80,  4, 2),
+        new Spell(ItemType.ChaosStorm,                  64,     4510,   0x00BDB0, 20, 2),
+        new Spell(ItemType.ChaosFireWhip,               64,     4520,   0x00BE00, 80, 2),
         
         // Miracles
         new Spell(ItemType.Heal,                        64,     5000,   0x00BE90,  5),
         new Spell(ItemType.GreatHeal,                   64,     5010,   0x00BEB0,  3),
         new Spell(ItemType.GreatHealExcerpt,            64,     5020,   0x00BEA0,  1),
-        new Spell(ItemType.SoothingSunlight,            64,     5030,   0x00BEC0,  3),
+        new Spell(ItemType.SoothingSunlight,            64,     5030,   0x00BEC0,  3, 2),
         new Spell(ItemType.Replenishment,               64,     5040,   0x00BED0,  2),
-        new Spell(ItemType.BountifulSunlight,           64,     5050,   0x00BEE0,  2),
+        new Spell(ItemType.BountifulSunlight,           64,     5050,   0x00BEE0,  2, 2),
         new Spell(ItemType.GravelordSwordDance,         64,     5100,   0x00BFF0, 40),
         new Spell(ItemType.GravelordGreatswordDance,    64,     5110,   0x00C000, 40),
         new Spell(ItemType.EscapeDeath,                 64,     5200,   0x000000,  1),       // Unoptainable
@@ -862,12 +862,12 @@ public class ItemList
         new Spell(ItemType.SeekGuidance,                64,     5400,   0x00BF60,  5),
         new Spell(ItemType.LightningSpear,              64,     5500,   0x00BFA0, 10),
         new Spell(ItemType.GreatLightningSpear,         64,     5510,   0x00BFB0, 10),
-        new Spell(ItemType.SunlightSpear,               64,     5520,   0x00BFC0,  5),
+        new Spell(ItemType.SunlightSpear,               64,     5520,   0x00BFC0,  5, 2),
         new Spell(ItemType.MagicBarrier,                64,     5600,   0x00BF20,  4),
         new Spell(ItemType.GreatMagicBarrier,           64,     5610,   0x00BF30,  2),
         new Spell(ItemType.KarmicJustice,               64,     5700,   0x00BF70,  4),
         new Spell(ItemType.TranquilWalkOfPeace,         64,     5800,   0x00BF90,  5),
-        new Spell(ItemType.VowOfSilence,                64,     5810,   0x00BF80,  2),
+        new Spell(ItemType.VowOfSilence,                64,     5810,   0x00BF80,  2, 2),
         new Spell(ItemType.SunlightBlade,               64,     5900,   0x00BFD0,  1),
         new Spell(ItemType.DarkmoonBlade,               64,     5910,   0x00BFE0,  1),
         
@@ -875,7 +875,7 @@ public class ItemList
         new Spell(ItemType.DarkOrb,                     64,     3710,   0x00BD10, 12),
         new Spell(ItemType.DarkBead,                    64,     3720,   0x00BD20,  6),
         new Spell(ItemType.DarkFog,                     64,     3730,   0x00BD30,  2),
-        new Spell(ItemType.Pursuers,                    64,     3740,   0x00BD40,  3),
+        new Spell(ItemType.Pursuers,                    64,     3740,   0x00BD40,  3, 2),
         new Spell(ItemType.BlackFlame,                  64,     4530,   0x00BE80,  8),
 
     };

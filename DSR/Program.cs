@@ -7,14 +7,20 @@ using DSR.Utils;
 
 class Program
 {
-    /*private static string dir = @"C:\Users\Tim\Documents\NBGI\DARK SOULS REMASTERED\472496615";
-    private static string path = Path.Join(dir, "DRAKS0005.sl2");
-    private static string path1 = Path.Join(dir, "DRAKS0005 - Kopie (11).sl2");*/
+    //private static string dir = @"C:\Users\Tim\Downloads\dark souls remastered save game-426-steam-1635148519";
+    //private static string dir = @"C:\Users\Tim\Downloads\pc-dark-souls-remastered-savegame\NBGI\DARK SOULS REMASTERED\1638";
+    //private static string dir = @"C:\Users\Tim\Downloads\dark_souls_remastered_stalker0111\Dark Souls Remastered Stalker0111";
+    //private static string dir = @"C:\Users\Tim\Documents\NBGI\DARK SOULS REMASTERED\296043893";
+    private static string dir = @"C:\Users\Tim\Documents\NBGI\DARK SOULS REMASTERED\472496615";
+    //private static string dir = @"C:\Users\Tim\Downloads\Knight's Honor savegame-34-1-01-2\23479961";
+    //private static string dir = @"G:\Dokumente\RiderProjects\DSRSaveEditor\DSR\_files\_savefiles";
+    //private static string path = Path.Join(dir, "DRAKS0005.sl2");
+    //private static string path1 = Path.Join(dir, "DRAKS0005 - Kopie (11).sl2");
 
     //private static string dir = @"C:\Users\Tim\Downloads";
-    private static string dir = @"G:\Dokumente\RiderProjects\DSRSaveEditor\DSR\bin\Debug\net6.0\win-x64";
+    //private static string dir = @"G:\Dokumente\RiderProjects\DSRSaveEditor\DSR\bin\Debug\net6.0\win-x64";
     private static string path = Path.Join(dir, "DRAKS0005.sl2");
-    private static string path1 = Path.Join(dir, "DRAKS0005.sl2");
+    private static string path1 = Path.Join(dir, "DRAKS0005 - Kopie (13).sl2");
 
     public static void Main(string[] args)
     {
@@ -23,7 +29,7 @@ class Program
         var savefile = new SaveFile(File.ReadAllBytes(path));
         var savefile1 = new SaveFile(File.ReadAllBytes(path1));
 
-        var b0 = savefile.SaveSlots[0].Details.Bytes;
+        var b0 = savefile .SaveSlots[0].Details.Bytes;
         var b1 = savefile1.SaveSlots[0].Details.Bytes;
         var ticks = DateTime.UtcNow.Ticks;
 
@@ -36,6 +42,8 @@ class Program
             File.AppendAllText(ticks + "_log.txt", $"{i} : {b1[i]} -> {b0[i]}\n");
             sb.AppendLine($"_bytes[{i}] = {b1[i]};");
         }
+        
+        Console.WriteLine(Path.GetFullPath(ticks + "_log.txt"));
 
         /*var section0 = savefile.SaveSlots[1].Details.Progress.Sections;
         var section1 = savefile1.SaveSlots[1].Details.Progress.Sections;

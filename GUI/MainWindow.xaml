@@ -8,12 +8,159 @@
         xmlns:helper="clr-namespace:GUI.Helper"
         xmlns:items="clr-namespace:DSR.SlotDetails.InventoryDetails.Items;assembly=DSR"
         xmlns:system="clr-namespace:System;assembly=System.Runtime"
+        xmlns:converters="clr-namespace:GUI.Converters"
         mc:Ignorable="d"
         Title="DSR Save Editor" Height="450" Width="800"
         WindowState="Maximized"
         Icon="Images/favicon.ico"
         Background="Black">
-    <TabControl Name="Tabs" Padding="0" Background="Black" SelectedIndex="0">
+    <Window.Resources>
+        <converters:ItemToBackgroundConverter x:Key="ItemToBackgroundConverter" />
+        
+        
+        <Style x:Key="MainTabStyle">
+            <Setter Property="TextBlock.Foreground" Value="Black"></Setter>
+            <Setter Property="TabItem.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TabItem}">
+                        <Grid>
+                            <Border
+                                Name="Border"
+                                Margin="0,0,0,0"
+                                Background="#555555"
+                                BorderBrush="White"
+                                BorderThickness="1,1,1,0">
+                                <ContentPresenter x:Name="ContentSite"
+                                                  VerticalAlignment="Stretch"
+                                                  HorizontalAlignment="Center"
+                                                  ContentSource="Header"
+                                                  Margin="20,5,20,5"
+                                                  RecognizesAccessKey="True"
+                                                  TextBlock.Foreground="White" />
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Panel.ZIndex" Value="100" />
+                                <Setter TargetName="Border" Property="Background" Value="Black" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="ContentSite" Property="TextBlock.Foreground" Value="#666666" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="MainTabButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="300" />
+            <Setter Property="Height" Value="50" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="BorderThickness" Value="0.5" />
+            <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border BorderBrush="White" BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderThickness" Value="3"></Setter>
+                    <Setter Property="FontSize" Value="21"></Setter>
+                </Trigger>
+                <Trigger Property="IsMouseCaptured" Value="True">
+                    <Setter Property="FontSize" Value="20"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="Transparent"></Setter>
+            <Setter Property="BorderThickness" Value="1"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="CaretBrush" Value="White"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalAlignment" Value="Stretch"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+            <Setter Property="Margin" Value="10"></Setter>
+        </Style>
+
+        <Style x:Key="SliderThumbStyle"
+               TargetType="{x:Type Thumb}">
+
+            <Setter Property="Width"
+                    Value="5" />
+            <Setter Property="Cursor" Value="SizeWE"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Thumb}">
+                        <Rectangle StrokeThickness="1" Fill="White" Stroke="White" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <ControlTemplate x:Key="HorizontalSlider"
+                         TargetType="{x:Type Slider}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TickBar x:Name="TopTick"
+                         SnapsToDevicePixels="True"
+                         Fill="{TemplateBinding Foreground}"
+                         Placement="Top"
+                         Height="4"
+                         Visibility="Collapsed">
+                </TickBar>
+
+                <Track Grid.Row="0" Grid.RowSpan="3" x:Name="PART_Track">
+                    <Track.Thumb>
+                        <Thumb Style="{StaticResource SliderThumbStyle}" />
+                    </Track.Thumb>
+                </Track>
+                <TickBar x:Name="BottomTick"
+                         SnapsToDevicePixels="True"
+                         Grid.Row="2"
+                         Fill="{TemplateBinding Foreground}"
+                         Placement="Bottom"
+                         Height="4"
+                         Visibility="Collapsed" />
+            </Grid>
+        </ControlTemplate>
+
+        <Style TargetType="{x:Type Slider}">
+            <Setter Property="SnapsToDevicePixels"
+                    Value="true" />
+            <Setter Property="OverridesDefaultStyle"
+                    Value="true" />
+            <Style.Triggers>
+                <Trigger Property="Orientation"
+                         Value="Horizontal">
+                    <Setter Property="VerticalContentAlignment" Value="Stretch"></Setter>
+                    <Setter Property="Template"
+                            Value="{StaticResource HorizontalSlider}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+    </Window.Resources>
+    
+    <TabControl Name="Tabs" Padding="0" Background="Black" SelectedIndex="2">
 
         <TabItem Name="TabMain" Header="Main" Style="{DynamicResource MainTabStyle}">
 
@@ -113,17 +260,37 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <Image Grid.Row="0" Grid.Column="1" Source="Images/Backgrounds/Itemslot_Empty.png" Opacity="0.88" />
-                    <Image Grid.Row="0" Grid.Column="1" Source="{Binding SelectedSlot.Equipment.IconPathAttunement}" Opacity="0.88" Margin="25" />
+                    <Image Grid.Row="0" Grid.Column="1" 
+                           Source="{Binding ElementName=ImageEquipmentAttunement, Path=Source, Converter={StaticResource ItemToBackgroundConverter}}" 
+                           Opacity="0.88" />
+                    <Image Grid.Row="0" Grid.Column="1" 
+                           Name="ImageEquipmentAttunement" 
+                           Source="{Binding SelectedSlot.Equipment.SelectedSpell.ImagePath}" 
+                           Opacity="0.88" Margin="25" />
 
-                    <Image Grid.Row="1" Grid.Column="0" Source="Images/Backgrounds/Itemslot_Empty.png" Opacity="0.88" />
-                    <Image Grid.Row="1" Grid.Column="0" Source="{Binding SelectedSlot.Equipment.IconPathLeftHand}" Opacity="0.88" Margin="25" />
+                    <Image Grid.Row="1" Grid.Column="0" 
+                           Source="{Binding ElementName=ImageEquipmentLeft, Path=Source, Converter={StaticResource ItemToBackgroundConverter}}" 
+                           Opacity="0.88" />
+                    <Image Grid.Row="1" Grid.Column="0" 
+                           Name="ImageEquipmentLeft"       
+                           Source="{Binding SelectedSlot.Equipment.SelectedLeft.ImagePath}" 
+                           Opacity="0.88" Margin="25" />
 
-                    <Image Grid.Row="1" Grid.Column="2" Source="Images/Backgrounds/Itemslot_Empty.png" Opacity="0.88" />
-                    <Image Grid.Row="1" Grid.Column="2" Source="{Binding SelectedSlot.Equipment.IconPathRightHand}" Opacity="0.88" Margin="25" />
+                    <Image Grid.Row="1" Grid.Column="2" 
+                           Source="{Binding ElementName=ImageEquipmentRight, Path=Source, Converter={StaticResource ItemToBackgroundConverter}}" 
+                           Opacity="0.88" />
+                    <Image Grid.Row="1" Grid.Column="2"
+                           Name="ImageEquipmentRight"      
+                           Source="{Binding SelectedSlot.Equipment.SelectedRight.ImagePath}" 
+                           Opacity="0.88" Margin="25" />
 
-                    <Image Grid.Row="2" Grid.Column="1" Source="Images/Backgrounds/Itemslot_Empty.png" Opacity="0.88" />
-                    <Image Grid.Row="2" Grid.Column="1" Source="{Binding SelectedSlot.Equipment.IconPathConsumable}" Opacity="0.88" Margin="25" />
+                    <Image Grid.Row="2" Grid.Column="1" 
+                           Source="{Binding ElementName=ImageEquipmentConsumable, Path=Source, Converter={StaticResource ItemToBackgroundConverter}}" 
+                           Opacity="0.88" />
+                    <Image Grid.Row="2" Grid.Column="1" 
+                           Name="ImageEquipmentConsumable" 
+                           Source="{Binding SelectedSlot.Equipment.SelectedConsumable.ImagePath}" 
+                           Opacity="0.88" Margin="25" />
 
                 </Grid>
 
@@ -415,146 +582,5 @@
 
     </TabControl>
 
-    <Window.Resources>
-        <Style x:Key="MainTabStyle">
-            <Setter Property="TextBlock.Foreground" Value="Black"></Setter>
-            <Setter Property="TabItem.Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type TabItem}">
-                        <Grid>
-                            <Border
-                                Name="Border"
-                                Margin="0,0,0,0"
-                                Background="#555555"
-                                BorderBrush="White"
-                                BorderThickness="1,1,1,0">
-                                <ContentPresenter x:Name="ContentSite"
-                                                  VerticalAlignment="Stretch"
-                                                  HorizontalAlignment="Center"
-                                                  ContentSource="Header"
-                                                  Margin="20,5,20,5"
-                                                  RecognizesAccessKey="True"
-                                                  TextBlock.Foreground="White" />
-                            </Border>
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsSelected" Value="True">
-                                <Setter Property="Panel.ZIndex" Value="100" />
-                                <Setter TargetName="Border" Property="Background" Value="Black" />
-                            </Trigger>
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter TargetName="ContentSite" Property="TextBlock.Foreground" Value="#666666" />
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <Style x:Key="MainTabButtonStyle" TargetType="{x:Type Button}">
-            <Setter Property="Width" Value="300" />
-            <Setter Property="Height" Value="50" />
-            <Setter Property="Background" Value="Transparent" />
-            <Setter Property="Foreground" Value="White" />
-            <Setter Property="FontSize" Value="20" />
-            <Setter Property="BorderThickness" Value="0.5" />
-            <Setter Property="FontFamily" Value="Times New Roman"></Setter>
-
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border BorderBrush="White" BorderThickness="{TemplateBinding BorderThickness}"
-                                Background="{TemplateBinding Background}">
-                            <ContentPresenter HorizontalAlignment="Center"
-                                              VerticalAlignment="Center" />
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="BorderThickness" Value="3"></Setter>
-                    <Setter Property="FontSize" Value="21"></Setter>
-                </Trigger>
-                <Trigger Property="IsMouseCaptured" Value="True">
-                    <Setter Property="FontSize" Value="20"></Setter>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
-        <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}">
-            <Setter Property="Background" Value="Transparent"></Setter>
-            <Setter Property="BorderThickness" Value="1"></Setter>
-            <Setter Property="Foreground" Value="White"></Setter>
-            <Setter Property="CaretBrush" Value="White"></Setter>
-            <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
-            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
-            <Setter Property="VerticalAlignment" Value="Stretch"></Setter>
-            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
-            <Setter Property="Margin" Value="10"></Setter>
-        </Style>
-
-        <Style x:Key="SliderThumbStyle"
-               TargetType="{x:Type Thumb}">
-
-            <Setter Property="Width"
-                    Value="5" />
-            <Setter Property="Cursor" Value="SizeWE"></Setter>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Thumb}">
-                        <Rectangle StrokeThickness="1" Fill="White" Stroke="White" />
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <ControlTemplate x:Key="HorizontalSlider"
-                         TargetType="{x:Type Slider}">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <TickBar x:Name="TopTick"
-                         SnapsToDevicePixels="True"
-                         Fill="{TemplateBinding Foreground}"
-                         Placement="Top"
-                         Height="4"
-                         Visibility="Collapsed">
-                </TickBar>
-
-                <Track Grid.Row="0" Grid.RowSpan="3" x:Name="PART_Track">
-                    <Track.Thumb>
-                        <Thumb Style="{StaticResource SliderThumbStyle}" />
-                    </Track.Thumb>
-                </Track>
-                <TickBar x:Name="BottomTick"
-                         SnapsToDevicePixels="True"
-                         Grid.Row="2"
-                         Fill="{TemplateBinding Foreground}"
-                         Placement="Bottom"
-                         Height="4"
-                         Visibility="Collapsed" />
-            </Grid>
-        </ControlTemplate>
-
-        <Style TargetType="{x:Type Slider}">
-            <Setter Property="SnapsToDevicePixels"
-                    Value="true" />
-            <Setter Property="OverridesDefaultStyle"
-                    Value="true" />
-            <Style.Triggers>
-                <Trigger Property="Orientation"
-                         Value="Horizontal">
-                    <Setter Property="VerticalContentAlignment" Value="Stretch"></Setter>
-                    <Setter Property="Template"
-                            Value="{StaticResource HorizontalSlider}" />
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
-    </Window.Resources>
+    
 </Window>

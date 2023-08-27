@@ -1,10 +1,11 @@
 ﻿using System.ComponentModel;
+using System.Data;
 using System.Runtime.CompilerServices;
 using System.Text;
 using DSR.SlotDetailsDefinition;
 using DSR.Utils;
 
-namespace DSR.SlotDetails;
+namespace DSR.SlotDetails.Character;
 
 public class CharacterStats : INotifyPropertyChanged
 {
@@ -13,21 +14,35 @@ public class CharacterStats : INotifyPropertyChanged
     private byte[] _data;
     
     private UInt32 _level;
+    private UInt32 _levelMin;
     
     private string _name;
 
+    private StarterClass _starterClass;
+
     private UInt32 _vit;
+    private UInt32 _vitMin;
     private UInt32 _att;
+    private UInt32 _attMin;
+    private UInt32 _attunementSlots;
     private UInt32 _end;
+    private UInt32 _endMin;
     private UInt32 _str;
+    private UInt32 _strMin;
     private UInt32 _dex;
+    private UInt32 _dexMin;
     private UInt32 _int;
+    private UInt32 _intMin;
     private UInt32 _fth;
+    private UInt32 _fthMin;
     private UInt32 _resistance;
+    private UInt32 _resistanceMin;
     
     private UInt32 _humanity;
     private UInt32 _currentSouls;
     private UInt32 _totalSouls;
+
+    private UInt32 _deaths;
 
     private UInt32 _hpCurrent;
     private UInt32 _hpTotalUnmodified;
@@ -61,8 +76,12 @@ public class CharacterStats : INotifyPropertyChanged
         }
         _name = sb.ToString();
 
+        _starterClass = (StarterClass)_data[CharacterStatsDefinition.StarterClass.Offset];
+        SetMinimumLevels();
+
         _vit = ToUInt32(CharacterStatsDefinition.Vitality);
         _att = ToUInt32(CharacterStatsDefinition.Attunement);
+        _attunementSlots = GetAttunementSlots(_att);
         _end = ToUInt32(CharacterStatsDefinition.Endurance);
         _str = ToUInt32(CharacterStatsDefinition.Strength);
         _dex = ToUInt32(CharacterStatsDefinition.Dexterity);
@@ -73,6 +92,8 @@ public class CharacterStats : INotifyPropertyChanged
         _humanity = ToUInt32(CharacterStatsDefinition.Humanity);
         _currentSouls = ToUInt32(CharacterStatsDefinition.CurrentSouls);
         _totalSouls = ToUInt32(CharacterStatsDefinition.TotalSouls);
+
+        _deaths = ToUInt32(CharacterStatsDefinition.Deaths);
 
         _hpCurrent = ToUInt32(CharacterStatsDefinition.HPCurrent);
         _hpTotalUnmodified = ToUInt32(CharacterStatsDefinition.HPTotalUnmodified);
@@ -86,6 +107,145 @@ public class CharacterStats : INotifyPropertyChanged
 
         WorldPrimary = data[CharacterStatsDefinition.WorldPrimary.Offset];
         WorldSecondary = data[CharacterStatsDefinition.WorldSecondary.Offset];
+    }
+
+    private void SetMinimumLevels()
+    {
+        if (_starterClass == StarterClass.Warrior)
+        {
+            _levelMin = 4;
+            _vitMin = 11;
+            _attMin =  8;
+            _endMin = 12;
+            _strMin = 13;
+            _dexMin = 13;
+            _resistanceMin = 11;
+            _intMin =  9;
+            _fthMin =  9;
+        }
+        else if (_starterClass == StarterClass.Knight)
+        {
+            _levelMin = 5;
+            _vitMin = 14;
+            _attMin = 10;
+            _endMin = 10;
+            _strMin = 11;
+            _dexMin = 11;
+            _resistanceMin = 10;
+            _intMin =  9;
+            _fthMin = 11;
+        }
+        else if (_starterClass == StarterClass.Wanderer)
+        {
+            _levelMin = 3;
+            _vitMin = 10;
+            _attMin = 11;
+            _endMin = 10;
+            _strMin = 10;
+            _dexMin = 14;
+            _resistanceMin = 12;
+            _intMin = 11;
+            _fthMin =  8;
+        }
+        else if (_starterClass == StarterClass.Thief)
+        {
+            _levelMin = 5;
+            _vitMin =  9;
+            _attMin = 11;
+            _endMin =  9;
+            _strMin =  9;
+            _dexMin = 15;
+            _resistanceMin = 10;
+            _intMin = 12;
+            _fthMin = 11;
+        }
+        else if (_starterClass == StarterClass.Bandit)
+        { 
+            _levelMin = 4;
+            _vitMin = 12;
+            _attMin =  8;
+            _endMin = 14;
+            _strMin = 14;
+            _dexMin =  9;
+            _resistanceMin = 11;
+            _intMin =  8;
+            _fthMin = 10;
+        }
+        else if (_starterClass == StarterClass.Hunter)
+        {
+            _levelMin = 4;
+            _vitMin = 11;
+            _attMin =  9;
+            _endMin = 11;
+            _strMin = 12;
+            _dexMin = 14;
+            _resistanceMin = 11;
+            _intMin =  9;
+            _fthMin =  9;
+        }
+        else if (_starterClass == StarterClass.Sorcerer)
+        {
+            _levelMin = 3;
+            _vitMin =  8;
+            _attMin = 15;
+            _endMin =  8;
+            _strMin =  9;
+            _dexMin = 11;
+            _resistanceMin = 8;
+            _intMin = 15;
+            _fthMin =  8;
+        }
+        else if (_starterClass == StarterClass.Pyromancer)
+        {
+            _levelMin = 1;
+            _vitMin = 10;
+            _attMin = 12;
+            _endMin = 11;
+            _strMin = 12;
+            _dexMin =  9;
+            _resistanceMin = 12;
+            _intMin = 10;
+            _fthMin =  8;
+        }
+        else if (_starterClass == StarterClass.Cleric)
+        {
+            _levelMin = 2;
+            _vitMin = 11;
+            _attMin = 11;
+            _endMin =  9;
+            _strMin = 12;
+            _dexMin =  8;
+            _resistanceMin = 11;
+            _intMin =  8;
+            _fthMin = 14;
+        }
+        else if (_starterClass == StarterClass.Deprived)
+        {
+            _levelMin = 6;
+            _vitMin = 11;
+            _attMin = 11;
+            _endMin = 11;
+            _strMin = 11;
+            _dexMin = 11;
+            _resistanceMin = 11;
+            _intMin = 11;
+            _fthMin = 11;
+        }
+    }
+
+    private uint GetAttunementSlots(uint att)
+    {
+        if (att >= 50) return 10;
+        if (att >= 41) return  9;
+        if (att >= 34) return  8;
+        if (att >= 28) return  7;
+        if (att >= 23) return  6;
+        if (att >= 19) return  5;
+        if (att >= 16) return  4;
+        if (att >= 14) return  3;
+        if (att >= 12) return  2;
+        if (att >= 10) return  1;
+        return 0;
     }
 
     private UInt32 ToUInt32(StatInformation info)
@@ -119,6 +279,8 @@ public class CharacterStats : INotifyPropertyChanged
         {
             data[i + offset] = nameBytes[i];
         }
+
+        data[CharacterStatsDefinition.StarterClass.Offset] = (byte)_starterClass;
         
         FillUInt32IntoData(ref data, _vit, CharacterStatsDefinition.Vitality);
         FillUInt32IntoData(ref data, _att, CharacterStatsDefinition.Attunement);
@@ -156,115 +318,291 @@ public class CharacterStats : INotifyPropertyChanged
             NotifyPropertyChanged();
         }
     }
+    
+    public uint LevelMin
+    {
+        get => _levelMin;
+        private set
+        {
+            _levelMin = value;
+            NotifyPropertyChanged();
+        }
+    }
 
     public string Name
     {
         get => _name;
-        set => _name = value ?? throw new ArgumentNullException(nameof(value));
+        set
+        {
+            if (value.Length > 13) throw new DataException($"value.Length {value.Length} > 13");
+            _name = value ?? throw new ArgumentNullException(nameof(value));
+            NotifyPropertyChanged();
+        }
     }
 
     public uint Vitality
     {
         get => _vit;
-        set => _vit = value;
+        set
+        {
+            _vit = value;
+            NotifyPropertyChanged();
+        }
+    }
+    
+    public uint VitalityMin
+    {
+        get => _vitMin;
+        private set
+        {
+            _vitMin = value;
+            NotifyPropertyChanged();
+        }
     }
 
     public uint Attunement
     {
         get => _att;
-        set => _att = value;
+        set
+        {
+            _att = value;
+            AttunementSlots = GetAttunementSlots(_att);
+            NotifyPropertyChanged();
+        }
     }
 
+    public uint AttunementMin
+    {
+        get => _attMin;
+        private set
+        {
+            _attMin = value;
+            NotifyPropertyChanged();
+        }
+    }
+
+    public uint AttunementSlots
+    {
+        get => _attunementSlots;
+        private set
+        {
+            _attunementSlots = value;
+            NotifyPropertyChanged();
+        }
+    }
+    
     public uint Endurance
     {
         get => _end;
-        set => _end = value;
+        set
+        {
+            _end = value;
+            NotifyPropertyChanged();
+        }
+    }
+    
+    public uint EnduranceMin
+    {
+        get => _endMin;
+        private set
+        {
+            _endMin = value;
+            NotifyPropertyChanged();
+        }
     }
 
     public uint Strength
     {
         get => _str;
-        set => _str = value;
+        set
+        {
+            _str = value;
+            NotifyPropertyChanged();
+        }
+    }
+    
+    public uint StrengthMin
+    {
+        get => _strMin;
+        private set
+        {
+            _strMin = value;
+            NotifyPropertyChanged();
+        }
     }
 
     public uint Dexterity
     {
         get => _dex;
-        set => _dex = value;
+        set
+        {
+            _dex = value;
+            NotifyPropertyChanged();
+        }
+    }
+    
+    public uint DexterityMin
+    {
+        get => _dexMin;
+        private set
+        {
+            _dexMin = value;
+            NotifyPropertyChanged();
+        }
     }
 
     public uint Intelligence
     {
         get => _int;
-        set => _int = value;
+        set
+        {
+            _int = value;
+            NotifyPropertyChanged();
+        }
+    }
+    
+    public uint IntelligenceMin
+    {
+        get => _intMin;
+        private set
+        {
+            _intMin = value;
+            NotifyPropertyChanged();
+        }
     }
 
     public uint Faith
     {
         get => _fth;
-        set => _fth = value;
+        set
+        {
+            _fth = value;
+            NotifyPropertyChanged();
+        }
+    }
+    
+    public uint FaithMin
+    {
+        get => _fthMin;
+        private set
+        {
+            _fthMin = value;
+            NotifyPropertyChanged();
+        }
     }
 
     public uint Resistance
     {
         get => _resistance;
-        set => _resistance = value;
+        set
+        {
+            _resistance = value;
+            NotifyPropertyChanged();
+        }
+    }
+    
+    public uint ResistanceMin
+    {
+        get => _resistanceMin;
+        private set
+        {
+            _resistanceMin = value;
+            NotifyPropertyChanged();
+        }
     }
 
     public uint Humanity
     {
         get => _humanity;
-        set => _humanity = value;
+        set
+        {
+            _humanity = value;
+            NotifyPropertyChanged();
+        }
     }
 
     public uint CurrentSouls
     {
         get => _currentSouls;
-        set => _currentSouls = value;
+        set
+        {
+            if (value > _currentSouls) TotalSouls += value;
+            _currentSouls = value;
+            NotifyPropertyChanged();
+        }
     }
 
     public uint TotalSouls
     {
         get => _totalSouls;
-        set => _totalSouls = value;
+        set
+        {
+            _totalSouls = value;
+            NotifyPropertyChanged();
+        }
     }
+
+    public uint Deaths => _deaths;
 
     public uint HPCurrent
     {
         get => _hpCurrent;
-        set => _hpCurrent = value;
+        set
+        {
+            _hpCurrent = value;
+            NotifyPropertyChanged();
+        }
     }
 
     public uint HPTotalUnmodified
     {
         get => _hpTotalUnmodified;
-        set => _hpTotalUnmodified = value;
+        set
+        {
+            _hpTotalUnmodified = value;
+            NotifyPropertyChanged();
+        }
     }
 
     public uint HPTotalModified
     {
         get => _hpTotalModified;
-        set => _hpTotalModified = value;
+        set
+        {
+            _hpTotalModified = value;
+            NotifyPropertyChanged();
+        }
     }
 
-    
-    
+
     public uint StaminaCurrent
     {
         get => _staminaCurrent;
-        set => _staminaCurrent = value;
+        set
+        {
+            _staminaCurrent = value;
+            NotifyPropertyChanged();
+        }
     }
 
     public uint StaminaTotalUnmodified
     {
         get => _staminaTotalUnmodified;
-        set => _staminaTotalUnmodified = value;
+        set
+        {
+            _staminaTotalUnmodified = value;
+            NotifyPropertyChanged();
+        }
     }
 
     public uint StaminaTotalModified
     {
         get => _staminaTotalModified;
-        set => _staminaTotalModified = value;
+        set
+        {
+            _staminaTotalModified = value;
+            NotifyPropertyChanged();
+        }
     }
 
 

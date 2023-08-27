@@ -47,7 +47,7 @@ public class Inventory : INotifyPropertyChanged
             _items[i / 28] = Item.GetItem(idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss);
 
             var item = _items[i / 28];
-            if (slot == 0 && item.ID != 0 && item.ID != 0xFFFFFFFF) Console.WriteLine((i + 2652) + " | " + (i / 28) + " ID = " + item.IdSpace + "    0x" + BitConverter.ToString(BitConverter.GetBytes(item.ID).Reverse().ToArray()).Replace("-", "").TrimStart('0') + "    " + item.ID + "    " + item.Sorting + "    0x" + BitConverter.ToString(BitConverter.GetBytes(item.Sorting).Reverse().ToArray()).Replace("-", "").TrimStart('0') + "    " + BitConverter.ToString(BitConverter.GetBytes(item.Sorting + item.Index)) + "    " + item.Index + "    " + item.Type + "    " + item.Durability);
+            if (slot == 30 && item.ID != 0 && item.ID != 0xFFFFFFFF) Console.WriteLine((i + 2652) + " | " + (i / 28) + " ID = " + item.IdSpace + "    0x" + BitConverter.ToString(BitConverter.GetBytes(item.ID).Reverse().ToArray()).Replace("-", "").TrimStart('0') + "    " + item.ID + "    " + item.Sorting + "    0x" + BitConverter.ToString(BitConverter.GetBytes(item.Sorting).Reverse().ToArray()).Replace("-", "").TrimStart('0') + "    " + BitConverter.ToString(BitConverter.GetBytes(item.Sorting + item.Index)) + "    " + item.Index + "    " + item.Type + "    " + item.Durability);
         }
 
         slot++;

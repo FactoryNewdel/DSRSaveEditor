@@ -88,4 +88,11 @@ public class EquipmentDefinition
     public static int UsagesSpell9 => 58284;
 
     public static int SelectedSpellIndex => 58304;
+
+
+    public static int SelectedLeft => 744;
+    
+    public static int SelectedRight => 748;
+    
+    public static int SelectedConsumableID => 58328;
 }

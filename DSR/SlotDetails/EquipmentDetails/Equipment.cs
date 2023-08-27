@@ -12,7 +12,15 @@ public class Equipment : INotifyPropertyChanged
 {
     #region Variables
 
+    private SaveSlotDetails _parent;
+
     private byte[] _bytes;
+
+    private bool _twoHanded;
+    private Item _selectedLeft;
+    private Item _selectedRight;
+    private Item _selectedSpell;
+    private Item _selectedConsumable;
 
     private UInt32 _pointerLeft0;
     private UInt32 _pointerRight0;
@@ -44,8 +52,7 @@ public class Equipment : INotifyPropertyChanged
     private UInt32 _pointerConsumable21;
     private UInt32 _pointerConsumable31;
     private UInt32 _pointerConsumable41;
-
-
+    
     private Item _itemLeft0;
     private Item _itemRight0;
     private Item _itemLeft1;
@@ -96,9 +103,12 @@ public class Equipment : INotifyPropertyChanged
 
     #endregion
 
-    public Equipment(byte[] bytes, Item[] invItems)
+    public Equipment(SaveSlotDetails parent, byte[] bytes)
     {
         _bytes = bytes;
+        _parent = parent;
+
+        var invItems = _parent.Inventory.Items;
         
         _pointerLeft0 =  BitConverter.ToUInt32(bytes, EquipmentDefinition.PointerLeft0);
         _pointerRight0 = BitConverter.ToUInt32(bytes, EquipmentDefinition.PointerRight0);
@@ -176,8 +186,7 @@ public class Equipment : INotifyPropertyChanged
         _usagesSpell8 = BitConverter.ToUInt32(bytes, EquipmentDefinition.UsagesSpell8);
         var idSpell9 =  BitConverter.ToUInt32(bytes, EquipmentDefinition.IDSpell9);
         _usagesSpell9 = BitConverter.ToUInt32(bytes, EquipmentDefinition.UsagesSpell9);
-
-        _selectedSpellIndex = BitConverter.ToUInt32(bytes, EquipmentDefinition.SelectedSpellIndex);
+        
         
         _itemLeft0 =  invItems[_pointerLeft0];
         if (_itemLeft0.FullID != idLeft0)   throw new InvalidEquipmentIDException($"Inventory: {_itemLeft0.FullID}, SaveFile: {idLeft0}");
@@ -353,7 +362,20 @@ public class Equipment : INotifyPropertyChanged
             if (_itemSpell9.FullID != idSpell9) throw new InvalidEquipmentIDException($"Inventory: {_itemSpell9.FullID}, SaveFile: {idSpell9}");
         }
         else _itemSpell9 = Inventory.NoItem;
+
+
+
+        SelectedLeft = _bytes[EquipmentDefinition.SelectedLeft] == 0 ? _itemLeft0 : _itemLeft1;
+        SelectedRight = _bytes[EquipmentDefinition.SelectedRight] == 0 ? _itemRight0 : _itemRight1;
+        var selectedConsumableID = BitConverter.ToUInt32(bytes, EquipmentDefinition.SelectedConsumableID);
+        if (_pointerConsumable00 == selectedConsumableID) SelectedConsumable = _itemConsumable0;
+        else if (_pointerConsumable10 == selectedConsumableID) SelectedConsumable = _itemConsumable1;
+        else if (_pointerConsumable20 == selectedConsumableID) SelectedConsumable = _itemConsumable2;
+        else if (_pointerConsumable30 == selectedConsumableID) SelectedConsumable = _itemConsumable3;
+        else if (_pointerConsumable40 == selectedConsumableID) SelectedConsumable = _itemConsumable4;
         
+        // TODO Check spell index on multiple profiles
+        SelectedSpellIndex = BitConverter.ToUInt32(bytes, EquipmentDefinition.SelectedSpellIndex);
     }
 
     public void UpdateData(ref byte[] data)
@@ -445,6 +467,47 @@ public class Equipment : INotifyPropertyChanged
     }
 
     #region Properties
+    
+    public Item SelectedLeft
+    {
+        get => _selectedLeft;
+        private set
+        {
+            _selectedLeft = value;
+            NotifyPropertyChanged();
+        }
+    }
+    
+    public Item SelectedRight
+    {
+        get => _selectedRight;
+        private set
+        {
+            _selectedRight = value;
+            NotifyPropertyChanged();
+        }
+    }
+    
+    public Item SelectedSpell
+    {
+        get => _selectedSpell;
+        private set
+        {
+            _selectedSpell = value;
+            NotifyPropertyChanged();
+        }
+    }
+    public Item SelectedConsumable
+    {
+        get => _selectedConsumable;
+        private set
+        {
+            _selectedConsumable = value;
+            NotifyPropertyChanged();
+        }
+    }
+    
+    
     
     public Item ItemLeft0
     {
@@ -779,7 +842,22 @@ public class Equipment : INotifyPropertyChanged
         get => _selectedSpellIndex;
         set
         {
+            if (value > 9 && value != 0xFFFFFFFF) throw new Exception($"Invalid Spell Index: {value}");
             _selectedSpellIndex = value;
+            SelectedSpell = _selectedSpellIndex switch
+            {
+                0 => ItemSpell0,
+                1 => ItemSpell1,
+                2 => ItemSpell2,
+                3 => ItemSpell3,
+                4 => ItemSpell4,
+                5 => ItemSpell5,
+                6 => ItemSpell6,
+                7 => ItemSpell7,
+                8 => ItemSpell8,
+                9 => ItemSpell9,
+                _ => Inventory.NoItem
+            };
             NotifyPropertyChanged();
         }
     }
