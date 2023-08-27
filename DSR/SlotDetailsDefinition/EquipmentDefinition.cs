@@ -95,4 +95,6 @@ public class EquipmentDefinition
     public static int SelectedRight => 748;
     
     public static int SelectedConsumableID => 58328;
+    
+    public static int TwoHanded => 740;
 }

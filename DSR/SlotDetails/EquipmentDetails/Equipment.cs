@@ -373,6 +373,8 @@ public class Equipment : INotifyPropertyChanged
         else if (_pointerConsumable20 == selectedConsumableID) SelectedConsumable = _itemConsumable2;
         else if (_pointerConsumable30 == selectedConsumableID) SelectedConsumable = _itemConsumable3;
         else if (_pointerConsumable40 == selectedConsumableID) SelectedConsumable = _itemConsumable4;
+
+        _twoHanded = _bytes[EquipmentDefinition.TwoHanded] >> 1 == 1;
         
         // TODO Check spell index on multiple profiles
         SelectedSpellIndex = BitConverter.ToUInt32(bytes, EquipmentDefinition.SelectedSpellIndex);
@@ -861,7 +863,17 @@ public class Equipment : INotifyPropertyChanged
             NotifyPropertyChanged();
         }
     }
-    
+
+    public bool TwoHanded
+    {
+        get => _twoHanded;
+        set
+        {
+            _twoHanded = value;
+            NotifyPropertyChanged();
+        }
+    }
+
     #endregion
 
     public event PropertyChangedEventHandler? PropertyChanged;
