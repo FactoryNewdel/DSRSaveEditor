@@ -363,8 +363,7 @@ public class Equipment : INotifyPropertyChanged
         }
         else _itemSpell9 = Inventory.NoItem;
 
-
-
+        
         SelectedLeft = _bytes[EquipmentDefinition.SelectedLeft] == 0 ? _itemLeft0 : _itemLeft1;
         SelectedRight = _bytes[EquipmentDefinition.SelectedRight] == 0 ? _itemRight0 : _itemRight1;
         var selectedConsumableID = BitConverter.ToUInt32(bytes, EquipmentDefinition.SelectedConsumableID);
@@ -376,7 +375,6 @@ public class Equipment : INotifyPropertyChanged
 
         _twoHanded = _bytes[EquipmentDefinition.TwoHanded] >> 1 == 1;
         
-        // TODO Check spell index on multiple profiles
         SelectedSpellIndex = BitConverter.ToUInt32(bytes, EquipmentDefinition.SelectedSpellIndex);
     }
 
@@ -456,7 +454,16 @@ public class Equipment : INotifyPropertyChanged
         FillUInt32IntoData(ref data, _itemSpell9.FullID, EquipmentDefinition.IDSpell9);
         FillUInt32IntoData(ref data, _usagesSpell9, EquipmentDefinition.UsagesSpell9);
         
+        if (_twoHanded) data[EquipmentDefinition.TwoHanded] |= 0b00000010;
+        else data[EquipmentDefinition.TwoHanded] &= 0b11111101;
+        
         FillUInt32IntoData(ref data, _selectedSpellIndex, EquipmentDefinition.SelectedSpellIndex);
+        FillUInt32IntoData(ref data, _selectedConsumable.FullID, EquipmentDefinition.SelectedConsumableID);
+
+        if (_selectedLeft.Type == _itemLeft0.Type) data[EquipmentDefinition.SelectedLeft] = 0;
+        else data[EquipmentDefinition.SelectedLeft] = 1;
+        if (_selectedRight.Type == _itemRight0.Type) data[EquipmentDefinition.SelectedRight] = 0;
+        else data[EquipmentDefinition.SelectedRight] = 1;
     }
 
     private void FillUInt32IntoData(ref byte[] data, UInt32 fill, int offset)
