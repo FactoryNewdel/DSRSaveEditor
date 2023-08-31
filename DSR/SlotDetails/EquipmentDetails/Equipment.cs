@@ -474,7 +474,92 @@ public class Equipment : INotifyPropertyChanged
             data[i + offset] = fillBytes[i];
         }
     }
+    
+    public void ChangeSpell()
+    {
+        if (SelectedSpell.Type == Inventory.NoItem.Type) return;
 
+        if (SelectedSpellIndex == 0 && ItemSpell1.Type != Inventory.NoItem.Type) SelectedSpellIndex = 1;
+        else if (SelectedSpellIndex == 1)
+        {
+            if (ItemSpell2.Type != Inventory.NoItem.Type) SelectedSpellIndex = 2;
+            else if (ItemSpell0.Type != Inventory.NoItem.Type) SelectedSpellIndex = 0;
+        } 
+        else if (SelectedSpellIndex == 2)
+        {
+            if (ItemSpell3.Type != Inventory.NoItem.Type) SelectedSpellIndex = 3;
+            else if (ItemSpell0.Type != Inventory.NoItem.Type) SelectedSpellIndex = 0;
+        } 
+        else if (SelectedSpellIndex == 3)
+        {
+            if (ItemSpell4.Type != Inventory.NoItem.Type) SelectedSpellIndex = 4;
+            else if (ItemSpell0.Type != Inventory.NoItem.Type) SelectedSpellIndex = 0;
+        } 
+        else if (SelectedSpellIndex == 4)
+        {
+            if (ItemSpell5.Type != Inventory.NoItem.Type) SelectedSpellIndex = 5;
+            else if (ItemSpell0.Type != Inventory.NoItem.Type) SelectedSpellIndex = 0;
+        } 
+        else if (SelectedSpellIndex == 5)
+        {
+            if (ItemSpell6.Type != Inventory.NoItem.Type) SelectedSpellIndex = 6;
+            else if (ItemSpell0.Type != Inventory.NoItem.Type) SelectedSpellIndex = 0;
+        } 
+        else if (SelectedSpellIndex == 6)
+        {
+            if (ItemSpell7.Type != Inventory.NoItem.Type) SelectedSpellIndex = 7;
+            else if (ItemSpell0.Type != Inventory.NoItem.Type) SelectedSpellIndex = 0;
+        } 
+        else if (SelectedSpellIndex == 7)
+        {
+            if (ItemSpell8.Type != Inventory.NoItem.Type) SelectedSpellIndex = 8;
+            else if (ItemSpell0.Type != Inventory.NoItem.Type) SelectedSpellIndex = 0;
+        } 
+        else if (SelectedSpellIndex == 8)
+        {
+            if (ItemSpell9.Type != Inventory.NoItem.Type) SelectedSpellIndex = 9;
+            else if (ItemSpell0.Type != Inventory.NoItem.Type) SelectedSpellIndex = 0;
+        } 
+        else if (SelectedSpellIndex == 9 && ItemSpell0.Type != Inventory.NoItem.Type) SelectedSpellIndex = 0;
+    }
+    
+    public void ChangeLeft()
+    {
+        if (SelectedLeft.FullID == ItemLeft0.FullID) SelectedLeft = ItemLeft1;
+        else if (SelectedLeft.FullID == ItemLeft1.FullID) SelectedLeft = ItemLeft0;
+    }
+    
+    public void ChangeRight()
+    {
+        if (SelectedRight.FullID == ItemRight0.FullID) SelectedRight = ItemRight1;
+        else if (SelectedRight.FullID == ItemRight1.FullID) SelectedRight = ItemRight0;
+
+        if (SelectedRight.Type == ItemType.Fists) TwoHanded = false;
+    }
+    
+    public void ChangeConsumable()
+    {
+        if (SelectedConsumable.Type == Inventory.NoItem.Type) return;
+
+        if (SelectedConsumable.Type == ItemConsumable0.Type && ItemConsumable1.Type != Inventory.NoItem.Type) SelectedConsumable = ItemConsumable1;
+        else if (SelectedConsumable.Type == ItemConsumable1.Type)
+        {
+            if (ItemConsumable2.Type != Inventory.NoItem.Type) SelectedConsumable = ItemConsumable2;
+            else if (ItemConsumable0.Type != Inventory.NoItem.Type) SelectedConsumable = ItemConsumable0;
+        } 
+        else if (SelectedConsumable.Type == ItemConsumable2.Type)
+        {
+            if (ItemConsumable3.Type != Inventory.NoItem.Type) SelectedConsumable = ItemConsumable3;
+            else if (ItemConsumable0.Type != Inventory.NoItem.Type) SelectedConsumable = ItemConsumable0;
+        } 
+        else if (SelectedConsumable.Type == ItemConsumable3.Type)
+        {
+            if (ItemConsumable2.Type != Inventory.NoItem.Type) SelectedConsumable = ItemConsumable4;
+            else if (ItemConsumable0.Type != Inventory.NoItem.Type) SelectedConsumable = ItemConsumable0;
+        } 
+        else if (SelectedConsumable.Type == ItemConsumable4.Type && ItemConsumable2.Type != Inventory.NoItem.Type) SelectedConsumable = ItemConsumable0;
+    }
+    
     #region Properties
     
     public Item SelectedLeft
@@ -876,6 +961,7 @@ public class Equipment : INotifyPropertyChanged
         get => _twoHanded;
         set
         {
+            if (value && SelectedRight.Type == ItemType.Fists) return;
             _twoHanded = value;
             NotifyPropertyChanged();
         }
