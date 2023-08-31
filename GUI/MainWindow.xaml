@@ -16,8 +16,8 @@
         Background="Black">
     <Window.Resources>
         <converters:ItemToBackgroundConverter x:Key="ItemToBackgroundConverter" />
-        
-        
+
+
         <Style x:Key="MainTabStyle">
             <Setter Property="TextBlock.Foreground" Value="Black"></Setter>
             <Setter Property="TabItem.Template">
@@ -157,7 +157,7 @@
         </Style>
 
     </Window.Resources>
-    
+
     <TabControl Name="Tabs" Padding="0" Background="Black" SelectedIndex="2">
 
         <TabItem Name="TabMain" Header="Main" Style="{DynamicResource MainTabStyle}">
@@ -258,37 +258,47 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <Image Grid.Row="0" Grid.Column="1" 
-                           Source="{Binding ElementName=ImageEquipmentAttunement, Path=Source, Converter={StaticResource ItemToBackgroundConverter}}" 
-                           Opacity="0.88" />
-                    <Image Grid.Row="0" Grid.Column="1" 
-                           Name="ImageEquipmentAttunement" 
-                           Source="{Binding SelectedSlot.Equipment.SelectedSpell.ImagePath}" 
-                           Opacity="0.88" Margin="25" />
+                    <Image Grid.Row="0" Grid.Column="1"
+                           Source="{Binding ElementName=ImageEquipmentAttunement, Path=Source, Converter={StaticResource ItemToBackgroundConverter}}"
+                           Opacity="0.88"
+                           MouseDown="Image_MouseDown_Spell" />
+                    <Image Grid.Row="0" Grid.Column="1"
+                           Name="ImageEquipmentAttunement"
+                           Source="{Binding SelectedSlot.Equipment.SelectedSpell.ImagePath}"
+                           Opacity="0.88" Margin="25"
+                           MouseDown="Image_MouseDown_Spell" />
 
-                    <Image Grid.Row="1" Grid.Column="0" 
-                           Source="{Binding ElementName=ImageEquipmentLeft, Path=Source, Converter={StaticResource ItemToBackgroundConverter}}" 
-                           Opacity="0.88" />
-                    <Image Grid.Row="1" Grid.Column="0" 
-                           Name="ImageEquipmentLeft"       
-                           Source="{Binding SelectedSlot.Equipment.SelectedLeft.ImagePath}" 
-                           Opacity="0.88" Margin="25" />
+                    <Image Grid.Row="1" Grid.Column="0"
+                           Source="{Binding ElementName=ImageEquipmentLeft, Path=Source, Converter={StaticResource ItemToBackgroundConverter}}"
+                           Opacity="0.88"
+                           MouseDown="Image_MouseDown_Left" />
+                    <Image Grid.Row="1" Grid.Column="0"
+                           Name="ImageEquipmentLeft"
+                           Source="{Binding SelectedSlot.Equipment.SelectedLeft.ImagePath}"
+                           Opacity="0.88" Margin="25"
+                           MouseDown="Image_MouseDown_Left" />
 
-                    <Image Grid.Row="1" Grid.Column="2" 
-                           Source="{Binding ElementName=ImageEquipmentRight, Path=Source, Converter={StaticResource ItemToBackgroundConverter}}" 
-                           Opacity="0.88" />
                     <Image Grid.Row="1" Grid.Column="2"
-                           Name="ImageEquipmentRight"      
-                           Source="{Binding SelectedSlot.Equipment.SelectedRight.ImagePath}" 
-                           Opacity="0.88" Margin="25" />
+                           Source="{Binding ElementName=ImageEquipmentRight, Path=Source, Converter={StaticResource ItemToBackgroundConverter}}"
+                           Opacity="0.88"
+                           MouseDown="Image_MouseDown_Right" />
+                    <Image Grid.Row="1" Grid.Column="2"
+                           Name="ImageEquipmentRight"
+                           Source="{Binding SelectedSlot.Equipment.SelectedRight.ImagePath}"
+                           Opacity="0.88" Margin="25"
+                           MouseDown="Image_MouseDown_Right" />
 
-                    <Image Grid.Row="2" Grid.Column="1" 
-                           Source="{Binding ElementName=ImageEquipmentConsumable, Path=Source, Converter={StaticResource ItemToBackgroundConverter}}" 
-                           Opacity="0.88" />
-                    <Image Grid.Row="2" Grid.Column="1" 
-                           Name="ImageEquipmentConsumable" 
-                           Source="{Binding SelectedSlot.Equipment.SelectedConsumable.ImagePath}" 
-                           Opacity="0.88" Margin="25" />
+                    <CheckBox Grid.Row="2" Grid.Column="2" Margin="20 10 0 0" Foreground="White" IsChecked="{Binding SelectedSlot.Equipment.TwoHanded}">Two handed</CheckBox>
+
+                    <Image Grid.Row="2" Grid.Column="1"
+                           Source="{Binding ElementName=ImageEquipmentConsumable, Path=Source, Converter={StaticResource ItemToBackgroundConverter}}"
+                           Opacity="0.88"
+                           MouseDown="Image_MouseDown_Consumable" />
+                    <Image Grid.Row="2" Grid.Column="1"
+                           Name="ImageEquipmentConsumable"
+                           Source="{Binding SelectedSlot.Equipment.SelectedConsumable.ImagePath}"
+                           Opacity="0.88" Margin="25"
+                           MouseDown="Image_MouseDown_Consumable" />
 
                 </Grid>
 
@@ -313,7 +323,7 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="100" />
                     </Grid.ColumnDefinitions>
-                    
+
                     <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontSize="15">Starter Class</TextBlock>
                     <TextBlock Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="15" Text="{Binding SelectedSlot.CharacterStats.StarterClass}"></TextBlock>
 
@@ -358,22 +368,146 @@
                     <TextBox Name="TbHumanity" Grid.Row="10" Grid.Column="2" Style="{DynamicResource TextBoxStyle}" Text="{Binding SelectedSlot.CharacterStats.Humanity, FallbackValue=0, Mode=OneWay}" PreviewTextInput="Textbox_PreviewNumberOnly_Stats" />
 
                     <Button Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 10 10 10" Style="{DynamicResource MainTabButtonStyle}" Click="Btn_Stats_Discard">Discard</Button>
-                    <Button Grid.Row="11" Grid.Column="2"                     Margin="10"                Style="{DynamicResource MainTabButtonStyle}" Click="Btn_Stats_Save">Save</Button>
+                    <Button Grid.Row="11" Grid.Column="2" Margin="10" Style="{DynamicResource MainTabButtonStyle}" Click="Btn_Stats_Save">Save</Button>
                 </Grid>
 
-                <Slider Name="Sliderr" Grid.Row="0" Grid.Column="1" Panel.ZIndex="1"
-                        Minimum="0" Maximum="1000" Interval="1" IsSnapToTickEnabled="True" Orientation="Horizontal"
-                        Template="{DynamicResource HorizontalSlider}">
-                </Slider>
-                <ProgressBar Grid.Row="0" Grid.Column="1" Panel.ZIndex="0" Background="Transparent" Foreground="Red"
-                             Value="{Binding ElementName=Sliderr, Path=Value}"
-                             Minimum="{Binding ElementName=Sliderr, Path=Minimum}"
-                             Maximum="{Binding ElementName=Sliderr, Path=Maximum}" />
+                <!-->HP and Stamina<-->
+                <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="10" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="10" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="10" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="10" />
+                    </Grid.ColumnDefinitions>
+                    
+                    <!-->Current HP<-->
+                    <TextBox Grid.Row="1" Grid.Column="0" Style="{DynamicResource TextBoxStyle}"
+                             Margin="5"
+                             PreviewTextInput="Textbox_PreviewNumberOnly"
+                             Text="{Binding ElementName=SliderHPCurrent, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    </TextBox>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Foreground="White" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center">/</TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="2" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding SelectedSlot.CharacterStats.HPTotalUnmodified}" />
+                    
+                    <Slider Name="SliderHPCurrent" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2" Panel.ZIndex="1"
+                            BorderThickness="1" BorderBrush="White" Opacity="0.69"
+                            Minimum="1" Maximum="{Binding SelectedSlot.CharacterStats.HPTotalUnmodified}" Value="{Binding SelectedSlot.CharacterStats.HPCurrent}" Interval="1" IsSnapToTickEnabled="True" Orientation="Horizontal"
+                            Template="{DynamicResource HorizontalSlider}">
+                    </Slider>
+                    <ProgressBar Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2" Panel.ZIndex="0" Background="Transparent" Foreground="Red"
+                                 Opacity="0.69"
+                                 Value="{Binding ElementName=SliderHPCurrent, Path=Value}"
+                                 Minimum="{Binding ElementName=SliderHPCurrent, Path=Minimum}"
+                                 Maximum="{Binding ElementName=SliderHPCurrent, Path=Maximum}" />
+                    
+                    
+                    <!-->Current Stamina<-->
+                    <TextBox Grid.Row="3" Grid.Column="0" Style="{DynamicResource TextBoxStyle}"
+                             Margin="5"
+                             PreviewTextInput="Textbox_PreviewNumberOnly"
+                             Text="{Binding ElementName=SliderStaminaCurrent, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    </TextBox>
+                    <TextBlock Grid.Row="3" Grid.Column="1" Foreground="White" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center">/</TextBlock>
+                    <TextBlock Grid.Row="3" Grid.Column="2" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding SelectedSlot.CharacterStats.StaminaTotalUnmodified}" />
+                    
+                    <Slider Name="SliderStaminaCurrent" Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="1" Panel.ZIndex="1"
+                            BorderThickness="1" BorderBrush="White" Opacity="0.69"
+                            Minimum="1" Maximum="{Binding SelectedSlot.CharacterStats.StaminaTotalUnmodified}" Value="{Binding SelectedSlot.CharacterStats.StaminaCurrent}" Interval="1" IsSnapToTickEnabled="True" Orientation="Horizontal"
+                            Template="{DynamicResource HorizontalSlider}">
+                    </Slider>
+                    <ProgressBar Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="1" Panel.ZIndex="0" Background="Transparent" Foreground="Green"
+                                 Opacity="0.69"
+                                 Value="{Binding ElementName=SliderStaminaCurrent, Path=Value}"
+                                 Minimum="{Binding ElementName=SliderStaminaCurrent, Path=Minimum}"
+                                 Maximum="{Binding ElementName=SliderStaminaCurrent, Path=Maximum}" />
+                    
+                    
+                    <TextBlock Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="6" 
+                               Margin="10 0 0 0" Foreground="White" FontSize="15">
+                        Change Max HP and Stamine (DO NOT USE ONLINE)
+                    </TextBlock>
+                    
+                    
 
-                <TextBox Grid.Row="0" Grid.Column="0" Style="{DynamicResource TextBoxStyle}"
-                         PreviewTextInput="Textbox_PreviewNumberOnly"
-                         Text="{Binding ElementName=Sliderr, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                </TextBox>
+                    <Expander Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="6">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="10" />
+                                <RowDefinition Height="40" />
+                                <RowDefinition Height="10" />
+                                <RowDefinition Height="40" />
+                            </Grid.RowDefinitions>
+                    
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="20" />
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="10" />
+                            </Grid.ColumnDefinitions>
+                            
+                    
+                    <!-->Max HP<-->
+                    <TextBox Grid.Row="1" Grid.Column="0" Style="{DynamicResource TextBoxStyle}"
+                             Margin="5"
+                             PreviewTextInput="Textbox_PreviewNumberOnly"
+                             Text="{Binding ElementName=SliderHPMax, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    </TextBox>
+                    
+                    <Button Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="10 5" Style="{DynamicResource MainTabButtonStyle}" Click="Btn_HP_Discard">Discard</Button>
+                    
+                    <Slider Name="SliderHPMax" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2" Panel.ZIndex="1"
+                            BorderThickness="1" BorderBrush="White" Opacity="0.69"
+                            Minimum="1" Maximum="10000" Value="{Binding SelectedSlot.CharacterStats.HPTotalUnmodified}" Interval="1" IsSnapToTickEnabled="True" Orientation="Horizontal"
+                            Template="{DynamicResource HorizontalSlider}">
+                    </Slider>
+                    <ProgressBar Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2" Panel.ZIndex="0" Background="Transparent" Foreground="Red"
+                                 Opacity="0.69"
+                                 Value="{Binding ElementName=SliderHPMax, Path=Value}"
+                                 Minimum="{Binding ElementName=SliderHPMax, Path=Minimum}"
+                                 Maximum="{Binding ElementName=SliderHPMax, Path=Maximum}" />
+                    
+                    
+                    <!-->Max Stamina<-->
+                    <TextBox Grid.Row="3" Grid.Column="0" Style="{DynamicResource TextBoxStyle}"
+                             Margin="5"
+                             PreviewTextInput="Textbox_PreviewNumberOnly"
+                             Text="{Binding ElementName=SliderStaminaMax, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    </TextBox>
+                    
+                    <Button Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Margin="10 5" Style="{DynamicResource MainTabButtonStyle}" Click="Btn_Stamina_Discard">Discard</Button>
+                    
+                    <Slider Name="SliderStaminaMax" Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="1" Panel.ZIndex="1"
+                            BorderThickness="1" BorderBrush="White" Opacity="0.69"
+                            Minimum="1" Maximum="1000" Value="{Binding SelectedSlot.CharacterStats.StaminaTotalUnmodified}" Interval="1" IsSnapToTickEnabled="True" Orientation="Horizontal"
+                            Template="{DynamicResource HorizontalSlider}">
+                    </Slider>
+                    <ProgressBar Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="1" Panel.ZIndex="0" Background="Transparent" Foreground="Green"
+                                 Opacity="0.69"
+                                 Value="{Binding ElementName=SliderStaminaMax, Path=Value}"
+                                 Minimum="{Binding ElementName=SliderStaminaMax, Path=Minimum}"
+                                 Maximum="{Binding ElementName=SliderStaminaMax, Path=Maximum}" />
+                    
+                            </Grid>
+                    </Expander>
+                    
+                    
+                    
+                </Grid>
 
                 <TextBlock Grid.Row="1" Grid.Column="1" Margin="100 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontSize="30" FontFamily="Times New Roman" Text="{Binding SelectedSlot.CharacterStats.Name, FallbackValue=Name not found}" />
 
@@ -461,7 +595,7 @@
                                     <Setter Property="Height" Value="100" />
                                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                                     <EventSetter Event="MouseDoubleClick" Handler="ListViewItem_DoubleClick"></EventSetter>
-                                    <EventSetter Event="PreviewKeyDown"   Handler="ListViewItem_PreviewKeyDown"></EventSetter>
+                                    <EventSetter Event="PreviewKeyDown" Handler="ListViewItem_PreviewKeyDown"></EventSetter>
                                 </Style>
                             </ListView.ItemContainerStyle>
                             <ListView.ItemTemplate>
@@ -587,5 +721,5 @@
 
     </TabControl>
 
-    
+
 </Window>

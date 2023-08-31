@@ -22,6 +22,8 @@ namespace GUI
     {
         private MainViewModel _mainViewModel;
         private InventoryImageContainer _defaultInventoryTab;
+        private UInt32 _hpMaxBackup;
+        private UInt32 _staminaMaxBackup;
 
         public MainWindow()
         {
@@ -117,6 +119,20 @@ namespace GUI
             if (_mainViewModel.SelectedInventoryTab != null) _mainViewModel.SelectedInventoryTab.Selected = false;
 
             _mainViewModel.SetDefaultInventoryItem(_defaultInventoryTab);
+            
+            Btn_Stats_Discard(null, null);
+            _hpMaxBackup = _mainViewModel.SelectedSlot.CharacterStats.HPTotalUnmodified;
+            _staminaMaxBackup = _mainViewModel.SelectedSlot.CharacterStats.StaminaTotalUnmodified;
+        }
+
+        private void Btn_HP_Discard(object sender, RoutedEventArgs e)
+        {
+            SliderHPMax.Value = _hpMaxBackup;
+        }
+
+        private void Btn_Stamina_Discard(object sender, RoutedEventArgs e)
+        {
+            SliderStaminaMax.Value = _staminaMaxBackup;
         }
 
         private void Btn_Stats_Discard(object sender, RoutedEventArgs e)
@@ -205,7 +221,27 @@ namespace GUI
                 + intell - _mainViewModel.SelectedSlot.CharacterStats.IntelligenceMin
                 + fth - _mainViewModel.SelectedSlot.CharacterStats.FaithMin;
         }
-
+        
+        private void Image_MouseDown_Spell(object sender, MouseButtonEventArgs e)
+        {
+            _mainViewModel.SelectedSlot.Equipment.ChangeSpell();
+        }
+        
+        private void Image_MouseDown_Left(object sender, MouseButtonEventArgs e)
+        {
+            _mainViewModel.SelectedSlot.Equipment.ChangeLeft();
+        }
+        
+        private void Image_MouseDown_Right(object sender, MouseButtonEventArgs e)
+        {
+            _mainViewModel.SelectedSlot.Equipment.ChangeRight();
+        }
+        
+        private void Image_MouseDown_Consumable(object sender, MouseButtonEventArgs e)
+        {
+            _mainViewModel.SelectedSlot.Equipment.ChangeConsumable();
+        }
+        
         #endregion
 
         #region InventoryTab

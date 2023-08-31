@@ -320,15 +320,6 @@ public class MainViewModel : INotifyPropertyChanged
         {
             _selectedSlot = value;
             NotifyPropertyChanged();
-            NotifyPropertyChanged("CharacterStats.Vitality");
-            NotifyPropertyChanged("CharacterStats.Attunement");
-            NotifyPropertyChanged("CharacterStats.Endurance");
-            NotifyPropertyChanged("CharacterStats.Strength");
-            NotifyPropertyChanged("CharacterStats.Dexterity");
-            NotifyPropertyChanged("CharacterStats.Resistance");
-            NotifyPropertyChanged("CharacterStats.Intelligence");
-            NotifyPropertyChanged("CharacterStats.Faith");
-            NotifyPropertyChanged("CharacterStats.Humanity");
         }
     }
 
