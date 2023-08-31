@@ -119,6 +119,93 @@ namespace GUI
             _mainViewModel.SetDefaultInventoryItem(_defaultInventoryTab);
         }
 
+        private void Btn_Stats_Discard(object sender, RoutedEventArgs e)
+        {
+            TbVit.Text = "" + _mainViewModel.SelectedSlot.CharacterStats.Vitality;
+            TbAtt.Text = "" + _mainViewModel.SelectedSlot.CharacterStats.Attunement;
+            TbEnd.Text = "" + _mainViewModel.SelectedSlot.CharacterStats.Endurance;
+            TbStr.Text = "" + _mainViewModel.SelectedSlot.CharacterStats.Strength;
+            TbDex.Text = "" + _mainViewModel.SelectedSlot.CharacterStats.Dexterity;
+            TbRes.Text = "" + _mainViewModel.SelectedSlot.CharacterStats.Resistance;
+            TbInt.Text = "" + _mainViewModel.SelectedSlot.CharacterStats.Intelligence;
+            TbFth.Text = "" + _mainViewModel.SelectedSlot.CharacterStats.Faith;
+            TbHumanity.Text = "" + _mainViewModel.SelectedSlot.CharacterStats.Humanity;
+        }
+        
+        private void Btn_Stats_Save(object sender, RoutedEventArgs e)
+        {
+            var vit = uint.Parse(TbVit.Text);
+            var att = uint.Parse(TbAtt.Text);
+            var end = uint.Parse(TbEnd.Text);
+            var str = uint.Parse(TbStr.Text);
+            var dex = uint.Parse(TbDex.Text);
+            var res = uint.Parse(TbRes.Text);
+            var intell = uint.Parse(TbInt.Text);
+            var fth = uint.Parse(TbFth.Text);
+            var humanity = uint.Parse(TbHumanity.Text);
+
+            if (vit < _mainViewModel.SelectedSlot.CharacterStats.VitalityMin)
+            {
+                vit = _mainViewModel.SelectedSlot.CharacterStats.VitalityMin;
+                TbVit.Text = "" + vit;
+            }
+            if (att < _mainViewModel.SelectedSlot.CharacterStats.AttunementMin)
+            {
+                att = _mainViewModel.SelectedSlot.CharacterStats.AttunementMin;
+                TbAtt.Text = "" + att;
+            }
+            if (end < _mainViewModel.SelectedSlot.CharacterStats.EnduranceMin)
+            {
+                end = _mainViewModel.SelectedSlot.CharacterStats.EnduranceMin;
+                TbEnd.Text = "" + end;
+            }
+            if (str < _mainViewModel.SelectedSlot.CharacterStats.StrengthMin)
+            {
+                str = _mainViewModel.SelectedSlot.CharacterStats.StrengthMin;
+                TbStr.Text = "" + str;
+            }
+            if (dex < _mainViewModel.SelectedSlot.CharacterStats.DexterityMin)
+            {
+                dex = _mainViewModel.SelectedSlot.CharacterStats.DexterityMin;
+                TbDex.Text = "" + dex;
+            }
+            if (res < _mainViewModel.SelectedSlot.CharacterStats.ResistanceMin)
+            {
+                res = _mainViewModel.SelectedSlot.CharacterStats.ResistanceMin;
+                TbRes.Text = "" + res;
+            }
+            if (intell < _mainViewModel.SelectedSlot.CharacterStats.IntelligenceMin)
+            {
+                intell = _mainViewModel.SelectedSlot.CharacterStats.IntelligenceMin;
+                TbInt.Text = "" + intell;
+            }
+            if (fth < _mainViewModel.SelectedSlot.CharacterStats.FaithMin)
+            {
+                fth = _mainViewModel.SelectedSlot.CharacterStats.FaithMin;
+                TbFth.Text = "" + fth;
+            }
+
+            _mainViewModel.SelectedSlot.CharacterStats.Vitality = vit;
+            _mainViewModel.SelectedSlot.CharacterStats.Attunement = att;
+            _mainViewModel.SelectedSlot.CharacterStats.Endurance = end;
+            _mainViewModel.SelectedSlot.CharacterStats.Strength = str;
+            _mainViewModel.SelectedSlot.CharacterStats.Dexterity = dex;
+            _mainViewModel.SelectedSlot.CharacterStats.Resistance = res;
+            _mainViewModel.SelectedSlot.CharacterStats.Intelligence = intell;
+            _mainViewModel.SelectedSlot.CharacterStats.Faith = fth;
+            _mainViewModel.SelectedSlot.CharacterStats.Humanity = humanity;
+
+            _mainViewModel.SelectedSlot.CharacterStats.Level = _mainViewModel.SelectedSlot.CharacterStats.LevelMin 
+                + vit - _mainViewModel.SelectedSlot.CharacterStats.VitalityMin
+                + att - _mainViewModel.SelectedSlot.CharacterStats.AttunementMin
+                + end - _mainViewModel.SelectedSlot.CharacterStats.EnduranceMin
+                + str - _mainViewModel.SelectedSlot.CharacterStats.StrengthMin
+                + dex - _mainViewModel.SelectedSlot.CharacterStats.DexterityMin
+                + res - _mainViewModel.SelectedSlot.CharacterStats.ResistanceMin
+                + intell - _mainViewModel.SelectedSlot.CharacterStats.IntelligenceMin
+                + fth - _mainViewModel.SelectedSlot.CharacterStats.FaithMin;
+        }
+
         #endregion
 
         #region InventoryTab
@@ -260,6 +347,24 @@ namespace GUI
         private void Textbox_PreviewNumberOnly(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !_regexNumber.IsMatch(e.Text);
+        }
+        
+        private void Textbox_PreviewNumberOnly_Stats(object sender, TextCompositionEventArgs e)
+        {
+            var textbox = sender as TextBox;
+            var text = textbox.Text + e.Text;
+            if (!uint.TryParse(text, out var num))
+            {
+                e.Handled = true;
+                return;
+            }
+
+            if (num > 99)
+            {
+                e.Handled = true;
+                textbox.Text = "99";
+                return;
+            }
         }
     }
 }

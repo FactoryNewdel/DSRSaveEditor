@@ -309,6 +309,16 @@ public class CharacterStats : INotifyPropertyChanged
         data[CharacterStatsDefinition.WorldSecondary.Offset] = _worldSecondary;
     }
 
+    public StarterClass StarterClass
+    {
+        get => _starterClass;
+        set
+        {
+            _starterClass = value;
+            NotifyPropertyChanged();
+        }
+    }
+
     public uint Level
     {
         get => _level;
