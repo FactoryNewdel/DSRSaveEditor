@@ -234,19 +234,20 @@
 
             <Grid Name="GridCharacter">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="600" />
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="3*" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="600" />
                     <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="3*" />
                     <ColumnDefinition Width="300" />
                 </Grid.ColumnDefinitions>
 
-                <Image Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Source="Images/Backgrounds/TabBackground_Character.jpg" Stretch="Fill" />
+                <Image Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="3" Source="Images/Backgrounds/TabBackground_Character.jpg" Stretch="Fill" />
 
                 <!-->Active Equipment like shown on main screen<-->
-                <Grid Name="GridActiveEquip" Grid.Row="1" Grid.Column="0">
+                <Grid Name="GridActiveEquip" Grid.Row="2" Grid.Column="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
@@ -265,7 +266,7 @@
                     <Image Grid.Row="0" Grid.Column="1"
                            Name="ImageEquipmentAttunement"
                            Source="{Binding SelectedSlot.Equipment.SelectedSpell.ImagePath}"
-                           Opacity="0.88" Margin="25"
+                           Opacity="0.88" Margin="20"
                            MouseDown="Image_MouseDown_Spell" />
 
                     <Image Grid.Row="1" Grid.Column="0"
@@ -275,7 +276,7 @@
                     <Image Grid.Row="1" Grid.Column="0"
                            Name="ImageEquipmentLeft"
                            Source="{Binding SelectedSlot.Equipment.SelectedLeft.ImagePath}"
-                           Opacity="0.88" Margin="25"
+                           Opacity="0.88" Margin="20"
                            MouseDown="Image_MouseDown_Left" />
 
                     <Image Grid.Row="1" Grid.Column="2"
@@ -285,7 +286,7 @@
                     <Image Grid.Row="1" Grid.Column="2"
                            Name="ImageEquipmentRight"
                            Source="{Binding SelectedSlot.Equipment.SelectedRight.ImagePath}"
-                           Opacity="0.88" Margin="25"
+                           Opacity="0.88" Margin="20"
                            MouseDown="Image_MouseDown_Right" />
 
                     <CheckBox Grid.Row="2" Grid.Column="2" Margin="20 10 0 0" Foreground="White" IsChecked="{Binding SelectedSlot.Equipment.TwoHanded}">Two handed</CheckBox>
@@ -297,13 +298,13 @@
                     <Image Grid.Row="2" Grid.Column="1"
                            Name="ImageEquipmentConsumable"
                            Source="{Binding SelectedSlot.Equipment.SelectedConsumable.ImagePath}"
-                           Opacity="0.88" Margin="25"
+                           Opacity="0.88" Margin="20"
                            MouseDown="Image_MouseDown_Consumable" />
 
                 </Grid>
 
                 <!-->Stats<-->
-                <Grid Name="GridStats" Grid.Row="1" Grid.Column="2">
+                <Grid Name="GridStats" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2" MinHeight="600" MaxHeight="800" VerticalAlignment="Bottom">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
@@ -437,7 +438,7 @@
                     
                     <TextBlock Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="6" 
                                Margin="10 0 0 0" Foreground="White" FontSize="15">
-                        Change Max HP and Stamine (DO NOT USE ONLINE)
+                        Change Max HP and Stamina (DO NOT USE ONLINE)
                     </TextBlock>
                     
                     
@@ -509,7 +510,7 @@
                     
                 </Grid>
 
-                <TextBlock Grid.Row="1" Grid.Column="1" Margin="100 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontSize="30" FontFamily="Times New Roman" Text="{Binding SelectedSlot.CharacterStats.Name, FallbackValue=Name not found}" />
+                <TextBlock Grid.Row="2" Grid.Column="1" Margin="100 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontSize="30" FontFamily="Times New Roman" Text="{Binding SelectedSlot.CharacterStats.Name, FallbackValue=Name not found}" />
 
             </Grid>
 
