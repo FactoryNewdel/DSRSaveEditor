@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -119,7 +120,7 @@ namespace GUI
             if (_mainViewModel.SelectedInventoryTab != null) _mainViewModel.SelectedInventoryTab.Selected = false;
 
             _mainViewModel.SetDefaultInventoryItem(_defaultInventoryTab);
-            
+
             Btn_Stats_Discard(null, null);
             _hpMaxBackup = _mainViewModel.SelectedSlot.CharacterStats.HPTotalUnmodified;
             _staminaMaxBackup = _mainViewModel.SelectedSlot.CharacterStats.StaminaTotalUnmodified;
@@ -147,7 +148,7 @@ namespace GUI
             TbFth.Text = "" + _mainViewModel.SelectedSlot.CharacterStats.Faith;
             TbHumanity.Text = "" + _mainViewModel.SelectedSlot.CharacterStats.Humanity;
         }
-        
+
         private void Btn_Stats_Save(object sender, RoutedEventArgs e)
         {
             var vit = uint.Parse(TbVit.Text);
@@ -165,36 +166,43 @@ namespace GUI
                 vit = _mainViewModel.SelectedSlot.CharacterStats.VitalityMin;
                 TbVit.Text = "" + vit;
             }
+
             if (att < _mainViewModel.SelectedSlot.CharacterStats.AttunementMin)
             {
                 att = _mainViewModel.SelectedSlot.CharacterStats.AttunementMin;
                 TbAtt.Text = "" + att;
             }
+
             if (end < _mainViewModel.SelectedSlot.CharacterStats.EnduranceMin)
             {
                 end = _mainViewModel.SelectedSlot.CharacterStats.EnduranceMin;
                 TbEnd.Text = "" + end;
             }
+
             if (str < _mainViewModel.SelectedSlot.CharacterStats.StrengthMin)
             {
                 str = _mainViewModel.SelectedSlot.CharacterStats.StrengthMin;
                 TbStr.Text = "" + str;
             }
+
             if (dex < _mainViewModel.SelectedSlot.CharacterStats.DexterityMin)
             {
                 dex = _mainViewModel.SelectedSlot.CharacterStats.DexterityMin;
                 TbDex.Text = "" + dex;
             }
+
             if (res < _mainViewModel.SelectedSlot.CharacterStats.ResistanceMin)
             {
                 res = _mainViewModel.SelectedSlot.CharacterStats.ResistanceMin;
                 TbRes.Text = "" + res;
             }
+
             if (intell < _mainViewModel.SelectedSlot.CharacterStats.IntelligenceMin)
             {
                 intell = _mainViewModel.SelectedSlot.CharacterStats.IntelligenceMin;
                 TbInt.Text = "" + intell;
             }
+
             if (fth < _mainViewModel.SelectedSlot.CharacterStats.FaithMin)
             {
                 fth = _mainViewModel.SelectedSlot.CharacterStats.FaithMin;
@@ -211,7 +219,7 @@ namespace GUI
             _mainViewModel.SelectedSlot.CharacterStats.Faith = fth;
             _mainViewModel.SelectedSlot.CharacterStats.Humanity = humanity;
 
-            _mainViewModel.SelectedSlot.CharacterStats.Level = _mainViewModel.SelectedSlot.CharacterStats.LevelMin 
+            _mainViewModel.SelectedSlot.CharacterStats.Level = _mainViewModel.SelectedSlot.CharacterStats.LevelMin
                 + vit - _mainViewModel.SelectedSlot.CharacterStats.VitalityMin
                 + att - _mainViewModel.SelectedSlot.CharacterStats.AttunementMin
                 + end - _mainViewModel.SelectedSlot.CharacterStats.EnduranceMin
@@ -221,27 +229,27 @@ namespace GUI
                 + intell - _mainViewModel.SelectedSlot.CharacterStats.IntelligenceMin
                 + fth - _mainViewModel.SelectedSlot.CharacterStats.FaithMin;
         }
-        
+
         private void Image_MouseDown_Spell(object sender, MouseButtonEventArgs e)
         {
             _mainViewModel.SelectedSlot.Equipment.ChangeSpell();
         }
-        
+
         private void Image_MouseDown_Left(object sender, MouseButtonEventArgs e)
         {
             _mainViewModel.SelectedSlot.Equipment.ChangeLeft();
         }
-        
+
         private void Image_MouseDown_Right(object sender, MouseButtonEventArgs e)
         {
             _mainViewModel.SelectedSlot.Equipment.ChangeRight();
         }
-        
+
         private void Image_MouseDown_Consumable(object sender, MouseButtonEventArgs e)
         {
             _mainViewModel.SelectedSlot.Equipment.ChangeConsumable();
         }
-        
+
         #endregion
 
         #region InventoryTab
@@ -278,13 +286,13 @@ namespace GUI
                 }
 
                 var items = new List<Item>();
-                
+
                 foreach (var selected in listViewInventory.SelectedItems)
                 {
                     if (selected is not Item selectedItem) continue;
                     items.Add(selectedItem);
                 }
-                
+
                 ListViewItem_Delete(items);
             }
         }
@@ -305,9 +313,9 @@ namespace GUI
 
         private void ListViewItem_Delete(Item item)
         {
-            ListViewItem_Delete(new List<Item>{ item });
+            ListViewItem_Delete(new List<Item> { item });
         }
-        
+
         private void ListViewItem_Delete(List<Item> items)
         {
             if (items.Count == 0) return;
@@ -318,24 +326,24 @@ namespace GUI
 
                 if (_mainViewModel.DeleteItem(item)) MessageBox.Show($"{item.Name} has been removed from the inventory!");
                 else MessageBox.Show($"{item.Name} could not be removed from the inventory", "Error");
-                
+
                 return;
             }
 
             var sb = new StringBuilder();
-            
+
             foreach (var item in items)
             {
                 sb.Append(item.Name).Append(", ");
             }
 
             sb.Remove(sb.Length - 2, 2);
-            
+
             if (MessageBox.Show($"Are you sure you want to delete those items?\n{sb}", "Warning", MessageBoxButton.YesNo) != MessageBoxResult.Yes) return;
 
             sb.Clear();
             var sbDeleted = new StringBuilder();
-            var sbError   = new StringBuilder();
+            var sbError = new StringBuilder();
             foreach (var item in items)
             {
                 if (_mainViewModel.DeleteItem(item)) sbDeleted.Append(item.Name).Append(", ");
@@ -347,6 +355,7 @@ namespace GUI
                 sbDeleted.Remove(sbDeleted.Length - 2, 2);
                 sb.AppendLine("Successfully deleted those items:").AppendLine(sbDeleted.ToString());
             }
+
             if (sbError.Length != 0)
             {
                 sbError.Remove(sbError.Length - 2, 2);
@@ -384,13 +393,32 @@ namespace GUI
         {
             e.Handled = !_regexNumber.IsMatch(e.Text);
         }
-        
-        private void Textbox_PreviewNumberOnly_Stats(object sender, TextCompositionEventArgs e)
+
+        private void Textbox_TextChanged_NumberOnly_Stats(object sender, TextChangedEventArgs e)
         {
             var textbox = sender as TextBox;
-            var text = textbox.Text + e.Text;
+            var text = textbox.Text;
+
             if (!uint.TryParse(text, out var num))
             {
+                var changes = e.Changes.ToList();
+                try
+                {
+                    for (var i = changes.Count - 1; i >= 0; i--)
+                    {
+                        var change = changes[i];
+                        text = text.Remove(change.Offset, change.AddedLength);
+                    }
+
+                    if (text.Length == 0) text = "1";
+                }
+                catch (Exception)
+                {
+                    text = "1";
+                }
+
+                textbox.Text = text;
+
                 e.Handled = true;
                 return;
             }
@@ -399,6 +427,13 @@ namespace GUI
             {
                 e.Handled = true;
                 textbox.Text = "99";
+                return;
+            }
+
+            if (num < 1)
+            {
+                e.Handled = true;
+                textbox.Text = "1";
                 return;
             }
         }

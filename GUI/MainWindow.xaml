@@ -334,39 +334,39 @@
 
                     <Image Grid.Row="2" Grid.Column="0" Source="Images/StatusIcons/Vitality.png" />
                     <TextBlock Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Margin="10 0 0 0" FontSize="15">Vitality</TextBlock>
-                    <TextBox Name="TbVit" Grid.Row="2" Grid.Column="2" Style="{DynamicResource TextBoxStyle}" Text="{Binding SelectedSlot.CharacterStats.Vitality, FallbackValue=0, Mode=OneWay}" PreviewTextInput="Textbox_PreviewNumberOnly_Stats" />
+                    <TextBox Name="TbVit" Grid.Row="2" Grid.Column="2" Style="{DynamicResource TextBoxStyle}" Text="{Binding SelectedSlot.CharacterStats.Vitality, FallbackValue=0, Mode=OneWay}" TextChanged="Textbox_TextChanged_NumberOnly_Stats" />
 
                     <Image Grid.Row="3" Grid.Column="0" Source="Images/StatusIcons/Attunement.png" />
                     <TextBlock Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Margin="10 0 0 0" FontSize="15">Attunement</TextBlock>
-                    <TextBox Name="TbAtt" Grid.Row="3" Grid.Column="2" Style="{DynamicResource TextBoxStyle}" Text="{Binding SelectedSlot.CharacterStats.Attunement, FallbackValue=0, Mode=OneWay}" PreviewTextInput="Textbox_PreviewNumberOnly_Stats" />
+                    <TextBox Name="TbAtt" Grid.Row="3" Grid.Column="2" Style="{DynamicResource TextBoxStyle}" Text="{Binding SelectedSlot.CharacterStats.Attunement, FallbackValue=0, Mode=OneWay}" TextChanged="Textbox_TextChanged_NumberOnly_Stats" />
 
                     <Image Grid.Row="4" Grid.Column="0" Source="Images/StatusIcons/Endurance.png" />
                     <TextBlock Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Margin="10 0 0 0" FontSize="15">Endurance</TextBlock>
-                    <TextBox Name="TbEnd" Grid.Row="4" Grid.Column="2" Style="{DynamicResource TextBoxStyle}" Text="{Binding SelectedSlot.CharacterStats.Endurance, FallbackValue=0, Mode=OneWay}" PreviewTextInput="Textbox_PreviewNumberOnly_Stats" />
+                    <TextBox Name="TbEnd" Grid.Row="4" Grid.Column="2" Style="{DynamicResource TextBoxStyle}" Text="{Binding SelectedSlot.CharacterStats.Endurance, FallbackValue=0, Mode=OneWay}" TextChanged="Textbox_TextChanged_NumberOnly_Stats" />
 
                     <Image Grid.Row="5" Grid.Column="0" Source="Images/StatusIcons/Strength.png" />
                     <TextBlock Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Margin="10 0 0 0" FontSize="15">Strength</TextBlock>
-                    <TextBox Name="TbStr" Grid.Row="5" Grid.Column="2" Style="{DynamicResource TextBoxStyle}" Text="{Binding SelectedSlot.CharacterStats.Strength, FallbackValue=0, Mode=OneWay}" PreviewTextInput="Textbox_PreviewNumberOnly_Stats" />
+                    <TextBox Name="TbStr" Grid.Row="5" Grid.Column="2" Style="{DynamicResource TextBoxStyle}" Text="{Binding SelectedSlot.CharacterStats.Strength, FallbackValue=0, Mode=OneWay}" TextChanged="Textbox_TextChanged_NumberOnly_Stats" />
 
                     <Image Grid.Row="6" Grid.Column="0" Source="Images/StatusIcons/Dexterity.png" />
                     <TextBlock Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Margin="10 0 0 0" FontSize="15">Dexterity</TextBlock>
-                    <TextBox Name="TbDex" Grid.Row="6" Grid.Column="2" Style="{DynamicResource TextBoxStyle}" Text="{Binding SelectedSlot.CharacterStats.Dexterity, FallbackValue=0, Mode=OneWay}" PreviewTextInput="Textbox_PreviewNumberOnly_Stats" />
+                    <TextBox Name="TbDex" Grid.Row="6" Grid.Column="2" Style="{DynamicResource TextBoxStyle}" Text="{Binding SelectedSlot.CharacterStats.Dexterity, FallbackValue=0, Mode=OneWay}" TextChanged="Textbox_TextChanged_NumberOnly_Stats" />
 
                     <Image Grid.Row="7" Grid.Column="0" Source="Images/StatusIcons/Resistance.png" />
                     <TextBlock Grid.Row="7" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Margin="10 0 0 0" FontSize="15">Resistance</TextBlock>
-                    <TextBox Name="TbRes" Grid.Row="7" Grid.Column="2" Style="{DynamicResource TextBoxStyle}" Text="{Binding SelectedSlot.CharacterStats.Resistance, FallbackValue=0, Mode=OneWay}" PreviewTextInput="Textbox_PreviewNumberOnly_Stats" />
+                    <TextBox Name="TbRes" Grid.Row="7" Grid.Column="2" Style="{DynamicResource TextBoxStyle}" Text="{Binding SelectedSlot.CharacterStats.Resistance, FallbackValue=0, Mode=OneWay}" TextChanged="Textbox_TextChanged_NumberOnly_Stats" />
 
                     <Image Grid.Row="8" Grid.Column="0" Source="Images/StatusIcons/Intelligence.png" />
                     <TextBlock Grid.Row="8" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Margin="10 0 0 0" FontSize="15">Intelligence</TextBlock>
-                    <TextBox Name="TbInt" Grid.Row="8" Grid.Column="2" Style="{DynamicResource TextBoxStyle}" Text="{Binding SelectedSlot.CharacterStats.Intelligence, FallbackValue=0, Mode=OneWay}" PreviewTextInput="Textbox_PreviewNumberOnly_Stats" />
+                    <TextBox Name="TbInt" Grid.Row="8" Grid.Column="2" Style="{DynamicResource TextBoxStyle}" Text="{Binding SelectedSlot.CharacterStats.Intelligence, FallbackValue=0, Mode=OneWay}" TextChanged="Textbox_TextChanged_NumberOnly_Stats" />
 
                     <Image Grid.Row="9" Grid.Column="0" Source="Images/StatusIcons/Faith.png" />
                     <TextBlock Grid.Row="9" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Margin="10 0 0 0" FontSize="15">Faith</TextBlock>
-                    <TextBox Name="TbFth" Grid.Row="9" Grid.Column="2" Style="{DynamicResource TextBoxStyle}" Text="{Binding SelectedSlot.CharacterStats.Faith, FallbackValue=0, Mode=OneWay}" PreviewTextInput="Textbox_PreviewNumberOnly_Stats" />
+                    <TextBox Name="TbFth" Grid.Row="9" Grid.Column="2" Style="{DynamicResource TextBoxStyle}" Text="{Binding SelectedSlot.CharacterStats.Faith, FallbackValue=0, Mode=OneWay}" TextChanged="Textbox_TextChanged_NumberOnly_Stats" />
 
                     <Image Grid.Row="10" Grid.Column="0" Source="Images/StatusIcons/Humanity.png" />
                     <TextBlock Grid.Row="10" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Margin="10 0 0 0" FontSize="15">Humanity</TextBlock>
-                    <TextBox Name="TbHumanity" Grid.Row="10" Grid.Column="2" Style="{DynamicResource TextBoxStyle}" Text="{Binding SelectedSlot.CharacterStats.Humanity, FallbackValue=0, Mode=OneWay}" PreviewTextInput="Textbox_PreviewNumberOnly_Stats" />
+                    <TextBox Name="TbHumanity" Grid.Row="10" Grid.Column="2" Style="{DynamicResource TextBoxStyle}" Text="{Binding SelectedSlot.CharacterStats.Humanity, FallbackValue=0, Mode=OneWay}" TextChanged="Textbox_TextChanged_NumberOnly_Stats" />
 
                     <Button Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 10 10 10" Style="{DynamicResource MainTabButtonStyle}" Click="Btn_Stats_Discard">Discard</Button>
                     <Button Grid.Row="11" Grid.Column="2" Margin="10" Style="{DynamicResource MainTabButtonStyle}" Click="Btn_Stats_Save">Save</Button>
