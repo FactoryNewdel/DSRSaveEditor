@@ -366,7 +366,7 @@ public class Equipment : INotifyPropertyChanged
         
         SelectedLeft = _bytes[EquipmentDefinition.SelectedLeft] == 0 ? _itemLeft0 : _itemLeft1;
         SelectedRight = _bytes[EquipmentDefinition.SelectedRight] == 0 ? _itemRight0 : _itemRight1;
-        var selectedConsumableID = BitConverter.ToUInt32(bytes, EquipmentDefinition.SelectedConsumableID);
+        var selectedConsumableID = BitConverter.ToUInt32(bytes, EquipmentDefinition.SelectedConsumableIndex);
         if (_pointerConsumable00 == selectedConsumableID) SelectedConsumable = _itemConsumable0;
         else if (_pointerConsumable10 == selectedConsumableID) SelectedConsumable = _itemConsumable1;
         else if (_pointerConsumable20 == selectedConsumableID) SelectedConsumable = _itemConsumable2;
@@ -458,7 +458,7 @@ public class Equipment : INotifyPropertyChanged
         else data[EquipmentDefinition.TwoHanded] &= 0b11111101;
         
         FillUInt32IntoData(ref data, _selectedSpellIndex, EquipmentDefinition.SelectedSpellIndex);
-        FillUInt32IntoData(ref data, _selectedConsumable.FullID, EquipmentDefinition.SelectedConsumableID);
+        FillUInt32IntoData(ref data, _selectedConsumable.Index, EquipmentDefinition.SelectedConsumableIndex);
 
         if (_selectedLeft.Type == _itemLeft0.Type) data[EquipmentDefinition.SelectedLeft] = 0;
         else data[EquipmentDefinition.SelectedLeft] = 1;

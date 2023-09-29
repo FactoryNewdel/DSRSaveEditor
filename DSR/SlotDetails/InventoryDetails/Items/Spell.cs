@@ -6,7 +6,7 @@ public class Spell : Item
     private UInt32 _maxUsages;
     private UInt32 _usedSlots;
     
-    public Spell(byte idSpace, uint id, uint amount, uint sorting, int index, bool enabled, uint durability, uint durabilityLoss) : base (idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss)
+    public Spell(byte idSpace, uint id, uint amount, uint sorting, uint index, bool enabled, uint durability, uint durabilityLoss) : base (idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss)
     {
         _spellType = (SpellType)(id / 1000);
         var invSpell = (ItemList.GetItem(Type) as Spell);

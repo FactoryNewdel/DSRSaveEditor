@@ -4,7 +4,7 @@ public class Ring : Item
 {
     private List<Action> _ringEffects;
     
-    public Ring(byte idSpace, uint id, uint amount, uint sorting, int index, bool enabled, uint durability, uint durabilityLoss) : base (idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss)
+    public Ring(byte idSpace, uint id, uint amount, uint sorting, uint index, bool enabled, uint durability, uint durabilityLoss) : base (idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss)
     {
         ImagePath += $"Rings/{Type}.png";
     }

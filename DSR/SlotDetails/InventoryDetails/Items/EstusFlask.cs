@@ -5,7 +5,7 @@ public class EstusFlask : SpecialItem
     private uint _strength;
     private bool _empty;
     
-    public EstusFlask(uint id, uint amount, int index) : base(64, 200, amount, 0x20, index, true, 0, 0)
+    public EstusFlask(uint id, uint amount, uint index) : base(64, 200, amount, 0x20, index, true, 0, 0)
     {
         _strength = (id - 200) / 2;
         _empty = (id - 200) % 2 == 0;

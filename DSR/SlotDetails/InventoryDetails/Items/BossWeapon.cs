@@ -6,7 +6,7 @@ public class BossWeapon : Weapon
     private ItemType _originalItemType;
 
     // Inventory
-    public BossWeapon(uint id, uint amount, uint sorting, int index, bool enabled, uint durability, uint durabilityLoss) : base(0, id, amount, sorting, index, enabled, durability, durabilityLoss)
+    public BossWeapon(uint id, uint amount, uint sorting, uint index, bool enabled, uint durability, uint durabilityLoss) : base(0, id, amount, sorting, index, enabled, durability, durabilityLoss)
     {
         _originalItemID = (id - (id / 10000 * 10000)) / 100;
         Infusion = Infusion.None;
@@ -15,7 +15,7 @@ public class BossWeapon : Weapon
     }
     
     // Inventory for items with ids reaching another id
-    public BossWeapon(ItemType type, uint id, uint amount, uint sorting, int index, bool enabled, uint durability, uint durabilityLoss) : base(type, 0, id, amount, sorting, index, enabled, durability, durabilityLoss)
+    public BossWeapon(ItemType type, uint id, uint amount, uint sorting, uint index, bool enabled, uint durability, uint durabilityLoss) : base(type, 0, id, amount, sorting, index, enabled, durability, durabilityLoss)
     {
         _originalItemID = (id - (id / 10000 * 10000)) / 100;
         Infusion = Infusion.None;

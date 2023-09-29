@@ -4,7 +4,7 @@ public class PyromancyFlame : Weapon
 {
     private bool _ascended = false;
     
-    public PyromancyFlame(uint id, int index) : base(0, 1330000, 1, 0x3195C0, index, true, 30, 0)
+    public PyromancyFlame(uint id, uint index) : base(0, 1330000, 1, 0x3195C0, index, true, 30, 0)
     {
         Level = (id - (id / 10000 * 10000)) / 100;
         if (Level > 20)

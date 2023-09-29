@@ -4,7 +4,7 @@ public class KeyItem : Item
 {
     private KeyItemType _keyItemType;
     
-    public KeyItem(byte idSpace, uint id, uint amount, uint sorting, int index, bool enabled, uint durability, uint durabilityLoss) : base (idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss)
+    public KeyItem(byte idSpace, uint id, uint amount, uint sorting, uint index, bool enabled, uint durability, uint durabilityLoss) : base (idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss)
     {
         ImagePath += $"Items/KeyItems/{Type}.png";
         GetKeyItemType();
