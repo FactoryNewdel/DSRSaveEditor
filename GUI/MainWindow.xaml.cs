@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using DSR.SlotDetails;
+using DSR.SlotDetails.Character;
 using DSR.SlotDetails.InventoryDetails.Items;
 using DSR.Utils;
 using GUI.Helper;
@@ -16,9 +17,6 @@ using Microsoft.Win32;
 
 namespace GUI
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         private MainViewModel _mainViewModel;
@@ -151,15 +149,24 @@ namespace GUI
 
         private void Btn_Stats_Save(object sender, RoutedEventArgs e)
         {
-            var vit = uint.Parse(TbVit.Text);
-            var att = uint.Parse(TbAtt.Text);
-            var end = uint.Parse(TbEnd.Text);
-            var str = uint.Parse(TbStr.Text);
-            var dex = uint.Parse(TbDex.Text);
-            var res = uint.Parse(TbRes.Text);
-            var intell = uint.Parse(TbInt.Text);
-            var fth = uint.Parse(TbFth.Text);
-            var humanity = uint.Parse(TbHumanity.Text);
+            uint vit;
+            if (!uint.TryParse(TbVit.Text, out vit)) vit = 1;
+            uint att;
+            if (!uint.TryParse(TbAtt.Text, out att)) att = 1;
+            uint end;
+            if (!uint.TryParse(TbEnd.Text, out end)) end = 1;
+            uint str;
+            if (!uint.TryParse(TbStr.Text, out str)) str = 1;
+            uint dex;
+            if (!uint.TryParse(TbDex.Text, out dex)) dex = 1;
+            uint res;
+            if (!uint.TryParse(TbRes.Text, out res)) res = 1;
+            uint intell;
+            if (!uint.TryParse(TbInt.Text, out intell)) intell = 1;
+            uint fth;
+            if (!uint.TryParse(TbFth.Text, out fth)) fth = 1;
+            uint humanity;
+            if (!uint.TryParse(TbHumanity.Text, out humanity)) humanity = 1;
 
             if (vit < _mainViewModel.SelectedSlot.CharacterStats.VitalityMin)
             {
@@ -398,7 +405,10 @@ namespace GUI
         {
             var textbox = sender as TextBox;
             var text = textbox.Text;
+            var min = !textbox.Name.Equals(TbHumanity?.Name) ? 1 : 0;
 
+            if (text.Length == 0) return;
+            
             if (!uint.TryParse(text, out var num))
             {
                 var changes = e.Changes.ToList();
@@ -410,11 +420,11 @@ namespace GUI
                         text = text.Remove(change.Offset, change.AddedLength);
                     }
 
-                    if (text.Length == 0) text = "1";
+                    if (text.Length == 0) text = $"{min}";
                 }
                 catch (Exception)
                 {
-                    text = "1";
+                    text = $"{min}";
                 }
 
                 textbox.Text = text;
@@ -430,10 +440,10 @@ namespace GUI
                 return;
             }
 
-            if (num < 1)
+            if (num < min)
             {
                 e.Handled = true;
-                textbox.Text = "1";
+                textbox.Text = $"{min}";
                 return;
             }
         }
