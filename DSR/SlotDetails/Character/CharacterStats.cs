@@ -230,6 +230,17 @@ public class CharacterStats : INotifyPropertyChanged
             _resistanceMin = 11;
             _intMin = 11;
             _fthMin = 11;
+        } else if (_starterClass == StarterClass.Cheat)
+        {
+            _levelMin = 1;
+            _vitMin = 1;
+            _attMin = 1;
+            _endMin = 1;
+            _strMin = 1;
+            _dexMin = 1;
+            _resistanceMin = 1;
+            _intMin = 1;
+            _fthMin = 1;
         }
     }
 
@@ -315,9 +326,12 @@ public class CharacterStats : INotifyPropertyChanged
         set
         {
             _starterClass = value;
+            SetMinimumLevels();
             NotifyPropertyChanged();
         }
     }
+
+    public IEnumerable<StarterClass> AllStarterClasses => Enum.GetValues(typeof(StarterClass)).Cast<StarterClass>();
 
     public uint Level
     {

@@ -12,4 +12,5 @@ public enum StarterClass
     Pyromancer = 7,
     Cleric     = 8,
     Deprived   = 9,
+    Cheat      = 10,
 }

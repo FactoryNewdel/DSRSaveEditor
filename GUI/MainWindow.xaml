@@ -326,7 +326,7 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontSize="15">Starter Class</TextBlock>
-                    <TextBlock Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="15" Text="{Binding SelectedSlot.CharacterStats.StarterClass}"></TextBlock>
+                    <ComboBox Name="CbStarterClass" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" ItemsSource="{Binding SelectedSlot.CharacterStats.AllStarterClasses}" SelectedItem="{Binding SelectedSlot.CharacterStats.StarterClass}" />
 
                     <Image Grid.Row="1" Grid.Column="0" Source="Images/StatusIcons/Level.png" />
                     <TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Margin="10 0 0 0" FontSize="15">Level</TextBlock>
