@@ -38,8 +38,8 @@ public class Inventory : INotifyPropertyChanged
             var idSpace = inventoryData[i + 3];
             var id = BitConverter.ToUInt32(inventoryData, i + 4);
             var amount = BitConverter.ToUInt32(inventoryData, i + 8);
-            var index = (inventoryData[i + 13] & 0b00000111) * 256 + inventoryData[i + 12];
-            var sorting = (BitConverter.ToUInt32(inventoryData, i + 12) - (uint)index) / 256;
+            var index = (uint)(inventoryData[i + 13] & 0b00000111) * 256 + inventoryData[i + 12];
+            var sorting = (BitConverter.ToUInt32(inventoryData, i + 12) - index) / 256;
             var enabled = inventoryData[i + 16] == 1;
             var durability = BitConverter.ToUInt32(inventoryData, i + 20);
             var durabilityLoss = BitConverter.ToUInt32(inventoryData, i + 24);
@@ -60,7 +60,7 @@ public class Inventory : INotifyPropertyChanged
             if (_inventorySize == InventorySize) return false;
             
             LatestItemIndex++;
-            item.Index = (int)LatestItemIndex;
+            item.Index = LatestItemIndex;
             Items[LatestItemIndex] = item;
             _inventorySize++;
             return true;
