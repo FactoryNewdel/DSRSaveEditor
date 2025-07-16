@@ -76,6 +76,11 @@ namespace GUI
             Tabs.SelectedIndex = 1;
         }
 
+        private void Kill_Clicked(object sender, RoutedEventArgs e)
+        {
+            _mainViewModel.SelectedSlot.Bytes[142957] = (byte)(_mainViewModel.SelectedSlot.Bytes[142957] | 0b00100000);
+        }
+
         private void Export_Clicked(object sender, RoutedEventArgs e)
         {
             var dialog = new OpenFileDialog();

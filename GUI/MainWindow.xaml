@@ -158,7 +158,7 @@
 
     </Window.Resources>
 
-    <TabControl Name="Tabs" Padding="0" Background="Black" SelectedIndex="2">
+    <TabControl Name="Tabs" Padding="0" Background="Black" SelectedIndex="0">
 
         <TabItem Name="TabMain" Header="Main" Style="{DynamicResource MainTabStyle}">
 
@@ -172,6 +172,7 @@
                 <Image Grid.Column="0" Grid.ColumnSpan="3" Source="Images/Backgrounds/TabBackground_Main.jpg" Stretch="Fill" />
 
                 <Button Name="ButtonImport" Grid.Column="0" Width="300" Height="50" Style="{DynamicResource MainTabButtonStyle}" Click="Import_Clicked">Import Savefile</Button>
+                <!--Button Name="ButtonKill" Grid.Column="1" Width="200" Height="50" Style="{DynamicResource MainTabButtonStyle}" Click="Kill_Clicked">Kill Test-->
                 <Button Name="ButtonExport" Grid.Column="2" Width="300" Height="50" Style="{DynamicResource MainTabButtonStyle}" Click="Export_Clicked">Export Savefile</Button>
             </Grid>
 

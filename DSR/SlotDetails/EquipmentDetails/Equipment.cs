@@ -541,6 +541,8 @@ public class Equipment : INotifyPropertyChanged
     {
         if (SelectedConsumable.Type == Inventory.NoItem.Type) return;
 
+        //var consumables = new Item[] { ItemConsumable0, ItemConsumable1, ItemConsumable2, ItemConsumable3, ItemConsumable4 };
+        
         if (SelectedConsumable.Type == ItemConsumable0.Type && ItemConsumable1.Type != Inventory.NoItem.Type) SelectedConsumable = ItemConsumable1;
         else if (SelectedConsumable.Type == ItemConsumable1.Type)
         {
