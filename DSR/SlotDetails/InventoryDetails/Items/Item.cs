@@ -13,7 +13,7 @@ public class Item : INotifyPropertyChanged
     private ItemType _type;
     private UInt32 _amount;
     private UInt32 _sorting;
-    private int _index;
+    private UInt32 _index;
     private bool _enabled;
     private UInt32 _durability;
     private UInt32 _durabilityLoss;
@@ -23,7 +23,7 @@ public class Item : INotifyPropertyChanged
     #endregion
 
     // Items from Inventory
-    protected Item(byte idSpace, uint id, uint amount, uint sorting, int index, bool enabled, uint durability, uint durabilityLoss)
+    protected Item(byte idSpace, uint id, uint amount, uint sorting, uint index, bool enabled, uint durability, uint durabilityLoss)
     {
         _idSpace = idSpace;
         _id = id;
@@ -80,7 +80,7 @@ public class Item : INotifyPropertyChanged
         ImagePath = item.ImagePath;
     }
 
-    public static Item GetItem(byte idSpace, uint id, uint amount, uint sorting, int index, bool enabled, uint durability, uint durabilityLoss)
+    public static Item GetItem(byte idSpace, uint id, uint amount, uint sorting, uint index, bool enabled, uint durability, uint durabilityLoss)
     {
         if (idSpace == 0)
         {
@@ -121,7 +121,7 @@ public class Item : INotifyPropertyChanged
         throw new InvalidDataException($"Invalid IDSpace: {idSpace}");
     }
 
-    private static Item GetIngameItem(byte idSpace, uint id, uint amount, uint sorting, int index, bool enabled, uint durability, uint durabilityLoss)
+    private static Item GetIngameItem(byte idSpace, uint id, uint amount, uint sorting, uint index, bool enabled, uint durability, uint durabilityLoss)
     {
         if (id >= 200 && id <= 215) return new EstusFlask(id, amount, index);
         if (id / 1000 == 0 && id / 100 == 7) return new BossSoul(idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss);
@@ -212,7 +212,7 @@ public class Item : INotifyPropertyChanged
         }
     }
 
-    public int Index
+    public uint Index
     {
         get => _index;
         set

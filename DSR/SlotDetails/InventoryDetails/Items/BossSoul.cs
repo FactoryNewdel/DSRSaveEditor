@@ -4,7 +4,7 @@ public class BossSoul : CommonItem
 {
     private UInt32 _soulAmount;
     
-    public BossSoul(byte idSpace, uint id, uint amount, uint sorting, int index, bool enabled, uint durability, uint durabilityLoss) : base (idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss)
+    public BossSoul(byte idSpace, uint id, uint amount, uint sorting, uint index, bool enabled, uint durability, uint durabilityLoss) : base (idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss)
     {
         ImagePath = ImagePath.Insert(ImagePath.LastIndexOf("\\", StringComparison.InvariantCulture) + 1, "BossSouls\\");
     }

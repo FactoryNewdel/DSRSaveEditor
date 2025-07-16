@@ -1,4 +1,4 @@
-﻿namespace DSR.SlotDetails;
+﻿namespace DSR.SlotDetails.InventoryDetails.Items;
 
 public enum Infusion
 {

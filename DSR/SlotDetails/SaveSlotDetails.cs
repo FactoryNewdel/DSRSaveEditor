@@ -1,4 +1,6 @@
 ﻿using DSR.SlotDetails.InventoryDetails;
+using DSR.SlotDetails.EquipmentDetails;
+using DSR.SlotDetails.Character;
 
 namespace DSR.SlotDetails;
 
@@ -11,6 +13,8 @@ public class SaveSlotDetails
     private Equipment? _equipment;
     private Progress? _progress;
 
+    private static int slot = 0;
+
     public SaveSlotDetails(byte[] bytes)
     {
         _bytes = bytes;
@@ -19,19 +23,26 @@ public class SaveSlotDetails
 
         if (_characterStats.Level == 0) return;
 
-        Console.WriteLine($"ACCOUNT {_characterStats.Name}");
+        Console.WriteLine($"ACCOUNT {_characterStats.Name} ({slot++})");
+        //Console.WriteLine("127428 = " + _bytes[127428]);
 
         _inventory = new Inventory(bytes);
-        _equipment = new Equipment(bytes, _inventory.Items);
+        _equipment = new Equipment(this, bytes);
         _progress = new Progress(bytes);
+        
+        //if (slot++ != 0) return;
+
+        /*for (var i = 0; i < bytes.Length; i+=4)
+        {
+            var num = BitConverter.ToUInt32(_bytes, i);
+            if (num != ) continue;
+            Console.WriteLine($"[{i}] -> {num}");
+        }*/
         
         
         //_bytes[221174] = 0;
         //_bytes[221180] = 0;
         
-        // 2984 counter until weapon loses durability
-        // 2844, 2872 armor counter
-        // 2980 weapon durability
         // 96, 97 cur HP
         // 220887 Enemy death states Asylum
         /*_bytes[220887] = 255;

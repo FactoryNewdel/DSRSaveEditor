@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using DSR.SlotDetails.InventoryDetails.Items;
+using DSR.Utils;
 
 namespace DSR.SlotDetails.InventoryDetails;
 
@@ -27,14 +28,18 @@ public class Inventory : INotifyPropertyChanged
         _inventorySize = BitConverter.ToUInt32(bytes, 848);
         _latestItemIndex = BitConverter.ToUInt32(bytes, 58204);
         
-        Console.WriteLine($"INVENTORY No {slot}");
+        DetailComparer.Add(InventoryOffset, InventorySize * ItemSize);
+        DetailComparer.Add(848, 4);
+        DetailComparer.Add(58204, 4);
+        
+        //Console.WriteLine($"INVENTORY No {slot}");
         for (var i = 0; i < inventoryData.Length; i += ItemSize)
         {
             var idSpace = inventoryData[i + 3];
             var id = BitConverter.ToUInt32(inventoryData, i + 4);
             var amount = BitConverter.ToUInt32(inventoryData, i + 8);
-            var index = (inventoryData[i + 13] & 0b00000111) * 256 + inventoryData[i + 12];
-            var sorting = (BitConverter.ToUInt32(inventoryData, i + 12) - (uint)index) / 256;
+            var index = (uint)(inventoryData[i + 13] & 0b00000111) * 256 + inventoryData[i + 12];
+            var sorting = (BitConverter.ToUInt32(inventoryData, i + 12) - index) / 256;
             var enabled = inventoryData[i + 16] == 1;
             var durability = BitConverter.ToUInt32(inventoryData, i + 20);
             var durabilityLoss = BitConverter.ToUInt32(inventoryData, i + 24);
@@ -42,7 +47,7 @@ public class Inventory : INotifyPropertyChanged
             _items[i / 28] = Item.GetItem(idSpace, id, amount, sorting, index, enabled, durability, durabilityLoss);
 
             var item = _items[i / 28];
-            if (slot == 0 && item.ID != 0 && item.ID != 0xFFFFFFFF) Console.WriteLine((i + 2652) + " | " + (i / 28) + " ID = " + item.IdSpace + "    0x" + BitConverter.ToString(BitConverter.GetBytes(item.ID).Reverse().ToArray()).Replace("-", "").TrimStart('0') + "    " + item.ID + "    " + item.Sorting + "    0x" + BitConverter.ToString(BitConverter.GetBytes(item.Sorting).Reverse().ToArray()).Replace("-", "").TrimStart('0') + "    " + BitConverter.ToString(BitConverter.GetBytes(item.Sorting + item.Index)) + "    " + item.Index + "    " + item.Type + "    " + item.Durability);
+            if (slot == 30 && item.ID != 0 && item.ID != 0xFFFFFFFF) Console.WriteLine((i + 2652) + " | " + (i / 28) + " ID = " + item.IdSpace + "    0x" + BitConverter.ToString(BitConverter.GetBytes(item.ID).Reverse().ToArray()).Replace("-", "").TrimStart('0') + "    " + item.ID + "    " + item.Sorting + "    0x" + BitConverter.ToString(BitConverter.GetBytes(item.Sorting).Reverse().ToArray()).Replace("-", "").TrimStart('0') + "    " + BitConverter.ToString(BitConverter.GetBytes(item.Sorting + item.Index)) + "    " + item.Index + "    " + item.Type + "    " + item.Durability);
         }
 
         slot++;
@@ -55,7 +60,7 @@ public class Inventory : INotifyPropertyChanged
             if (_inventorySize == InventorySize) return false;
             
             LatestItemIndex++;
-            item.Index = (int)LatestItemIndex;
+            item.Index = LatestItemIndex;
             Items[LatestItemIndex] = item;
             _inventorySize++;
             return true;
@@ -194,7 +199,7 @@ public class Inventory : INotifyPropertyChanged
         }
     }
 
-    public static Item NoRing
+    public static Item NoItem
     {
         get
         {

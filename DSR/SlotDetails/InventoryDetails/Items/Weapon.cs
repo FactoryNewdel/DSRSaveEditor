@@ -11,7 +11,7 @@ public class Weapon : Item
     private string _infusionImagePath;
     private uint _level;
     
-    public Weapon(byte idSpace, uint id, uint amount, uint sorting, int index, bool enabled, uint durability, uint durabilityLoss) : base(idSpace, id, amount, sorting , index, enabled, durability, durabilityLoss)
+    public Weapon(byte idSpace, uint id, uint amount, uint sorting, uint index, bool enabled, uint durability, uint durabilityLoss) : base(idSpace, id, amount, sorting , index, enabled, durability, durabilityLoss)
     {
         try
         {
@@ -25,7 +25,7 @@ public class Weapon : Item
     }
     
     // Constructor for boss weapons with many IDs
-    public Weapon(ItemType type, byte idSpace, uint id, uint amount, uint sorting, int index, bool enabled, uint durability, uint durabilityLoss) : base(idSpace, id, amount, sorting , index, enabled, durability, durabilityLoss)
+    public Weapon(ItemType type, byte idSpace, uint id, uint amount, uint sorting, uint index, bool enabled, uint durability, uint durabilityLoss) : base(idSpace, id, amount, sorting , index, enabled, durability, durabilityLoss)
     {
         if (Type == ItemType.UNKNOWN) Type = type;
         
